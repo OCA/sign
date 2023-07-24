@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Dixmit
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="sign_oca_role_form_view">
+        <field name="name">sign.oca.role.form (in sign_oca)</field>
+        <field name="model">sign.oca.role</field>
+        <field name="arch" type="xml">
+            <form>
+                <header />
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="domain" />
+                    </group>
+                </sheet>
+                <div class="oe_chatter" />
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sign_oca_role_search_view">
+        <field name="name">sign.oca.role.search (in sign_oca)</field>
+        <field name="model">sign.oca.role</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sign_oca_role_tree_view">
+        <field name="name">sign.oca.role.tree (in sign_oca)</field>
+        <field name="model">sign.oca.role</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="sign_oca_role_act_window">
+        <field name="name">Roles</field> <!-- TODO -->
+        <field name="res_model">sign.oca.role</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record model="ir.ui.menu" id="sign_oca_role_menu">
+        <field name="name">Roles</field>
+        <field name="parent_id" ref="sign_oca_settings_menu" />
+        <field name="action" ref="sign_oca_role_act_window" />
+        <field name="sequence" eval="16" />
+    </record>
+
+</odoo>
