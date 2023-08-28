@@ -9,7 +9,7 @@
 
 # Odoo modules for signing purposes
 
-
+Here are OCA modules that have digital signature functionalities.
 
 <!-- /!\ do not modify below this line -->
 
