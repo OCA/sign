@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record
+        id="action_view_wizard_create_workflow_crm_lead"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Create Workflow</field>
+        <field name="res_model">wizard.create.workflow</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="crm.model_crm_lead" />
+        <field name="binding_view_types">form</field>
+    </record>
+</odoo>

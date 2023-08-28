@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_wizard_create_workflow" model="ir.ui.view">
+        <field name="name">Create LP Workflow</field>
+        <field name="model">wizard.create.workflow</field>
+        <field name="arch" type="xml">
+            <form string="Sign Pdf">
+                <div>
+                    Choose the persons and the document(s) to be approved/signed
+                </div>
+                <field name="contact_ids">
+                    <tree
+                        string="Contacts"
+                        editable="bottom"
+                        create="false"
+                        delete="false"
+                    >
+                        <field name="sequence" widget="handle" />
+                        <field name="partner_id" force_save="1" />
+                        <field name="email" force_save="1" />
+                        <field name="mobile" force_save="1" />
+                        <field name="lexpersona_ref" force_save="1" />
+                        <field name="action" />
+                        <field
+                            name="signature_type_id"
+                            options="{'no_open': True, 'no_create': True}"
+                            attrs="{'required': [('action', '=', 'signature')], 'invisible': [('action', '!=', 'signature')]}"
+                        />
+                    </tree>
+                </field>
+                <field name="document_ids">
+                    <tree
+                        string="Documents"
+                        editable="bottom"
+                        create="false"
+                        delete="false"
+                    >
+                        <field name="attachment_id" force_save="1" />
+                        <field name="action" />
+                        <field
+                            name="signature_profile_id"
+                            options="{'no_open': True, 'no_create': True}"
+                            attrs="{'required': [('action', '=', 'tobesigned')], 'invisible': [('action', '=', 'attachment')]}"
+                        />
+                    </tree>
+                </field>
+                <footer>
+                    <button
+                        string="Create Workflow"
+                        name="create_workflow"
+                        type="object"
+                        default_focus="1"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

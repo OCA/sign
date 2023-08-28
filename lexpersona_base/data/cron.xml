@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="ir_cron_ir_attachment_lexpersona" model="ir.cron">
+            <field name="name">Get signed documents from Lex Persona</field>
+            <field name="model_id" ref="model_ir_attachment" />
+            <field name="state">code</field>
+            <field name="code">model._retrieve_documents()</field>
+            <field name="interval_number">10</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False" />
+            <field name="active" eval="True" />
+        </record>
+    </data>
+</odoo>

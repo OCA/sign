@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+        <template id="sign_notification_template">
+            <div>
+                <p>Hello</p>
+                <p
+                >This is an automated message to inform you that the documents have been signed in <strong
+                        t-esc="record.display_name"
+                    /></p>
+                <br />
+                <br />
+                <p t-if="note" t-esc="note" />
+            </div>
+        </template>
+    </data>
+</odoo>

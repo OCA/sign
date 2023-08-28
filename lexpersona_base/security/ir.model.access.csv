@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wizard_create_workflow,access_wizard_create_workflow,model_wizard_create_workflow,base.group_user,1,1,1,0
+access_wizard_contact,access_wizard_contact,model_wizard_contact,base.group_user,1,1,1,0
+access_wizard_document,access_wizard_document,model_wizard_document,base.group_user,1,1,1,0
+access_wizard_signature_type,access_wizard_signature_type,model_wizard_signature_type,base.group_user,1,1,1,1
+access_wizard_signature_profile,access_wizard_signature_profile,model_wizard_signature_profile,base.group_user,1,1,1,1

@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo noupdate="1">
+    <record id="lexpersona_tenant_id" model="ir.config_parameter" forcecreate="1">
+        <field name="key">lexpersona_connector.tenant_id</field>
+        <field name="value" />
+    </record>
+    <record id="lexpersona_base_url" model="ir.config_parameter" forcecreate="1">
+        <field name="key">lexpersona_connector.lexpersona_base_url</field>
+        <field name="value" />
+    </record>
+</odoo>
