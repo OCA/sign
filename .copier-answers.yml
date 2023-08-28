@@ -1,5 +1,5 @@
 # Do NOT update manually; changes here will be overwritten by Copier
-_commit: v1.14.2
+_commit: v1.15.1
 _src_path: https://github.com/OCA/oca-addons-repo-template.git
 ci: GitHub
 dependency_installation_mode: PIP
@@ -11,11 +11,12 @@ github_enable_makepot: true
 github_enable_stale_action: true
 github_enforce_dev_status_compatibility: true
 include_wkhtmltopdf: false
+odoo_test_flavor: Both
 odoo_version: 14.0
 org_name: Odoo Community Association (OCA)
 org_slug: OCA
 rebel_module_groups: []
-repo_description: ''
+repo_description: Here are OCA modules that have digital signature functionalities.
 repo_name: Odoo modules for signing purposes
 repo_slug: sign
 repo_website: https://github.com/OCA/sign
