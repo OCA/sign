@@ -30,6 +30,14 @@ class SignOcaRequest(models.Model):
         required=True, readonly=True, states={"draft": [("readonly", False)]}
     )
     filename = fields.Char()
+    user_id = fields.Many2one(
+        comodel_name="res.users",
+        string="Responsible",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+        default=lambda self: self.env.user,
+        required=True,
+    )
     signed = fields.Boolean(copy=False)
     signer_ids = fields.One2many(
         "sign.oca.request.signer",
