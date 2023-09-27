@@ -22,6 +22,7 @@
                         states="draft,sent,signed"
                         name="cancel"
                         confirm="You will cancel the request and all the accesses. Are you sure about it?"
+                        groups="sign_oca.sign_oca_group_user"
                     />
                     <field
                         name="state"
@@ -37,6 +38,7 @@
                             class="oe_stat_button"
                             icon="fa-pencil"
                             states="sent,signed"
+                            groups="sign_oca.sign_oca_group_user"
                         >
                             <div class="o_field_widget o_stat_info">
                                 <span class="o_stat_value"><field
@@ -53,6 +55,7 @@
                             name="configure"
                             type="object"
                             string="Configure"
+                            groups="sign_oca.sign_oca_group_user"
                         />
                         <button
                             class="oe_stat_button"
@@ -60,8 +63,8 @@
                             name="%(sign_oca_request_log_act_window)s"
                             type="action"
                             string="Activity Log"
+                            groups="sign_oca.sign_oca_group_user"
                         />
-
                     </div>
                     <field name="active" invisible="1" />
                     <widget
@@ -95,7 +98,13 @@
                         <field name="record_ref" />
                     </group>
 
-                    <field name="signer_ids" nolabel="1" />
+                    <field name="signer_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="role_id" />
+                            <field name="partner_id" />
+                            <field name="signed_on" />
+                        </tree>
+                    </field>
                 </sheet>
                 <div class="oe_chatter">
                      <field name="message_follower_ids" />
@@ -302,9 +311,10 @@
         <field name="name">sign.oca.request.signer.tree (in sign_oca)</field>
         <field name="model">sign.oca.request.signer</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
+            <tree edit="0" delete="0" create="0">
                 <field name="role_id" />
                 <field name="partner_id" />
+                <field name="request_id" />
                 <field name="signed_on" />
             </tree>
         </field>
@@ -316,13 +326,22 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="role_id" />
-                        <field name="partner_id" />
+                        <field name="role_id" readonly="1" />
+                        <field name="partner_id" readonly="1" />
+                        <field name="request_id" readonly="1" />
                         <field name="signed_on" />
                     </group>
                 </sheet>
             </form>
         </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="sign_oca_request_signer_act_window">
+        <field name="name">Sign Request Signers</field>
+        <field name="res_model">sign.oca.request.signer</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
     </record>
 
     <record model="ir.actions.act_window" id="sign_oca_request_act_window">

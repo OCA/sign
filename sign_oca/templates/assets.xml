@@ -33,6 +33,10 @@
             />
             <script
                 type="text/javascript"
+                src="/sign_oca/static/src/elements/systray.js"
+            />
+            <script
+                type="text/javascript"
                 src="/sign_oca/static/src/components/sign_oca_pdf/sign_oca_pdf.js"
             />
             <script
