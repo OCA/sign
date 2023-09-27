@@ -88,13 +88,6 @@ class SignOcaRequest(models.Model):
     )
     next_item_id = fields.Integer(compute="_compute_next_item_id")
 
-    @api.depends("signatory_data")
-    def _compute_next_item_id(self):
-        for record in self:
-            record.next_item_id = (
-                record.signatory_data and max(record.signatory_data.keys()) or 0
-            ) + 1
-
     def preview(self):
         self.ensure_one()
         self._set_action_log("view")
@@ -302,6 +295,18 @@ class SignOcaRequestSigner(models.Model):
     role_id = fields.Many2one("sign.oca.role", required=True, ondelete="restrict")
     signed_on = fields.Datetime(readonly=True)
     signature_hash = fields.Char(readonly=True)
+    model = fields.Char(compute="_compute_model", store=True)
+    res_id = fields.Integer(compute="_compute_res_id", store=True)
+
+    @api.depends("request_id.record_ref")
+    def _compute_model(self):
+        for item in self.filtered(lambda x: x.request_id.record_ref):
+            item.model = item.request_id.record_ref._name
+
+    @api.depends("request_id.record_ref")
+    def _compute_res_id(self):
+        for item in self.filtered(lambda x: x.request_id.record_ref):
+            item.res_id = item.request_id.record_ref.id
 
     def _compute_access_url(self):
         super()._compute_access_url()
