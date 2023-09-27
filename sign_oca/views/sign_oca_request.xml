@@ -91,6 +91,7 @@
                             name="template_id"
                             attrs="{'invisible': [('template_id', '=', False)]}"
                         />
+                        <field name="user_id" />
                     </group>
 
                     <field name="signer_ids" nolabel="1" />
@@ -119,7 +120,7 @@
                 <filter
                     name="created_by_me"
                     string="My Documents"
-                    domain="[('create_uid', '=', uid)]"
+                    domain="[('user_id', '=', uid)]"
                 />
                 <filter
                     name="sign_by_me"
@@ -191,6 +192,8 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name" />
+                <field name="user_id" />
+                <field name="state" readonly="1" invisible="1" />
                 <button
                     name="sign"
                     type="object"
@@ -281,7 +284,7 @@
                                 </div>
                                 <div class="oe_kanban_bottom_right">
                                     <field
-                                        name="create_uid"
+                                        name="user_id"
                                         widget="many2one_avatar_user"
                                     />
                                 </div>
