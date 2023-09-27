@@ -47,6 +47,7 @@ class TestSign(HttpCase):
         )
 
     def test_portal(self):
+        self.authenticate("portal", "portal")
         self.request.action_send()
         self.url_open(self.request.signer_ids.access_url).raise_for_status()
         self.assertEqual(
