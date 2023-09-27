@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="sign.oca.RequestMenuPreview">
+        <t t-if="_.isEmpty(requests)">
+            <div class="dropdown-item-text text-center o_no_activity">
+                <span>No requests to do.</span>
+            </div>
+        </t>
+        <t t-foreach="requests" t-as="request">
+            <div
+                class="o_mail_preview"
+                t-att-data-res_model="request.model"
+                t-att-data-model_name="request.name"
+            >
+                <div class="o_mail_preview_image o_mail_preview_app">
+                    <img t-att-src="request.icon" alt="Request" />
+                </div>
+                <div class="o_preview_info">
+                    <div class="o_preview_title">
+                        <span class="o_preview_name">
+                            <t t-esc="request.name" />
+                        </span>
+                        <div
+                            t-if="request.actions"
+                            class="o_mail_activity_action_buttons"
+                        >
+                            <t t-foreach="request.actions" t-as="action">
+                                <button
+                                    type="button"
+                                    t-att-title="action.name"
+                                    t-att-class="'o_mail_activity_action btn btn-link fa ' + action.icon"
+                                    t-att-data-action_xmlid="action.action_xmlid"
+                                    t-att-data-res_model="request.model"
+                                    t-att-data-model_name="request.name"
+                                />
+                            </t>
+                        </div>
+                    </div>
+                    <div>
+                        <button
+                            t-if="request.total_records"
+                            type="button"
+                            class="btn btn-link o_activity_filter_button mr16"
+                            t-att-data-res_model="request.model"
+                            t-att-data-model_name="request.name"
+                            data-filter='total_records'
+                        >
+                            <t t-esc="request.total_records" />
+                            Pending
+                        </button>
+                        <span t-if="!request.total_records" class="o_no_activity mr16">
+                            0 Pending
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </t>
+    <t t-name="sign.oca.RequestMenu">
+        <li class="o_mail_systray_item">
+            <a
+                class="dropdown-toggle o-no-caret"
+                data-toggle="dropdown"
+                data-display="static"
+                aria-expanded="false"
+                title="Sign Requests"
+                href="#"
+                role="button"
+            >
+                <i class="fa fa-pencil" role="img" aria-label="Requests" />
+                <span class="o_notification_counter badge badge-pill" />
+            </a>
+            <div
+                class="o_mail_systray_dropdown dropdown-menu dropdown-menu-right"
+                role="menu"
+            >
+                <div class="o_mail_systray_dropdown_items" />
+            </div>
+        </li>
+    </t>
+</templates>
