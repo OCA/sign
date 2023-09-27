@@ -477,6 +477,7 @@ class SignRequestLog(models.Model):
             ("edit_field", "Edit field"),
             ("delete_field", "Delete field"),
             ("cancel", "Cancel"),
+            ("configure", "Configure"),
         ],
         required=True,
         readonly=True,
