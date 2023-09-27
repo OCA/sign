@@ -18,6 +18,7 @@
                             type="object"
                             icon="fa-wrench"
                             string="Configure"
+                            groups="sign_oca.sign_oca_group_admin"
                         />
                         <button
                             name="%(sign_oca.sign_oca_request_template_act_window)s"
@@ -119,6 +120,7 @@
                                         name="configure"
                                         type="object"
                                         class="btn btn-secondary btn-sm mt8"
+                                        groups="sign_oca.sign_oca_group_admin"
                                     >Configure</button>
                                     <button
                                         name="%(sign_oca_template_generate_act_window)s"
