@@ -92,6 +92,7 @@
                             attrs="{'invisible': [('template_id', '=', False)]}"
                         />
                         <field name="user_id" />
+                        <field name="record_ref" />
                     </group>
 
                     <field name="signer_ids" nolabel="1" />
@@ -193,6 +194,7 @@
             <tree>
                 <field name="name" />
                 <field name="user_id" />
+                <field name="record_ref" />
                 <field name="state" readonly="1" invisible="1" />
                 <button
                     name="sign"
