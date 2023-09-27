@@ -66,7 +66,6 @@ class TestSign(HttpCase):
             ).json()["result"]["items"][str(self.item["id"])],
             self.item,
         )
-
         data = {}
         for key in self.request.signer_ids.get_info()["items"]:
             val = self.request.signer_ids.get_info()["items"][key].copy()

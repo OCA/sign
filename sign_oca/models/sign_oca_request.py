@@ -305,6 +305,18 @@ class SignOcaRequestSigner(models.Model):
     role_id = fields.Many2one("sign.oca.role", required=True, ondelete="restrict")
     signed_on = fields.Datetime(readonly=True)
     signature_hash = fields.Char(readonly=True)
+    model = fields.Char(compute="_compute_model", store=True)
+    res_id = fields.Integer(compute="_compute_res_id", store=True)
+
+    @api.depends("request_id.record_ref")
+    def _compute_model(self):
+        for item in self.filtered(lambda x: x.request_id.record_ref):
+            item.model = item.request_id.record_ref._name
+
+    @api.depends("request_id.record_ref")
+    def _compute_res_id(self):
+        for item in self.filtered(lambda x: x.request_id.record_ref):
+            item.res_id = item.request_id.record_ref.id
 
     def _compute_access_url(self):
         result = super()._compute_access_url()
