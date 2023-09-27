@@ -38,6 +38,17 @@ class SignOcaRequest(models.Model):
         default=lambda self: self.env.user,
         required=True,
     )
+    record_ref = fields.Reference(
+        lambda self: [
+            (m.model, m.name)
+            for m in self.env["ir.model"].search(
+                [("transient", "=", False), ("model", "not like", "sign.oca")]
+            )
+        ],
+        string="Object",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+    )
     signed = fields.Boolean(copy=False)
     signer_ids = fields.One2many(
         "sign.oca.request.signer",
