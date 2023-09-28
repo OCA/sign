@@ -87,6 +87,47 @@ class SignOcaRequest(models.Model):
         states={"draft": [("readonly", False)]},
     )
     next_item_id = fields.Integer(compute="_compute_next_item_id")
+    signer_from_user_partner = fields.Many2one(
+        comodel_name="sign.oca.request.signer",
+        compute="_compute_signer_from_user_partner",
+    )
+    signer_is_allow_signature = fields.Boolean(
+        compute="_compute_signer_is_allow_signature"
+    )
+
+    @api.depends("signatory_data")
+    def _compute_next_item_id(self):
+        for record in self:
+            record.next_item_id = (
+                record.signatory_data and max(record.signatory_data.keys()) or 0
+            ) + 1
+
+    @api.depends_context("uid")
+    def _compute_signer_from_user_partner(self):
+        user = self.env.user
+        for item in self:
+            signer = fields.first(
+                item.signer_ids.filtered(
+                    lambda x: x.partner_id == user.partner_id.commercial_partner_id
+                )
+            )
+            item.signer_from_user_partner = signer
+
+    @api.depends(
+        "state",
+        "signer_from_user_partner",
+        "signer_from_user_partner.is_allow_signature",
+    )
+    def _compute_signer_is_allow_signature(self):
+        for item in self:
+            signer = item.signer_from_user_partner
+            item.signer_is_allow_signature = (
+                signer.is_allow_signature if signer else False
+            )
+
+    def action_signer_sign_url(self):
+        self.ensure_one()
+        return self.signer_from_user_partner.action_sign_url()
 
     def preview(self):
         self.ensure_one()
@@ -297,6 +338,7 @@ class SignOcaRequestSigner(models.Model):
     signature_hash = fields.Char(readonly=True)
     model = fields.Char(compute="_compute_model", store=True)
     res_id = fields.Integer(compute="_compute_res_id", store=True)
+    is_allow_signature = fields.Boolean(compute="_compute_is_allow_signature")
 
     @api.depends("request_id.record_ref")
     def _compute_model(self):
@@ -307,6 +349,14 @@ class SignOcaRequestSigner(models.Model):
     def _compute_res_id(self):
         for item in self.filtered(lambda x: x.request_id.record_ref):
             item.res_id = item.request_id.record_ref.id
+
+    def _compute_is_allow_signature(self):
+        user = self.env.user
+        for item in self:
+            item.is_allow_signature = bool(
+                not item.signed_on
+                and item.partner_id == user.partner_id.commercial_partner_id
+            )
 
     def _compute_access_url(self):
         super()._compute_access_url()
@@ -330,6 +380,16 @@ class SignOcaRequestSigner(models.Model):
                 "email": self.env.user.partner_id.email,
                 "phone": self.env.user.partner_id.phone,
             },
+        }
+
+    def action_sign_url(self):
+        self.ensure_one()
+        if not self.is_allow_signature:
+            raise ValidationError(_("You are not allowed to sign this document."))
+        return {
+            "target": "new",
+            "type": "ir.actions.act_url",
+            "url": self.access_url,
         }
 
     def action_sign(self, items, access_token=False):
