@@ -15,6 +15,11 @@ class SignOcaTemplate(models.Model):
     filename = fields.Char()
     item_ids = fields.One2many("sign.oca.template.item", inverse_name="template_id")
     request_count = fields.Integer(compute="_compute_request_count")
+    model_id = fields.Many2one(
+        comodel_name="ir.model",
+        string="Model",
+        domain=[("transient", "=", False), ("model", "not like", "sign.oca")],
+    )
     active = fields.Boolean(default=True)
     request_ids = fields.One2many("sign.oca.request", inverse_name="template_id")
 
