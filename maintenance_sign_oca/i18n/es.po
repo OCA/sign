@@ -1,0 +1,89 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* maintenance_sign_oca
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-06 09:56+0000\n"
+"PO-Revision-Date: 2024-03-06 10:56+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: maintenance_sign_oca
+#: model:ir.model,name:maintenance_sign_oca.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: maintenance_sign_oca
+#: model:ir.model,name:maintenance_sign_oca.model_res_config_settings
+msgid "Config Settings"
+msgstr "Opciones de configuración"
+
+#. module: maintenance_sign_oca
+#: model:ir.model.fields,field_description:maintenance_sign_oca.field_maintenance_equipment__display_name
+#: model:ir.model.fields,field_description:maintenance_sign_oca.field_res_company__display_name
+#: model:ir.model.fields,field_description:maintenance_sign_oca.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:maintenance_sign_oca.field_sign_oca_request__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: maintenance_sign_oca
+#: model_terms:ir.ui.view,arch_db:maintenance_sign_oca.sign_oca_request_search_view
+msgid "Equipment"
+msgstr "Equipo"
+
+#. module: maintenance_sign_oca
+#: model:ir.model.fields,field_description:maintenance_sign_oca.field_maintenance_equipment__id
+#: model:ir.model.fields,field_description:maintenance_sign_oca.field_res_company__id
+#: model:ir.model.fields,field_description:maintenance_sign_oca.field_res_config_settings__id
+#: model:ir.model.fields,field_description:maintenance_sign_oca.field_sign_oca_request__id
+msgid "ID"
+msgstr "ID"
+
+#. module: maintenance_sign_oca
+#: model:ir.model.fields,field_description:maintenance_sign_oca.field_maintenance_equipment____last_update
+#: model:ir.model.fields,field_description:maintenance_sign_oca.field_res_company____last_update
+#: model:ir.model.fields,field_description:maintenance_sign_oca.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:maintenance_sign_oca.field_sign_oca_request____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: maintenance_sign_oca
+#: model:ir.model,name:maintenance_sign_oca.model_maintenance_equipment
+#: model:ir.model.fields,field_description:maintenance_sign_oca.field_sign_oca_request__maintenance_equipment_id
+msgid "Maintenance Equipment"
+msgstr "Equipo de mantenimiento"
+
+#. module: maintenance_sign_oca
+#: model:ir.model.fields,field_description:maintenance_sign_oca.field_res_company__maintenance_equipment_sign_oca_template_id
+#: model:ir.model.fields,field_description:maintenance_sign_oca.field_res_config_settings__maintenance_equipment_sign_oca_template_id
+msgid "Sign Oca Template"
+msgstr ""
+
+#. module: maintenance_sign_oca
+#: model:ir.model,name:maintenance_sign_oca.model_sign_oca_request
+msgid "Sign Request"
+msgstr "Solicitud de firma"
+
+#. module: maintenance_sign_oca
+#: model:ir.model.fields,field_description:maintenance_sign_oca.field_maintenance_equipment__sign_request_ids
+msgid "Sign Requests"
+msgstr "Solicitudes de firma"
+
+#. module: maintenance_sign_oca
+#: model:ir.model.fields,field_description:maintenance_sign_oca.field_maintenance_equipment__sign_request_count
+msgid "Sign request count"
+msgstr "Total solicitudes de firma"
+
+#. module: maintenance_sign_oca
+#: model_terms:ir.ui.view,arch_db:maintenance_sign_oca.res_config_settings_view_form
+msgid "Template"
+msgstr "Plantilla"
