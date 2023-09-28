@@ -1,0 +1,7 @@
+<odoo>
+    <record id="role_maintenance_equipment_owner" model="sign.oca.role">
+        <field name="name">Equipment owner</field>
+        <field name="partner_type">expression</field>
+        <field name="expression_partner">${object.owner_user_id.partner_id.id}</field>
+    </record>
+</odoo>
