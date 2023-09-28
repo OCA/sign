@@ -1,0 +1,27 @@
+<odoo>
+    <record id="sign_oca_template_maintenance_equipment_demo" model="sign.oca.template">
+        <field name="name">Maintenance Equipment</field>
+        <field name="model_id" ref="maintenance.model_maintenance_equipment" />
+        <field name="data" type="base64" file="sign_oca/tests/empty.pdf" />
+    </record>
+    <record
+        id="sign_oca_template_maintenance_equipment_demo_item_0"
+        model="sign.oca.template.item"
+    >
+        <field
+            name="template_id"
+            ref="maintenance_sign_oca.sign_oca_template_maintenance_equipment_demo"
+        />
+        <field name="field_id" ref="sign_oca.sign_field_name" />
+        <field
+            name="role_id"
+            ref="maintenance_sign_oca.role_maintenance_equipment_owner"
+        />
+        <field name="page">1</field>
+        <field name="position_x">10</field>
+        <field name="position_y">10</field>
+        <field name="width">10</field>
+        <field name="height">10</field>
+        <field name="required" eval="True" />
+    </record>
+</odoo>
