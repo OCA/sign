@@ -42,6 +42,7 @@
                         <field name="name" />
                         <field name="data" filename="filename" />
                         <field name="filename" invisible="1" />
+                        <field name="model_id" groups="sign_oca.sign_oca_group_admin" />
                     </group>
                     <notebook>
                         <page name="items" string="Fields">
@@ -155,6 +156,7 @@
             <tree>
                 <!-- TODO -->
                 <field name="name" />
+                <field name="model_id" groups="sign_oca.sign_oca_group_admin" />
                 <button name="configure" type="object" string="Configure" />
                 <button
                     name="%(sign_oca_template_generate_act_window)s"
