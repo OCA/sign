@@ -24,6 +24,12 @@
                         confirm="You will cancel the request and all the accesses. Are you sure about it?"
                         groups="sign_oca.sign_oca_group_user"
                     />
+                    <button
+                        string="Sign"
+                        type="object"
+                        name="action_signer_sign_url"
+                        attrs="{'invisible': [('signer_is_allow_signature', '=', False)]}"
+                    />
                     <field
                         name="state"
                         widget="statusbar"
@@ -67,6 +73,7 @@
                         />
                     </div>
                     <field name="active" invisible="1" />
+                    <field name="signer_is_allow_signature" invisible="1" />
                     <widget
                         name="web_ribbon"
                         title="Fully Signed"
@@ -324,8 +331,17 @@
         <field name="model">sign.oca.request.signer</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button
+                        string="Sign"
+                        type="object"
+                        name="action_sign_url"
+                        attrs="{'invisible': [('is_allow_signature', '=', False)]}"
+                    />
+                </header>
                 <sheet>
                     <group>
+                        <field name="is_allow_signature" invisible="1" />
                         <field name="role_id" readonly="1" />
                         <field name="partner_id" readonly="1" />
                         <field name="request_id" readonly="1" />
