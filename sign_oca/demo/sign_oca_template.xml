@@ -8,5 +8,9 @@
        <field name="name">...</field>
     </record>
     -->
-
+    <record id="sign_role_supervisor" model="sign.oca.role">
+        <field name="name">Supervisor</field>
+        <field name="partner_type">default</field>
+        <field name="default_partner_id" ref="base.res_partner_12" />
+    </record>
 </odoo>

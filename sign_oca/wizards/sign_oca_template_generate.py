@@ -96,6 +96,8 @@ class SignOcaTemplateGenerateSigner(models.TransientModel):
     def _get_default_partner(self):
         if self.env.context.get("default_sign_now"):
             return self.env.user.partner_id
+        if self.role_id.partner_type == "default":
+            return self.role_id.default_partner_id
         return False
 
     wizard_id = fields.Many2one(
