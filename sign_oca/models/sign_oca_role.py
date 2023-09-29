@@ -37,3 +37,13 @@ class SignOcaRole(models.Model):
                 item.expression_partner = False
             elif item.partner_type == "expression":
                 item.default_partner_id = False
+
+    def _get_partner_from_record(self, record):
+        partner = self.default_partner_id or False
+        if self.partner_type == "expression" and record:
+            # TODO: In 15.0 change to _render_template() inline-template
+            res = self.env["mail.render.mixin"]._render_template_jinja(
+                self.expression_partner, record._name, record.ids
+            )[record.id]
+            partner = int(res) if res else False
+        return partner
