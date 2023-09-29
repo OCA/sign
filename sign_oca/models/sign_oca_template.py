@@ -72,6 +72,50 @@ class SignOcaTemplate(models.Model):
         item_vals["template_id"] = self.id
         return self.env["sign.oca.template.item"].create(item_vals).get_info()
 
+    def _get_signatory_data(self):
+        items = sorted(
+            self.item_ids,
+            key=lambda item: (
+                item.page,
+                item.position_y,
+                item.position_x,
+            ),
+        )
+        tabindex = 1
+        signatory_data = {}
+        item_id = 1
+        for item in items:
+            item_data = item._get_full_info()
+            item_data["id"] = item_id
+            item_data["tabindex"] = tabindex
+            tabindex += 1
+            signatory_data[item_id] = item_data
+            item_id += 1
+        return signatory_data
+
+    def _prepare_sign_oca_request_vals_from_record(self, record):
+        roles = self.mapped("item_ids.role_id").filtered(
+            lambda x: x.partner_type != "empty"
+        )
+        return {
+            "name": self.name,
+            "template_id": self.id,
+            "record_ref": "%s,%s" % (record._name, record.id),
+            "signatory_data": self._get_signatory_data(),
+            "data": self.data,
+            "signer_ids": [
+                (
+                    0,
+                    0,
+                    {
+                        "partner_id": role._get_partner_from_record(record),
+                        "role_id": role.id,
+                    },
+                )
+                for role in roles
+            ],
+        }
+
 
 class SignOcaTemplateItem(models.Model):
 
@@ -112,3 +156,17 @@ class SignOcaTemplateItem(models.Model):
             "height": self.height,
             "placeholder": self.placeholder,
         }
+
+    def _get_full_info(self):
+        """Method used in the wizards in the requests that are created."""
+        self.ensure_one()
+        vals = self.get_info()
+        vals.update(
+            {
+                "field_type": self.field_id.field_type,
+                "required": self.required,
+                "value": False,
+                "default_value": self.field_id.default_value,
+            }
+        )
+        return vals

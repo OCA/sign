@@ -26,46 +26,11 @@ class SignOcaTemplateGenerate(models.TransientModel):
     sign_now = fields.Boolean()
     message = fields.Html()
 
-    def _get_item_info(self, item, item_id):
-        return {
-            "id": item_id,
-            "field_id": item.field_id.id,
-            "field_type": item.field_id.field_type,
-            "required": item.required,
-            "name": item.field_id.name,
-            "role": item.role_id.id,
-            "page": item.page,
-            "position_x": item.position_x,
-            "position_y": item.position_y,
-            "width": item.width,
-            "height": item.height,
-            "value": False,
-            "default_value": item.field_id.default_value,
-            "placeholder": item.placeholder,
-        }
-
     def _generate_vals(self):
-        items = sorted(
-            self.template_id.item_ids,
-            key=lambda item: (
-                item.page,
-                item.position_y,
-                item.position_x,
-            ),
-        )
-        tabindex = 1
-        signatory_data = {}
-        item_id = 1
-        for item in items:
-            item_data = self._get_item_info(item, item_id)
-            item_data["tabindex"] = tabindex
-            tabindex += 1
-            signatory_data[item_id] = item_data
-            item_id += 1
         return {
             "name": self.template_id.name,
             "template_id": self.template_id.id,
-            "signatory_data": signatory_data,
+            "signatory_data": self.template_id._get_signatory_data(),
             "data": self.template_id.data,
             "signer_ids": [
                 (

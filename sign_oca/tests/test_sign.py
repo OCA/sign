@@ -176,6 +176,29 @@ class TestSign(TransactionCase):
             signer.role_id = self.role_child_partner
             self.assertEqual(signer.partner_id, self.partner)
 
+    def test_template_generate_multi_partner(self):
+        self.configure_template()
+        model_res_partner = self.env.ref("base.model_res_partner")
+        self.template.model_id = model_res_partner
+        self.template.item_ids.role_id = self.role_child_partner
+        partner_child_2 = self.env["res.partner"].create(
+            {"name": "Child partner extra", "parent_id": self.partner.id}
+        )
+        wizard_form = Form(
+            self.env["sign.oca.template.generate.multi"].with_context(
+                default_model="res.partner", active_ids=self.partner.child_ids.ids
+            )
+        )
+        self.assertEqual(wizard_form.model_id, model_res_partner)
+        wizard_form.template_id = self.template
+        action = wizard_form.save().generate()
+        requests = self.env[action["res_model"]].search(action["domain"])
+        self.assertEqual(len(requests), 2)
+        signer_partners = requests.mapped("signer_ids.partner_id")
+        self.assertIn(self.partner, signer_partners)
+        self.assertNotIn(self.partner_child, signer_partners)
+        self.assertNotIn(partner_child_2, signer_partners)
+
     def test_auto_sign_template(self):
         self.configure_template()
         self.assertEqual(0, self.template.request_count)
