@@ -369,19 +369,9 @@ class SignOcaRequestSigner(models.Model):
     @api.onchange("role_id")
     def _onchange_role_id(self):
         for item in self:
-            if item.role_id.partner_type == "empty":
-                item.partner_id = False
-            elif item.role_id.partner_type == "default":
-                item.partner_id = item.role_id.default_partner_id
-            elif (
-                item.role_id.partner_type == "expression" and item.request_id.record_ref
-            ):
-                record_ref = item.request_id.record_ref
-                # TODO: In 15.0 change to _render_template() inline-template
-                res = self.env["mail.render.mixin"]._render_template_jinja(
-                    item.role_id.expression_partner, record_ref._name, record_ref.ids
-                )[record_ref.id]
-                item.partner_id = int(res) if res else False
+            item.partner_id = item.role_id._get_partner_from_record(
+                item.request_id.record_ref
+            )
 
     def get_info(self, access_token=False):
         self.ensure_one()
