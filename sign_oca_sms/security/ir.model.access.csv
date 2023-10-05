@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+edit_sign_phone,edit_sign_phone,model_sign_oca_signer_phone,sign_oca.sign_oca_group_user,1,1,1,1
+
