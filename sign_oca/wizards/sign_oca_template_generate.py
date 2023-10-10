@@ -99,7 +99,7 @@ class SignOcaTemplateGenerateSigner(models.TransientModel):
         return False
 
     wizard_id = fields.Many2one(
-        "sign.oca.template.generate.signer",
+        "sign.oca.template.generate",
         ondelete="cascade",
     )
     role_id = fields.Many2one("sign.oca.role", required=True, readonly=True)
