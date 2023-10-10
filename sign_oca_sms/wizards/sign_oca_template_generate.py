@@ -49,20 +49,24 @@ class SignSignerPhone(models.TransientModel):
             result.append((rec.id, name))
         return result
     
-    def _create_or_update_number(self, partner_id, phone_field):
-        record = self.search(
-        [
-            ('partner_id', '=',  partner_id.id),
-            ('phone_field', '=', phone_field),
-        ])
-        partner_num = getattr(partner_id, phone_field)
-        if not record and partner_num:
-            self.create({
-                'partner_id': partner_id.id,
-                'number': partner_num,
-                'phone_field': phone_field})
-        elif record.number != partner_num:
-            record.number = partner_num
+    def _create_or_update_number(self, partner_id):
+        phone_fields = ['mobile', 'phone']
+        for phone_field in phone_fields:
+            record = self.search(
+            [
+                ('partner_id', '=',  partner_id.id),
+                ('phone_field', '=', phone_field),
+            ])
+            partner_num = getattr(partner_id, phone_field)
+            if not record and partner_num:
+                self.create({
+                    'partner_id': partner_id.id,
+                    'number': partner_num,
+                    'phone_field': phone_field})
+            elif record.number != partner_num:
+                record.number = partner_num
+            elif record.number and not partner_num:
+                record.unlink()
 
 
 class SignOcaTemplateGenerateSigner(models.TransientModel):
@@ -70,9 +74,16 @@ class SignOcaTemplateGenerateSigner(models.TransientModel):
 
     phone = fields.Many2one('sign.oca.signer.phone')
 
+    @api.model
+    def create(self, vals):
+        res = super().create(vals)
+        if res.partner_id:
+            signer_phone = self.env['sign.oca.signer.phone']
+            signer_phone._create_or_update_number(res.partner_id)
+        return res
+
     @api.onchange('partner_id')
-    def _create_phones(self):
+    def _get_phones(self):
         signer_phone = self.env['sign.oca.signer.phone']
         if self.partner_id:
-            signer_phone._create_or_update_number(self.partner_id, 'mobile')
-            signer_phone._create_or_update_number(self.partner_id, 'phone')
+            signer_phone._create_or_update_number(self.partner_id)

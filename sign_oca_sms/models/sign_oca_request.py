@@ -10,8 +10,8 @@ from odoo.exceptions import ValidationError
 class SignOcaRequest(models.Model):
     _inherit = "sign.oca.request"
 
-    def get_sms_message(self, signer,  message, link):
-        message = "Hello %s, %s has requested your signature on the following documents: %s. %s" %(signer.display_name, self.create_uid.name, link, message)
+    def get_sms_message(self, signer,  requested_by_user, message, link):
+        message = "Hello %s, %s has requested your signature on the following documents: %s . %s" %(signer.display_name, requested_by_user, link, message)
         return message
 
     def action_send_sms(self, sign_now=False, message=""):
@@ -31,7 +31,7 @@ class SignOcaRequest(models.Model):
             
             link = self.get_base_url()+signer.access_url
             message = self.env["ir.fields.converter"].text_from_html(message)
-            message = self.get_sms_message(signer, message, link)
+            message = self.get_sms_message(signer, self.create_uid.name, message, link)
 
             composer = self.env['sms.composer'].with_context(
                 default_composition_mode='comment',
