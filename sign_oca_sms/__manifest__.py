@@ -15,6 +15,7 @@
     "data": [
         "wizards/sign_oca_generate.xml",
         "security/ir.model.access.csv",
+        "data/sms_template.xml",
     ],
     "installable": True,
 }
