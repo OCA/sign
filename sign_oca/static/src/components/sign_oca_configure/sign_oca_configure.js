@@ -110,12 +110,10 @@ odoo.define(
             }
             postIframeField(item) {
                 var signatureItem = super.postIframeField(...arguments);
-                var dragItem = signatureItem[0].getElementsByClassName(
-                    "o_sign_oca_draggable"
-                )[0];
-                var resizeItems = signatureItem[0].getElementsByClassName(
-                    "o_sign_oca_resize"
-                );
+                var dragItem =
+                    signatureItem[0].getElementsByClassName("o_sign_oca_draggable")[0];
+                var resizeItems =
+                    signatureItem[0].getElementsByClassName("o_sign_oca_resize");
                 signatureItem[0].addEventListener(
                     "click",
                     (e) => {
