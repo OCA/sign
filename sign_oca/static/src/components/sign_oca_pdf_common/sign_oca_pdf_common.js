@@ -49,9 +49,8 @@ odoo.define(
                 });
             }
             waitIframeLoaded() {
-                var error = this.iframe.el.contentDocument.getElementById(
-                    "errorWrapper"
-                );
+                var error =
+                    this.iframe.el.contentDocument.getElementById("errorWrapper");
                 if (error && window.getComputedStyle(error).display !== "none") {
                     this.iframeLoaded.resolve();
                     return Dialog.alert(
@@ -59,12 +58,14 @@ odoo.define(
                         _t("Need a valid PDF to add signature fields !")
                     );
                 }
-                var nbPages = this.iframe.el.contentDocument.getElementsByClassName(
-                    "page"
-                ).length;
-                var nbLayers = this.iframe.el.contentDocument.getElementsByClassName(
-                    "endOfContent"
-                ).length;
+                var nbPages =
+                    this.iframe.el.contentDocument.getElementsByClassName(
+                        "page"
+                    ).length;
+                var nbLayers =
+                    this.iframe.el.contentDocument.getElementsByClassName(
+                        "endOfContent"
+                    ).length;
                 if (nbPages > 0 && nbLayers > 0) {
                     this.postIframeFields();
                     this.reviewFields();
@@ -128,9 +129,10 @@ odoo.define(
                 if (this.items[item.id]) {
                     this.items[item.id].remove();
                 }
-                var page = this.iframe.el.contentDocument.getElementsByClassName(
-                    "page"
-                )[item.page - 1];
+                var page =
+                    this.iframe.el.contentDocument.getElementsByClassName("page")[
+                        item.page - 1
+                    ];
                 var signatureItem = $(
                     core.qweb.render(this.field_template, {
                         ...item,
