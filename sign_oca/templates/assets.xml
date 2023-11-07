@@ -1,92 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <template
-        id="assets_backend"
-        name="oca_sign_assets"
-        inherit_id="web.assets_backend"
-    >
-        <xpath expr="." position="inside">
-            <link rel="stylesheet" href="/sign_oca/static/src/scss/sign_oca.scss" />
-            <script
-                type="text/javascript"
-                src="/sign_oca/static/src/components/sign_oca_pdf_common/sign_oca_pdf_common.js"
-            />
-            <script
-                type="text/javascript"
-                src="/sign_oca/static/src/elements/registry.js"
-            />
-            <script
-                type="text/javascript"
-                src="/sign_oca/static/src/elements/text.js"
-            />
-            <script
-                type="text/javascript"
-                src="/sign_oca/static/src/elements/signature.js"
-            />
-            <script
-                type="text/javascript"
-                src="/sign_oca/static/src/elements/check.js"
-            />
-            <script
-                type="text/javascript"
-                src="/sign_oca/static/src/components/sign_oca_pdf/sign_oca_pdf.js"
-            />
-            <script
-                type="text/javascript"
-                src="/sign_oca/static/src/components/sign_oca_pdf/sign_oca_pdf_action.js"
-            />
-            <script
-                type="text/javascript"
-                src="/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.js"
-            />
-        </xpath>
-    </template>
-    <template
-        id="assets_frontend"
-        name="oca_sign_assets_frontend"
-        inherit_id="web.assets_frontend"
-    >
-        <xpath expr="." position="inside">
-            <link rel="stylesheet" href="/sign_oca/static/src/scss/sign_oca.scss" />
-            <script
-                type="text/javascript"
-                src="/sign_oca/static/src/components/sign_oca_pdf_common/sign_oca_pdf_common.js"
-            />
-            <script
-                type="text/javascript"
-                src="/sign_oca/static/src/components/sign_oca_pdf/sign_oca_pdf.js"
-            />
-            <script
-                type="text/javascript"
-                src="/sign_oca/static/src/elements/registry.js"
-            />
-            <script
-                type="text/javascript"
-                src="/sign_oca/static/src/elements/text.js"
-            />
-            <script
-                type="text/javascript"
-                src="/sign_oca/static/src/elements/signature.js"
-            />
-            <script
-                type="text/javascript"
-                src="/sign_oca/static/src/elements/check.js"
-            />
-            <script
-                type="text/javascript"
-                src="/sign_oca/static/src/components/sign_oca_pdf_portal/sign_oca_pdf_portal.js"
-            />
-            <link rel="stylesheet" href="/sign_oca/static/src/scss/portal.scss" />
-        </xpath>
-    </template>
-    <template id="sign_assets">
-            <link rel="stylesheet" href="/sign_oca/static/src/scss/sign.scss" />
-            <link
-            rel="stylesheet"
-            type="text/css"
-            href="/web/static/lib/fontawesome/css/font-awesome.css"
-        />
-    </template>
     <template id="portal_sign_document">
         <t t-call="web.layout">
             <t t-set="head">
@@ -94,15 +7,13 @@
                     name="viewport"
                     content="width=device-width, initial-scale=1, user-scalable=no"
                 />
-                <t t-call-assets="web.assets_common" t-js="false" />
                 <t t-call-assets="web.assets_frontend" t-js="false" />
-                <t t-call-assets="web.assets_common" t-css="false" />
                 <t t-call-assets="web.assets_frontend" t-css="false" />
                 <script type="text/javascript">
                     odoo.define("sign.document_portal", function(require) {
                         var ajax = require("web.ajax");
                         var core = require("web.core");
-                        var document_signing = require("sign_oca.document_portal_base");
+                        var document_signing = require("@sign_oca/components/sign_oca_pdf_portal/sign_oca_pdf_portal.esm");
                         document_signing.initDocumentToSign(<t
                         t-raw="json.dumps({'access_token': access_token, 'signer_id': signer.id})"
                     />);
@@ -129,7 +40,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h2>Document <t
-                                t-esc="signer.request_id.name"
+                                t-out="signer.request_id.name"
                             /> has already been signed</h2>
                     </div>
                     <div class="card-body">
@@ -152,12 +63,12 @@
     <template t-name="sign_oca_template_mail">
         <div>
             <span>
-                <t t-esc="record.create_uid.name" />
+                <t t-out="record.create_uid.name" />
                 (<a
                     t-att-href="'mailto:%s?subject=%s' % (record.create_uid.email, 'Re: %s' % subject)"
                     style="color:#428BCA; text-decoration:none;"
                     target="_blank"
-                ><t t-esc="record.create_uid.email" /></a>)
+                ><t t-out="record.create_uid.email" /></a>)
                 has requested your signature on a document.
             </span>
             <span t-if="body">
