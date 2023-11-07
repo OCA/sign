@@ -180,8 +180,8 @@ class SignOcaRequest(models.Model):
             signer._portal_ensure_token()
             if sign_now and signer.partner_id == self.env.user.partner_id:
                 continue
-            view = self.env.ref("sign_oca.sign_oca_template_mail")
-            render_result = view._render(
+            render_result = self.env["ir.qweb"]._render(
+                "sign_oca.sign_oca_template_mail",
                 {"record": signer, "body": message, "link": signer.access_url},
                 engine="ir.qweb",
                 minimal_qcontext=True,
@@ -272,12 +272,13 @@ class SignOcaRequestSigner(models.Model):
     signature_hash = fields.Char(readonly=True)
 
     def _compute_access_url(self):
-        super()._compute_access_url()
+        result = super()._compute_access_url()
         for record in self:
             record.access_url = "/sign_oca/document/%s/%s" % (
                 record.id,
                 record.access_token,
             )
+        return result
 
     def get_info(self, access_token=False):
         self.ensure_one()

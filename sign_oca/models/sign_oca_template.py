@@ -8,6 +8,7 @@ class SignOcaTemplate(models.Model):
 
     _name = "sign.oca.template"
     _description = "Sign Oca Template"  # TODO
+    _inherit = ["mail.thread"]
 
     name = fields.Char(required=True)
     data = fields.Binary(attachment=True, required=True)
