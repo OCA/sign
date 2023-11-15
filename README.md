@@ -17,7 +17,11 @@ Here are OCA modules that have digital signature functionalities.
 
 [//]: # (addons)
 
-This part will be replaced when running the oca-gen-addons-table script from OCA/maintainer-tools.
+Available addons
+----------------
+addon | version | maintainers | summary
+--- | --- | --- | ---
+[sign_oca](sign_oca/) | 16.0.1.0.1 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Allow to sign documents inside Odoo CE
 
 [//]: # (end addons)
 
