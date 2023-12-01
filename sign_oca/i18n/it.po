@@ -34,7 +34,8 @@ msgstr "<span class=\"o_stat_text\"> Firmato</span>"
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_mail
 msgid ""
 "<strong>Warning</strong> do not forward this email to other people!<br/>\n"
-"                    They will be able to access this document and sign it as yourself.<br/>"
+"                    They will be able to access this document and sign it as "
+"yourself.<br/>"
 msgstr ""
 "<strong>Attenzione</strong> non inoltrare questa e-mail ad altre persone!<br/"
 ">\n"
@@ -462,8 +463,8 @@ msgstr ""
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
 #, python-format
 msgid ""
-"In order to add a new field, do a right click over the PDF page. You will be"
-" able to select the field that you will import"
+"In order to add a new field, do a right click over the PDF page. You will be "
+"able to select the field that you will import"
 msgstr ""
 "Per aggiungere un nuovo campo, fare un clic destro sulla pagina PDF. Si "
 "potrà selezionare il campo che si vuole importare"
@@ -473,9 +474,12 @@ msgstr ""
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
 #, python-format
 msgid ""
-"In order to add a new field, do a right click over the PDF page. You will be able to select the field that you will import.\n"
-"                Then, you can move and resize the fields over the PDF page using the move icons.\n"
-"                If you do a click over a field, you will be able to change the default configurations of the field"
+"In order to add a new field, do a right click over the PDF page. You will be "
+"able to select the field that you will import.\n"
+"                Then, you can move and resize the fields over the PDF page "
+"using the move icons.\n"
+"                If you do a click over a field, you will be able to change "
+"the default configurations of the field"
 msgstr ""
 "Per poter aggiungere un nuovo campo, fare un clic destro sulla pagina PDF. "
 "Si potrà selezionare il campo che dovrà essere importato.\n"
@@ -541,6 +545,11 @@ msgstr "Ultimo aggiornamento il"
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
 msgid "Late Activities"
 msgstr "Attività in ritardo"
+
+#. module: sign_oca
+#: model:ir.model,name:sign_oca.model_sign_oca_request_log
+msgid "Log access and edition on requests"
+msgstr ""
 
 #. module: sign_oca
 #. odoo-javascript
@@ -888,7 +897,6 @@ msgstr "Hash firma"
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
-#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
 #, python-format
 msgid "Signature configuration"
 msgstr "Configurazione firma"
@@ -1097,7 +1105,5 @@ msgstr "Verrà cancellata la richiesta e tutti gli accessi. Si è sicuri?"
 msgid "has already been signed"
 msgstr "è già stato firmato"
 
-#. module: sign_oca
-#: model:ir.model,name:sign_oca.model_sign_oca_request_log
-msgid "sign.oca.request.log"
-msgstr "sign.oca.request.log"
+#~ msgid "sign.oca.request.log"
+#~ msgstr "sign.oca.request.log"

@@ -18,7 +18,6 @@
                         <field name="field_type" />
                     </group>
                 </sheet>
-                <div class="oe_chatter" />
             </form>
         </field>
     </record>

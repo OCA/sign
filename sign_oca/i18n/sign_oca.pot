@@ -519,6 +519,11 @@ msgid "Late Activities"
 msgstr ""
 
 #. module: sign_oca
+#: model:ir.model,name:sign_oca.model_sign_oca_request_log
+msgid "Log access and edition on requests"
+msgstr ""
+
+#. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_pdf_portal/sign_oca_pdf_portal.xml:0
 #: model_terms:ir.ui.view,arch_db:sign_oca.portal_sign_document_signed
@@ -1063,9 +1068,4 @@ msgstr ""
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.portal_sign_document_signed
 msgid "has already been signed"
-msgstr ""
-
-#. module: sign_oca
-#: model:ir.model,name:sign_oca.model_sign_oca_request_log
-msgid "sign.oca.request.log"
 msgstr ""
