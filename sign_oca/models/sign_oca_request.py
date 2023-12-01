@@ -439,6 +439,7 @@ class SignOcaRequestSigner(models.Model):
 class SignRequestLog(models.Model):
     _name = "sign.oca.request.log"
     _log_access = False
+    _description = "Log access and edition on requests"
 
     uid = fields.Many2one(
         "res.users",
