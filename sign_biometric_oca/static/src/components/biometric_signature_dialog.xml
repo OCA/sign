@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t t-name="sign_biometric_oca.BiometricSignatureDialog" owl="1">
+      <Dialog title="title">
+         <div>
+            <svg
+                    t-ref="BiometricSignatureBox"
+                    t-on-pointerdown="handlePointerDown"
+                    t-on-pointermove="handlePointerMove"
+                    t-on-pointerup="handlePointerUp"
+                    style="touchAction: 'none'; margin:1px"
+                    class="o_sign_biometric_oca"
+                >
+                <path
+                        t-att-d="data"
+                        t-foreach="pathData"
+                        t-as="data"
+                        t-key="data_index"
+                    />
+            </svg>
+            <div
+                    class="mt16 small"
+                >By clicking Adopt &amp; Sign, I agree that the chosen signature/initials will be a valid electronic representation of my hand-written signature/initials for all purposes when it is used on documents, including legally binding contracts.</div>
+        </div>
+        <t t-set-slot="footer">
+            <button
+                    class="btn btn-primary"
+                    t-att-disabled="state.current_key === 0"
+                    t-on-click="onClickConfirm"
+                >Adopt &amp; Sign</button>
+            <button
+                    class="btn btn-secondary"
+                    t-att-disabled="state.current_key === 0"
+                    t-on-click="onClickClear"
+                >Clear Signature</button>
+          <button class="btn btn-secondary" t-on-click="props.close">Cancel</button>
+        </t>
+      </Dialog>
+    </t>
+
+    <t t-name="sign_biometric_oca.sign_iframe_field_biometric_signature">
+        <!--
+        <svg class="o_sign_biometric_oca_display"
+            style="width:100%;height:100%" >
+            <t t-if="item.value.data">
+                <path t-att-d="data" t-foreach="item.value.data" t-as="data" t-key="data_index" />
+            </t>
+        </svg>-->
+
+        <embed
+            style="width:100%;height:100%"
+            t-attf-src="data:image/svg+xml;base64,{{item.value.svg}}"
+            t-if="item.value and item.value.svg"
+        />
+        <div style="width:100%;height:100%" t-else="" t-out="placeholder" />
+    </t>
+</templates>
