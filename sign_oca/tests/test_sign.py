@@ -237,3 +237,41 @@ class TestSign(TransactionCase):
         signer = self.template.request_ids.signer_id
         signer.request_id.cancel()
         self.assertEqual(signer.request_id.state, "cancel")
+
+    def test_inalterability(self):
+        self.configure_template()
+        f = Form(
+            self.env["sign.oca.template.generate"].with_context(
+                default_template_id=self.template.id, default_sign_now=True
+            )
+        )
+        f.save().generate()
+        signer = self.template.request_ids.signer_id
+        data = {}
+        for key in signer.get_info()["items"]:
+            val = signer.get_info()["items"][key].copy()
+            val["value"] = "My Name"
+            data[key] = val
+        signer.action_sign(data)
+        self.assertFalse(signer.altered_hash)
+        f = Form(
+            self.env["sign.oca.template.generate"].with_context(
+                default_template_id=self.template.id, default_sign_now=True
+            )
+        )
+        f.save().generate()
+        signer_2 = self.template.request_ids.signer_id.filtered(lambda r: r != signer)
+        data = {}
+        for key in signer_2.get_info()["items"]:
+            val = signer_2.get_info()["items"][key].copy()
+            val["value"] = "My Name"
+            data[key] = val
+        signer_2.action_sign(data)
+        self.assertFalse(signer_2.altered_hash)
+        signer.signature_hash = signer.signature_hash + "AA"
+        self.assertTrue(signer.altered_hash)
+        signer_2.invalidate_recordset()
+        self.assertFalse(signer_2.altered_hash)
+        signer.inalterable_hash = signer._get_new_hash(signer.secure_sequence_number)
+        signer_2.invalidate_recordset()
+        self.assertTrue(signer_2.altered_hash)

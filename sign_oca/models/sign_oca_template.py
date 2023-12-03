@@ -132,7 +132,7 @@ class SignOcaTemplate(models.Model):
 class SignOcaTemplateItem(models.Model):
 
     _name = "sign.oca.template.item"
-    _description = "Sign Oca Template Item"  # TODO
+    _description = "Sign Oca Template Item"
 
     template_id = fields.Many2one(
         "sign.oca.template", required=True, ondelete="cascade"

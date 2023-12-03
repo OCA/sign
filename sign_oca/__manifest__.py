@@ -15,6 +15,7 @@
         "views/menu.xml",
         "data/data.xml",
         "wizards/res_config_settings_views.xml",
+        "data/ir_sequence_data.xml",
         "wizards/sign_oca_template_generate.xml",
         "wizards/sign_oca_template_generate_multi.xml",
         "views/res_partner_views.xml",
