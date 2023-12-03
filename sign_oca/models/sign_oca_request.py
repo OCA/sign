@@ -2,7 +2,9 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import hashlib
+import json
 from base64 import b64decode, b64encode
+from hashlib import sha256
 from io import BytesIO
 
 from PyPDF2 import PdfFileReader, PdfFileWriter
@@ -13,8 +15,9 @@ from reportlab.pdfgen import canvas
 from reportlab.platypus import Image, Paragraph
 
 from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 from odoo.http import request
+from odoo.tools import float_repr
 
 
 class SignOcaRequest(models.Model):
@@ -109,9 +112,10 @@ class SignOcaRequest(models.Model):
             )
 
     @api.depends(
-        "signer_id",
-        "signer_id.is_allow_signature",
+        "signer_ids",
+        "signer_ids.is_allow_signature",
     )
+    @api.depends_context("uid")
     def _compute_to_sign(self):
         for record in self:
             record.to_sign = (
@@ -351,6 +355,19 @@ class SignOcaRequestSigner(models.Model):
     model = fields.Char(compute="_compute_model", store=True)
     res_id = fields.Integer(compute="_compute_res_id", store=True)
     is_allow_signature = fields.Boolean(compute="_compute_is_allow_signature")
+    secure_sequence_number = fields.Integer(
+        string="Inalteralbility No Gap Sequence #",
+        readonly=True,
+        copy=False,
+        index=True,
+    )
+    inalterable_hash = fields.Char(
+        string="Inalterability Hash", readonly=True, copy=False
+    )
+    sequence_id = fields.Many2one(
+        "ir.sequence", copy=False, default=lambda r: r._get_sequence()
+    )
+    altered_hash = fields.Boolean(compute="_compute_altered_hash")
 
     @api.depends("request_id.record_ref")
     def _compute_model(self):
@@ -460,6 +477,15 @@ class SignOcaRequestSigner(models.Model):
         self.signature_hash = final_hash
         self.request_id._check_signed()
         self._set_action_log("sign", access_token=access_token)
+        if self.sequence_id:
+            self.flush_recordset()
+            new_number = self.sequence_id.next_by_id()
+            self.write(
+                {
+                    "secure_sequence_number": new_number,
+                    "inalterable_hash": self._get_new_hash(new_number),
+                }
+            )
         self.request_id.action_send_signed_request()
         return {
             "type": "ir.actions.act_url",
@@ -555,6 +581,71 @@ class SignOcaRequestSigner(models.Model):
     def name_get(self):
         result = [(signer.id, (signer.partner_id.display_name)) for signer in self]
         return result
+
+    def _get_sequence(self):
+        return self.env.ref("sign_oca.sign_inalterability_sequence")
+
+    @api.depends(
+        lambda r: ["request_id.data", "inalterable_hash", "secure_sequence_number"]
+        + r._get_integrity_hash_fields()
+    )
+    def _compute_altered_hash(self):
+        for record in self:
+            record.altered_hash = (
+                record.inalterable_hash
+                and record.inalterable_hash
+                != record._get_new_hash(record.secure_sequence_number)
+            )
+
+    def _get_new_hash(self, secure_seq_number):
+        prev_sign = self.sudo().search(
+            [
+                ("sequence_id", "=", self.sequence_id.id),
+                ("secure_sequence_number", "!=", 0),
+                ("secure_sequence_number", "=", int(secure_seq_number) - 1),
+            ]
+        )
+        if prev_sign and len(prev_sign) != 1:
+            raise UserError(
+                _(
+                    "An error occurred when computing the inalterability. "
+                    "Impossible to get the unique previous signer information."
+                )
+            )
+        return self._compute_hash(prev_sign.inalterable_hash if prev_sign else "")
+
+    def _compute_hash(self, previous_hash):
+        """Computes the hash of the browse_record given as self, based on the hash
+        of the previous record in the company's securisation sequence given as parameter"""
+        self.ensure_one()
+        hash_string = sha256((previous_hash + self._string_to_hash()).encode("utf-8"))
+        return hash_string.hexdigest()
+
+    def _string_to_hash(self):
+        def _getattrstring(obj, field_str):
+            field_value = obj[field_str]
+            if obj._fields[field_str].type == "many2one":
+                field_value = field_value.id
+            if obj._fields[field_str].type == "monetary":
+                return float_repr(field_value, obj.currency_id.decimal_places)
+            return str(field_value)
+
+        values = {"items": {}}
+        for field in self._get_integrity_hash_fields():
+            values[field] = _getattrstring(self, field)
+        for key, signatory_value in self.request_id.signatory_data.items():
+            if signatory_value["role_id"] == self.role_id.id:
+                values[key] = signatory_value
+        return json.dumps(
+            values,
+            sort_keys=True,
+            ensure_ascii=True,
+            indent=None,
+            separators=(",", ":"),
+        )
+
+    def _get_integrity_hash_fields(self):
+        return ["partner_id", "role_id", "signed_on", "signature_hash"]
 
 
 class SignRequestLog(models.Model):
