@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-11-30 22:37+0000\n"
+"PO-Revision-Date: 2023-12-04 09:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -549,7 +549,7 @@ msgstr "Attività in ritardo"
 #. module: sign_oca
 #: model:ir.model,name:sign_oca.model_sign_oca_request_log
 msgid "Log access and edition on requests"
-msgstr ""
+msgstr "Registra accesso e modifica alle richieste"
 
 #. module: sign_oca
 #. odoo-javascript
