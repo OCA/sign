@@ -119,6 +119,20 @@ msgid "Administrator"
 msgstr "Amministratore"
 
 #. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__altered_hash
+msgid "Altered Hash"
+msgstr ""
+
+#. module: sign_oca
+#. odoo-python
+#: code:addons/sign_oca/models/sign_oca_request.py:0
+#, python-format
+msgid ""
+"An error occurred when computing the inalterability. Impossible to get the "
+"unique previous signer information."
+msgstr ""
+
+#. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_kanban_view
 msgid "Archive"
 msgstr "Archivia"
@@ -566,6 +580,16 @@ msgstr ""
 "configurazioni predefinite del campo"
 
 #. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__inalterable_hash
+msgid "Inalterability Hash"
+msgstr ""
+
+#. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__secure_sequence_number
+msgid "Inalteralbility No Gap Sequence #"
+msgstr ""
+
+#. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__ip
 msgid "Ip"
 msgstr "IP"
@@ -946,6 +970,11 @@ msgstr "Invia alla firma"
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
 msgid "Sent"
 msgstr "Inviata"
+
+#. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__sequence_id
+msgid "Sequence"
+msgstr ""
 
 #. module: sign_oca
 #: model:ir.ui.menu,name:sign_oca.sign_oca_settings_menu

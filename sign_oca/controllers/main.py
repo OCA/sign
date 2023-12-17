@@ -1,6 +1,3 @@
-import base64
-import io
-
 from odoo import http
 from odoo.exceptions import AccessError, MissingError
 from odoo.http import request
@@ -70,8 +67,9 @@ class PortalSign(CustomerPortal):
             )
         except (AccessError, MissingError):
             return request.redirect("/my")
-        data = io.BytesIO(base64.standard_b64decode(signer_sudo.request_id.data))
-        return http.send_file(data, filename=signer_sudo.request_id.name)
+        return http.Stream.from_binary_field(
+            signer_sudo.request_id, "data"
+        ).get_response(mimetype="application/pdf")
 
     @http.route(
         ["/sign_oca/info/<int:signer_id>/<string:access_token>"],

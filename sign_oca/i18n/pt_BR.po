@@ -44,7 +44,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_mail
 msgid ""
 "<strong>Warning</strong> do not forward this email to other people!<br/>\n"
-"                    They will be able to access this document and sign it as yourself.<br/>"
+"                    They will be able to access this document and sign it as "
+"yourself.<br/>"
 msgstr ""
 
 #. module: sign_oca
@@ -107,6 +108,20 @@ msgstr ""
 #. module: sign_oca
 #: model:res.groups,name:sign_oca.sign_oca_group_admin
 msgid "Administrator"
+msgstr ""
+
+#. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__altered_hash
+msgid "Altered Hash"
+msgstr ""
+
+#. module: sign_oca
+#. odoo-python
+#: code:addons/sign_oca/models/sign_oca_request.py:0
+#, python-format
+msgid ""
+"An error occurred when computing the inalterability. Impossible to get the "
+"unique previous signer information."
 msgstr ""
 
 #. module: sign_oca
@@ -524,8 +539,8 @@ msgstr ""
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
 #, python-format
 msgid ""
-"In order to add a new field, do a right click over the PDF page. You will be"
-" able to select the field that you will import"
+"In order to add a new field, do a right click over the PDF page. You will be "
+"able to select the field that you will import"
 msgstr ""
 
 #. module: sign_oca
@@ -533,9 +548,22 @@ msgstr ""
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
 #, python-format
 msgid ""
-"In order to add a new field, do a right click over the PDF page. You will be able to select the field that you will import.\n"
-"                Then, you can move and resize the fields over the PDF page using the move icons.\n"
-"                If you do a click over a field, you will be able to change the default configurations of the field"
+"In order to add a new field, do a right click over the PDF page. You will be "
+"able to select the field that you will import.\n"
+"                Then, you can move and resize the fields over the PDF page "
+"using the move icons.\n"
+"                If you do a click over a field, you will be able to change "
+"the default configurations of the field"
+msgstr ""
+
+#. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__inalterable_hash
+msgid "Inalterability Hash"
+msgstr ""
+
+#. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__secure_sequence_number
+msgid "Inalteralbility No Gap Sequence #"
 msgstr ""
 
 #. module: sign_oca
@@ -919,6 +947,11 @@ msgid "Sent"
 msgstr ""
 
 #. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__sequence_id
+msgid "Sequence"
+msgstr ""
+
+#. module: sign_oca
 #: model:ir.ui.menu,name:sign_oca.sign_oca_settings_menu
 msgid "Settings"
 msgstr ""
@@ -991,7 +1024,6 @@ msgstr ""
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/xml/systray.xml:0
-#: code:addons/sign_oca/static/src/xml/systray.xml:0
 #: model:ir.actions.act_window,name:sign_oca.sign_oca_request_act_window
 #: model:ir.actions.act_window,name:sign_oca.sign_oca_request_log_act_window
 #: model:ir.actions.act_window,name:sign_oca.sign_oca_request_template_act_window
@@ -1045,7 +1077,6 @@ msgstr ""
 
 #. module: sign_oca
 #. odoo-javascript
-#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
 #, python-format
 msgid "Signature configuration"
