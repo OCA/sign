@@ -12,6 +12,7 @@ export class SignOcaPdfPortal extends SignOcaPdf {
     setup() {
         super.setup(...arguments);
         this.signOcaFooter = useRef("sign_oca_footer");
+        this.sensitiveData = {};
     }
     async willStart() {
         this.info = await this.env.services.rpc({
@@ -40,7 +41,18 @@ export class SignOcaPdfPortal extends SignOcaPdf {
         super.postIframeFields(...arguments);
         this.checkFilledAll();
     }
-    _onClickSign() {
+    async _onClickSign() {
+        this.encryptedData = false;
+        if (Object.keys(this.sensitiveData).length > 0 && this.info.certificate_id) {
+            const public_certificate_info = await this.env.services.rpc({
+                route:
+                    "/sign_oca/certificate/" +
+                    this.props.signer_id +
+                    "/" +
+                    this.props.access_token,
+            });
+            await this._encryptSensitiveData(public_certificate_info);
+        }
         this.env.services
             .rpc({
                 route:
@@ -48,7 +60,7 @@ export class SignOcaPdfPortal extends SignOcaPdf {
                     this.props.signer_id +
                     "/" +
                     this.props.access_token,
-                params: {items: this.info.items},
+                params: {items: this.info.items, encrypted_data: this.encryptedData},
             })
             .then((action) => {
                 // As we are on frontend env, it is not possible to use do_action(), so we

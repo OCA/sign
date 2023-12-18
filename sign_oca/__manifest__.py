@@ -25,6 +25,7 @@
         "views/sign_oca_field.xml",
         "views/sign_oca_role.xml",
         "views/sign_oca_template.xml",
+        "views/sign_oca_certificate.xml",
         "templates/assets.xml",
     ],
     "demo": [

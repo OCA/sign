@@ -345,13 +345,21 @@ class SignOcaRequestSigner(models.Model):
     _inherit = "portal.mixin"
     _description = "Sign Request Value"
 
-    data = fields.Binary(related="request_id.data")
+    data = fields.Binary(related="request_id.data", copy=False)
     request_id = fields.Many2one("sign.oca.request", required=True, ondelete="cascade")
     partner_name = fields.Char(related="partner_id.name")
     partner_id = fields.Many2one("res.partner", required=True, ondelete="restrict")
     role_id = fields.Many2one("sign.oca.role", required=True, ondelete="restrict")
-    signed_on = fields.Datetime(readonly=True)
-    signature_hash = fields.Char(readonly=True)
+    signed_on = fields.Datetime(readonly=True, copy=False)
+    signature_hash = fields.Char(readonly=True, copy=False)
+    sign_certificate_id = fields.Many2one(
+        "sign.oca.certificate",
+        default=lambda r: r._get_sign_certificate(),
+        readonly=True,
+        copy=False,
+    )
+    sensitive_data = fields.Binary(readonly=True, copy=False)
+    encrypted_data = fields.Json()
     model = fields.Char(compute="_compute_model", store=True)
     res_id = fields.Integer(compute="_compute_res_id", store=True)
     is_allow_signature = fields.Boolean(compute="_compute_is_allow_signature")
@@ -388,6 +396,10 @@ class SignOcaRequestSigner(models.Model):
                 not item.signed_on and item.partner_id == user.partner_id
             )
 
+    @api.model
+    def _get_sign_certificate(self):
+        return self.env["sign.oca.certificate"].search([], limit=1)
+
     def _compute_access_url(self):
         result = super()._compute_access_url()
         for record in self:
@@ -412,6 +424,7 @@ class SignOcaRequestSigner(models.Model):
             "name": self.request_id.template_id.name,
             "items": self.request_id.signatory_data,
             "to_sign": self.request_id.to_sign,
+            "certificate_id": self.sign_certificate_id.id,
             "partner": {
                 "id": self.partner_id.id,
                 "name": self.partner_id.name,
@@ -430,7 +443,7 @@ class SignOcaRequestSigner(models.Model):
             "url": self.access_url,
         }
 
-    def action_sign(self, items, access_token=False):
+    def action_sign(self, items, encrypted_data=False, access_token=False):
         self.ensure_one()
         if self.signed_on:
             raise ValidationError(
@@ -439,6 +452,7 @@ class SignOcaRequestSigner(models.Model):
         if self.request_id.state != "sent":
             raise ValidationError(_("Request cannot be signed"))
         self.signed_on = fields.Datetime.now()
+        self.encrypted_data = encrypted_data
         # current_hash = self.request_id.current_hash
         signatory_data = self.request_id.signatory_data
 

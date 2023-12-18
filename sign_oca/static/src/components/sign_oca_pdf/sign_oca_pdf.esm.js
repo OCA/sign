@@ -8,6 +8,7 @@ export default class SignOcaPdf extends SignOcaPdfCommon {
     setup() {
         super.setup(...arguments);
         this.to_sign = false;
+        this.sensitiveData = {};
     }
     async willStart() {
         await super.willStart(...arguments);
@@ -21,6 +22,54 @@ export default class SignOcaPdf extends SignOcaPdfCommon {
         });
         this.to_sign = this.to_sign_update;
     }
+    async _encryptSensitiveData(publicKeyBase64) {
+        const publicKeyBytes = Uint8Array.from(atob(publicKeyBase64), (c) =>
+            c.charCodeAt(0)
+        );
+        var importedPublicKey = await crypto.subtle.importKey(
+            "spki",
+            publicKeyBytes.buffer,
+            {name: "ECDH", namedCurve: "P-256"},
+            true,
+            []
+        );
+        const privateKey = await crypto.subtle.generateKey(
+            {
+                name: "ECDH",
+                namedCurve: "P-256",
+            },
+            true,
+            ["deriveKey"]
+        );
+        const sharedKey = await crypto.subtle.deriveKey(
+            {
+                name: "ECDH",
+                public: importedPublicKey,
+            },
+            privateKey.privateKey,
+            {
+                name: "AES-CBC",
+                length: 256,
+            },
+            true,
+            ["encrypt", "decrypt"]
+        );
+        const iv = crypto.getRandomValues(new Uint8Array(16));
+        const encryptedBuffer = await crypto.subtle.encrypt(
+            {
+                name: "AES-CBC",
+                iv: iv,
+            },
+            sharedKey,
+            new TextEncoder().encode(JSON.stringify(this.sensitiveData))
+        );
+        const publicKey = await crypto.subtle.exportKey("spki", privateKey.publicKey);
+        this.encryptedData = {
+            iv: btoa(String.fromCharCode(...iv)),
+            data: btoa(String.fromCharCode(...new Uint8Array(encryptedBuffer))),
+            public: btoa(String.fromCharCode(...new Uint8Array(publicKey))),
+        };
+    }
     renderButtons(to_sign) {
         var $buttons = $(
             core.qweb.render("oca_sign_oca.SignatureButtons", {
@@ -28,15 +77,46 @@ export default class SignOcaPdf extends SignOcaPdfCommon {
             })
         );
         $buttons.on("click.o_sign_oca_button_sign", () => {
-            this.env.services
-                .rpc({
-                    model: this.props.model,
-                    method: "action_sign",
-                    args: [[this.props.res_id], this.info.items],
-                })
-                .then(() => {
-                    this.props.trigger("history_back");
-                });
+            // TODO: Add encryption here
+            var todoFirst = [];
+            this.encryptedData = {};
+            if (
+                Object.keys(this.sensitiveData).length > 0 &&
+                this.info.certificate_id
+            ) {
+                todoFirst.push(
+                    new Promise((resolve) => {
+                        this.env.services
+                            .rpc({
+                                model: "sign.oca.certificate",
+                                method: "read",
+                                args: [[this.info.certificate_id], ["data"]],
+                            })
+                            .then((public_certificate_info) => {
+                                this._encryptSensitiveData(
+                                    public_certificate_info[0].data
+                                ).then(() => {
+                                    resolve();
+                                });
+                            });
+                    })
+                );
+            }
+            Promise.all(todoFirst).then(() => {
+                this.env.services
+                    .rpc({
+                        model: this.props.model,
+                        method: "action_sign",
+                        args: [
+                            [this.props.res_id],
+                            this.info.items,
+                            this.encryptedData,
+                        ],
+                    })
+                    .then(() => {
+                        this.props.trigger("history_back");
+                    });
+            });
         });
         return $buttons;
     }
