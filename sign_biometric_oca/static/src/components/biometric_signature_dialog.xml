@@ -40,18 +40,10 @@
     </t>
 
     <t t-name="sign_biometric_oca.sign_iframe_field_biometric_signature">
-        <!--
-        <svg class="o_sign_biometric_oca_display"
-            style="width:100%;height:100%" >
-            <t t-if="item.value.data">
-                <path t-att-d="data" t-foreach="item.value.data" t-as="data" t-key="data_index" />
-            </t>
-        </svg>-->
-
         <embed
             style="width:100%;height:100%"
-            t-attf-src="data:image/svg+xml;base64,{{item.value.svg}}"
-            t-if="item.value and item.value.svg"
+            t-attf-src="data:image/svg+xml;base64,{{item.value}}"
+            t-if="item.value"
         />
         <div style="width:100%;height:100%" t-else="" t-out="placeholder" />
     </t>
