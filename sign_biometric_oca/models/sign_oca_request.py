@@ -18,9 +18,9 @@ class SignOcaRequestSigner(models.Model):
     def _get_pdf_page_biometric(self, item, box):
         packet = BytesIO()
         can = canvas.Canvas(packet, pagesize=(box.getWidth(), box.getHeight()))
-        if not item.get("value") or not item["value"].get("svg"):
+        if not item.get("value"):
             return False
-        drawing = svg2rlg(BytesIO(b64decode(item["value"]["svg"])))
+        drawing = svg2rlg(BytesIO(b64decode(item["value"])))
         scaling_x = item["width"] / 100 * float(box.getWidth()) / drawing.width
         scaling_y = item["height"] / 100 * float(box.getHeight()) / drawing.height
 

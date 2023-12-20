@@ -6,8 +6,9 @@ import {registry} from "@web/core/registry";
 
 const signatureSignOca = {
     uploadSignature: function (parent, item, signatureItem, data) {
-        item.value = data;
-        console.log(item);
+        item.value = data.svg;
+        // TODO: Transform this in something more standard....
+        parent.sensitiveData[item.id] = data.paths;
         parent.postIframeField(item);
         parent.checkFilledAll();
         var next_items = _.filter(
