@@ -4,8 +4,6 @@
 from odoo import _, fields, models
 from odoo.exceptions import ValidationError
 
-# from odoo.addons.website.tools import text_from_html  #for v16
-
 
 class SignOcaRequest(models.Model):
     _inherit = "sign.oca.request"
@@ -24,7 +22,7 @@ class SignOcaRequest(models.Model):
         template = self.env.ref(
             "sign_oca_sms.sign_oca_sms_template_notification"
         ).with_context(
-            {
+            **{
                 "requested_by_user": requested_by_user,
                 "message": message,
                 "link": link,
