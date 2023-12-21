@@ -3,10 +3,17 @@
     <record model="ir.ui.view" id="sign_oca_template_generate_form_view">
         <field name="name">sign.oca.template.generate.form (in sign_oca)</field>
         <field name="model">sign.oca.template.generate</field>
-        <field name="inherit_id" ref="sign_oca.sign_oca_template_generate_form_view"/>
+        <field name="inherit_id" ref="sign_oca.sign_oca_template_generate_form_view" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='signer_ids']/tree/field[@name='partner_id']" position="after">
-                <field name="phone" domain="[('partner_id', '=', partner_id)]"  options="{'no_create': True, 'no_open': True}"/>
+            <xpath
+                expr="//field[@name='signer_ids']/tree/field[@name='partner_id']"
+                position="after"
+            >
+                <field
+                    name="phone"
+                    domain="[('partner_id', '=', partner_id)]"
+                    options="{'no_create': True, 'no_open': True}"
+                />
             </xpath>
             <button name="generate" position="attributes">
                 <attribute name="string">Generate &amp; send email</attribute>
