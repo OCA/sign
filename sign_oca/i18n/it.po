@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-04 09:37+0000\n"
+"PO-Revision-Date: 2023-12-29 17:39+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -343,7 +343,7 @@ msgstr "Campi"
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__filename
 msgid "Filename"
-msgstr "Nome del file"
+msgstr "Nome file"
 
 #. module: sign_oca
 #. odoo-javascript
