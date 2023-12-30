@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sign_field_biometric" model="sign.oca.field">
+        <field name="name">Biometric Signature</field>
+        <field name="field_type">biometric</field>
+    </record>
+</odoo>

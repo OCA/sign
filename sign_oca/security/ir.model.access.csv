@@ -8,3 +8,5 @@ edit_sign_request_signer,edit_sign_field,model_sign_oca_request_signer,sign_oca_
 edit_sign_generate,edit_sign_field,model_sign_oca_template_generate,sign_oca_group_user,1,1,1,1
 edit_sign_generate_signer,edit_sign_field,model_sign_oca_template_generate_signer,sign_oca_group_user,1,1,1,1
 access_sign_request_log,access_sign_request_log,model_sign_oca_request_log,sign_oca_group_user,1,0,0,0
+access_sign_certificate,access_sign_certificate,model_sign_oca_certificate,sign_oca_group_user,1,0,0,0
+edit_sign_certificate,edit_sign_certificate,model_sign_oca_certificate,base.group_system,1,1,1,0
