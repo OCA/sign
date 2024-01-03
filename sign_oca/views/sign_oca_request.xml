@@ -295,10 +295,11 @@
         <field name="name">sign.oca.request.signer.tree (in sign_oca)</field>
         <field name="model">sign.oca.request.signer</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
+            <tree editable="bottom" decoration-danger="altered_hash">
                 <field name="role_id" />
                 <field name="partner_id" />
                 <field name="signed_on" />
+                <field name="altered_hash" invisible="1" />
             </tree>
         </field>
     </record>
@@ -312,6 +313,7 @@
                         <field name="role_id" />
                         <field name="partner_id" />
                         <field name="signed_on" />
+                        <field name="inalterable_hash" />
                     </group>
                 </sheet>
             </form>
