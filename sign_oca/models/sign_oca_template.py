@@ -12,6 +12,7 @@ class SignOcaTemplate(models.Model):
 
     name = fields.Char(required=True)
     data = fields.Binary(attachment=True, required=True)
+    ask_location = fields.Boolean()
     filename = fields.Char()
     item_ids = fields.One2many("sign.oca.template.item", inverse_name="template_id")
     request_count = fields.Integer(compute="_compute_request_count")

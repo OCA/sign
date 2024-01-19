@@ -43,6 +43,7 @@
                         <field name="data" filename="filename" />
                         <field name="filename" invisible="1" />
                         <field name="model_id" groups="sign_oca.sign_oca_group_admin" />
+                        <field name="ask_location" />
                     </group>
                     <notebook>
                         <page name="items" string="Fields">

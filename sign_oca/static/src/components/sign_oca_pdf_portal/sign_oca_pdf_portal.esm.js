@@ -40,7 +40,8 @@ export class SignOcaPdfPortal extends SignOcaPdf {
         super.postIframeFields(...arguments);
         this.checkFilledAll();
     }
-    _onClickSign() {
+    async _onClickSign() {
+        const position = await this.getLocation();
         this.env.services
             .rpc({
                 route:
@@ -48,7 +49,11 @@ export class SignOcaPdfPortal extends SignOcaPdf {
                     this.props.signer_id +
                     "/" +
                     this.props.access_token,
-                params: {items: this.info.items},
+                params: {
+                    items: this.info.items,
+                    latitude: position && position.coords && position.coords.latitude,
+                    longitude: position && position.coords && position.coords.longitude,
+                },
             })
             .then((action) => {
                 // As we are on frontend env, it is not possible to use do_action(), so we

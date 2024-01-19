@@ -155,6 +155,12 @@ msgstr ""
 "con il documento completo"
 
 #. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__ask_location
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__ask_location
+msgid "Ask Location"
+msgstr ""
+
+#. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_attachment_count
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__message_attachment_count
 msgid "Attachment Count"
@@ -668,6 +674,11 @@ msgid "Late Activities"
 msgstr "Attività in ritardo"
 
 #. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__latitude
+msgid "Latitude"
+msgstr ""
+
+#. module: sign_oca
 #: model:ir.model,name:sign_oca.model_sign_oca_request_log
 msgid "Log access and edition on requests"
 msgstr "Registra accesso e modifica alle richieste"
@@ -679,6 +690,11 @@ msgstr "Registra accesso e modifica alle richieste"
 #, python-format
 msgid "Logo"
 msgstr "Logo"
+
+#. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__longitude
+msgid "Longitude"
+msgstr ""
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_main_attachment_id
