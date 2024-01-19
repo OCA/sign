@@ -41,6 +41,7 @@
                         <field name="name" />
                         <field name="data" filename="filename" />
                         <field name="filename" invisible="1" />
+                        <field name="ask_location" />
                     </group>
                     <notebook>
                         <page name="items" string="Fields">

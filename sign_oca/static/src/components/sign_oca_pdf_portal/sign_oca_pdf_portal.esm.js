@@ -40,14 +40,19 @@ export class SignOcaPdfPortal extends SignOcaPdf {
         super.postIframeFields(...arguments);
         this.checkFilledAll();
     }
-    _onClickSign() {
+    async _onClickSign() {
+        const position = await this.getLocation();
         this.env.services.rpc({
             route:
                 "/sign_oca/sign/" +
                 this.props.signer_id +
                 "/" +
                 this.props.access_token,
-            params: {items: this.info.items},
+            params: {
+                items: this.info.items,
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+            },
         });
     }
 }
