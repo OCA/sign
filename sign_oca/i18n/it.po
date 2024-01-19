@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-19 17:08+0000\n"
-"Last-Translator: Samuele Mariani <samuele@ooops404.com>\n"
+"PO-Revision-Date: 2024-01-19 19:36+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -102,7 +102,7 @@ msgstr "Aggiungi campo"
 #: code:addons/sign_oca/static/src/elements/signature.js:0
 #, python-format
 msgid "Adopt Your Signature"
-msgstr ""
+msgstr "Adotta la tua firma"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_kanban_view
@@ -168,7 +168,7 @@ msgstr "Annullato"
 #. module: sign_oca
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_field__field_type__check
 msgid "Check"
-msgstr ""
+msgstr "Controllo"
 
 #. module: sign_oca
 #. openerp-web
@@ -498,7 +498,7 @@ msgstr "Segue"
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__item_ids
 msgid "Item"
-msgstr ""
+msgstr "Elemento"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_field____last_update
@@ -669,7 +669,7 @@ msgstr "Pagina"
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__partner_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_signer__partner_id
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: sign_oca
 #. openerp-web
@@ -741,7 +741,7 @@ msgstr "Utente responsabile"
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_kanban_view
 msgid "Restore"
-msgstr ""
+msgstr "Ripristina"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__role_id
@@ -1008,7 +1008,7 @@ msgstr "Tipo di attività eccezione sul record."
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__uid
 msgid "Uid"
-msgstr ""
+msgstr "Uid"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_unread
