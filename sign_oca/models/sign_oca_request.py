@@ -96,6 +96,7 @@ class SignOcaRequest(models.Model):
         states={"draft": [("readonly", False)]},
     )
     next_item_id = fields.Integer(compute="_compute_next_item_id")
+    ask_location = fields.Boolean()
 
     @api.depends("signer_ids")
     @api.depends_context("uid")
@@ -368,6 +369,8 @@ class SignOcaRequestSigner(models.Model):
         "ir.sequence", copy=False, default=lambda r: r._get_sequence()
     )
     altered_hash = fields.Boolean(compute="_compute_altered_hash")
+    latitude = fields.Float()
+    longitude = fields.Float()
 
     @api.depends("request_id.record_ref")
     def _compute_model(self):
@@ -412,6 +415,7 @@ class SignOcaRequestSigner(models.Model):
             "name": self.request_id.template_id.name,
             "items": self.request_id.signatory_data,
             "to_sign": self.request_id.to_sign,
+            "ask_location": self.request_id.ask_location,
             "partner": {
                 "id": self.partner_id.id,
                 "name": self.partner_id.name,
@@ -430,7 +434,7 @@ class SignOcaRequestSigner(models.Model):
             "url": self.access_url,
         }
 
-    def action_sign(self, items, access_token=False):
+    def action_sign(self, items, access_token=False, latitude=False, longitude=False):
         self.ensure_one()
         if self.signed_on:
             raise ValidationError(
@@ -475,6 +479,8 @@ class SignOcaRequestSigner(models.Model):
             }
         )
         self.signature_hash = final_hash
+        self.latitude = latitude
+        self.longitude = longitude
         self.request_id._check_signed()
         self._set_action_log("sign", access_token=access_token)
         if self.sequence_id:

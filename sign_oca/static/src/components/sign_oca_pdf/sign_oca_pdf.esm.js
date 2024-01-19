@@ -28,17 +28,50 @@ export default class SignOcaPdf extends SignOcaPdfCommon {
             })
         );
         $buttons.on("click.o_sign_oca_button_sign", () => {
-            this.env.services
-                .rpc({
-                    model: this.props.model,
-                    method: "action_sign",
-                    args: [[this.props.res_id], this.info.items],
-                })
-                .then(() => {
-                    this.props.trigger("history_back");
-                });
+            this.signOca();
         });
         return $buttons;
+    }
+    async getLocation() {
+        if (!this.info.ask_location || !navigator.geolocation) {
+            return {};
+        }
+        try {
+            return await new Promise((resolve, reject) => {
+                navigator.geolocation.getCurrentPosition(resolve, reject);
+            });
+
+            // Do something with the latitude and longitude
+        } catch (error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    console.error("User denied the request for geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    console.error("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    console.error("The request to get user location timed out.");
+                    break;
+                default:
+                    console.error("An unknown error occurred.");
+                    break;
+            }
+        }
+        return {};
+    }
+    async signOca() {
+        const position = await this.getLocation();
+        await this.env.services.rpc({
+            model: this.props.model,
+            method: "action_sign",
+            args: [[this.props.res_id], this.info.items],
+            kwargs: {
+                latitude: position && position.coords && position.coords.latitude,
+                longitude: position && position.coords && position.coords.longitude,
+            },
+        });
+        this.props.trigger("history_back");
     }
     _trigger_up(ev) {
         const evType = ev.name;

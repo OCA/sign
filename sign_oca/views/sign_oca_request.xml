@@ -355,6 +355,8 @@
                         <field name="request_id" readonly="1" />
                         <field name="signed_on" />
                         <field name="inalterable_hash" />
+                        <field name="latitude" />
+                        <field name="longitude" />
                     </group>
                 </sheet>
             </form>
