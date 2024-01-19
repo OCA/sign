@@ -312,6 +312,8 @@
                         <field name="role_id" />
                         <field name="partner_id" />
                         <field name="signed_on" />
+                        <field name="latitude" />
+                        <field name="longitude" />
                     </group>
                 </sheet>
             </form>

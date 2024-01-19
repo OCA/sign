@@ -68,6 +68,7 @@ class SignOcaRequest(models.Model):
         states={"draft": [("readonly", False)]},
     )
     next_item_id = fields.Integer(compute="_compute_next_item_id")
+    ask_location = fields.Boolean()
 
     @api.depends("signatory_data")
     def _compute_next_item_id(self):
@@ -270,6 +271,8 @@ class SignOcaRequestSigner(models.Model):
     role_id = fields.Many2one("sign.oca.role", required=True, ondelete="restrict")
     signed_on = fields.Datetime(readonly=True)
     signature_hash = fields.Char(readonly=True)
+    latitude = fields.Float()
+    longitude = fields.Float()
 
     def _compute_access_url(self):
         result = super()._compute_access_url()
@@ -288,6 +291,7 @@ class SignOcaRequestSigner(models.Model):
             "name": self.request_id.template_id.name,
             "items": self.request_id.signatory_data,
             "to_sign": self.request_id.to_sign,
+            "ask_location": self.request_id.ask_location,
             "partner": {
                 "id": self.env.user.partner_id.id,
                 "name": self.env.user.partner_id.name,
@@ -296,7 +300,7 @@ class SignOcaRequestSigner(models.Model):
             },
         }
 
-    def action_sign(self, items, access_token=False):
+    def action_sign(self, items, access_token=False, latitude=False, longitude=False):
         self.ensure_one()
         if self.signed_on:
             raise ValidationError(
@@ -341,6 +345,8 @@ class SignOcaRequestSigner(models.Model):
             }
         )
         self.signature_hash = final_hash
+        self.latitude = latitude
+        self.longitude = longitude
         self.request_id._check_signed()
         self._set_action_log("sign", access_token=access_token)
         # TODO: Add a return
