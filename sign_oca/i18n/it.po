@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-26 11:36+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2024-01-29 11:36+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -511,7 +511,7 @@ msgstr "Elemento"
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_signer____last_update
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item____last_update
 msgid "Last Modified on"
-msgstr "Ultima modica il"
+msgstr "Ultima modifica il"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_field__write_uid
