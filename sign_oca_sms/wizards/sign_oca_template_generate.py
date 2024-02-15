@@ -9,13 +9,20 @@ class SignOcaTemplateGenerate(models.TransientModel):
     _inherit = "sign.oca.template.generate"
     _description = "Generate a signature request"
 
-    send_method = fields.Selection(
-        selection=[("sms", "SMS"), ("email", "Email")], default="email"
-    )
+    send_method = fields.Selection(selection=[
+        ("sms", "SMS"),
+        ("email", "Email"),
+        ("both", "Email & SMS")
+    ], default="email")
 
     def generate(self):
         if self.env.context.get("send_method", "") == "sms":
             request = self._generate()
+            request.action_send_sms(sign_now=self.sign_now, message=self.message)
+            return request.sign()
+        elif self.env.context.get("send_method", '') == 'both':
+            request = self._generate()
+            request.action_send(sign_now=self.sign_now, message=self.message)
             request.action_send_sms(sign_now=self.sign_now, message=self.message)
             return request.sign()
         return super().generate()

@@ -21,6 +21,15 @@
             <button name="generate" position="after">
                 <button
                     name="generate"
+                    string="Generate &amp; send email &amp; sms"
+                    class="btn-primary"
+                    type="object"
+                    context="{'send_method': 'both'}"
+                />
+            </button>
+            <button name="generate" position="after">
+                <button
+                    name="generate"
                     string="Generate &amp; send sms"
                     class="btn-primary"
                     type="object"
