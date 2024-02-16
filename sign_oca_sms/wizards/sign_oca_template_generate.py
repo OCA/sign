@@ -16,16 +16,21 @@ class SignOcaTemplateGenerate(models.TransientModel):
     ], default="email")
 
     def generate(self):
-        if self.env.context.get("send_method", "") == "sms":
+        self.send_method = self.env.context.get("send_method", '')
+        send_method_msg = dict(self._fields["send_method"].selection).get(self.send_method)
+        message_body = "Sign request sent via %(method)s" % {"method": send_method_msg}
+        if self.send_method == 'email':
+            request = self._generate()
+            request.action_send(sign_now=self.sign_now, message=self.message)
+        elif self.send_method == 'sms':
             request = self._generate()
             request.action_send_sms(sign_now=self.sign_now, message=self.message)
-            return request.sign()
-        elif self.env.context.get("send_method", '') == 'both':
+        else:
             request = self._generate()
             request.action_send(sign_now=self.sign_now, message=self.message)
             request.action_send_sms(sign_now=self.sign_now, message=self.message)
-            return request.sign()
-        return super().generate()
+        request.message_post(body=message_body)
+        return request.sign()
 
     def _generate_vals(self):
         res = super()._generate_vals()
