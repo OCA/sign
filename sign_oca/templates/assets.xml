@@ -13,6 +13,10 @@
             />
             <script
                 type="text/javascript"
+                src="/sign_oca/static/src/components/sign_oca_pdf_common/sign_oca_pdf_common_action.js"
+            />
+            <script
+                type="text/javascript"
                 src="/sign_oca/static/src/elements/registry.js"
             />
             <script
