@@ -76,6 +76,19 @@ class SignOcaRequest(models.Model):
                 record.signatory_data and max(record.signatory_data.keys()) or 0
             ) + 1
 
+    def preview(self):
+        self.ensure_one()
+        self._set_action_log("view")
+        return {
+            "type": "ir.actions.client",
+            "tag": "sign_oca_preview",
+            "name": self.name,
+            "params": {
+                "res_model": self._name,
+                "res_id": self.id,
+            },
+        }
+
     def get_info(self):
         self.ensure_one()
         return {
