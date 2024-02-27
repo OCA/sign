@@ -10,6 +10,14 @@
             <form create="0">
                 <header>
                     <button
+                        name="sign"
+                        class="btn btn-primary"
+                        type="object"
+                        string="Sign"
+                        attrs="{'invisible': [('to_sign', '=', False)]}"
+                    />
+                    <field name="to_sign" invisible="1" />
+                    <button
                         string="Send"
                         type="object"
                         states="draft"
