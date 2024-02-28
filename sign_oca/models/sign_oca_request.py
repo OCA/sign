@@ -96,13 +96,6 @@ class SignOcaRequest(models.Model):
         compute="_compute_signer_is_allow_signature"
     )
 
-    @api.depends("signatory_data")
-    def _compute_next_item_id(self):
-        for record in self:
-            record.next_item_id = (
-                record.signatory_data and max(record.signatory_data.keys()) or 0
-            ) + 1
-
     @api.depends_context("uid")
     def _compute_signer_from_user_partner(self):
         user = self.env.user
