@@ -17,15 +17,7 @@
             </xpath>
             <button name="generate" position="attributes">
                 <attribute name="string">Generate &amp; send email</attribute>
-            </button>
-            <button name="generate" position="after">
-                <button
-                    name="generate"
-                    string="Generate &amp; send email &amp; sms"
-                    class="btn-primary"
-                    type="object"
-                    context="{'send_method': 'both'}"
-                />
+                <attribute name="context">{'send_method': 'email'}</attribute>
             </button>
             <button name="generate" position="after">
                 <button
@@ -34,6 +26,13 @@
                     class="btn-primary"
                     type="object"
                     context="{'send_method': 'sms'}"
+                />
+                <button
+                    name="generate"
+                    string="Generate &amp; send email &amp; sms"
+                    class="btn-primary"
+                    type="object"
+                    context="{'send_method': 'both'}"
                 />
             </button>
         </field>
