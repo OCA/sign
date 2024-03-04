@@ -10,9 +10,22 @@
             <form>
                 <header />
                 <sheet>
-                    <group>
-                        <field name="name" />
-                        <field name="domain" />
+                    <group name="main_group">
+                        <group name="left_group">
+                            <field name="name" />
+                            <field name="domain" />
+                        </group>
+                        <group name="right_group">
+                            <field name="partner_type" widget="radio" />
+                            <field
+                                name="default_partner_id"
+                                attrs="{'invisible': [('partner_type', '!=', 'default')], 'required': [('partner_type', '=', 'default')]}"
+                            />
+                            <field
+                                name="expression_partner"
+                                attrs="{'invisible': [('partner_type', '!=', 'expression')], 'required': [('partner_type', '=', 'expression')]}"
+                            />
+                        </group>
                     </group>
                 </sheet>
                 <div class="oe_chatter" />
@@ -26,6 +39,7 @@
         <field name="arch" type="xml">
             <search>
                 <field name="name" />
+                <field name="partner_type" />
             </search>
         </field>
     </record>
@@ -36,6 +50,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name" />
+                <field name="partner_type" />
             </tree>
         </field>
     </record>

@@ -15,6 +15,7 @@
         "views/menu.xml",
         "data/data.xml",
         "wizards/sign_oca_template_generate.xml",
+        "wizards/sign_oca_template_generate_multi.xml",
         "views/sign_oca_request_log.xml",
         "views/sign_oca_request.xml",
         "security/ir.model.access.csv",
@@ -32,6 +33,7 @@
         "static/src/components/sign_oca_pdf/sign_oca_pdf.xml",
         "static/src/components/sign_oca_pdf_portal/sign_oca_pdf_portal.xml",
         "static/src/elements/elements.xml",
+        "static/src/elements/systray.xml",
     ],
     "maintainers": ["etobella"],
 }
