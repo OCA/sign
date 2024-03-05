@@ -21,7 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[sign_oca](sign_oca/) | 14.0.2.0.0 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Allow to sign documents inside Odoo CE
+[sign_oca](sign_oca/) | 14.0.2.1.0 | [![etobella](https://github.com/etobella.png?size=30px)](https://github.com/etobella) | Allow to sign documents inside Odoo CE
 
 [//]: # (end addons)
 
