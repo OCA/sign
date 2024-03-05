@@ -207,7 +207,7 @@ class SignOcaRequest(models.Model):
             "field_type": field_id.field_type,
             "required": False,
             "name": field_id.name,
-            "role": self.signer_ids[0].role_id.id,
+            "role_id": self.signer_ids[0].role_id.id,
             "page": 1,
             "position_x": 0,
             "position_y": 0,
@@ -381,7 +381,7 @@ class SignOcaRequestSigner(models.Model):
         self.ensure_one()
         self._set_action_log("view", access_token=access_token)
         return {
-            "role": self.role_id.id if not self.signed_on else False,
+            "role_id": self.role_id.id if not self.signed_on else False,
             "name": self.request_id.template_id.name,
             "items": self.request_id.signatory_data,
             "to_sign": self.request_id.to_sign,
@@ -423,7 +423,7 @@ class SignOcaRequestSigner(models.Model):
             pages[page_number] = reader.getPage(page_number - 1)
 
         for key in signatory_data:
-            if signatory_data[key]["role"] == self.role_id.id:
+            if signatory_data[key]["role_id"] == self.role_id.id:
                 signatory_data[key] = items[key]
                 self._check_signable(items[key])
                 item = items[key]
