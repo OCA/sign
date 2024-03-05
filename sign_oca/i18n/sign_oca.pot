@@ -338,7 +338,7 @@ msgstr ""
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_role__expression_partner
-msgid "Example: ${object.partner_id.id}"
+msgid "Example: {{object.partner_id.id}}"
 msgstr ""
 
 #. module: sign_oca

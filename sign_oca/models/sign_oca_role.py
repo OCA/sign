@@ -24,7 +24,7 @@ class SignOcaRole(models.Model):
         comodel_name="res.partner", string="Default partner"
     )
     expression_partner = fields.Char(
-        string="Expression", help="Example: ${object.partner_id.id}"
+        string="Expression", help="Example: {{object.partner_id.id}}"
     )
 
     @api.onchange("partner_type")
@@ -41,8 +41,7 @@ class SignOcaRole(models.Model):
     def _get_partner_from_record(self, record):
         partner = self.default_partner_id or False
         if self.partner_type == "expression" and record:
-            # TODO: In 15.0 change to _render_template() inline-template
-            res = self.env["mail.render.mixin"]._render_template_jinja(
+            res = self.env["mail.render.mixin"]._render_template(
                 self.expression_partner, record._name, record.ids
             )[record.id]
             partner = int(res) if res else False

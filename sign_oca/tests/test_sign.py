@@ -52,7 +52,7 @@ class TestSign(TransactionCase):
             {
                 "name": "Child partner",
                 "partner_type": "expression",
-                "expression_partner": "${object.parent_id.id}",
+                "expression_partner": "{{object.parent_id.id}}",
             }
         )
 
