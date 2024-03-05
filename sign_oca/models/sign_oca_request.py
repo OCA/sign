@@ -99,7 +99,9 @@ class SignOcaRequest(models.Model):
     def _compute_next_item_id(self):
         for record in self:
             record.next_item_id = (
-                record.signatory_data and max(record.signatory_data.keys()) or 0
+                record.signatory_data
+                and max([int(key) for key in record.signatory_data.keys()])
+                or 0
             ) + 1
 
     @api.depends_context("uid")
