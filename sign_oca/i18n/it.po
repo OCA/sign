@@ -649,9 +649,9 @@ msgstr "Messaggi"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__model
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__model
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__model_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_multi__model
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_multi__model_id
 msgid "Model"
 msgstr ""
 
@@ -994,6 +994,13 @@ msgstr "Ruolo firma"
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_mail
 msgid "Sign document"
 msgstr "Firma documento"
+
+#. module: sign_oca
+#. openerp-web
+#: code:addons/sign_oca/static/src/js/sign_oca.js:0
+#, python-format
+msgid "Sign from template"
+msgstr ""
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_tree_view

@@ -11,7 +11,7 @@ odoo.define("sign_oca.checkElement", function (require) {
             var input = $(
                 core.qweb.render("sign_oca.sign_iframe_field_check", {
                     item: item,
-                    role: parent.info.role,
+                    role_id: parent.info.role_id,
                 })
             )[0];
             signatureItem[0].addEventListener("focus_signature", () => {
@@ -42,7 +42,7 @@ odoo.define("sign_oca.checkElement", function (require) {
                 ev.preventDefault();
                 var next_items = _.filter(
                     parent.info.items,
-                    (i) => i.tabindex > item.tabindex && i.role === parent.role
+                    (i) => i.tabindex > item.tabindex && i.role_id === parent.role_id
                 ).sort((a, b) => a.tabindex - b.tabindex);
                 if (next_items.length > 0) {
                     ev.currentTarget.blur();
