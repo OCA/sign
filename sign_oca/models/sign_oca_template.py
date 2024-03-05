@@ -19,13 +19,25 @@ class SignOcaTemplate(models.Model):
         string="Model",
         domain=[("transient", "=", False), ("model", "not like", "sign.oca")],
     )
+    model = fields.Char(compute="_compute_model", compute_sudo=True, store=True)
     active = fields.Boolean(default=True)
     request_ids = fields.One2many("sign.oca.request", inverse_name="template_id")
 
+    @api.depends("model_id")
+    def _compute_model(self):
+        for item in self:
+            item.model = item.model_id.model or False
+
     @api.depends("request_ids")
     def _compute_request_count(self):
+        res = self.env["sign.oca.request"].read_group(
+            domain=[("template_id", "in", self.ids)],
+            fields=["template_id"],
+            groupby=["template_id"],
+        )
+        res_dict = {x["template_id"][0]: x["template_id_count"] for x in res}
         for record in self:
-            record.request_count = len(record.request_ids)
+            record.request_count = res_dict.get(record.id, 0)
 
     def configure(self):
         self.ensure_one()
