@@ -47,6 +47,7 @@
                 type="text/javascript"
                 src="/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.js"
             />
+            <script type="text/javascript" src="/sign_oca/static/src/js/sign_oca.js" />
         </xpath>
     </template>
     <template

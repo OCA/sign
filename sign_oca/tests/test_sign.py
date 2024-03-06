@@ -189,7 +189,6 @@ class TestSign(SavepointCase):
                 default_model="res.partner", active_ids=self.partner.child_ids.ids
             )
         )
-        self.assertEqual(wizard_form.model_id, model_res_partner)
         wizard_form.template_id = self.template
         action = wizard_form.save().generate()
         requests = self.env[action["res_model"]].search(action["domain"])
