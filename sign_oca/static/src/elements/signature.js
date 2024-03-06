@@ -78,7 +78,7 @@ odoo.define("sign_oca.signatureElement", function (require) {
             var input = $(
                 core.qweb.render("sign_oca.sign_iframe_field_signature", {item: item})
             )[0];
-            if (item.role === parent.info.role) {
+            if (item.role_id === parent.info.role_id) {
                 signatureItem[0].addEventListener("focus_signature", () => {
                     var signatureOptions = {
                         fontColor: "DarkBlue",
@@ -102,7 +102,8 @@ odoo.define("sign_oca.signatureElement", function (require) {
                     ev.preventDefault();
                     var next_items = _.filter(
                         parent.info.items,
-                        (i) => i.tabindex > item.tabindex && i.role === parent.role
+                        (i) =>
+                            i.tabindex > item.tabindex && i.role_id === parent.role_id
                     );
                     if (next_items.length > 0) {
                         ev.currentTarget.blur();

@@ -159,13 +159,14 @@ class SignOcaTemplateItem(models.Model):
             "id": self.id,
             "field_id": self.field_id.id,
             "name": self.field_id.name,
-            "role": self.role_id.id,
+            "role_id": self.role_id.id,
             "page": self.page,
             "position_x": self.position_x,
             "position_y": self.position_y,
             "width": self.width,
             "height": self.height,
             "placeholder": self.placeholder,
+            "required": self.required,
         }
 
     def _get_full_info(self):
@@ -175,7 +176,6 @@ class SignOcaTemplateItem(models.Model):
         vals.update(
             {
                 "field_type": self.field_id.field_type,
-                "required": self.required,
                 "value": False,
                 "default_value": self.field_id.default_value,
             }

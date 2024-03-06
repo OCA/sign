@@ -88,7 +88,7 @@ odoo.define("sign_oca/static/src/components/sign_oca_pdf/sign_oca_pdf.js", funct
                 _.filter(this.info.items, (item) => {
                     return (
                         item.required &&
-                        item.role === this.info.role &&
+                        item.role_id === this.info.role_id &&
                         !SignRegistry.map[item.field_type].check(item)
                     );
                 }).length === 0;
