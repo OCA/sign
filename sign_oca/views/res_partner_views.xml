@@ -13,11 +13,13 @@
                     name="action_show_signer_ids"
                     attrs="{'invisible': [('signer_count', '=', 0)]}"
                     icon="fa-pencil"
+                    groups="sign_oca.sign_oca_group_user"
                 >
                     <field
                         string="Sign Requests"
                         name="signer_count"
                         widget="statinfo"
+                        groups="sign_oca.sign_oca_group_user"
                     />
                 </button>
             </div>
