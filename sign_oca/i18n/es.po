@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-03-07 12:06+0000\n"
+"PO-Revision-Date: 2024-03-07 12:13+0000\n"
 "Last-Translator: Eduardo Ruiz <eduardo@readylan.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -535,11 +535,10 @@ msgid ""
 "                Then, you can move and resize the fields over the PDF page using the move icons.\n"
 "                If you do a click over a field, you will be able to change the default configurations of the field"
 msgstr ""
-"Para agregar campos de firma, haga clic derecho sobre la página PDF y "
-"seleccione el campo a incrustar.\n"
-"Luego, puede mover y cambiar el tamaño de los campos usando los iconos de "
-"movimiento.\n"
-"Si hace clic sobre un campo, podrá cambiar su configuración predeterminada."
+"Haga clic derecho sobre la página PDF y seleccione el campo a incrustar. "
+"Puede mover y cambiar el tamaño de los campos usando los iconos de "
+"movimiento. Si hace clic sobre un campo, podrá cambiar su configuración "
+"predeterminada"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__ip
@@ -927,7 +926,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_tree_view
 #, python-format
 msgid "Sign"
-msgstr "Firmar"
+msgstr "Firma"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate__sign_now
