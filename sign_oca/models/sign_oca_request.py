@@ -91,9 +91,6 @@ class SignOcaRequest(models.Model):
         comodel_name="sign.oca.request.signer",
         compute="_compute_signer_from_user_partner",
     )
-    signer_is_allow_signature = fields.Boolean(
-        compute="_compute_signer_is_allow_signature"
-    )
 
     @api.depends("signatory_data")
     def _compute_next_item_id(self):
@@ -107,25 +104,23 @@ class SignOcaRequest(models.Model):
     @api.depends_context("uid")
     def _compute_signer_from_user_partner(self):
         user = self.env.user
-        for item in self:
+        for record in self:
             signer = fields.first(
-                item.signer_ids.filtered(
+                record.signer_ids.filtered(
                     lambda x: x.partner_id == user.partner_id.commercial_partner_id
                 )
             )
-            item.signer_from_user_partner = signer
+            record.signer_from_user_partner = signer
 
     @api.depends(
         "state",
         "signer_from_user_partner",
         "signer_from_user_partner.is_allow_signature",
     )
-    def _compute_signer_is_allow_signature(self):
-        for item in self:
-            signer = item.signer_from_user_partner
-            item.signer_is_allow_signature = (
-                signer.is_allow_signature if signer else False
-            )
+    def _compute_to_sign(self):
+        for record in self:
+            signer = record.signer_from_user_partner
+            record.to_sign = signer.is_allow_signature if signer else False
 
     def action_signer_sign_url(self):
         self.ensure_one()
@@ -262,15 +257,6 @@ class SignOcaRequest(models.Model):
                 mail_auto_delete=False,
                 email_layout_xmlid="mail.mail_notification_light",
             )
-
-    @api.depends("signer_ids.role_id", "signatory_data")
-    @api.depends_context("uid")
-    def _compute_to_sign(self):
-        for record in self:
-            record.to_sign = record.signer_ids.filtered(
-                lambda r: r.partner_id.id == self.env.user.partner_id.id
-                and not r.signed_on
-            ).mapped("role_id")
 
     def _check_signed(self):
         self.ensure_one()
