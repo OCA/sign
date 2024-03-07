@@ -13,8 +13,14 @@ class ResPartner(models.Model):
     signer_count = fields.Integer(compute="_compute_signers_count")
 
     def _compute_signers_count(self):
+        res = self.env["sign.oca.request.signer"].read_group(
+            domain=[("partner_id", "in", self.ids)],
+            fields=["partner_id"],
+            groupby=["partner_id"],
+        )
+        res_dict = {x["partner_id"][0]: x["partner_id_count"] for x in res}
         for rec in self:
-            rec.signer_count = len(rec.signer_ids)
+            rec.signer_count = res_dict.get(rec.id, 0)
 
     def action_show_signer_ids(self):
         self.ensure_one()

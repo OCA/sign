@@ -8,7 +8,7 @@ class SignOcaTemplateGenerateMulti(models.TransientModel):
     _name = "sign.oca.template.generate.multi"
     _description = "Generate signature requests"
 
-    model = fields.Char(string="Model", readonly=True)
+    model = fields.Char(readonly=True)
     template_id = fields.Many2one(
         comodel_name="sign.oca.template",
         domain="['|', ('model', '=', False),('model', '=', model)]",

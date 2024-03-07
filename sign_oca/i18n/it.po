@@ -1284,6 +1284,3 @@ msgstr "Verrà cancellata la richiesta e tutti gli accessi. Si è sicuri?"
 #: model_terms:ir.ui.view,arch_db:sign_oca.portal_sign_document_signed
 msgid "has already been signed"
 msgstr "è già stato firmato"
-
-#~ msgid "sign.oca.request.log"
-#~ msgstr "sign.oca.request.log"

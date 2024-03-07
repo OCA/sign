@@ -9,35 +9,36 @@ from odoo.tests.common import HttpCase, tagged
 
 @tagged("post_install", "-at_install")
 class TestSign(HttpCase):
-    def setUp(self):
-        super().setUp()
-        self.data = base64.b64encode(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.data = base64.b64encode(
             open(
                 get_module_resource("sign_oca", "tests", "empty.pdf"),
                 "rb",
             ).read()
         )
-        self.signer = self.env["res.partner"].create({"name": "Signer"})
-        self.request = self.env["sign.oca.request"].create(
+        cls.signer = cls.env["res.partner"].create({"name": "Signer"})
+        cls.request = cls.env["sign.oca.request"].create(
             {
-                "data": self.data,
+                "data": cls.data,
                 "name": "Demo template",
                 "signer_ids": [
                     (
                         0,
                         0,
                         {
-                            "partner_id": self.signer.id,
-                            "role_id": self.env.ref("sign_oca.sign_role_customer").id,
+                            "partner_id": cls.signer.id,
+                            "role_id": cls.env.ref("sign_oca.sign_role_customer").id,
                         },
                     )
                 ],
             }
         )
-        self.item = self.request.add_item(
+        cls.item = cls.request.add_item(
             {
-                "role_id": self.env.ref("sign_oca.sign_role_customer").id,
-                "field_id": self.env.ref("sign_oca.sign_field_name").id,
+                "role_id": cls.env.ref("sign_oca.sign_role_customer").id,
+                "field_id": cls.env.ref("sign_oca.sign_field_name").id,
                 "page": 1,
                 "position_x": 10,
                 "position_y": 10,

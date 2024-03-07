@@ -37,7 +37,7 @@
                 title="Signature configuration"
             />
             <div class="o_sign_oca_resize fa fa-arrows-alt" style="z-index: 90;" />
-            <span class="o_sign_placeholder" t-esc="name" />
+            <span class="o_sign_placeholder" t-out="name" />
 
         </div>
     </t>
@@ -50,7 +50,7 @@
                 <div
                     class="o_sign_oca_context_menu_item"
                     t-att-data-field="field.id"
-                    t-esc="field.name"
+                    t-out="field.name"
                     t-att-data-page="page_id"
                 />
             </t>
@@ -64,7 +64,7 @@
                     <t t-foreach="info.fields" t-as="field">
                         <option
                             t-att-value="field.id"
-                            t-esc="field.name"
+                            t-out="field.name"
                             t-att-selected="item.field_id === field.id ? 'selected': None"
                         />
                     </t>
@@ -76,7 +76,7 @@
                     <t t-foreach="info.roles" t-as="role">
                         <option
                             t-att-value="role.id"
-                            t-esc="role.name"
+                            t-out="role.name"
                             t-att-selected="item.role_id === role.id ? 'selected': None"
                         />
                     </t>

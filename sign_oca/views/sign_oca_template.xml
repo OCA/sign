@@ -2,7 +2,6 @@
 <!-- Copyright 2023 Dixmit
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
-
     <record model="ir.ui.view" id="sign_oca_template_form_view">
         <field name="name">sign.oca.template.form (in sign_oca)</field>
         <field name="model">sign.oca.template</field>
@@ -84,7 +83,6 @@
             </form>
         </field>
     </record>
-
     <record model="ir.ui.view" id="sign_oca_template_search_view">
         <field name="name">sign.oca.template.search (in sign_oca)</field>
         <field name="model">sign.oca.template</field>
@@ -94,7 +92,6 @@
             </search>
         </field>
     </record>
-
     <record model="ir.ui.view" id="sign_oca_template_kanban_view">
         <field name="name">sign.oca.template.kanban (in sign_oca)</field>
         <field name="model">sign.oca.template</field>
@@ -148,7 +145,6 @@
             </kanban>
         </field>
     </record>
-
     <record model="ir.ui.view" id="sign_oca_template_tree_view">
         <field name="name">sign.oca.template.tree (in sign_oca)</field>
         <field name="model">sign.oca.template</field>
@@ -172,7 +168,6 @@
             </tree>
         </field>
     </record>
-
     <record model="ir.actions.act_window" id="sign_oca_template_act_window">
         <field name="name">Templates</field> <!-- TODO -->
         <field name="res_model">sign.oca.template</field>
@@ -180,12 +175,10 @@
         <field name="domain">[]</field>
         <field name="context">{}</field>
     </record>
-
     <record model="ir.ui.menu" id="sign_oca_template_menu">
         <field name="name">Templates</field>
         <field name="parent_id" ref="sign_oca_root_menu" /> <!-- TODO -->
         <field name="action" ref="sign_oca_template_act_window" />
         <field name="sequence" eval="16" /> <!-- TODO -->
     </record>
-
 </odoo>

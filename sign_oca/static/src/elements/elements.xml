@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
-
     <t t-name="sign_oca.sign_iframe_field_check">
         <input
             t-if="item.role == role"
@@ -22,7 +21,7 @@
         />
         <div
             style="width:100%;height:100%"
-            t-esc="item.value? item.value: undefined"
+            t-out="item.value? item.value: undefined"
             t-else=""
         />
     </t>
@@ -32,7 +31,7 @@
             t-attf-src="data:image/png;base64,{{item.value}}"
             t-if="item.value"
         />
-        <div style="width:100%;height:100%" t-else="" t-esc="placeholder" />
+        <div style="width:100%;height:100%" t-else="" t-out="placeholder" />
     </t>
     <t t-name="sign_oca.sign_oca_sign_dialog">
         <div>

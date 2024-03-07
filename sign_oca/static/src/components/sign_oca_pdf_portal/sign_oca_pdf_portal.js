@@ -53,12 +53,8 @@ odoo.define("sign_oca.document_portal_base", function (require) {
     SignOcaPdfPortal.template = "sign_oca.SignOcaPdfPortal";
     function initDocumentToSign(properties) {
         return session.session_bind(session.origin).then(function () {
-            session.module_list.push("web");
-            session.module_list.push("portal");
-            session.module_list.push("sign_oca");
             return Promise.all([
-                session.load_translations(),
-                session.load_qweb(session.module_list),
+                session.load_translations(["web", "portal", "sign_oca"]),
             ]).then(async function () {
                 await session.is_bound;
                 env.qweb.addTemplates(session.owlTemplates);

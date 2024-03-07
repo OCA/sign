@@ -4,10 +4,10 @@
 import base64
 
 from odoo.modules.module import get_module_resource
-from odoo.tests.common import Form, SavepointCase
+from odoo.tests.common import Form, TransactionCase
 
 
-class TestSign(SavepointCase):
+class TestSign(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -52,7 +52,7 @@ class TestSign(SavepointCase):
             {
                 "name": "Child partner",
                 "partner_type": "expression",
-                "expression_partner": "${object.parent_id.id}",
+                "expression_partner": "{{object.parent_id.id}}",
             }
         )
 

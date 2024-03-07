@@ -29,7 +29,6 @@ odoo.define("sign_oca.systray", function (require) {
             );
             return this._super();
         },
-
         // Private
         _getSignOcaRequestData: function () {
             var self = this;
@@ -73,7 +72,6 @@ odoo.define("sign_oca.systray", function (require) {
         // ------------------------------------------------------------
         // Handlers
         // ------------------------------------------------------------
-
         _onSignOcaRequestFilterClick: function (event) {
             var data = _.extend(
                 {},
