@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-sign Odoo addons",
     version=version,
     install_requires=[
+        'odoo14-addon-maintenance_sign_oca',
         'odoo14-addon-sign_oca',
     ],
     classifiers=[
