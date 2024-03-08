@@ -3,7 +3,7 @@
 {
     "name": "Sign Oca Sms",
     "version": "16.0.1.0.0",
-    'category': 'Sales/Sign',
+    "category": "Sales/Sign",
     "summary": "Kencove Sign Customizations",
     "author": "ForgeFlow",
     "website": "https://gitlab.com/kencove/odoo/addons/ken",
