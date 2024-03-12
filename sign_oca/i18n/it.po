@@ -206,6 +206,11 @@ msgid "Configure"
 msgstr "Configura"
 
 #. module: sign_oca
+#: model:ir.model,name:sign_oca.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: sign_oca
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request_log__action__create
 msgid "Create"
 msgstr "Crea"
@@ -305,6 +310,7 @@ msgid "Details"
 msgstr "Dettagli"
 
 #. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_res_partner__display_name
 #: model:ir.model.fields,field_description:sign_oca.field_res_users__display_name
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_field__display_name
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__display_name
@@ -469,6 +475,7 @@ msgid "Help"
 msgstr "Aiuto"
 
 #. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_res_partner__id
 #: model:ir.model.fields,field_description:sign_oca.field_res_users__id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_field__id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__id
@@ -566,6 +573,7 @@ msgid "Item"
 msgstr "Elemento"
 
 #. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_res_partner____last_update
 #: model:ir.model.fields,field_description:sign_oca.field_res_users____last_update
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_field____last_update
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request____last_update
@@ -981,6 +989,7 @@ msgstr "Valore firma richiesta"
 #: model:ir.actions.act_window,name:sign_oca.sign_oca_request_act_window
 #: model:ir.actions.act_window,name:sign_oca.sign_oca_request_log_act_window
 #: model:ir.actions.act_window,name:sign_oca.sign_oca_request_template_act_window
+#: model_terms:ir.ui.view,arch_db:sign_oca.view_partner_form
 #, python-format
 msgid "Sign Requests"
 msgstr "Firma richieste"
@@ -1057,6 +1066,8 @@ msgid "Signed On"
 msgstr "Firmato il"
 
 #. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_res_partner__signer_ids
+#: model:ir.model.fields,field_description:sign_oca.field_res_users__signer_ids
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__signer_ids
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__signer_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate__signer_ids
@@ -1064,6 +1075,8 @@ msgid "Signer"
 msgstr "Firmatario"
 
 #. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_res_partner__signer_count
+#: model:ir.model.fields,field_description:sign_oca.field_res_users__signer_count
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__signer_count
 msgid "Signer Count"
 msgstr "Conteggio firmatari"
