@@ -10,11 +10,11 @@
             <form create="0">
                 <header>
                     <button
-                        name="sign"
+                        string="Sign"
+                        name="action_signer_sign_url"
                         class="btn btn-primary"
                         type="object"
-                        string="Sign"
-                        attrs="{'invisible': [('to_sign', '=', False)]}"
+                        attrs="{'invisible': ['|',('to_sign', '=', False), ('state', '!=', 'sent')]}"
                     />
                     <field name="to_sign" invisible="1" />
                     <button
@@ -31,12 +31,6 @@
                         name="cancel"
                         confirm="You will cancel the request and all the accesses. Are you sure about it?"
                         groups="sign_oca.sign_oca_group_user"
-                    />
-                    <button
-                        string="Sign"
-                        type="object"
-                        name="action_signer_sign_url"
-                        attrs="{'invisible': [('signer_is_allow_signature', '=', False)]}"
                     />
                     <field
                         name="state"
@@ -81,7 +75,6 @@
                         />
                     </div>
                     <field name="active" invisible="1" />
-                    <field name="signer_is_allow_signature" invisible="1" />
                     <widget
                         name="web_ribbon"
                         title="Fully Signed"
@@ -221,10 +214,11 @@
                 <field name="record_ref" />
                 <field name="state" readonly="1" invisible="1" />
                 <button
-                    name="sign"
-                    type="object"
                     string="Sign"
-                    attrs="{'invisible': [('to_sign', '=', False)]}"
+                    name="action_signer_sign_url"
+                    class="btn btn-primary"
+                    type="object"
+                    attrs="{'invisible': ['|',('to_sign', '=', False), ('state', '!=', 'sent')]}"
                 />
                 <field name="to_sign" invisible="1" />
             </tree>
