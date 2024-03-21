@@ -11,7 +11,7 @@
                 <header>
                     <button
                         string="Sign"
-                        name="action_signer_sign_url"
+                        name="sign"
                         class="btn btn-primary"
                         type="object"
                         attrs="{'invisible': ['|',('to_sign', '=', False), ('state', '!=', 'sent')]}"
@@ -216,7 +216,7 @@
                 <field name="state" readonly="1" invisible="1" />
                 <button
                     string="Sign"
-                    name="action_signer_sign_url"
+                    name="sign"
                     class="btn btn-primary"
                     type="object"
                     attrs="{'invisible': ['|',('to_sign', '=', False), ('state', '!=', 'sent')]}"
@@ -338,7 +338,7 @@
                     <button
                         string="Sign"
                         type="object"
-                        name="action_sign_url"
+                        name="sign"
                         attrs="{'invisible': [('is_allow_signature', '=', False)]}"
                     />
                 </header>

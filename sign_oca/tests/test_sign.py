@@ -206,13 +206,10 @@ class TestSign(TransactionCase):
                 default_template_id=self.template.id, default_sign_now=True
             )
         )
-        action = f.save().generate()
-        self.assertEqual(action["tag"], "sign_oca")
-        signer = self.env[action["params"]["res_model"]].browse(
-            action["params"]["res_id"]
-        )
+        f.save().generate()
         self.assertEqual(1, self.template.request_count)
-        self.assertIn(signer.request_id, self.template.request_ids)
+        self.assertEqual(1, self.template.request_ids.signer_count)
+        signer = self.template.request_ids.signer_id
         self.assertEqual(self.env.user.partner_id, signer.partner_id)
         self.assertTrue(signer.get_info()["items"])
         data = {}
@@ -231,10 +228,7 @@ class TestSign(TransactionCase):
                 default_template_id=self.template.id, default_sign_now=True
             )
         )
-        action = f.save().generate()
-        self.assertEqual(action["tag"], "sign_oca")
-        signer = self.env[action["params"]["res_model"]].browse(
-            action["params"]["res_id"]
-        )
+        f.save().generate()
+        signer = self.template.request_ids.signer_id
         signer.request_id.cancel()
         self.assertEqual(signer.request_id.state, "cancel")
