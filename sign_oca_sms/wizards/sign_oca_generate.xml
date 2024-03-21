@@ -18,6 +18,9 @@
             <button name="generate" position="attributes">
                 <attribute name="string">Generate &amp; send email</attribute>
                 <attribute name="context">{'send_method': 'email'}</attribute>
+                <attribute
+                    name="attrs"
+                >{'invisible': [('sign_now', '=', True)]}</attribute>
             </button>
             <button name="generate" position="after">
                 <button
@@ -26,6 +29,7 @@
                     class="btn-primary"
                     type="object"
                     context="{'send_method': 'sms'}"
+                    attrs="{'invisible': [('sign_now', '=', True)]}"
                 />
                 <button
                     name="generate"
@@ -33,6 +37,14 @@
                     class="btn-primary"
                     type="object"
                     context="{'send_method': 'both'}"
+                    attrs="{'invisible': [('sign_now', '=', True)]}"
+                />
+                <button
+                    name="generate"
+                    string="Generate &amp; sign now"
+                    class="btn-primary"
+                    type="object"
+                    attrs="{'invisible': [('sign_now', '=', False)]}"
                 />
             </button>
         </field>
