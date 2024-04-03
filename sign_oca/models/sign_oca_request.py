@@ -99,10 +99,13 @@ class SignOcaRequest(models.Model):
     def _compute_signer_id(self):
         user = self.env.user
         for record in self:
-            record.signer_id = fields.first(
-                record.signer_ids.filtered(
-                    lambda x: x.partner_id == user.partner_id.commercial_partner_id
-                )
+            user_diff_roles = record.signer_ids.filtered(
+                lambda x: x.partner_id == user.partner_id.commercial_partner_id
+            )
+            record.signer_id = (
+                fields.first(user_diff_roles.filtered(lambda x: x.is_allow_signature))
+                if user_diff_roles.filtered(lambda x: x.is_allow_signature)
+                else fields.first(user_diff_roles)
             )
 
     @api.depends(
