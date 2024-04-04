@@ -1041,6 +1041,7 @@ msgstr ""
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_res_partner__signer_ids
 #: model:ir.model.fields,field_description:sign_oca.field_res_users__signer_ids
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__signer_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__signer_ids
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__signer_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate__signer_ids
@@ -1052,11 +1053,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:sign_oca.field_res_users__signer_count
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__signer_count
 msgid "Signer Count"
-msgstr ""
-
-#. module: sign_oca
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__signer_from_user_partner
-msgid "Signer From User Partner"
 msgstr ""
 
 #. module: sign_oca
@@ -1103,6 +1099,11 @@ msgstr ""
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.portal_sign_document_signed
 msgid "The document has been cancelled"
+msgstr ""
+
+#. module: sign_oca
+#: model:ir.model.fields,help:sign_oca.field_sign_oca_request__signer_id
+msgid "The signer related to the active user."
 msgstr ""
 
 #. module: sign_oca
