@@ -86,7 +86,7 @@ export default class SignOcaPdf extends SignOcaPdfCommon {
             _.filter(this.info.items, (item) => {
                 return (
                     item.required &&
-                    item.role === this.info.role &&
+                    item.role_id === this.info.role_id &&
                     !SignRegistry.get(item.field_type).check(item)
                 );
             }).length === 0;
