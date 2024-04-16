@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="sign_oca.SignerMenuView" owl="1">
+        <div class="o_ActivityMenuView dropdown" t-ref="root">
+            <a
+                class="o_ActivityMenuView_dropdownToggle dropdown-toggle o-no-caret o-dropdown--narrow"
+                t-att-aria-expanded="signerMenuView.isOpen ? 'true' : 'false'"
+                title="Sign Requests"
+                href="#"
+                role="button"
+                t-on-click="signerMenuView.onClickDropdownToggle"
+            >
+                <i class="fa fa-pencil" role="img" aria-label="Sign Requests" /> <span
+                    t-if="signerMenuView.counter > 0"
+                    class="o_ActivityMenuView_counter badge"
+                    t-esc="signerMenuView.counter"
+                />
+            </a>
+            <div
+                t-if="signerMenuView.isOpen"
+                class="o_ActivityMenuView_dropdownMenu o-dropdown-menu dropdown-menu-end show bg-view"
+                role="menu"
+            >
+                <div class="o_ActivityMenuView_activityGroups">
+                    <t t-if="signerMenuView.requestGroupViews.length === 0">
+                        <div
+                            class="o_ActivityMenuView_noActivity dropdown-item-text text-center d-flex justify-content-center"
+                        >
+                            <span>No requests to sign.</span>
+                        </div>
+                    </t>
+                    <t
+                        t-foreach="signerMenuView.requestGroupViews"
+                        t-as="requestGroupView"
+                        t-key="requestGroupView.localId"
+                        name="activityGroupLoop"
+                    >
+                        <div
+                            class="o_ActivityMenuView_activityGroup"
+                            t-att-data-res_model="requestGroupView.requestGroup.irModel.model"
+                            t-att-data-model_name="requestGroupView.requestGroup.irModel.name"
+                            t-att-data-active_field="requestGroupView.requestGroup.irModel.active_field"
+                            t-att-data-domain="requestGroupView.requestGroup.domain"
+                            data-filter='my'
+                            t-att-data-activity-group-view-local-id="requestGroupView.localId"
+                            t-on-click="requestGroupView.onClickFilterButton"
+                        >
+                            <div
+                                t-if="requestGroupView.requestGroup.irModel.iconUrl"
+                                class="o_ActivityMenuView_activityGroupIconContainer"
+                            >
+                                <img
+                                    t-att-src="requestGroupView.requestGroup.irModel.iconUrl"
+                                    alt="Requests"
+                                />
+                            </div>
+                            <div class="o_ActivityMenuView_activityGroupInfo">
+                                <div class="o_ActivityMenuView_activityGroupTitle">
+                                    <span class="o_ActivityMenuView_activityGroupName">
+                                        <t
+                                            t-esc="requestGroupView.requestGroup.irModel.name"
+                                        />
+                                    </span>
+                                </div>
+                                <div>
+                                    <button
+                                        t-if="requestGroupView.requestGroup.pending_count"
+                                        type="button"
+                                        class="btn btn-link o_activity_filter_button mr16"
+                                        t-att-data-res_model="requestGroupView.requestGroup.irModel.model"
+                                        t-att-data-model_name="requestGroupView.requestGroup.irModel.name"
+                                        data-filter="pending_count"
+                                    >
+                                        <t
+                                            t-esc="requestGroupView.requestGroup.pending_count"
+                                        />
+                                        Pending
+                                    </button>
+                                    <span
+                                        t-if="!requestGroupView.requestGroup.pending_count"
+                                        class="o_no_activity mr16"
+                                    >
+                                        0 Pending
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>
