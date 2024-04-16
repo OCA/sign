@@ -31,7 +31,9 @@ class ResUsers(models.Model):
                     )
                     if total_records > 0:
                         record = self.env[model]
+                        model_id = self.env["ir.model"].search([("model", "=", model)])
                         requests[model] = {
+                            "id": model_id.id,
                             "name": record._description,
                             "model": model,
                             "icon": modules.module.get_module_icon(
@@ -42,8 +44,9 @@ class ResUsers(models.Model):
             else:
                 signers = signer_model.search(signer_group.get("__domain"))
                 requests["undefined"] = {
+                    "id": False,
                     "name": _("Undefined"),
-                    "model": False,
+                    "model": "sign.oca.request",
                     "icon": modules.module.get_module_icon("sign_oca"),
                     "total_records": len(signers),
                 }
