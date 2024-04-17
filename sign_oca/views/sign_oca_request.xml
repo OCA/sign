@@ -84,7 +84,8 @@
                         <h1><field name="name" /></h1>
                     </div>
                     <group>
-                        <field name="data" />
+                        <field name="data" filename="filename" />
+                        <field name="filename" invisible="1" />
                         <field
                             name="template_id"
                             attrs="{'invisible': [('template_id', '=', False)]}"
