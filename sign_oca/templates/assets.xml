@@ -15,7 +15,7 @@
                         var core = require("web.core");
                         var document_signing = require("@sign_oca/components/sign_oca_pdf_portal/sign_oca_pdf_portal.esm");
                         document_signing.initDocumentToSign(<t
-                        t-raw="json.dumps({'access_token': access_token, 'signer_id': signer.id})"
+                        t-out="json.dumps({'access_token': access_token, 'signer_id': signer.id})"
                     />);
                     });
                 </script>
@@ -76,7 +76,7 @@
                     style="margin: 16px 0px 16px 0px; padding: 8px 16px 8px 16px; background-color: #F1F1F1;"
                 >
                     <span>
-                        <t t-raw="body" />
+                        <t t-out="body" />
                     </span>
                 </div>
             </span>
