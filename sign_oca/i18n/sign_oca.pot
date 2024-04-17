@@ -163,6 +163,7 @@ msgid "Company"
 msgstr ""
 
 #. module: sign_oca
+#: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request_log__action__configure
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_form_view
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_form_view
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_kanban_view
@@ -326,6 +327,7 @@ msgid "Fields"
 msgstr ""
 
 #. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__filename
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__filename
 msgid "Filename"
 msgstr ""
