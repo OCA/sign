@@ -186,7 +186,7 @@ class SignOcaRequest(models.Model):
     def delete_item(self, item_id):
         self._ensure_draft()
         data = self.signatory_data
-        data.pop(item_id)
+        data.pop(str(item_id))
         self.signatory_data = data
         self._set_action_log("delete_field")
 
