@@ -98,7 +98,7 @@ class SignOcaRequest(models.Model):
         for record in self:
             record.next_item_id = (
                 record.signatory_data
-                and max([int(key) for key in record.signatory_data.keys()])
+                and max(int(key) for key in record.signatory_data.keys())
                 or 0
             ) + 1
 
