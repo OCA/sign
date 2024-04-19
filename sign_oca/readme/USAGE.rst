@@ -41,3 +41,15 @@ Sign a pending document
 *  There, you can fill all the data you need.
 *  Once you finish, press the sign button on the top
 *  When the last signer signs it, the final file will be generated as a PDF
+
+Sign from template
+~~~~~~~~~~~~~~~~~~
+
+* Go to any list view or form view (except sign.oca models), e.g.: Contacts
+* Select multiple records (3 for example).
+* The "Sign from template" action will be available if there are any sign templates
+  created that are not linked to any model and/or any linked to the corresponding model.
+* Select a template.
+* Click on the "Generate" button.
+* 3 requests will be created (each linked to each selected record) BUT no signer will be set.
+* Some extra modules (e.g. maintenance_sign_oca) will automatically set the signers for each request.
