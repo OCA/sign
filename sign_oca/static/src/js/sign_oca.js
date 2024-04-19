@@ -13,7 +13,7 @@ odoo.define("sign_oca.sign_oca", function (require) {
             var sign_oca_group_user = await session.user_has_group(
                 "sign_oca.sign_oca_group_user"
             );
-            if (sign_oca_group_user) {
+            if (sign_oca_group_user && !this.modelName.startsWith("sign.oca")) {
                 await this._rpc({
                     model: "sign.oca.template",
                     method: "search_count",
@@ -49,11 +49,10 @@ odoo.define("sign_oca.sign_oca", function (require) {
 
     ListController.include({
         async _actionSignOcaTemplateGenerateMulti() {
-            const state = this.model.get(this.handle);
             const resIds = await this.getSelectedIdsWithDomain();
             this.do_action("sign_oca.sign_oca_template_generate_multi_act_window", {
                 additional_context: {
-                    default_model: state.model,
+                    default_model: this.modelName,
                     active_ids: resIds,
                 },
                 on_close: () => {
