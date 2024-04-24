@@ -4,6 +4,10 @@
         <field name="name">sign.oca.request.search</field>
         <field name="model">sign.oca.request</field>
         <field name="inherit_id" ref="sign_oca.sign_oca_request_search_view" />
+        <field
+            name="groups_id"
+            eval="[(6, 0, [ref('maintenance.group_equipment_manager')])]"
+        />
         <field name="arch" type="xml">
             <field name="signer_ids" position="after">
                 <field name="maintenance_equipment_id" />

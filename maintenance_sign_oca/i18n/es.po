@@ -28,33 +28,9 @@ msgid "Config Settings"
 msgstr "Opciones de configuración"
 
 #. module: maintenance_sign_oca
-#: model:ir.model.fields,field_description:maintenance_sign_oca.field_maintenance_equipment__display_name
-#: model:ir.model.fields,field_description:maintenance_sign_oca.field_res_company__display_name
-#: model:ir.model.fields,field_description:maintenance_sign_oca.field_res_config_settings__display_name
-#: model:ir.model.fields,field_description:maintenance_sign_oca.field_sign_oca_request__display_name
-msgid "Display Name"
-msgstr "Nombre mostrado"
-
-#. module: maintenance_sign_oca
 #: model_terms:ir.ui.view,arch_db:maintenance_sign_oca.sign_oca_request_search_view
 msgid "Equipment"
 msgstr "Equipo"
-
-#. module: maintenance_sign_oca
-#: model:ir.model.fields,field_description:maintenance_sign_oca.field_maintenance_equipment__id
-#: model:ir.model.fields,field_description:maintenance_sign_oca.field_res_company__id
-#: model:ir.model.fields,field_description:maintenance_sign_oca.field_res_config_settings__id
-#: model:ir.model.fields,field_description:maintenance_sign_oca.field_sign_oca_request__id
-msgid "ID"
-msgstr "ID"
-
-#. module: maintenance_sign_oca
-#: model:ir.model.fields,field_description:maintenance_sign_oca.field_maintenance_equipment____last_update
-#: model:ir.model.fields,field_description:maintenance_sign_oca.field_res_company____last_update
-#: model:ir.model.fields,field_description:maintenance_sign_oca.field_res_config_settings____last_update
-#: model:ir.model.fields,field_description:maintenance_sign_oca.field_sign_oca_request____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
 
 #. module: maintenance_sign_oca
 #: model:ir.model,name:maintenance_sign_oca.model_maintenance_equipment
@@ -87,3 +63,12 @@ msgstr "Total solicitudes de firma"
 #: model_terms:ir.ui.view,arch_db:maintenance_sign_oca.res_config_settings_view_form
 msgid "Template"
 msgstr "Plantilla"
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre mostrado"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
