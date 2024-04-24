@@ -1,10 +1,10 @@
 # Copyright 2023 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import Form, SavepointCase, new_test_user
+from odoo.tests.common import Form, TransactionCase, new_test_user
 
 
-class TestMaintenanceSignOca(SavepointCase):
+class TestMaintenanceSignOca(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

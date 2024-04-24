@@ -1,4 +1,4 @@
-#. Go to Sign > Roles and create a new one with the following data:
+#. Go to Sign > Settings > Roles and create a new one with the following data:
 
 - Partner type: Expression
 - Expression: ${object.owner_user_id.partner_id.id}
