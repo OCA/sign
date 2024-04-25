@@ -305,8 +305,6 @@ msgid "Details"
 msgstr ""
 
 #. module: sign_oca
-#: model:ir.model.fields,field_description:sign_oca.field_res_partner__display_name
-#: model:ir.model.fields,field_description:sign_oca.field_res_users__display_name
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_field__display_name
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__display_name
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__display_name
@@ -355,7 +353,7 @@ msgstr ""
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_role__expression_partner
-msgid "Example: ${object.partner_id.id}"
+msgid "Example: {{object.partner_id.id}}"
 msgstr ""
 
 #. module: sign_oca
@@ -408,11 +406,6 @@ msgid "Followers"
 msgstr ""
 
 #. module: sign_oca
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_channel_ids
-msgid "Followers (Channels)"
-msgstr ""
-
-#. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_partner_ids
 msgid "Followers (Partners)"
 msgstr ""
@@ -458,6 +451,11 @@ msgid "Group By"
 msgstr ""
 
 #. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__height
 msgid "Height"
 msgstr ""
@@ -470,8 +468,6 @@ msgid "Help"
 msgstr ""
 
 #. module: sign_oca
-#: model:ir.model.fields,field_description:sign_oca.field_res_partner__id
-#: model:ir.model.fields,field_description:sign_oca.field_res_users__id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_field__id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__id
@@ -558,8 +554,6 @@ msgid "Item"
 msgstr ""
 
 #. module: sign_oca
-#: model:ir.model.fields,field_description:sign_oca.field_res_partner____last_update
-#: model:ir.model.fields,field_description:sign_oca.field_res_users____last_update
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_field____last_update
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request____last_update
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log____last_update
