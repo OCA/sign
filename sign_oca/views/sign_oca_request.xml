@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Dixmit
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="sign_oca_request_form_view">
+        <field name="name">sign.oca.request.form (in sign_oca)</field>
+        <field name="model">sign.oca.request</field>
+        <field name="arch" type="xml">
+            <form create="0">
+                <header>
+                    <button
+                        string="Sign"
+                        name="sign"
+                        class="btn btn-primary"
+                        type="object"
+                        attrs="{'invisible': ['|',('to_sign', '=', False), ('state', '!=', 'sent')]}"
+                    />
+                    <field name="to_sign" invisible="1" />
+                    <button
+                        string="Send"
+                        type="object"
+                        states="draft"
+                        name="action_send"
+                        icon="fa-paper-plane"
+                    />
+                    <button
+                        string="Cancel"
+                        type="object"
+                        states="draft,sent,signed"
+                        name="cancel"
+                        confirm="You will cancel the request and all the accesses. Are you sure about it?"
+                        groups="sign_oca.sign_oca_group_user"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="sent,signed"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="preview"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-pencil"
+                            states="sent,signed"
+                            groups="sign_oca.sign_oca_group_user"
+                        >
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value"><field
+                                        name="signed_count"
+                                    />/<field name="signer_count" /><span
+                                        class="o_stat_text"
+                                    > Signed</span></span>
+                            </div>
+                        </button>
+                        <button
+                            class="oe_stat_button"
+                            icon="fa-wrench"
+                            states="draft"
+                            name="configure"
+                            type="object"
+                            string="Configure"
+                            groups="sign_oca.sign_oca_group_user"
+                        />
+                        <button
+                            class="oe_stat_button"
+                            icon="fa-pencil"
+                            name="%(sign_oca_request_log_act_window)s"
+                            type="action"
+                            string="Activity Log"
+                            groups="sign_oca.sign_oca_group_user"
+                        />
+                    </div>
+                    <field name="active" invisible="1" />
+                    <widget
+                        name="web_ribbon"
+                        title="Fully Signed"
+                        attrs="{'invisible': [('state', '!=', 'signed')]}"
+                    />
+                    <widget
+                        name="web_ribbon"
+                        bg_color="bg-danger"
+                        title="Cancelled"
+                        attrs="{'invisible': [('state', '!=', 'cancel')]}"
+                    />
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1><field name="name" /></h1>
+                    </div>
+                    <group>
+                        <field name="data" />
+                        <field
+                            name="template_id"
+                            attrs="{'invisible': [('template_id', '=', False)]}"
+                        />
+                        <field name="user_id" />
+                        <field name="record_ref" />
+                    </group>
+
+                    <field name="signer_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="role_id" />
+                            <field name="partner_id" />
+                            <field name="signed_on" />
+                        </tree>
+                    </field>
+                </sheet>
+                <div class="oe_chatter">
+                     <field name="message_follower_ids" />
+                     <field name="activity_ids" />
+                     <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="sign_oca_request_search_view">
+        <field name="name">sign.oca.request.search (in sign_oca)</field>
+        <field name="model">sign.oca.request</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="template_id" />
+                <field
+                    name="signer_ids"
+                    filter_domain="[('signer_ids.partner_id', 'child_of', raw_value)]"
+                />
+                <separator />
+                <filter
+                    name="created_by_me"
+                    string="My Documents"
+                    domain="[('user_id', '=', uid)]"
+                />
+                <filter
+                    name="sign_by_me"
+                    string="My Requests"
+                    domain="[('signer_ids.partner_id.user_ids', 'in', uid)]"
+                />
+                <separator />
+                <filter
+                    name="to_sign_by_me"
+                    string="To sign"
+                    domain="[('signer_ids.partner_id.user_ids', 'in', uid), ('signer_ids.signed_on', '=', False)]"
+                />
+                <separator />
+                <filter name="sent" string="Sent" domain="[('state', '=', 'sent')]" />
+                <filter
+                    name="signed"
+                    string="Signed"
+                    domain="[('state', '=', 'signed')]"
+                />
+                <filter
+                    name="canceled"
+                    string="Canceled"
+                    domain="[('state', '=', 'cancel')]"
+                />
+                <separator />
+                <filter
+                    string="Late Activities"
+                    name="activities_overdue"
+                    domain="[('my_activity_date_deadline', '&lt;', context_today().strftime('%Y-%m-%d'))]"
+                    help="Show all records which has next action date is before today"
+                />
+                <filter
+                    string="Today Activities"
+                    name="activities_today"
+                    domain="[('my_activity_date_deadline', '=', context_today().strftime('%Y-%m-%d'))]"
+                />
+                <filter
+                    string="Future Activities"
+                    name="activities_upcoming_all"
+                    domain="[('my_activity_date_deadline', '&gt;', context_today().strftime('%Y-%m-%d'))]"
+                />
+                <separator />
+                <filter
+                    name="archived"
+                    string="Archived"
+                    domain="[('active', '=', False)]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="group_by_template_id"
+                        string="Template"
+                        domain="[]"
+                        context="{'group_by': 'template_id'}"
+                    />
+                    <filter
+                        name="group_by_state"
+                        string="State"
+                        domain="[]"
+                        context="{'group_by': 'state'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="sign_oca_request_tree_view">
+        <field name="name">sign.oca.request.tree (in sign_oca)</field>
+        <field name="model">sign.oca.request</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="state" />
+                <field name="signer_ids" widget="many2many_tags" string="Signers" />
+                <field name="user_id" />
+                <field name="create_date" />
+                <field name="write_date" />
+                <field name="record_ref" />
+                <button
+                    string="Sign"
+                    name="sign"
+                    class="btn btn-primary"
+                    type="object"
+                    attrs="{'invisible': ['|',('to_sign', '=', False), ('state', '!=', 'sent')]}"
+                />
+                <field name="to_sign" invisible="1" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="sign_oca_request_kanban_view">
+        <field name="name">sign.oca.request.kanban (in sign_oca)</field>
+        <field name="model">sign.oca.request</field>
+        <field name="arch" type="xml">
+            <kanban quick_create="false" default_order="create_date desc">
+                <field name="active" />
+                <field name="name" />
+                <field name="create_uid" />
+                <field name="signer_ids" />
+                <field name="state" />
+                <field name="activity_ids" />
+                <field name="activity_state" />
+                <field name="template_id" />
+                <templates>
+                    <div t-name="kanban-box" class="oe_kanban_global_click">
+                        <div class="oe_kanban_main">
+                            <div class="o_kanban_record_top">
+                                <div class="o_kanban_record_headings">
+                                    <div class="o_kanban_record_title">
+                                        <span class="ps-4"><field name="name" /></span>
+                                    </div>
+                                </div>
+                                <div class="o_dropdown_kanban dropdown">
+                                    <a
+                                        class="dropdown-toggle o-no-caret btn"
+                                        role="button"
+                                        data-toggle="dropdown"
+                                        data-display="static"
+                                        href="#"
+                                        aria-label="Dropdown menu"
+                                        title="Dropdown menu"
+                                    >
+                                        <span class="fa fa-ellipsis-v" />
+                                    </a>
+                                    <div class="dropdown-menu" role="menu">
+                                        <a
+                                            role="menuitem"
+                                            type="object"
+                                            name="get_formview_action"
+                                            class="dropdown-item"
+                                        >Details</a>
+                                        <a
+                                            role="menuitem"
+                                            type="object"
+                                            name="open_template"
+                                            t-if="record.template_id.raw_value"
+                                            class="dropdown-item"
+                                        >Template</a>
+                                        <a
+                                            role="menuitem"
+                                            type="object"
+                                            name="toggle_active"
+                                            class="dropdown-item"
+                                        >
+                                            <t
+                                                t-if="!record.active.raw_value"
+                                            >Restore</t>
+                                            <t
+                                                t-if="record.active.raw_value"
+                                            >Archive</t>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="o_kanban_record_body">
+                                <field name="signer_ids" widget="many2many_tags" />
+                            </div>
+                            <div class="o_kanban_record_bottom">
+                                <div class="oe_kanban_bottom_left">
+                                    <em><field name="create_date" widget="date" /></em>
+                                    <div class="o_kanban_inline_block">
+                                        <field
+                                            name="activity_ids"
+                                            widget="kanban_activity"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="oe_kanban_bottom_right">
+                                    <field
+                                        name="user_id"
+                                        widget="many2one_avatar_user"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="sign_oca_request_signer_tree_view">
+        <field name="name">sign.oca.request.signer.tree (in sign_oca)</field>
+        <field name="model">sign.oca.request.signer</field>
+        <field name="arch" type="xml">
+            <tree edit="0" delete="0" create="0">
+                <field name="role_id" />
+                <field name="partner_id" />
+                <field name="request_id" />
+                <field name="signed_on" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="sign_oca_request_signer_form_view">
+        <field name="name">sign.oca.request.signer.form (in sign_oca)</field>
+        <field name="model">sign.oca.request.signer</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        string="Sign"
+                        type="object"
+                        name="sign"
+                        class="btn btn-primary"
+                        attrs="{'invisible': [('is_allow_signature', '=', False)]}"
+                    />
+                </header>
+                <sheet>
+                    <group>
+                        <field name="is_allow_signature" invisible="1" />
+                        <field name="role_id" readonly="1" />
+                        <field name="partner_id" readonly="1" />
+                        <field name="request_id" readonly="1" />
+                        <field name="signed_on" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="sign_oca_request_signer_act_window">
+        <field name="name">Sign Request Signers</field>
+        <field name="res_model">sign.oca.request.signer</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+    <record model="ir.actions.act_window" id="sign_oca_request_act_window">
+        <field name="name">Sign Requests</field>
+        <field name="res_model">sign.oca.request</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+    <record model="ir.actions.act_window" id="sign_oca_request_template_act_window">
+        <field name="name">Sign Requests</field>
+        <field name="res_model">sign.oca.request</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('template_id', '=', active_id)]</field>
+        <field name="context">{}</field>
+    </record>
+    <record model="ir.ui.menu" id="sign_oca_request_menu">
+        <field name="name">Requests</field>
+        <field name="parent_id" ref="sign_oca_root_menu" />
+        <field name="action" ref="sign_oca_request_act_window" />
+        <field name="sequence" eval="30" />
+    </record>
+</odoo>
