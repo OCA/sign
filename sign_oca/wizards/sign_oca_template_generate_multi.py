@@ -8,10 +8,12 @@ class SignOcaTemplateGenerateMulti(models.TransientModel):
     _name = "sign.oca.template.generate.multi"
     _description = "Generate signature requests"
 
-    model = fields.Char(readonly=True)
+    model = fields.Char(
+        readonly=True, default=lambda self: self.env.context.get("model", False)
+    )
     template_id = fields.Many2one(
         comodel_name="sign.oca.template",
-        domain="['|', ('model', '=', False),('model', '=', model)]",
+        domain="[('model', '=', model)]",
         required=True,
     )
     message = fields.Html()
