@@ -16,14 +16,14 @@
                             <field name="domain" />
                         </group>
                         <group name="right_group">
-                            <field name="partner_type" widget="radio" />
+                            <field name="partner_selection_policy" widget="radio" />
                             <field
                                 name="default_partner_id"
-                                attrs="{'invisible': [('partner_type', '!=', 'default')], 'required': [('partner_type', '=', 'default')]}"
+                                attrs="{'invisible': [('partner_selection_policy', '!=', 'default')], 'required': [('partner_selection_policy', '=', 'default')]}"
                             />
                             <field
                                 name="expression_partner"
-                                attrs="{'invisible': [('partner_type', '!=', 'expression')], 'required': [('partner_type', '=', 'expression')]}"
+                                attrs="{'invisible': [('partner_selection_policy', '!=', 'expression')], 'required': [('partner_selection_policy', '=', 'expression')]}"
                             />
                         </group>
                     </group>
@@ -38,7 +38,7 @@
         <field name="arch" type="xml">
             <search>
                 <field name="name" />
-                <field name="partner_type" />
+                <field name="partner_selection_policy" />
             </search>
         </field>
     </record>
@@ -49,7 +49,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name" />
-                <field name="partner_type" />
+                <field name="partner_selection_policy" />
             </tree>
         </field>
     </record>
