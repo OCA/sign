@@ -51,7 +51,7 @@ class TestSign(TransactionCase):
         cls.role_child_partner = cls.env["sign.oca.role"].create(
             {
                 "name": "Child partner",
-                "partner_type": "expression",
+                "partner_selection_policy": "expression",
                 "expression_partner": "{{object.parent_id.id}}",
             }
         )
@@ -130,7 +130,7 @@ class TestSign(TransactionCase):
         self.request.delete_item(str(item["id"]))
         self.assertFalse(self.request.get_info()["items"])
 
-    def test_template_generate_without_model_partner_type_empty(self):
+    def test_template_generate_without_model_partner_selection_policy_empty(self):
         """Template without model, role with empty partner type option."""
         self.configure_template()
         f = Form(
@@ -146,7 +146,7 @@ class TestSign(TransactionCase):
         self.assertEqual(len(request.signer_ids), 1)
         self.assertIn(self.partner, request.signer_ids.mapped("partner_id"))
 
-    def test_template_generate_without_model_partner_type_default(self):
+    def test_template_generate_without_model_partner_selection_policy_default(self):
         """Template without model, role with default partner type option."""
         self.configure_template()
         self.template.item_ids.role_id = self.role_supervisor

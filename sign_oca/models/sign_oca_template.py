@@ -107,7 +107,7 @@ class SignOcaTemplate(models.Model):
 
     def _prepare_sign_oca_request_vals_from_record(self, record):
         roles = self.mapped("item_ids.role_id").filtered(
-            lambda x: x.partner_type != "empty"
+            lambda x: x.partner_selection_policy != "empty"
         )
         return {
             "name": self.name,
