@@ -61,7 +61,7 @@ class SignOcaTemplateGenerateSigner(models.TransientModel):
     def _get_default_partner(self):
         if self.env.context.get("default_sign_now"):
             return self.env.user.partner_id
-        if self.role_id.partner_type == "default":
+        if self.role_id.partner_selection_policy == "default":
             return self.role_id.default_partner_id
         return False
 
