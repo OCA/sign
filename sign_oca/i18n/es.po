@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-05-12 15:36+0000\n"
+"PO-Revision-Date: 2024-05-12 20:37+0000\n"
 "Last-Translator: Sergio Ariel Ameghino <ariel.ameghino@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -36,7 +36,7 @@ msgid ""
 "<strong>Warning</strong> do not forward this email to other people!<br/>\n"
 "                    They will be able to access this document and sign it as yourself.<br/>"
 msgstr ""
-"<strong>Advertencia</strong> ¡No reenvíes este correo electrónico a otras "
+"<strong>Advertencia</strong> ¡No reenvíe este correo electrónico a otras "
 "personas!<br/>\n"
 "                    Podrán acceder a este documento y firmarlo como usted "
 "mismo.<br/>"
@@ -425,7 +425,7 @@ msgstr "Ayuda"
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_signer__id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__id
 msgid "ID"
-msgstr "ID (Identificacion)"
+msgstr "ID (Identificación)"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_exception_icon
