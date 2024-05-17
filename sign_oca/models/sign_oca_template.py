@@ -15,13 +15,30 @@ class SignOcaTemplate(models.Model):
     filename = fields.Char()
     item_ids = fields.One2many("sign.oca.template.item", inverse_name="template_id")
     request_count = fields.Integer(compute="_compute_request_count")
+    model_id = fields.Many2one(
+        comodel_name="ir.model",
+        string="Model",
+        domain=[("transient", "=", False), ("model", "not like", "sign.oca")],
+    )
+    model = fields.Char(compute="_compute_model", compute_sudo=True, store=True)
     active = fields.Boolean(default=True)
     request_ids = fields.One2many("sign.oca.request", inverse_name="template_id")
 
+    @api.depends("model_id")
+    def _compute_model(self):
+        for item in self:
+            item.model = item.model_id.model or False
+
     @api.depends("request_ids")
     def _compute_request_count(self):
+        res = self.env["sign.oca.request"].read_group(
+            domain=[("template_id", "in", self.ids)],
+            fields=["template_id"],
+            groupby=["template_id"],
+        )
+        res_dict = {x["template_id"][0]: x["template_id_count"] for x in res}
         for record in self:
-            record.request_count = len(record.request_ids)
+            record.request_count = res_dict.get(record.id, 0)
 
     def configure(self):
         self.ensure_one()
@@ -67,6 +84,50 @@ class SignOcaTemplate(models.Model):
         item_vals["template_id"] = self.id
         return self.env["sign.oca.template.item"].create(item_vals).get_info()
 
+    def _get_signatory_data(self):
+        items = sorted(
+            self.item_ids,
+            key=lambda item: (
+                item.page,
+                item.position_y,
+                item.position_x,
+            ),
+        )
+        tabindex = 1
+        signatory_data = {}
+        item_id = 1
+        for item in items:
+            item_data = item._get_full_info()
+            item_data["id"] = item_id
+            item_data["tabindex"] = tabindex
+            tabindex += 1
+            signatory_data[item_id] = item_data
+            item_id += 1
+        return signatory_data
+
+    def _prepare_sign_oca_request_vals_from_record(self, record):
+        roles = self.mapped("item_ids.role_id").filtered(
+            lambda x: x.partner_selection_policy != "empty"
+        )
+        return {
+            "name": self.name,
+            "template_id": self.id,
+            "record_ref": "%s,%s" % (record._name, record.id),
+            "signatory_data": self._get_signatory_data(),
+            "data": self.data,
+            "signer_ids": [
+                (
+                    0,
+                    0,
+                    {
+                        "partner_id": role._get_partner_from_record(record),
+                        "role_id": role.id,
+                    },
+                )
+                for role in roles
+            ],
+        }
+
 
 class SignOcaTemplateItem(models.Model):
 
@@ -99,11 +160,25 @@ class SignOcaTemplateItem(models.Model):
             "id": self.id,
             "field_id": self.field_id.id,
             "name": self.field_id.name,
-            "role": self.role_id.id,
+            "role_id": self.role_id.id,
             "page": self.page,
             "position_x": self.position_x,
             "position_y": self.position_y,
             "width": self.width,
             "height": self.height,
             "placeholder": self.placeholder,
+            "required": self.required,
         }
+
+    def _get_full_info(self):
+        """Method used in the wizards in the requests that are created."""
+        self.ensure_one()
+        vals = self.get_info()
+        vals.update(
+            {
+                "field_type": self.field_id.field_type,
+                "value": False,
+                "default_value": self.field_id.default_value,
+            }
+        )
+        return vals

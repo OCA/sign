@@ -41,6 +41,20 @@ class TestSign(TransactionCase):
                 ],
             }
         )
+        cls.partner = cls.env["res.partner"].create({"name": "Test partner"})
+        cls.partner_child = cls.env["res.partner"].create(
+            {"name": "Child partner", "parent_id": cls.partner.id}
+        )
+        cls.role_customer = cls.env.ref("sign_oca.sign_role_customer")
+        cls.role_supervisor = cls.env.ref("sign_oca.sign_role_supervisor")
+        cls.role_supervisor.default_partner_id = cls.partner
+        cls.role_child_partner = cls.env["sign.oca.role"].create(
+            {
+                "name": "Child partner",
+                "partner_selection_policy": "expression",
+                "expression_partner": "{{object.parent_id.id}}",
+            }
+        )
 
     def configure_template(self):
         self.template.add_item(
@@ -59,7 +73,7 @@ class TestSign(TransactionCase):
         return self.request.add_item(
             {
                 "field_id": self.env.ref("sign_oca.sign_field_name").id,
-                "role_id": self.env.ref("sign_oca.sign_role_customer").id,
+                "role_id": self.role_customer.id,
                 "page": 1,
                 "position_x": 10,
                 "position_y": 10,
@@ -76,9 +90,7 @@ class TestSign(TransactionCase):
 
     def test_template_field_edition(self):
         self.configure_template()
-        self.assertEqual(
-            self.template.item_ids.role_id, self.env.ref("sign_oca.sign_role_customer")
-        )
+        self.assertEqual(self.template.item_ids.role_id, self.role_customer)
         self.template.set_item_data(
             self.template.item_ids.id,
             {"role_id": self.env.ref("sign_oca.sign_role_employee").id},
@@ -118,6 +130,74 @@ class TestSign(TransactionCase):
         self.request.delete_item(str(item["id"]))
         self.assertFalse(self.request.get_info()["items"])
 
+    def test_template_generate_without_model_partner_selection_policy_empty(self):
+        """Template without model, role with empty partner type option."""
+        self.configure_template()
+        f = Form(
+            self.env["sign.oca.template.generate"].with_context(
+                default_template_id=self.template.id
+            )
+        )
+        with f.signer_ids.edit(0) as signer:
+            self.assertFalse(signer.partner_id)
+            signer.partner_id = self.partner
+        action = f.save().generate()
+        request = self.env[action["res_model"]].browse(action["res_id"])
+        self.assertEqual(len(request.signer_ids), 1)
+        self.assertIn(self.partner, request.signer_ids.mapped("partner_id"))
+
+    def test_template_generate_without_model_partner_selection_policy_default(self):
+        """Template without model, role with default partner type option."""
+        self.configure_template()
+        self.template.item_ids.role_id = self.role_supervisor
+        f = Form(
+            self.env["sign.oca.template.generate"].with_context(
+                default_template_id=self.template.id
+            )
+        )
+        action = f.save().generate()
+        request = self.env[action["res_model"]].browse(action["res_id"])
+        self.assertEqual(len(request.signer_ids), 1)
+        self.assertIn(self.partner, request.signer_ids.mapped("partner_id"))
+
+    def test_sign_request_role_with_default(self):
+        request_form = Form(self.env["sign.oca.request"])
+        with request_form.signer_ids.new() as signer:
+            signer.role_id = self.role_supervisor
+            self.assertEqual(signer.partner_id, self.partner)
+
+    def test_sign_request_role_with_expression(self):
+        request_form = Form(self.env["sign.oca.request"])
+        request_form.record_ref = "%s,%s" % (
+            self.partner_child._name,
+            self.partner_child.id,
+        )
+        with request_form.signer_ids.new() as signer:
+            signer.role_id = self.role_child_partner
+            self.assertEqual(signer.partner_id, self.partner)
+
+    def test_template_generate_multi_partner(self):
+        self.configure_template()
+        model_res_partner = self.env.ref("base.model_res_partner")
+        self.template.model_id = model_res_partner
+        self.template.item_ids.role_id = self.role_child_partner
+        partner_child_2 = self.env["res.partner"].create(
+            {"name": "Child partner extra", "parent_id": self.partner.id}
+        )
+        wizard_form = Form(
+            self.env["sign.oca.template.generate.multi"].with_context(
+                default_model="res.partner", active_ids=self.partner.child_ids.ids
+            )
+        )
+        wizard_form.template_id = self.template
+        action = wizard_form.save().generate()
+        requests = self.env[action["res_model"]].search(action["domain"])
+        self.assertEqual(len(requests), 2)
+        signer_partners = requests.mapped("signer_ids.partner_id")
+        self.assertIn(self.partner, signer_partners)
+        self.assertNotIn(self.partner_child, signer_partners)
+        self.assertNotIn(partner_child_2, signer_partners)
+
     def test_auto_sign_template(self):
         self.configure_template()
         self.assertEqual(0, self.template.request_count)
@@ -126,13 +206,10 @@ class TestSign(TransactionCase):
                 default_template_id=self.template.id, default_sign_now=True
             )
         )
-        action = f.save().generate()
-        self.assertEqual(action["tag"], "sign_oca")
-        signer = self.env[action["params"]["res_model"]].browse(
-            action["params"]["res_id"]
-        )
+        f.save().generate()
         self.assertEqual(1, self.template.request_count)
-        self.assertIn(signer.request_id, self.template.request_ids)
+        self.assertEqual(1, self.template.request_ids.signer_count)
+        signer = self.template.request_ids.signer_id
         self.assertEqual(self.env.user.partner_id, signer.partner_id)
         self.assertTrue(signer.get_info()["items"])
         data = {}
@@ -151,10 +228,7 @@ class TestSign(TransactionCase):
                 default_template_id=self.template.id, default_sign_now=True
             )
         )
-        action = f.save().generate()
-        self.assertEqual(action["tag"], "sign_oca")
-        signer = self.env[action["params"]["res_model"]].browse(
-            action["params"]["res_id"]
-        )
+        f.save().generate()
+        signer = self.template.request_ids.signer_id
         signer.request_id.cancel()
         self.assertEqual(signer.request_id.state, "cancel")

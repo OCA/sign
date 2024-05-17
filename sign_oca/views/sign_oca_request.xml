@@ -10,6 +10,14 @@
             <form create="0">
                 <header>
                     <button
+                        string="Sign"
+                        name="sign"
+                        class="btn btn-primary"
+                        type="object"
+                        attrs="{'invisible': ['|',('to_sign', '=', False), ('state', '!=', 'sent')]}"
+                    />
+                    <field name="to_sign" invisible="1" />
+                    <button
                         string="Send"
                         type="object"
                         states="draft"
@@ -22,6 +30,7 @@
                         states="draft,sent,signed"
                         name="cancel"
                         confirm="You will cancel the request and all the accesses. Are you sure about it?"
+                        groups="sign_oca.sign_oca_group_user"
                     />
                     <field
                         name="state"
@@ -32,9 +41,12 @@
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button
+                            name="preview"
+                            type="object"
                             class="oe_stat_button"
                             icon="fa-pencil"
                             states="sent,signed"
+                            groups="sign_oca.sign_oca_group_user"
                         >
                             <div class="o_field_widget o_stat_info">
                                 <span class="o_stat_value"><field
@@ -51,6 +63,7 @@
                             name="configure"
                             type="object"
                             string="Configure"
+                            groups="sign_oca.sign_oca_group_user"
                         />
                         <button
                             class="oe_stat_button"
@@ -58,8 +71,8 @@
                             name="%(sign_oca_request_log_act_window)s"
                             type="action"
                             string="Activity Log"
+                            groups="sign_oca.sign_oca_group_user"
                         />
-
                     </div>
                     <field name="active" invisible="1" />
                     <widget
@@ -90,9 +103,17 @@
                             name="template_id"
                             attrs="{'invisible': [('template_id', '=', False)]}"
                         />
+                        <field name="user_id" />
+                        <field name="record_ref" />
                     </group>
 
-                    <field name="signer_ids" nolabel="1" />
+                    <field name="signer_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="role_id" />
+                            <field name="partner_id" />
+                            <field name="signed_on" />
+                        </tree>
+                    </field>
                 </sheet>
                 <div class="oe_chatter">
                      <field name="message_follower_ids" />
@@ -118,7 +139,7 @@
                 <filter
                     name="created_by_me"
                     string="My Documents"
-                    domain="[('create_uid', '=', uid)]"
+                    domain="[('user_id', '=', uid)]"
                 />
                 <filter
                     name="sign_by_me"
@@ -190,11 +211,18 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name" />
+                <field name="state" />
+                <field name="signer_ids" widget="many2many_tags" string="Signers" />
+                <field name="user_id" />
+                <field name="create_date" />
+                <field name="write_date" />
+                <field name="record_ref" />
                 <button
-                    name="sign"
-                    type="object"
                     string="Sign"
-                    attrs="{'invisible': [('to_sign', '=', False)]}"
+                    name="sign"
+                    class="btn btn-primary"
+                    type="object"
+                    attrs="{'invisible': ['|',('to_sign', '=', False), ('state', '!=', 'sent')]}"
                 />
                 <field name="to_sign" invisible="1" />
             </tree>
@@ -267,6 +295,7 @@
                                 </div>
                             </div>
                             <div class="o_kanban_record_body">
+                                <field name="signer_ids" widget="many2many_tags" />
                             </div>
                             <div class="o_kanban_record_bottom">
                                 <div class="oe_kanban_bottom_left">
@@ -280,7 +309,7 @@
                                 </div>
                                 <div class="oe_kanban_bottom_right">
                                     <field
-                                        name="create_uid"
+                                        name="user_id"
                                         widget="many2one_avatar_user"
                                     />
                                 </div>
@@ -296,9 +325,10 @@
         <field name="name">sign.oca.request.signer.tree (in sign_oca)</field>
         <field name="model">sign.oca.request.signer</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
+            <tree edit="0" delete="0" create="0">
                 <field name="role_id" />
                 <field name="partner_id" />
+                <field name="request_id" />
                 <field name="signed_on" />
             </tree>
         </field>
@@ -308,15 +338,33 @@
         <field name="model">sign.oca.request.signer</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button
+                        string="Sign"
+                        type="object"
+                        name="sign"
+                        attrs="{'invisible': [('is_allow_signature', '=', False)]}"
+                    />
+                </header>
                 <sheet>
                     <group>
-                        <field name="role_id" />
-                        <field name="partner_id" />
+                        <field name="is_allow_signature" invisible="1" />
+                        <field name="role_id" readonly="1" />
+                        <field name="partner_id" readonly="1" />
+                        <field name="request_id" readonly="1" />
                         <field name="signed_on" />
                     </group>
                 </sheet>
             </form>
         </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="sign_oca_request_signer_act_window">
+        <field name="name">Sign Request Signers</field>
+        <field name="res_model">sign.oca.request.signer</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
     </record>
 
     <record model="ir.actions.act_window" id="sign_oca_request_act_window">

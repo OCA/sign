@@ -15,6 +15,8 @@
         "views/menu.xml",
         "data/data.xml",
         "wizards/sign_oca_template_generate.xml",
+        "wizards/sign_oca_template_generate_multi.xml",
+        "views/res_partner_views.xml",
         "views/sign_oca_request_log.xml",
         "views/sign_oca_request.xml",
         "security/ir.model.access.csv",
@@ -40,6 +42,10 @@
             "sign_oca/static/src/elements/check.esm.js",
             "sign_oca/static/src/components/sign_oca_pdf/sign_oca_pdf.esm.js",
             "sign_oca/static/src/components/sign_oca_pdf/sign_oca_pdf_action.esm.js",
+            "sign_oca/static/src/components/"
+            "sign_oca_pdf_common/sign_oca_pdf_common_action.esm.js",
+            "sign_oca/static/src/js/*.js",
+            "sign_oca/static/src/xml/*.xml",
         ],
         "web.assets_frontend": [
             "sign_oca/static/src/components/sign_oca_pdf_common/sign_oca_pdf_common.xml",
@@ -55,6 +61,8 @@
             "sign_oca/static/src/components/sign_oca_pdf_portal/sign_oca_pdf_portal.esm.js",
             "sign_oca/static/src/components/sign_oca_pdf_portal/sign_oca_pdf_portal.xml",
             "sign_oca/static/src/scss/portal.scss",
+            "sign_oca/static/src/js/*.js",
+            "sign_oca/static/src/xml/*.xml",
         ],
         "sign_oca.sign_assets": [
             "sign_oca/static/src/scss/sign.scss",

@@ -30,6 +30,25 @@ class SignOcaRequest(models.Model):
         required=True, readonly=True, states={"draft": [("readonly", False)]}
     )
     filename = fields.Char()
+    user_id = fields.Many2one(
+        comodel_name="res.users",
+        string="Responsible",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+        default=lambda self: self.env.user,
+        required=True,
+    )
+    record_ref = fields.Reference(
+        lambda self: [
+            (m.model, m.name)
+            for m in self.env["ir.model"].search(
+                [("transient", "=", False), ("model", "not like", "sign.oca")]
+            )
+        ],
+        string="Object",
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+    )
     signed = fields.Boolean(copy=False)
     signer_ids = fields.One2many(
         "sign.oca.request.signer",
@@ -38,6 +57,11 @@ class SignOcaRequest(models.Model):
         copy=True,
         readonly=True,
         states={"draft": [("readonly", False)]},
+    )
+    signer_id = fields.Many2one(
+        comodel_name="sign.oca.request.signer",
+        compute="_compute_signer_id",
+        help="The signer related to the active user.",
     )
     state = fields.Selection(
         [
@@ -70,12 +94,57 @@ class SignOcaRequest(models.Model):
     )
     next_item_id = fields.Integer(compute="_compute_next_item_id")
 
+    @api.depends("signer_ids")
+    @api.depends_context("uid")
+    def _compute_signer_id(self):
+        user = self.env.user
+        for record in self:
+            user_diff_roles = record.signer_ids.filtered(
+                lambda x: x.partner_id == user.partner_id.commercial_partner_id
+            )
+            record.signer_id = (
+                fields.first(user_diff_roles.filtered(lambda x: x.is_allow_signature))
+                if user_diff_roles.filtered(lambda x: x.is_allow_signature)
+                else fields.first(user_diff_roles)
+            )
+
+    @api.depends(
+        "signer_id",
+        "signer_id.is_allow_signature",
+    )
+    def _compute_to_sign(self):
+        for record in self:
+            record.to_sign = (
+                record.signer_id.is_allow_signature if record.signer_id else False
+            )
+
+    def sign(self):
+        self.ensure_one()
+        if not self.signer_id:
+            return self.get_formview_action()
+        return self.signer_id.sign()
+
     @api.depends("signatory_data")
     def _compute_next_item_id(self):
         for record in self:
             record.next_item_id = (
-                record.signatory_data and max(record.signatory_data.keys()) or 0
+                record.signatory_data
+                and max([int(key) for key in record.signatory_data.keys()])
+                or 0
             ) + 1
+
+    def preview(self):
+        self.ensure_one()
+        self._set_action_log("view")
+        return {
+            "type": "ir.actions.client",
+            "tag": "sign_oca_preview",
+            "name": self.name,
+            "params": {
+                "res_model": self._name,
+                "res_id": self.id,
+            },
+        }
 
     def get_info(self):
         self.ensure_one()
@@ -117,7 +186,7 @@ class SignOcaRequest(models.Model):
     def delete_item(self, item_id):
         self._ensure_draft()
         data = self.signatory_data
-        data.pop(item_id)
+        data.pop(str(item_id))
         self.signatory_data = data
         self._set_action_log("delete_field")
 
@@ -139,7 +208,7 @@ class SignOcaRequest(models.Model):
             "field_type": field_id.field_type,
             "required": False,
             "name": field_id.name,
-            "role": self.signer_ids[0].role_id.id,
+            "role_id": self.signer_ids[0].role_id.id,
             "page": 1,
             "position_x": 0,
             "position_y": 0,
@@ -196,38 +265,12 @@ class SignOcaRequest(models.Model):
                 email_layout_xmlid="mail.mail_notification_light",
             )
 
-    @api.depends("signer_ids.role_id", "signatory_data")
-    @api.depends_context("uid")
-    def _compute_to_sign(self):
-        for record in self:
-            record.to_sign = record.signer_ids.filtered(
-                lambda r: r.partner_id.id == self.env.user.partner_id.id
-                and not r.signed_on
-            ).mapped("role_id")
-
     def _check_signed(self):
         self.ensure_one()
         if self.state != "sent":
             return
         if all(self.mapped("signer_ids.signed_on")):
             self.state = "signed"
-
-    def sign(self):
-        self.ensure_one()
-        signer = self.signer_ids.filtered(
-            lambda r: r.partner_id == self.env.user.partner_id
-        )
-        if not signer:
-            return self.get_formview_action()
-        return {
-            "type": "ir.actions.client",
-            "tag": "sign_oca",
-            "name": self.template_id.name,
-            "params": {
-                "res_model": signer[0]._name,
-                "res_id": signer[0].id,
-            },
-        }
 
     def _set_action_log_vals(self, action, **kwargs):
         vals = kwargs.copy()
@@ -271,6 +314,29 @@ class SignOcaRequestSigner(models.Model):
     role_id = fields.Many2one("sign.oca.role", required=True, ondelete="restrict")
     signed_on = fields.Datetime(readonly=True)
     signature_hash = fields.Char(readonly=True)
+    model = fields.Char(compute="_compute_model", store=True)
+    res_id = fields.Integer(compute="_compute_res_id", store=True)
+    is_allow_signature = fields.Boolean(compute="_compute_is_allow_signature")
+
+    @api.depends("request_id.record_ref")
+    def _compute_model(self):
+        for item in self.filtered(lambda x: x.request_id.record_ref):
+            item.model = item.request_id.record_ref._name
+
+    @api.depends("request_id.record_ref")
+    def _compute_res_id(self):
+        for item in self.filtered(lambda x: x.request_id.record_ref):
+            item.res_id = item.request_id.record_ref.id
+
+    @api.depends("signed_on", "partner_id", "partner_id.commercial_partner_id")
+    @api.depends_context("uid")
+    def _compute_is_allow_signature(self):
+        user = self.env.user
+        for item in self:
+            item.is_allow_signature = bool(
+                not item.signed_on
+                and item.partner_id == user.partner_id.commercial_partner_id
+            )
 
     def _compute_access_url(self):
         result = super()._compute_access_url()
@@ -281,11 +347,18 @@ class SignOcaRequestSigner(models.Model):
             )
         return result
 
+    @api.onchange("role_id")
+    def _onchange_role_id(self):
+        for item in self:
+            item.partner_id = item.role_id._get_partner_from_record(
+                item.request_id.record_ref
+            )
+
     def get_info(self, access_token=False):
         self.ensure_one()
         self._set_action_log("view", access_token=access_token)
         return {
-            "role": self.role_id.id if not self.signed_on else False,
+            "role_id": self.role_id.id if not self.signed_on else False,
             "name": self.request_id.template_id.name,
             "items": self.request_id.signatory_data,
             "to_sign": self.request_id.to_sign,
@@ -295,6 +368,16 @@ class SignOcaRequestSigner(models.Model):
                 "email": self.env.user.partner_id.email,
                 "phone": self.env.user.partner_id.phone,
             },
+        }
+
+    def sign(self):
+        self.ensure_one()
+        if not self.is_allow_signature:
+            raise ValidationError(_("You are not allowed to sign this document."))
+        return {
+            "target": "new",
+            "type": "ir.actions.act_url",
+            "url": self.access_url,
         }
 
     def action_sign(self, items, access_token=False):
@@ -317,7 +400,7 @@ class SignOcaRequestSigner(models.Model):
             pages[page_number] = reader.getPage(page_number - 1)
 
         for key in signatory_data:
-            if signatory_data[key]["role"] == self.role_id.id:
+            if signatory_data[key]["role_id"] == self.role_id.id:
                 signatory_data[key] = items[key]
                 self._check_signable(items[key])
                 item = items[key]
@@ -439,6 +522,7 @@ class SignOcaRequestSigner(models.Model):
 
 class SignRequestLog(models.Model):
     _name = "sign.oca.request.log"
+    _description = "Sign Request Log"
     _log_access = False
     _description = "Log access and edition on requests"
 
