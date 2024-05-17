@@ -1,13 +1,12 @@
 /** @odoo-module **/
 
 const {App, mount, useRef} = owl;
-
 import SignOcaPdf from "../sign_oca_pdf/sign_oca_pdf.esm.js";
-
-import env from "web.public_env";
+import {makeEnv} from "@web/env";
 import {renderToString} from "@web/core/utils/render";
-import session from "web.session";
+import {session} from "@web/session";
 import {templates} from "@web/core/assets";
+
 export class SignOcaPdfPortal extends SignOcaPdf {
     setup() {
         super.setup(...arguments);
@@ -41,14 +40,25 @@ export class SignOcaPdfPortal extends SignOcaPdf {
         this.checkFilledAll();
     }
     _onClickSign() {
-        this.env.services.rpc({
-            route:
-                "/sign_oca/sign/" +
-                this.props.signer_id +
-                "/" +
-                this.props.access_token,
-            params: {items: this.info.items},
-        });
+        this.env.services
+            .rpc({
+                route:
+                    "/sign_oca/sign/" +
+                    this.props.signer_id +
+                    "/" +
+                    this.props.access_token,
+                params: {items: this.info.items},
+            })
+            .then((action) => {
+                // As we are on frontend env, it is not possible to use do_action(), so we
+                // redirect to the corresponding URL or reload the page if the action is not
+                // an url.
+                if (action.type === "ir.actions.act_url") {
+                    window.location = action.url;
+                } else {
+                    window.location.reload();
+                }
+            });
     }
 }
 SignOcaPdfPortal.template = "sign_oca.SignOcaPdfPortal";
@@ -63,6 +73,7 @@ export function initDocumentToSign(properties) {
         ]).then(async function () {
             var app = new App(null, {templates, test: true});
             renderToString.app = app;
+            const env = makeEnv();
             mount(SignOcaPdfPortal, document.body, {
                 env,
                 props: properties,

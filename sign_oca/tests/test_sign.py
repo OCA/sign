@@ -3,6 +3,8 @@
 
 import base64
 
+import requests
+
 from odoo.modules.module import get_module_resource
 from odoo.tests.common import Form, TransactionCase
 
@@ -10,6 +12,7 @@ from odoo.tests.common import Form, TransactionCase
 class TestSign(TransactionCase):
     @classmethod
     def setUpClass(cls):
+        cls._super_send = requests.Session.send
         super().setUpClass()
         cls.data = base64.b64encode(
             open(
@@ -83,6 +86,11 @@ class TestSign(TransactionCase):
             }
         )
 
+    @classmethod
+    def _request_handler(cls, s, r, /, **kw):
+        """Don't block external requests."""
+        return cls._super_send(s, r, **kw)
+
     def test_template_configuration(self):
         self.assertFalse(self.template.get_info()["items"])
         self.configure_template()
@@ -109,6 +117,9 @@ class TestSign(TransactionCase):
         self.assertFalse(self.request.get_info()["items"])
         self.configure_request()
         self.assertTrue(self.request.get_info()["items"])
+        signer_info = self.request.signer_ids.get_info()
+        self.assertEqual(signer_info["partner"]["id"], self.signer.id)
+        self.assertEqual(signer_info["partner"]["name"], "Signer")
 
     def test_request_field_edition(self):
         item = self.configure_request()
@@ -214,8 +225,10 @@ class TestSign(TransactionCase):
             val = signer.get_info()["items"][key].copy()
             val["value"] = "My Name"
             data[key] = val
-        signer.action_sign(data)
+        res = signer.action_sign(data)
         self.assertEqual(signer.request_id.state, "signed")
+        self.assertEqual(res["type"], "ir.actions.act_url")
+        self.assertEqual(res["url"], signer.access_url)
 
     def test_auto_sign_template_cancel(self):
         self.configure_template()

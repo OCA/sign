@@ -20,9 +20,9 @@
         <field name="model">sign.oca.request.log</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="action" />
-                <field name="date" />
-                <field name="uid" />
+                <field name="action" readonly="1" />
+                <field name="date" readonly="1" />
+                <field name="uid" readonly="1" />
                 <field name="partner_id" />
                 <field name="signer_id" />
             </tree>
@@ -34,7 +34,7 @@
         <field name="name">Sign Requests</field>
         <field name="res_model">sign.oca.request.log</field>
         <field name="view_mode">tree</field>
-        <field name="domain">[("request_id", "=", active_id)]</field>
+        <field name="domain">[("request_id", "=", id)]</field>
         <field name="context">{}</field>
     </record>
 

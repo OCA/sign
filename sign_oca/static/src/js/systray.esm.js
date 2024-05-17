@@ -2,8 +2,7 @@
 
 import {attr, many} from "@mail/model/model_field";
 import {registerModel} from "@mail/model/model_core";
-
-import session from "web.session";
+import {session} from "@web/session";
 
 registerModel({
     name: "SignerMenuView",

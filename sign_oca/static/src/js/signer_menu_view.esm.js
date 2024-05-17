@@ -1,8 +1,6 @@
 /** @odoo-module **/
 
-import {registerMessagingComponent} from "@mail/utils/messaging_component";
-import {useComponentToModel} from "@mail/component_hooks/use_component_to_model";
-
+import {registry} from "@web/core/registry";
 const {Component} = owl;
 
 export class SignerMenuView extends Component {
@@ -11,7 +9,6 @@ export class SignerMenuView extends Component {
      */
     setup() {
         super.setup();
-        useComponentToModel({fieldName: "component"});
     }
     /**
      * @returns {SignerMenuView}
@@ -21,9 +18,8 @@ export class SignerMenuView extends Component {
     }
 }
 
-Object.assign(SignerMenuView, {
+SignerMenuView.template = "sign_oca.SignerMenuView";
+registry.category("menu").add("SignerMenuView", {
+    Component: SignerMenuView,
     props: {record: Object},
-    template: "sign_oca.SignerMenuView",
 });
-
-registerMessagingComponent(SignerMenuView);

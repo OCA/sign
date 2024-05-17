@@ -1,9 +1,10 @@
-/** @odoo-module **/
+/** @odoo-module Qweb **/
 
 import SignOcaPdfCommon from "../sign_oca_pdf_common/sign_oca_pdf_common.esm.js";
-import core from "web.core";
 import {registry} from "@web/core/registry";
 const SignRegistry = registry.category("sign_oca");
+import {renderToString} from "@web/core/utils/render";
+
 export default class SignOcaPdf extends SignOcaPdfCommon {
     setup() {
         super.setup(...arguments);
@@ -23,7 +24,7 @@ export default class SignOcaPdf extends SignOcaPdfCommon {
     }
     renderButtons(to_sign) {
         var $buttons = $(
-            core.qweb.render("oca_sign_oca.SignatureButtons", {
+            renderToString("oca_sign_oca.SignatureButtons", {
                 to_sign: to_sign,
             })
         );
@@ -86,7 +87,7 @@ export default class SignOcaPdf extends SignOcaPdfCommon {
             _.filter(this.info.items, (item) => {
                 return (
                     item.required &&
-                    item.role === this.info.role &&
+                    item.role_id === this.info.role_id &&
                     !SignRegistry.get(item.field_type).check(item)
                 );
             }).length === 0;

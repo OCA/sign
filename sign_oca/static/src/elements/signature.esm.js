@@ -1,8 +1,8 @@
-/** @odoo-module **/
+/** @odoo-module Qweb **/
 
 import {SignatureDialog} from "@web/core/signature/signature_dialog";
-import core from "web.core";
 import {registry} from "@web/core/registry";
+import {renderToString} from "@web/core/utils/render";
 
 const signatureSignOca = {
     uploadSignature: function (parent, item, signatureItem, data) {
@@ -19,7 +19,7 @@ const signatureSignOca = {
     },
     generate: function (parent, item, signatureItem) {
         var input = $(
-            core.qweb.render("sign_oca.sign_iframe_field_signature", {item: item})
+            renderToString("sign_oca.sign_iframe_field_signature", {item: item})
         )[0];
         if (item.role_id === parent.info.role_id) {
             signatureItem[0].addEventListener("focus_signature", () => {

@@ -1,7 +1,8 @@
-/** @odoo-module **/
+/** @odoo-module QWeb **/
 
-import core from "web.core";
 import {registry} from "@web/core/registry";
+import {renderToString} from "@web/core/utils/render";
+
 const textSignOca = {
     change: function (value, parent, item) {
         item.value = value;
@@ -9,7 +10,7 @@ const textSignOca = {
     },
     generate: function (parent, item, signatureItem) {
         var input = $(
-            core.qweb.render("sign_oca.sign_iframe_field_text", {
+            renderToString("sign_oca.sign_iframe_field_text", {
                 item: item,
                 role_id: parent.info.role_id,
             })

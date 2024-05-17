@@ -107,7 +107,6 @@
         t-name="sign_oca.SignOcaConfigure"
         t-inherit="sign_oca.SignOcaPdfCommon"
         t-inherit-mode="primary"
-        owl="1"
     >
         <xpath expr="//iframe" position="before">
             <div

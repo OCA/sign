@@ -14,20 +14,20 @@
                         name="sign"
                         class="btn btn-primary"
                         type="object"
-                        attrs="{'invisible': ['|',('to_sign', '=', False), ('state', '!=', 'sent')]}"
+                        invisible="not to_sign or state != 'sent'"
                     />
                     <field name="to_sign" invisible="1" />
                     <button
                         string="Send"
                         type="object"
-                        states="draft"
+                        invisible="state != 'draft'"
                         name="action_send"
                         icon="fa-paper-plane"
                     />
                     <button
                         string="Cancel"
                         type="object"
-                        states="draft,sent,signed"
+                        invisible="state not in ['draft', 'sent', 'signed']"
                         name="cancel"
                         confirm="You will cancel the request and all the accesses. Are you sure about it?"
                         groups="sign_oca.sign_oca_group_user"
@@ -36,6 +36,7 @@
                         name="state"
                         widget="statusbar"
                         statusbar_visible="sent,signed"
+                        readonly="1"
                     />
                 </header>
                 <sheet>
@@ -45,7 +46,7 @@
                             type="object"
                             class="oe_stat_button"
                             icon="fa-pencil"
-                            states="sent,signed"
+                            invisible="state not in ['sent', 'signed']"
                             groups="sign_oca.sign_oca_group_user"
                         >
                             <div class="o_field_widget o_stat_info">
@@ -59,7 +60,7 @@
                         <button
                             class="oe_stat_button"
                             icon="fa-wrench"
-                            states="draft"
+                            invisible="state not in ['draft']"
                             name="configure"
                             type="object"
                             string="Configure"
@@ -78,40 +79,45 @@
                     <widget
                         name="web_ribbon"
                         title="Fully Signed"
-                        attrs="{'invisible': [('state', '!=', 'signed')]}"
+                        invisible="state != 'signed'"
                     />
                     <widget
                         name="web_ribbon"
                         bg_color="bg-danger"
                         title="Cancelled"
-                        attrs="{'invisible': [('state', '!=', 'cancel')]}"
+                        invisible="state != 'cancel'"
                     />
                     <widget
                         name="web_ribbon"
                         title="Archived"
                         bg_color="bg-danger"
-                        attrs="{'invisible': [('active', '=', True)]}"
+                        invisible="active"
                     />
                     <div class="oe_title">
                         <label for="name" />
                         <h1><field name="name" /></h1>
                     </div>
                     <group>
-                        <field name="data" filename="filename" />
+                        <field
+                            name="data"
+                            filename="filename"
+                            readonly="state != 'draft'"
+                        />
                         <field name="filename" invisible="1" />
                         <field
                             name="template_id"
-                            attrs="{'invisible': [('template_id', '=', False)]}"
+                            invisible="not template_id"
+                            readonly="1"
                         />
-                        <field name="user_id" />
-                        <field name="record_ref" />
+                        <field name="user_id" readonly="state != 'draft'" />
+                        <field name="record_ref" readonly="state != 'draft'" />
                     </group>
 
-                    <field name="signer_ids" nolabel="1">
+                    <field name="signer_ids" nolabel="1" readonly="state != 'draft'">
                         <tree editable="bottom">
                             <field name="role_id" />
                             <field name="partner_id" />
-                            <field name="signed_on" />
+                            <field name="signed_on" readonly="1" />
                         </tree>
                     </field>
                 </sheet>
@@ -222,9 +228,9 @@
                     name="sign"
                     class="btn btn-primary"
                     type="object"
-                    attrs="{'invisible': ['|',('to_sign', '=', False), ('state', '!=', 'sent')]}"
+                    invisible="not to_sign or state != 'sent'"
                 />
-                <field name="to_sign" invisible="1" />
+                <field name="to_sign" column_invisible="1" />
             </tree>
         </field>
     </record>
@@ -343,7 +349,7 @@
                         string="Sign"
                         type="object"
                         name="sign"
-                        attrs="{'invisible': [('is_allow_signature', '=', False)]}"
+                        invisible="not is_allow_signature"
                     />
                 </header>
                 <sheet>
@@ -379,7 +385,7 @@
         <field name="name">Sign Requests</field>
         <field name="res_model">sign.oca.request</field>
         <field name="view_mode">kanban,tree,form</field>
-        <field name="domain">[('template_id', '=', active_id)]</field>
+        <field name="domain">[('template_id', '=', id)]</field>
         <field name="context">{}</field>
     </record>
 

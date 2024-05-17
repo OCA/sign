@@ -19,11 +19,13 @@
                             <field name="partner_selection_policy" widget="radio" />
                             <field
                                 name="default_partner_id"
-                                attrs="{'invisible': [('partner_selection_policy', '!=', 'default')], 'required': [('partner_selection_policy', '=', 'default')]}"
+                                invisible="partner_selection_policy != 'default'"
+                                required="partner_selection_policy == 'default'"
                             />
                             <field
                                 name="expression_partner"
-                                attrs="{'invisible': [('partner_selection_policy', '!=', 'expression')], 'required': [('partner_selection_policy', '=', 'expression')]}"
+                                invisible="partner_selection_policy != 'expression'"
+                                required="partner_selection_policy == 'expression'"
                             />
                         </group>
                     </group>
