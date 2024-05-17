@@ -168,10 +168,7 @@ class TestSign(TransactionCase):
 
     def test_sign_request_role_with_expression(self):
         request_form = Form(self.env["sign.oca.request"])
-        request_form.record_ref = "%s,%s" % (
-            self.partner_child._name,
-            self.partner_child.id,
-        )
+        request_form.record_ref = f"{self.partner_child._name},{self.partner_child.id}"
         with request_form.signer_ids.new() as signer:
             signer.role_id = self.role_child_partner
             self.assertEqual(signer.partner_id, self.partner)

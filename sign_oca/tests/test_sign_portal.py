@@ -53,14 +53,12 @@ class TestSign(HttpCase):
         self.assertEqual(
             base64.b64decode(self.data),
             self.url_open(
-                "/sign_oca/content/%s/%s"
-                % (self.request.signer_ids.id, self.request.signer_ids.access_token)
+                f"/sign_oca/content/{self.request.signer_ids.id}/{self.request.signer_ids.access_token}"
             ).content,
         )
         self.assertEqual(
             self.url_open(
-                "/sign_oca/info/%s/%s"
-                % (self.request.signer_ids.id, self.request.signer_ids.access_token),
+                f"/sign_oca/info/{self.request.signer_ids.id}/{self.request.signer_ids.access_token}",
                 data="{}",
                 headers={"Content-Type": "application/json"},
             ).json()["result"]["items"][str(self.item["id"])],

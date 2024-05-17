@@ -20,7 +20,8 @@ class SignOcaRole(models.Model):
         default="empty",
         help="This field is used to define how the partner"
         " will be calculated in the different roles of "
-        "a request. This field will be used when the 'Sign from Template' action is triggered.",
+        "a request. This field will be used when the "
+        "'Sign from Template' action is triggered.",
     )
     default_partner_id = fields.Many2one(
         comodel_name="res.partner", string="Default partner"

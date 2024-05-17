@@ -18,7 +18,6 @@ from odoo.http import request
 
 
 class SignOcaRequest(models.Model):
-
     _name = "sign.oca.request"
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "Sign Request"
@@ -302,7 +301,6 @@ class SignOcaRequest(models.Model):
 
 
 class SignOcaRequestSigner(models.Model):
-
     _name = "sign.oca.request.signer"
     _inherit = "portal.mixin"
     _description = "Sign Request Value"
@@ -341,10 +339,7 @@ class SignOcaRequestSigner(models.Model):
     def _compute_access_url(self):
         result = super()._compute_access_url()
         for record in self:
-            record.access_url = "/sign_oca/document/%s/%s" % (
-                record.id,
-                record.access_token,
-            )
+            record.access_url = f"/sign_oca/document/{record.id}/{record.access_token}"
         return result
 
     @api.onchange("role_id")

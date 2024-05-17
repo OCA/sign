@@ -5,7 +5,6 @@ from odoo import api, fields, models
 
 
 class SignOcaTemplate(models.Model):
-
     _name = "sign.oca.template"
     _description = "Sign Oca Template"  # TODO
     _inherit = ["mail.thread"]
@@ -112,7 +111,7 @@ class SignOcaTemplate(models.Model):
         return {
             "name": self.name,
             "template_id": self.id,
-            "record_ref": "%s,%s" % (record._name, record.id),
+            "record_ref": f"{record._name},{record.id}",
             "signatory_data": self._get_signatory_data(),
             "data": self.data,
             "signer_ids": [
@@ -130,7 +129,6 @@ class SignOcaTemplate(models.Model):
 
 
 class SignOcaTemplateItem(models.Model):
-
     _name = "sign.oca.template.item"
     _description = "Sign Oca Template Item"  # TODO
 
