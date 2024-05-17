@@ -1,7 +1,6 @@
 /** @odoo-module **/
 
-// ensure components are registered beforehand.
-import {getMessagingComponent} from "@mail/utils/messaging_component";
+import {registry} from "@web/core/registry";
 /* eslint-disable */
 import SignerMenuView from "./signer_menu_view.esm";
 /* eslint-enable */
@@ -22,7 +21,8 @@ export class SignerMenuContainer extends Component {
     }
 }
 
-Object.assign(SignerMenuContainer, {
-    components: {SignerMenuView: getMessagingComponent("SignerMenuView")},
-    template: "sign_oca.SignerMenuContainer",
+SignerMenuContainer.template = "sign_oca.SignerMenuContainer";
+registry.category("menu").add("SignerMenuContainer", {
+    Component: SignerMenuView,
+    props: {record: Object},
 });

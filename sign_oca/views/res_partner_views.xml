@@ -11,7 +11,7 @@
                     class="oe_stat_button"
                     type="object"
                     name="action_show_signer_ids"
-                    attrs="{'invisible': [('signer_count', '=', 0)]}"
+                    invisible="signer_count == 0"
                     icon="fa-pencil"
                     groups="sign_oca.sign_oca_group_user"
                 >

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
-    <div t-name="sign_oca.SignOcaPdfPortal" owl="1" class="o_sign_oca_content">
+    <div t-name="sign_oca.SignOcaPdfPortal" class="o_sign_oca_content">
         <header>
             <div class="container-fluid">
                 <div class="d-flex justify-content-between flex-fill">

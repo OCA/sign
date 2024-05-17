@@ -12,7 +12,6 @@
                 <script type="text/javascript">
                     odoo.define("sign.document_portal", function(require) {
                         var ajax = require("web.ajax");
-                        var core = require("web.core");
                         var document_signing = require("@sign_oca/components/sign_oca_pdf_portal/sign_oca_pdf_portal.esm");
                         document_signing.initDocumentToSign(<t
                         t-out="json.dumps({'access_token': access_token, 'signer_id': signer.id})"

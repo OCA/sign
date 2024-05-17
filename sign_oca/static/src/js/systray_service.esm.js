@@ -15,3 +15,4 @@ export const systrayService = {
         );
     },
 };
+systrayRegistry.add("request_systray_service", systrayService);

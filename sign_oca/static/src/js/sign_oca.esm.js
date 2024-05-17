@@ -1,12 +1,11 @@
 /** @odoo-module */
 
-import {patch} from "@web/core/utils/patch";
-import {_t} from "web.core";
-import {useService} from "@web/core/utils/hooks";
-import {ListController} from "@web/views/list/list_controller";
 import {FormController} from "@web/views/form/form_controller";
-
+import {ListController} from "@web/views/list/list_controller";
+import {_t} from "@web/core/l10n/translation";
+import {patch} from "@web/core/utils/patch";
 const {onWillStart} = owl;
+import {useService} from "@web/core/utils/hooks";
 
 export const patchControllerSignOca = {
     setup() {
@@ -36,9 +35,8 @@ export const patchControllerSignOca = {
     },
 
     async _actionSignOcaTemplateGenerateMulti() {
-        var resIds = undefined;
-        if (this.getSelectedResIds !== undefined)
-            resIds = await this.getSelectedResIds();
+        var resIds = "";
+        if (this.getSelectedResIds) resIds = await this.getSelectedResIds();
         else resIds = this.model.root.data.id;
         this.action.doAction("sign_oca.sign_oca_template_generate_multi_act_window", {
             additionalContext: {
@@ -67,5 +65,5 @@ export const patchControllerSignOca = {
     },
 };
 
-patch(ListController.prototype, "web.ListController", patchControllerSignOca);
-patch(FormController.prototype, "web.ListController", patchControllerSignOca);
+patch(ListController.prototype, patchControllerSignOca);
+patch(FormController.prototype, patchControllerSignOca);

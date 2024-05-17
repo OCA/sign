@@ -1,12 +1,14 @@
-/** @odoo-module **/
+/** @odoo-module QWeb **/
 
-import {ComponentWrapper} from "web.OwlCompatibility";
-import AbstractAction from "web.AbstractAction";
-import Dialog from "web.Dialog";
-import core from "web.core";
-import ControlPanel from "web.ControlPanel";
+import {Component} from "@odoo/owl";
+import {ControlPanel} from "@web/search/control_panel/control_panel";
+import {Dialog} from "@web/core/dialog/dialog";
+import {FormRenderer} from "@web/views/form/form_renderer";
 import SignOcaPdfCommon from "../sign_oca_pdf_common/sign_oca_pdf_common.esm.js";
-const _t = core._t;
+import {_t} from "@web/core/l10n/translation";
+import {registry} from "@web/core/registry";
+import {renderToString} from "@web/core/utils/render";
+
 export class SignOcaConfigureControlPanel extends ControlPanel {}
 SignOcaConfigureControlPanel.template = "sign_oca.SignOcaConfigureControlPanel";
 export class SignOcaConfigure extends SignOcaPdfCommon {
@@ -35,7 +37,7 @@ export class SignOcaConfigure extends SignOcaPdfCommon {
                     }
                     var position = page.getBoundingClientRect();
                     this.contextMenu = $(
-                        core.qweb.render("sign_oca.sign_iframe_contextmenu", {
+                        renderToString("sign_oca.sign_iframe_contextmenu", {
                             page,
                             e,
                             left: ((e.pageX - position.x) * 100) / position.width + "%",
@@ -111,7 +113,7 @@ export class SignOcaConfigure extends SignOcaPdfCommon {
                 var dialog = new Dialog(this, {
                     title: _t("Edit field"),
                     $content: $(
-                        core.qweb.render("sign_oca.sign_oca_field_edition", {
+                        renderToString("sign_oca.sign_oca_field_edition", {
                             item,
                             info: this.info,
                         })
@@ -367,9 +369,8 @@ export class SignOcaConfigure extends SignOcaPdfCommon {
     }
 }
 
-export const SignOcaConfigureAction = AbstractAction.extend({
-    hasControlPanel: true,
-    init: function (parent, action) {
+export class SignOcaConfigureAction extends Component {
+    init(parent, action) {
         this._super.apply(this, arguments);
         this.model =
             (action.params.res_model !== undefined && action.params.res_model) ||
@@ -377,24 +378,24 @@ export const SignOcaConfigureAction = AbstractAction.extend({
         this.res_id =
             (action.params.res_id !== undefined && action.params.res_id) ||
             action.context.params.id;
-    },
+    }
     async start() {
         await this._super(...arguments);
-        this.component = new ComponentWrapper(this, SignOcaConfigure, {
+        this.component = new FormRenderer(this, SignOcaConfigure, {
             model: this.model,
             res_id: this.res_id,
         });
         this.$el.addClass("o_sign_oca_action");
         return this.component.mount(this.$(".o_content")[0]);
-    },
-    getState: function () {
+    }
+    getState() {
         var result = this._super(...arguments);
         result = _.extend({}, result, {
             res_model: this.model,
             res_id: this.res_id,
         });
         return result;
-    },
-});
-core.action_registry.add("sign_oca_configure", SignOcaConfigureAction);
+    }
+}
 SignOcaConfigure.template = "sign_oca.SignOcaConfigure";
+registry.category("actions").add("sign_oca_configure", SignOcaConfigureAction);

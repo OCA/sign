@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
-    <t t-name="sign_oca.SignerMenuContainer" owl="1">
+    <t t-name="sign_oca.SignerMenuContainer">
         <t t-if="signerMenuView">
             <SignerMenuView record="signerMenuView" />
         </t>

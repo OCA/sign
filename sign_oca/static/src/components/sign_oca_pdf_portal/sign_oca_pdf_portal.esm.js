@@ -1,13 +1,12 @@
 /** @odoo-module **/
 
 const {App, mount, useRef} = owl;
-
 import SignOcaPdf from "../sign_oca_pdf/sign_oca_pdf.esm.js";
-
-import env from "web.public_env";
+import {makeEnv} from "@web/env";
 import {renderToString} from "@web/core/utils/render";
-import session from "web.session";
+import {session} from "@web/session";
 import {templates} from "@web/core/assets";
+
 export class SignOcaPdfPortal extends SignOcaPdf {
     setup() {
         super.setup(...arguments);
@@ -79,6 +78,7 @@ export function initDocumentToSign(properties) {
         ]).then(async function () {
             var app = new App(null, {templates, test: true});
             renderToString.app = app;
+            const env = makeEnv();
             mount(SignOcaPdfPortal, document.body, {
                 env,
                 props: properties,

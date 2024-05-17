@@ -1,8 +1,9 @@
-/** @odoo-module **/
-const {Component, onMounted, onWillStart, onWillUnmount, useRef} = owl;
-import Dialog from "web.Dialog";
-import core from "web.core";
-const _t = core._t;
+/** @odoo-module QWeb **/
+import {Component, onMounted, onWillStart, onWillUnmount, useRef} from "@odoo/owl";
+import {Dialog} from "@web/core/dialog/dialog";
+import {_t} from "@web/core/l10n/translation";
+import {renderToString} from "@web/core/utils/render";
+
 export default class SignOcaPdfCommon extends Component {
     setup() {
         super.setup(...arguments);
@@ -11,8 +12,8 @@ export default class SignOcaPdfCommon extends Component {
         this.pdf_url = this.getPdfUrl();
         this.viewer_url = "/web/static/lib/pdfjs/web/viewer.html?file=" + this.pdf_url;
         this.iframe = useRef("sign_oca_iframe");
-        var iframeResolve = undefined;
-        var iframeReject = undefined;
+        var iframeResolve = "";
+        var iframeReject = "";
         this.iframeLoaded = new Promise(function (resolve, reject) {
             iframeResolve = resolve;
             iframeReject = reject;
@@ -112,7 +113,7 @@ export default class SignOcaPdfCommon extends Component {
                 item.page - 1
             ];
         var signatureItem = $(
-            core.qweb.render(this.field_template, {
+            renderToString(this.field_template, {
                 ...item,
             })
         );
