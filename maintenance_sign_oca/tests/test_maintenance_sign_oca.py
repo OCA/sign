@@ -1,4 +1,4 @@
-# Copyright 2023 Tecnativa - Víctor Martínez
+# Copyright 2023-2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.tests.common import Form, TransactionCase, new_test_user
@@ -25,12 +25,20 @@ class TestMaintenanceSignOca(TransactionCase):
         cls.model_maintenance_equipment = cls.env.ref(
             "maintenance.model_maintenance_equipment"
         )
-        cls.user_a = new_test_user(cls.env, login="test-user-a")
-        cls.equipment_a = cls.env["maintenance.equipment"].create(
+        cls.user_a = new_test_user(
+            cls.env, login="test-user-a", groups="maintenance.group_equipment_manager"
+        )
+        # Set a default to make it compatible with hr_maintenance
+        cls.equipment_model = cls.env["maintenance.equipment"].with_context(
+            default_equipment_assign_to="other"
+        )
+        cls.equipment_a = cls.equipment_model.with_user(cls.user_a).create(
             {"name": "Test equipment A", "owner_user_id": cls.user_a.id}
         )
-        cls.user_b = new_test_user(cls.env, login="test-user-b")
-        cls.equipment_b = cls.env["maintenance.equipment"].create(
+        cls.user_b = new_test_user(
+            cls.env, login="test-user-b", groups="maintenance.group_equipment_manager"
+        )
+        cls.equipment_b = cls.equipment_model.with_user(cls.user_b).create(
             {"name": "Test equipment B", "owner_user_id": cls.user_b.id}
         )
 
@@ -56,7 +64,7 @@ class TestMaintenanceSignOca(TransactionCase):
 
     def test_maintenance_equipment_create(self):
         self.company.maintenance_equipment_sign_oca_template_id = self.template
-        equipment_c = self.env["maintenance.equipment"].create(
+        equipment_c = self.equipment_model.with_user(self.user_a).create(
             {"name": "Test equipment C", "owner_user_id": self.user_a.id}
         )
         self.assertIn(

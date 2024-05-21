@@ -1,4 +1,4 @@
-# Copyright 2023 Tecnativa - Víctor Martínez
+# Copyright 2023-2024 Tecnativa - Víctor Martínez
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 from odoo import api, fields, models
 
@@ -56,6 +56,9 @@ class MaintenanceEquipment(models.Model):
             sign_template = item.company_id.maintenance_equipment_sign_oca_template_id
             old_owner_user_id = data[item.id] if item.id in data else False
             if sign_template and item.owner_user_id != old_owner_user_id:
+                # Apply sudo because the user who creates the record may not have
+                # permissions on sign.oca.template
+                sign_template = sign_template.sudo()
                 request_model.create(
                     sign_template._prepare_sign_oca_request_vals_from_record(item)
                 )
