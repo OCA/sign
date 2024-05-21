@@ -367,10 +367,10 @@ class SignOcaRequestSigner(models.Model):
             "items": self.request_id.signatory_data,
             "to_sign": self.request_id.to_sign,
             "partner": {
-                "id": self.env.user.partner_id.id,
-                "name": self.env.user.partner_id.name,
-                "email": self.env.user.partner_id.email,
-                "phone": self.env.user.partner_id.phone,
+                "id": self.partner_id.id,
+                "name": self.partner_id.name,
+                "email": self.partner_id.email,
+                "phone": self.partner_id.phone,
             },
         }
 
