@@ -63,7 +63,9 @@ odoo.define("sign_oca.signatureElement", function (require) {
             this.getParent().checkFilledAll();
             var next_items = _.filter(
                 this.getParent().info.items,
-                (i) => i.tabindex > this.item.tabindex
+                (i) =>
+                    i.tabindex > this.item.tabindex &&
+                    i.role_id === this.getParent().info.role_id
             ).sort((a, b) => a.tabindex - b.tabindex);
             if (next_items.length > 0) {
                 this.getParent().items[next_items[0].id].dispatchEvent(
