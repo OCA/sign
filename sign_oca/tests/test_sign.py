@@ -109,6 +109,9 @@ class TestSign(TransactionCase):
         self.assertFalse(self.request.get_info()["items"])
         self.configure_request()
         self.assertTrue(self.request.get_info()["items"])
+        signer_info = self.request.signer_ids.get_info()
+        self.assertEqual(signer_info["partner"]["id"], self.signer.id)
+        self.assertEqual(signer_info["partner"]["name"], "Signer")
 
     def test_request_field_edition(self):
         item = self.configure_request()
