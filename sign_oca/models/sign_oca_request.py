@@ -431,7 +431,10 @@ class SignOcaRequestSigner(models.Model):
         self.signature_hash = final_hash
         self.request_id._check_signed()
         self._set_action_log("sign", access_token=access_token)
-        # TODO: Add a return
+        return {
+            "type": "ir.actions.act_url",
+            "url": self.access_url,
+        }
 
     def _check_signable(self, item):
         if not item["required"]:

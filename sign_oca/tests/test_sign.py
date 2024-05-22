@@ -220,8 +220,10 @@ class TestSign(TransactionCase):
             val = signer.get_info()["items"][key].copy()
             val["value"] = "My Name"
             data[key] = val
-        signer.action_sign(data)
+        res = signer.action_sign(data)
         self.assertEqual(signer.request_id.state, "signed")
+        self.assertEqual(res["type"], "ir.actions.act_url")
+        self.assertEqual(res["url"], signer.access_url)
 
     def test_auto_sign_template_cancel(self):
         self.configure_template()
