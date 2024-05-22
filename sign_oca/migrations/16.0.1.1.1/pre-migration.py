@@ -1,15 +1,23 @@
-# Copyright 2024 ForgeFlow <http://www.forgeflow.com>
+# Copyright 2024 ForgeFlow S.L.  <https://www.forgeflow.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import logging
-
-_logger = logging.getLogger(__name__)
+from openupgradelib import openupgrade
 
 
-def migrate(cr, version):
-    _logger.info("Change partner_type field to partner_selection_policy.")
-    query = (
-        "ALTER TABLE sign_oca_role RENAME COLUMN"
-        " 'partner_type' TO 'partner_selection_policy'"
-    )
-    cr.execute(query)
+@openupgrade.migrate()
+def migrate(env, version):
+    old_column_name = "partner_type"
+    new_column_name = "partner_selection_policy"
+
+    if not openupgrade.column_exists(env.cr, "sign_oca_role", new_column_name):
+        openupgrade.rename_columns(
+            env.cr,
+            {
+                "sign_oca_role": [
+                    (
+                        old_column_name,
+                        new_column_name,
+                    ),
+                ]
+            },
+        )
