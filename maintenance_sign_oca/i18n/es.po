@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-06 09:56+0000\n"
-"PO-Revision-Date: 2024-03-06 10:56+0100\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2024-05-22 16:38+0000\n"
+"Last-Translator: Víctor Martínez <victor.martinez@tecnativa.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: maintenance_sign_oca
 #: model:ir.model,name:maintenance_sign_oca.model_res_company
@@ -42,7 +42,7 @@ msgstr "Equipo de mantenimiento"
 #: model:ir.model.fields,field_description:maintenance_sign_oca.field_res_company__maintenance_equipment_sign_oca_template_id
 #: model:ir.model.fields,field_description:maintenance_sign_oca.field_res_config_settings__maintenance_equipment_sign_oca_template_id
 msgid "Sign Oca Template"
-msgstr ""
+msgstr "Plantilla de firma"
 
 #. module: maintenance_sign_oca
 #: model:ir.model,name:maintenance_sign_oca.model_sign_oca_request
