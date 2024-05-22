@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-03-07 16:12+0000\n"
-"Last-Translator: Eduardo Ruiz <eduardo@readylan.com>\n"
+"PO-Revision-Date: 2024-05-22 16:38+0000\n"
+"Last-Translator: Víctor Martínez <victor.martinez@tecnativa.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -82,7 +82,7 @@ msgstr "Actividades"
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "Decoración de Actividad de Excepción"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_form_view
@@ -92,12 +92,12 @@ msgstr "Registro de actividad"
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "Estado de la actividad"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "Ícono de tipo de actvidad"
 
 #. module: sign_oca
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request_log__action__add_field
@@ -208,7 +208,7 @@ msgstr "Configurar"
 #. module: sign_oca
 #: model:ir.model,name:sign_oca.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #. module: sign_oca
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request_log__action__create
@@ -330,9 +330,8 @@ msgstr "Documento"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_role__domain
-#, fuzzy
 msgid "Domain"
-msgstr "Domain"
+msgstr "Dominio"
 
 #. module: sign_oca
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request__state__draft
@@ -360,7 +359,7 @@ msgstr "Vacío"
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_role__expression_partner
 msgid "Example: {{object.partner_id.id}}"
-msgstr ""
+msgstr "Ejemplo: {{object.partner_id.id}}"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_role__expression_partner
@@ -459,7 +458,7 @@ msgstr "Agrupar por"
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "Tiene un mensaje"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__height
@@ -484,7 +483,6 @@ msgstr "Ayuda"
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_multi__id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_signer__id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__id
-#, fuzzy
 msgid "ID"
 msgstr "ID"
 
@@ -496,7 +494,7 @@ msgstr "Icono"
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "Icono para indicar una actividad de excepción."
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__message_needaction
@@ -549,7 +547,6 @@ msgstr ""
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__ip
-#, fuzzy
 msgid "Ip"
 msgstr "Ip"
 
@@ -618,7 +615,7 @@ msgstr "Actividades retrasadas"
 #. openerp-web
 #: code:addons/sign_oca/static/src/components/sign_oca_pdf_portal/sign_oca_pdf_portal.xml:0
 #: model_terms:ir.ui.view,arch_db:sign_oca.portal_sign_document_signed
-#, fuzzy, python-format
+#, python-format
 msgid "Logo"
 msgstr "Logo"
 
@@ -846,7 +843,6 @@ msgstr "Requerido"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__res_id
-#, fuzzy
 msgid "Res"
 msgstr "Res"
 
@@ -875,7 +871,6 @@ msgstr "Rol"
 #. module: sign_oca
 #: model:ir.actions.act_window,name:sign_oca.sign_oca_role_act_window
 #: model:ir.ui.menu,name:sign_oca.sign_oca_role_menu
-#, fuzzy
 msgid "Roles"
 msgstr "Roles"
 
@@ -1083,7 +1078,7 @@ msgstr "Número de firmantes"
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_tree_view
 msgid "Signers"
-msgstr ""
+msgstr "Firmantes"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__state
@@ -1133,7 +1128,7 @@ msgstr "El documento ha sido cancelado"
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__signer_id
 msgid "The signer related to the active user."
-msgstr ""
+msgstr "El firmante relacionado con el usuario activo."
 
 #. module: sign_oca
 #. openerp-web
@@ -1169,13 +1164,11 @@ msgstr "Actividades para hoy"
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__activity_exception_decoration
-#, fuzzy
 msgid "Type of the exception activity on record."
 msgstr "Tipo de actividad de excepción registrada."
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__uid
-#, fuzzy
 msgid "Uid"
 msgstr "Uid"
 
