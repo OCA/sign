@@ -101,5 +101,4 @@ class PortalSign(CustomerPortal):
             )
         except (AccessError, MissingError):
             return request.redirect("/my")
-        signer_sudo.action_sign(items, access_token=access_token)
-        return True
+        return signer_sudo.action_sign(items, access_token=access_token)
