@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-29 17:39+0000\n"
+"PO-Revision-Date: 2024-05-23 09:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -30,7 +30,7 @@ msgstr ""
 #: code:addons/sign_oca/static/src/xml/systray.xml:0
 #, python-format
 msgid "0 Pending"
-msgstr ""
+msgstr "0 in attesa"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_form_view
@@ -109,7 +109,7 @@ msgstr "Aggiungi campo"
 #. module: sign_oca
 #: model:res.groups,name:sign_oca.sign_oca_group_admin
 msgid "Administrator"
-msgstr ""
+msgstr "Amministratore"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_kanban_view
@@ -202,7 +202,7 @@ msgstr "Configura"
 #. module: sign_oca
 #: model:ir.model,name:sign_oca.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contatto"
 
 #. module: sign_oca
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request_log__action__create
@@ -274,7 +274,7 @@ msgstr "Data"
 #. module: sign_oca
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_role__partner_selection_policy__default
 msgid "Default"
-msgstr ""
+msgstr "Predefinito"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_field__default_value
@@ -284,7 +284,7 @@ msgstr "Valore predefinito"
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_role__default_partner_id
 msgid "Default partner"
-msgstr ""
+msgstr "Partner predefinito"
 
 #. module: sign_oca
 #. odoo-javascript
@@ -348,18 +348,18 @@ msgstr "Modifica campo"
 #. module: sign_oca
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_role__partner_selection_policy__empty
 msgid "Empty"
-msgstr ""
+msgstr "Vuoto"
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_role__expression_partner
 msgid "Example: {{object.partner_id.id}}"
-msgstr ""
+msgstr "Esempio: {{object.partner_id.id}}"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_role__expression_partner
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_role__partner_selection_policy__expression
 msgid "Expression"
-msgstr ""
+msgstr "Espressione"
 
 #. module: sign_oca
 #. odoo-javascript
@@ -431,7 +431,7 @@ msgstr "Attività future"
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_generate_multi_form_view
 msgid "Generate"
-msgstr ""
+msgstr "Genera"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_generate_form_view
@@ -446,7 +446,7 @@ msgstr "Genera una richiesta di firma"
 #. module: sign_oca
 #: model:ir.model,name:sign_oca.model_sign_oca_template_generate_multi
 msgid "Generate signature requests"
-msgstr ""
+msgstr "Genera richieste firma"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
@@ -556,7 +556,7 @@ msgstr "IP"
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__is_allow_signature
 msgid "Is Allow Signature"
-msgstr ""
+msgstr "È firma consentita"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_is_follower
@@ -664,7 +664,7 @@ msgstr "Messaggi"
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__model_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_multi__model
 msgid "Model"
-msgstr ""
+msgstr "Modello"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__my_activity_date_deadline
@@ -729,7 +729,7 @@ msgstr "Elemento successivo"
 #: code:addons/sign_oca/static/src/xml/systray.xml:0
 #, python-format
 msgid "No requests to sign."
-msgstr ""
+msgstr "Nessuna richiesta di firma."
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_needaction_counter
@@ -758,7 +758,7 @@ msgstr "Numero di messaggi con errore di consegna"
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__record_ref
 msgid "Object"
-msgstr ""
+msgstr "Oggetto"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__page
@@ -775,14 +775,14 @@ msgstr "Partner"
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_role__partner_selection_policy
 msgid "Partner Selection Policy"
-msgstr ""
+msgstr "Politica selezione partner"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/xml/systray.xml:0
 #, python-format
 msgid "Pending"
-msgstr ""
+msgstr "In attesa"
 
 #. module: sign_oca
 #. odoo-javascript
@@ -853,12 +853,12 @@ msgstr "Obbligatorio"
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__res_id
 msgid "Res"
-msgstr ""
+msgstr "Res"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__user_id
 msgid "Responsible"
-msgstr ""
+msgstr "Responsabile"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_user_id
@@ -956,7 +956,7 @@ msgstr "Genera firma modello OCA"
 #. module: sign_oca
 #: model:ir.actions.act_window,name:sign_oca.sign_oca_template_generate_multi_act_window
 msgid "Sign Oca Template Generate Multi"
-msgstr ""
+msgstr "Multi generazione firma modello OCA"
 
 #. module: sign_oca
 #: model:ir.model,name:sign_oca.model_sign_oca_template_item
@@ -971,7 +971,7 @@ msgstr "Firma richiesta"
 #. module: sign_oca
 #: model:ir.actions.act_window,name:sign_oca.sign_oca_request_signer_act_window
 msgid "Sign Request Signers"
-msgstr ""
+msgstr "Firmatari richiesta firma"
 
 #. module: sign_oca
 #: model:ir.model,name:sign_oca.model_sign_oca_request_signer
@@ -1004,7 +1004,7 @@ msgstr "Firma documento"
 #: code:addons/sign_oca/static/src/js/sign_oca.esm.js:0
 #, python-format
 msgid "Sign from template"
-msgstr ""
+msgstr "Firma da modello"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_tree_view
@@ -1080,7 +1080,7 @@ msgstr "Conteggio firmatari"
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_tree_view
 msgid "Signers"
-msgstr ""
+msgstr "Firmatari"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__state
@@ -1130,7 +1130,7 @@ msgstr "Il documento è stato cancellato"
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__signer_id
 msgid "The signer related to the active user."
-msgstr ""
+msgstr "Il firmatario relativo all'utente attivo."
 
 #. module: sign_oca
 #. odoo-javascript
@@ -1157,6 +1157,9 @@ msgid ""
 "different roles of a request. This field will be used when the 'Sign from "
 "Template' action is triggered."
 msgstr ""
+"Questo campo è utilizzato per definire come il partner verra calcolato nei "
+"diversi ruoli di una richiesta. Questo campo verrà utilizzato quanto è "
+"attivata l'azione 'Firma da modello'."
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__to_sign
@@ -1188,12 +1191,12 @@ msgstr "Uid"
 #: code:addons/sign_oca/models/res_users.py:0
 #, python-format
 msgid "Undefined"
-msgstr ""
+msgstr "Non definito"
 
 #. module: sign_oca
 #: model:ir.model,name:sign_oca.model_res_users
 msgid "User"
-msgstr ""
+msgstr "Utente"
 
 #. module: sign_oca
 #: model:res.groups,name:sign_oca.sign_oca_group_manager
@@ -1256,7 +1259,7 @@ msgstr "Procedura guidata"
 #: code:addons/sign_oca/models/sign_oca_request.py:0
 #, python-format
 msgid "You are not allowed to sign this document."
-msgstr ""
+msgstr "Non si è autorizzati alla firma di questo documento."
 
 #. module: sign_oca
 #. odoo-python
