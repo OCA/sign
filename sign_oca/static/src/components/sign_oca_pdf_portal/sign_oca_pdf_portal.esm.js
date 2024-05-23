@@ -41,14 +41,25 @@ export class SignOcaPdfPortal extends SignOcaPdf {
         this.checkFilledAll();
     }
     _onClickSign() {
-        this.env.services.rpc({
-            route:
-                "/sign_oca/sign/" +
-                this.props.signer_id +
-                "/" +
-                this.props.access_token,
-            params: {items: this.info.items},
-        });
+        this.env.services
+            .rpc({
+                route:
+                    "/sign_oca/sign/" +
+                    this.props.signer_id +
+                    "/" +
+                    this.props.access_token,
+                params: {items: this.info.items},
+            })
+            .then((action) => {
+                // As we are on frontend env, it is not possible to use do_action(), so we
+                // redirect to the corresponding URL or reload the page if the action is not
+                // an url.
+                if (action.type === "ir.actions.act_url") {
+                    window.location = action.url;
+                } else {
+                    window.location.reload();
+                }
+            });
     }
 }
 SignOcaPdfPortal.template = "sign_oca.SignOcaPdfPortal";
