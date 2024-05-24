@@ -42,7 +42,8 @@ odoo.define("sign_oca.textElement", function (require) {
                 ev.preventDefault();
                 var next_items = _.filter(
                     parent.info.items,
-                    (i) => i.tabindex > item.tabindex && i.role_id === parent.role_id
+                    (i) =>
+                        i.tabindex > item.tabindex && i.role_id === parent.info.role_id
                 ).sort((a, b) => a.tabindex - b.tabindex);
                 if (next_items.length > 0) {
                     ev.currentTarget.blur();
