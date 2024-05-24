@@ -75,6 +75,10 @@ class MaintenanceEquipment(models.Model):
         for item in self:
             owners[item.id] = item.owner_user_id
         res = super().write(vals)
-        if vals.get("owner_user_id"):
+        # Fields to be taken into account when trying to create a sign request.
+        # We don't need to take into account only the owner_user_id field because
+        # if you have installed hr_maintenance module is a compute field and the
+        # employee_id field will be taken into account.
+        if any(vals.get(fname) for fname in ["owner_user_id", "employee_id"]):
             self._process_generate_sign_oca_request(owners)
         return res
