@@ -265,6 +265,40 @@ class SignOcaRequest(models.Model):
                 email_layout_xmlid="mail.mail_notification_light",
             )
 
+    def action_send_signed_request(self):
+        self.ensure_one()
+        if (
+            self.state != "signed"
+            or not self.env.company.sign_oca_send_sign_request_copy
+        ):
+            return
+        for signer in self.signer_ids:
+            attachments = (
+                self.env["ir.attachment"]
+                .sudo()
+                .search(
+                    [
+                        ("res_model", "=", "sign.oca.request"),
+                        ("res_id", "=", self.id),
+                        ("res_field", "=", "data"),
+                    ]
+                )
+            )
+            # The message will not be linked to the record because we do not want
+            # it happen.
+            self.env["mail.thread"].message_notify(
+                body=_(
+                    "%(name)s (%(email)s) has sent the signed document.",
+                    name=self.create_uid.name,
+                    email=self.create_uid.email,
+                ),
+                partner_ids=signer.partner_id.ids,
+                subject=_("Signed document"),
+                subtype_id=self.env.ref("mail.mt_comment").id,
+                mail_auto_delete=False,
+                attachment_ids=attachments.ids,
+            )
+
     def _check_signed(self):
         self.ensure_one()
         if self.state != "sent":
@@ -427,6 +461,7 @@ class SignOcaRequestSigner(models.Model):
         self.signature_hash = final_hash
         self.request_id._check_signed()
         self._set_action_log("sign", access_token=access_token)
+        self.request_id.action_send_signed_request()
         return {
             "type": "ir.actions.act_url",
             "url": self.access_url,
