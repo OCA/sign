@@ -29,20 +29,20 @@ class SignOcaTemplateGenerate(models.TransientModel):
         else:
             request = self._generate()
             request.action_send(sign_now=self.sign_now, message=self.message)
+            request.state = "draft"
             request.action_send_sms(sign_now=self.sign_now, message=self.message)
         request.message_post(body=message_body)
         return request.sign()
 
     def _generate_vals(self):
         res = super()._generate_vals()
-        signers = res["signer_ids"]
-        for signer in signers:
+        for signer in res["signer_ids"]:
             signer_dict = signer[2]
             signer_id = self.signer_ids.filtered(
                 lambda x: x.partner_id.id == signer_dict["partner_id"]
             )
             signer_dict["phone_field"] = (
-                signer_id.phone.phone_field if signer_id.phone else ""
+                signer_id.phone_id.phone_field if signer_id.phone_id else ""
             )
         return res
 
@@ -88,7 +88,7 @@ class SignSignerPhone(models.TransientModel):
 class SignOcaTemplateGenerateSigner(models.TransientModel):
     _inherit = "sign.oca.template.generate.signer"
 
-    phone = fields.Many2one("sign.oca.signer.phone")
+    phone_id = fields.Many2one("sign.oca.signer.phone")
 
     @api.model
     def create(self, vals):

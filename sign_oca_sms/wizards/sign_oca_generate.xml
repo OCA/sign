@@ -10,7 +10,7 @@
                 position="after"
             >
                 <field
-                    name="phone"
+                    name="phone_id"
                     domain="[('partner_id', '=', partner_id)]"
                     options="{'no_create': True, 'no_open': True}"
                 />
