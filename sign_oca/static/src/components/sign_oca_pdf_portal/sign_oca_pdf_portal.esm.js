@@ -5,6 +5,7 @@ const {App, mount, useRef} = owl;
 import SignOcaPdf from "../sign_oca_pdf/sign_oca_pdf.esm.js";
 
 import env from "web.public_env";
+import core from "web.core";
 import {renderToString} from "@web/core/utils/render";
 import session from "web.session";
 import {templates} from "@web/core/assets";
@@ -72,12 +73,14 @@ export function initDocumentToSign(properties) {
         return Promise.all([
             session.load_translations(["web", "portal", "sign_oca"]),
         ]).then(async function () {
+            const translateFn = (str) => core._t(str);
             var app = new App(null, {templates, test: true});
             renderToString.app = app;
             mount(SignOcaPdfPortal, document.body, {
                 env,
                 props: properties,
                 templates: templates,
+                translateFn,
             });
         });
     });
