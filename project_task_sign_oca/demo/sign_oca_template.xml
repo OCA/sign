@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2024 - TODAY, Wesley Oliveira <wesley.oliveira@escodoo.com.br>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="sign_oca_template_project_task_demo" model="sign.oca.template">
+        <field name="name">Task Approval</field>
+        <field name="model_id" ref="project.model_project_task" />
+        <field name="data" type="base64" file="sign_oca/tests/empty.pdf" />
+    </record>
+    <record
+        id="sign_oca_template_project_task_demo_item"
+        model="sign.oca.template.item"
+    >
+        <field
+            name="template_id"
+            ref="project_task_sign_oca.sign_oca_template_project_task_demo"
+        />
+        <field name="field_id" ref="sign_oca.sign_field_signature" />
+        <field
+            name="role_id"
+            ref="project_task_sign_oca.sign_role_project_task_customer"
+        />
+        <field name="page">1</field>
+        <field name="position_x">10</field>
+        <field name="position_y">10</field>
+        <field name="width">30</field>
+        <field name="height">4</field>
+        <field name="required" eval="True" />
+    </record>
+
+</odoo>

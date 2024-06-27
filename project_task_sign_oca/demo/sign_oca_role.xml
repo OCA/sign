@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2024 - TODAY, Wesley Oliveira <wesley.oliveira@escodoo.com.br>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="sign_role_project_task_customer" model="sign.oca.role">
+        <field name="name">Task Customer</field>
+        <field name="partner_type">expression</field>
+        <field name="expression_partner">${object.partner_id.id}</field>
+    </record>
+
+</odoo>
