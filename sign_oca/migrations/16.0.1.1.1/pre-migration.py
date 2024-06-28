@@ -9,7 +9,9 @@ def migrate(env, version):
     old_column_name = "partner_type"
     new_column_name = "partner_selection_policy"
 
-    if not openupgrade.column_exists(env.cr, "sign_oca_role", new_column_name):
+    if not openupgrade.column_exists(
+        env.cr, "sign_oca_role", new_column_name
+    ) and openupgrade.column_exists(env.cr, "sign_oca_role", old_column_name):
         openupgrade.rename_columns(
             env.cr,
             {
