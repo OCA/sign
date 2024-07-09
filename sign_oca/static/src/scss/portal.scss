@@ -1,5 +1,7 @@
 .o_sign_oca_content {
     height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 .o_oca_sign_portal_info {
     display: flex;
