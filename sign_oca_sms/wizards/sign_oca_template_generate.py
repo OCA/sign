@@ -20,7 +20,7 @@ class SignOcaTemplateGenerate(models.TransientModel):
             self.send_method
         )
         message_body = "Sign request sent via %(method)s" % {"method": send_method_msg}
-        if self.send_method == "email":
+        if self.send_method == "email" or self.sign_now:
             request = self._generate()
             request.action_send(sign_now=self.sign_now, message=self.message)
         elif self.send_method == "sms":
