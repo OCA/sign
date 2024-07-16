@@ -362,14 +362,13 @@ class SignOcaRequestSigner(models.Model):
         for item in self.filtered(lambda x: x.request_id.record_ref):
             item.res_id = item.request_id.record_ref.id
 
-    @api.depends("signed_on", "partner_id", "partner_id.commercial_partner_id")
+    @api.depends("signed_on", "partner_id")
     @api.depends_context("uid")
     def _compute_is_allow_signature(self):
         user = self.env.user
         for item in self:
             item.is_allow_signature = bool(
-                not item.signed_on
-                and item.partner_id == user.partner_id.commercial_partner_id
+                not item.signed_on and item.partner_id == user.partner_id
             )
 
     def _compute_access_url(self):
