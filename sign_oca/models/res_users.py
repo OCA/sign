@@ -31,7 +31,9 @@ class ResUsers(models.Model):
                     )
                     if total_records > 0:
                         record = self.env[model]
-                        model_id = self.env["ir.model"].search([("model", "=", model)])
+                        model_id = (
+                            self.env["ir.model"].sudo().search([("model", "=", model)])
+                        )
                         requests[model] = {
                             "id": model_id.id,
                             "name": record._description,

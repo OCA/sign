@@ -41,9 +41,9 @@ class SignOcaRequest(models.Model):
     record_ref = fields.Reference(
         lambda self: [
             (m.model, m.name)
-            for m in self.env["ir.model"].search(
-                [("transient", "=", False), ("model", "not like", "sign.oca")]
-            )
+            for m in self.env["ir.model"]
+            .sudo()
+            .search([("transient", "=", False), ("model", "not like", "sign.oca")])
         ],
         string="Object",
         readonly=True,
