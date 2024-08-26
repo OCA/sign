@@ -156,7 +156,7 @@ class SignOcaRequest(models.Model):
             "name": self.name,
             "items": self.signatory_data,
             "roles": [
-                {"id": signer.id, "name": signer.role_id.name}
+                {"id": signer.role_id.id, "name": signer.role_id.name}
                 for signer in self.signer_ids
             ],
             "fields": [
