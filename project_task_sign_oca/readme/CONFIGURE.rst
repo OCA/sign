@@ -1,7 +1,7 @@
-#. Go to Sign > Roles and create a role with the following data:
+#. Go to Sign > Settings > Roles and create a role with the following data:
 
 - Partner type: Expression
-- Expression: ${object.partner_id.id}
+- Expression: {{object.partner_id.id}}
 
 #. Go to Sign > Templates and create a template with the following data:
 
