@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo-addon-maintenance_sign_oca>=15.0dev,<15.1dev',
+        'odoo-addon-project_task_sign_oca>=15.0dev,<15.1dev',
         'odoo-addon-sign_oca>=15.0dev,<15.1dev',
     ],
     classifiers=[
