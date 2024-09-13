@@ -17,6 +17,7 @@ class ResUsers(models.Model):
                 "child_of",
                 [self.env.user.partner_id.commercial_partner_id.id],
             ),
+            ("signed_on", "=", False),
         ]
         signer_model = self.env["sign.oca.request.signer"]
         signer_groups = signer_model.read_group(domain, ["model"], ["model"])
