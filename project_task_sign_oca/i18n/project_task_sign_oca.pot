@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -32,30 +32,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:project_task_sign_oca.res_config_settings_view_form
 msgid ""
 "Define a template to enable automatic sign requests for the task customer"
-msgstr ""
-
-#. module: project_task_sign_oca
-#: model:ir.model.fields,field_description:project_task_sign_oca.field_project_task__display_name
-#: model:ir.model.fields,field_description:project_task_sign_oca.field_res_company__display_name
-#: model:ir.model.fields,field_description:project_task_sign_oca.field_res_config_settings__display_name
-#: model:ir.model.fields,field_description:project_task_sign_oca.field_sign_oca_request__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: project_task_sign_oca
-#: model:ir.model.fields,field_description:project_task_sign_oca.field_project_task__id
-#: model:ir.model.fields,field_description:project_task_sign_oca.field_res_company__id
-#: model:ir.model.fields,field_description:project_task_sign_oca.field_res_config_settings__id
-#: model:ir.model.fields,field_description:project_task_sign_oca.field_sign_oca_request__id
-msgid "ID"
-msgstr ""
-
-#. module: project_task_sign_oca
-#: model:ir.model.fields,field_description:project_task_sign_oca.field_project_task____last_update
-#: model:ir.model.fields,field_description:project_task_sign_oca.field_res_company____last_update
-#: model:ir.model.fields,field_description:project_task_sign_oca.field_res_config_settings____last_update
-#: model:ir.model.fields,field_description:project_task_sign_oca.field_sign_oca_request____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: project_task_sign_oca
