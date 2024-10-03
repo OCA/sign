@@ -1,7 +1,7 @@
 Creating a Signature Request from a Project Task:
 - Go to Projects > Tasks.
-- Open an existing task or create a new one (make sure to fill in the `partner_id` field).
-- In the task tree or form view, click on the action "Sign from template".
+- Open an existing task or create a new one (make sure to fill in the partner_id field).
+- In the task tree or form view, click on theaction "Sign from template".
 - Sign Requests will have been generated (and sent) linked to the selected project and task.
 
 Automatic Signature Request creation:

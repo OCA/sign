@@ -17,18 +17,19 @@ Project Task Sign Oca
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsign-lightgray.png?logo=github
-    :target: https://github.com/OCA/sign/tree/15.0/project_task_sign_oca
+    :target: https://github.com/OCA/sign/tree/16.0/project_task_sign_oca
     :alt: OCA/sign
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sign-15-0/sign-15-0-project_task_sign_oca
+    :target: https://translation.odoo-community.org/projects/sign-16-0/sign-16-0-project_task_sign_oca
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sign&target_branch=15.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sign&target_branch=16.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows you to generate manual and automatic signature requests from project tasks to task customers.
+This module allows you to generate manual and automatic signature
+requests from project tasks to task customers.
 
 **Table of contents**
 
@@ -38,41 +39,51 @@ This module allows you to generate manual and automatic signature requests from 
 Configuration
 =============
 
-#. Go to Sign > Settings > Roles and create a role with the following data:
+1. Go to Sign > Settings > Roles and create a role with the following
+   data:
 
-- Partner type: Expression
-- Expression: {{object.partner_id.id}}
+-  Partner type: Expression
+-  Expression: {{object.partner_id.id}}
 
-#. Go to Sign > Templates and create a template with the following data:
+2. Go to Sign > Templates and create a template with the following data:
 
-- Model: Project Task
-- In one of the fields, you must set the previously created role.
+-  Model: Project Task
+-  In one of the fields, you must set the previously created role.
 
-#. (Optional) Go to Project > Configuration > Settings.
+3. (Optional) Go to Project > Configuration > Settings.
 
-- In the Task Sign section, define a template to enable automatic task sing requests.
-- Use the template previously created.
+-  In the Task Sign section, define a template to enable automatic task
+   sign requests.
+-  Use the template previously created.
 
 Usage
 =====
 
 Creating a Signature Request from a Project Task:
-- Go to Projects > Tasks.
-- Open an existing task or create a new one (make sure to fill in the `partner_id` field).
-- In the task tree or form view, click on the action "Sign from template".
-- Sign Requests will have been generated (and sent) linked to the selected project and task.
+
+-  Go to Projects > Tasks.
+-  Open an existing task or create a new one (make sure to fill in the
+   partner_id field).
+-  In the task tree or form view, click on theaction "Sign from
+   template".
+-  Sign Requests will have been generated (and sent) linked to the
+   selected project and task.
 
 Automatic Signature Request creation:
-- Define a template in Project > Configuration > Settings.
-- When an customer is assigned to a task, a Sign Request will be created (and sent) automatically.
+
+-  Define a template in Project > Configuration > Settings.
+-  When an customer is assigned to a task, a Sign Request will be
+   created (and sent) automatically.
 
 Viewing Signature Requests:
-- Go to Projects > Tasks.
-- Open a task with an associated signature request.
-- Click on the smart-button Sign Requests.
-- Click on any signature request to view its details, status, and progress.
-- Alternatively, go to Sign > Requests.
-- Use the Group By feature to group requests by Project and/or Task.
+
+-  Go to Projects > Tasks.
+-  Open a task with an associated signature request.
+-  Click on the smart-button Sign Requests.
+-  Click on any signature request to view its details, status, and
+   progress.
+-  Alternatively, go to Sign > Requests.
+-  Use the Group By feature to group requests by Project and/or Task.
 
 Bug Tracker
 ===========
@@ -80,7 +91,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sign/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sign/issues/new?body=module:%20project_task_sign_oca%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sign/issues/new?body=module:%20project_task_sign_oca%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -88,20 +99,20 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Escodoo
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Escodoo <https://www.escodoo.com.br>`_:
+-  `Escodoo <https://www.escodoo.com.br>`__:
 
-  * Marcel Savegnago <marcel.savegnago@escodoo.com.br>
-  * Wesley Oliveira <wesley.oliveira@escodoo.com.br>
+   -  Marcel Savegnago <marcel.savegnago@escodoo.com.br>
+   -  Wesley Oliveira <wesley.oliveira@escodoo.com.br>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -113,6 +124,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sign <https://github.com/OCA/sign/tree/15.0/project_task_sign_oca>`_ project on GitHub.
+This module is part of the `OCA/sign <https://github.com/OCA/sign/tree/16.0/project_task_sign_oca>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
