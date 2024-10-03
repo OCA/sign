@@ -7,10 +7,6 @@
         <field name="name">project.task.form (in project_task_sign_oca)</field>
         <field name="model">project.task</field>
         <field name="inherit_id" ref="project.view_task_form2" />
-        <field
-            name="groups_id"
-            eval="[(6, 0, [ref('sign_oca.sign_oca_group_user')])]"
-        />
         <field name="arch" type="xml">
             <div name="button_box" position="inside">
                 <button
@@ -19,6 +15,7 @@
                     class="oe_stat_button"
                     icon="fa-file-text-o"
                     attrs="{'invisible': [('sign_request_count', '=', 0)]}"
+                    groups="sign_oca.sign_oca_group_user"
                 >
                     <field
                         name="sign_request_count"

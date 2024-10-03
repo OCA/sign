@@ -12,10 +12,7 @@
         id="sign_oca_template_project_task_demo_item"
         model="sign.oca.template.item"
     >
-        <field
-            name="template_id"
-            ref="project_task_sign_oca.sign_oca_template_project_task_demo"
-        />
+        <field name="template_id" ref="sign_oca_template_project_task_demo" />
         <field name="field_id" ref="sign_oca.sign_field_signature" />
         <field
             name="role_id"

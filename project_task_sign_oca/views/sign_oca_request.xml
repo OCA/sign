@@ -7,22 +7,23 @@
         <field name="name">sign.oca.request.search (in project_task_sign_oca)</field>
         <field name="model">sign.oca.request</field>
         <field name="inherit_id" ref="sign_oca.sign_oca_request_search_view" />
-        <field name="groups_id" eval="[(6, 0, [ref('project.group_project_user')])]" />
         <field name="arch" type="xml">
             <field name="signer_ids" position="after">
-                <field name="project_id" />
-                <field name="task_id" />
+                <field name="project_id" groups="project.group_project_user" />
+                <field name="task_id" groups="project.group_project_user" />
             </field>
             <filter name="group_by_state" position="after">
                 <filter
                     string="Project"
                     name="group_by_project_id"
                     context="{'group_by': 'project_id'}"
+                    groups="project.group_project_user"
                 />
                 <filter
                     string="Task"
                     name="group_by_task_id"
                     context="{'group_by': 'task_id'}"
+                    groups="project.group_project_user"
                 />
             </filter>
         </field>
@@ -32,13 +33,13 @@
         <field name="name">sign.oca.request.form (in project_task_sign_oca)</field>
         <field name="model">sign.oca.request</field>
         <field name="inherit_id" ref="sign_oca.sign_oca_request_form_view" />
-        <field name="groups_id" eval="[(6, 0, [ref('project.group_project_user')])]" />
         <field name="arch" type="xml">
             <field name="record_ref" position="before">
                 <field
                     name="project_id"
                     readonly="1"
                     attrs="{'invisible': [('project_id','=',False)]}"
+                    groups="project.group_project_user"
                 />
             </field>
         </field>
@@ -48,10 +49,13 @@
         <field name="name">sign.oca.request.tree (in project_task_sign_oca)</field>
         <field name="model">sign.oca.request</field>
         <field name="inherit_id" ref="sign_oca.sign_oca_request_tree_view" />
-        <field name="groups_id" eval="[(6, 0, [ref('project.group_project_user')])]" />
         <field name="arch" type="xml">
             <field name="record_ref" position="before">
-                <field name="project_id" optional="hide" />
+                <field
+                    name="project_id"
+                    optional="hide"
+                    groups="project.group_project_user"
+                />
             </field>
         </field>
     </record>
