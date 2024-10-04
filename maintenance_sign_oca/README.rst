@@ -17,18 +17,19 @@ Maintenance Sign Oca
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsign-lightgray.png?logo=github
-    :target: https://github.com/OCA/sign/tree/15.0/maintenance_sign_oca
+    :target: https://github.com/OCA/sign/tree/16.0/maintenance_sign_oca
     :alt: OCA/sign
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sign-15-0/sign-15-0-maintenance_sign_oca
+    :target: https://translation.odoo-community.org/projects/sign-16-0/sign-16-0-maintenance_sign_oca
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sign&target_branch=15.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sign&target_branch=16.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows you to make equipment signature requests manually or automatically.
+This module allows you to make equipment signature requests manually or
+automatically.
 
 **Table of contents**
 
@@ -38,34 +39,36 @@ This module allows you to make equipment signature requests manually or automati
 Configuration
 =============
 
-#. Go to Sign > Settings > Roles and create a new one with the following data:
+1. Go to Sign > Settings > Roles and create a new one with the following
+   data:
 
-- Partner type: Expression
-- Expression: ${object.owner_user_id.partner_id.id}
+-  Partner type: Expression
+-  Expression: ${object.owner_user_id.partner_id.id}
 
-#. Go to Sign > Templates and create a template with the following data:
+1. Go to Sign > Templates and create a template with the following data:
 
-- Model: Maintenance Equipment
-- In some of the elements you will have to set the previously created role.
+-  Model: Maintenance Equipment
+-  In some of the elements you will have to set the previously created
+   role.
 
-#. Go to Maintenance > Configuration > General settings.
-#. Defines the template previously created (optional, only for automatic creation of signature requests).
+1. Go to Maintenance > Configuration > General settings.
+2. Defines the template previously created (optional, only for automatic
+   creation of signature requests).
 
 Usage
 =====
 
-A smart-button will be displayed on the equipments form view of the linked Sign Requests.
+A smart-button will be displayed on the equipments form view of the
+linked Sign Requests.
 
-Manual Sign Request creation process:
-- Go to Maintenance > Equipments and change to list view.
-- Select the records that you want.
-- Click on the "Sign from template" action.
-- Select a template.
-- Click on Generate.
-- Sign Requests will have been generated (and sent) for the selected items.
+Manual Sign Request creation process: - Go to Maintenance > Equipments
+and change to list view. - Select the records that you want. - Click on
+the "Sign from template" action. - Select a template. - Click on
+Generate. - Sign Requests will have been generated (and sent) for the
+selected items.
 
-Automatic Sign Request creation process:
-- When an owner is assigned to a equipment, a Sign Request will be created automatically.
+Automatic Sign Request creation process: - When an owner is assigned to
+a equipment, a Sign Request will be created automatically.
 
 Bug Tracker
 ===========
@@ -73,7 +76,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sign/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sign/issues/new?body=module:%20maintenance_sign_oca%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sign/issues/new?body=module:%20maintenance_sign_oca%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -81,20 +84,20 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Tecnativa <https://www.tecnativa.com>`_
+-  `Tecnativa <https://www.tecnativa.com>`__
 
-  * Pedro M. Baeza
-  * Víctor Martínez
+   -  Pedro M. Baeza
+   -  Víctor Martínez
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -114,6 +117,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-victoralmau| 
 
-This module is part of the `OCA/sign <https://github.com/OCA/sign/tree/15.0/maintenance_sign_oca>`_ project on GitHub.
+This module is part of the `OCA/sign <https://github.com/OCA/sign/tree/16.0/maintenance_sign_oca>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
