@@ -60,11 +60,13 @@ class SignOcaRequest(models.Model):
         copy=True,
         readonly=True,
         states={"draft": [("readonly", False)]},
+        string="Signers",
     )
     signer_id = fields.Many2one(
         comodel_name="sign.oca.request.signer",
         compute="_compute_signer_id",
         help="The signer related to the active user.",
+        string="Signer",
     )
     state = fields.Selection(
         [
