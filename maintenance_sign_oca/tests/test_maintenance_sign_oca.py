@@ -1,23 +1,15 @@
 # Copyright 2023-2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import Form, TransactionCase, new_test_user
+from odoo.tests.common import Form, new_test_user
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestMaintenanceSignOca(TransactionCase):
+class TestMaintenanceSignOca(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(
-            context=dict(
-                cls.env.context,
-                mail_create_nolog=True,
-                mail_create_nosubscribe=True,
-                mail_notrack=True,
-                no_reset_password=True,
-                tracking_disable=True,
-            )
-        )
         cls.company = cls.env.company
         cls.template = cls.env.ref(
             "maintenance_sign_oca.sign_oca_template_maintenance_equipment_demo"

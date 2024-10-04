@@ -21,17 +21,6 @@ msgstr ""
 #: model:ir.model,name:maintenance_sign_oca.model_res_company
 msgid "Companies"
 msgstr "Compañías"
-
-#. module: maintenance_sign_oca
-#: model:ir.model,name:maintenance_sign_oca.model_res_config_settings
-msgid "Config Settings"
-msgstr "Opciones de configuración"
-
-#. module: maintenance_sign_oca
-#: model_terms:ir.ui.view,arch_db:maintenance_sign_oca.sign_oca_request_search_view
-msgid "Equipment"
-msgstr "Equipo"
-
 #. module: maintenance_sign_oca
 #: model:ir.model,name:maintenance_sign_oca.model_maintenance_equipment
 #: model:ir.model.fields,field_description:maintenance_sign_oca.field_sign_oca_request__maintenance_equipment_id
@@ -63,12 +52,3 @@ msgstr "Total solicitudes de firma"
 #: model_terms:ir.ui.view,arch_db:maintenance_sign_oca.res_config_settings_view_form
 msgid "Template"
 msgstr "Plantilla"
-
-#~ msgid "Display Name"
-#~ msgstr "Nombre mostrado"
-
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#~ msgid "Last Modified on"
-#~ msgstr "Última modificación el"
