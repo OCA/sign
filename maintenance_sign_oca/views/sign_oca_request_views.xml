@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sign_oca_request_search_view" model="ir.ui.view">
+        <field name="name">sign.oca.request.search</field>
+        <field name="model">sign.oca.request</field>
+        <field name="inherit_id" ref="sign_oca.sign_oca_request_search_view" />
+        <field name="arch" type="xml">
+            <field name="signer_ids" position="after">
+                <field
+                    name="maintenance_equipment_id"
+                    groups="maintenance.group_equipment_manager"
+                />
+            </field>
+            <filter name="group_by_state" position="after">
+                <filter
+                    string="Equipment"
+                    name="maintenance_equipment_id_group_by"
+                    context="{'group_by':'maintenance_equipment_id'}"
+                    groups="maintenance.group_equipment_manager"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
