@@ -21,6 +21,17 @@ msgstr ""
 #: model:ir.model,name:maintenance_sign_oca.model_res_company
 msgid "Companies"
 msgstr "Compañías"
+
+#. module: maintenance_sign_oca
+#: model:ir.model,name:maintenance_sign_oca.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: maintenance_sign_oca
+#: model_terms:ir.ui.view,arch_db:maintenance_sign_oca.sign_oca_request_search_view
+msgid "Equipment"
+msgstr ""
+
 #. module: maintenance_sign_oca
 #: model:ir.model,name:maintenance_sign_oca.model_maintenance_equipment
 #: model:ir.model.fields,field_description:maintenance_sign_oca.field_sign_oca_request__maintenance_equipment_id
