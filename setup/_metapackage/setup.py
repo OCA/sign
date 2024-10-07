@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-sign Odoo addons",
     version=version,
     install_requires=[
+        'odoo-addon-maintenance_sign_oca>=16.0dev,<16.1dev',
         'odoo-addon-sign_oca>=16.0dev,<16.1dev',
     ],
     classifiers=[
