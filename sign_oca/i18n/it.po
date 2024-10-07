@@ -1142,7 +1142,6 @@ msgstr "Documento firmato"
 #: model:ir.model.fields,field_description:sign_oca.field_res_partner__signer_ids
 #: model:ir.model.fields,field_description:sign_oca.field_res_users__signer_ids
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__signer_id
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__signer_ids
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__signer_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate__signer_ids
 msgid "Signer"
@@ -1156,6 +1155,7 @@ msgid "Signer Count"
 msgstr "Conteggio firmatari"
 
 #. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__signer_ids
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_tree_view
 msgid "Signers"
 msgstr "Firmatari"
