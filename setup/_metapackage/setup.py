@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo14-addon-maintenance_sign_oca',
         'odoo14-addon-project_task_sign_oca',
+        'odoo14-addon-sale_order_sign_oca',
         'odoo14-addon-sign_oca',
     ],
     classifiers=[
