@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 KMEE
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="sign_oca_request_search_view">
+        <field name="name">sign.oca.request.search (in sale_order_sign_oca)</field>
+        <field name="model">sign.oca.request</field>
+        <field name="inherit_id" ref="sign_oca.sign_oca_request_search_view" />
+        <field
+            name="groups_id"
+            eval="[(6, 0, [ref('sales_team.group_sale_salesman')])]"
+        />
+        <field name="arch" type="xml">
+            <field name="signer_ids" position="after">
+                <field name="sale_order_id" />
+            </field>
+            <filter name="group_by_state" position="after">
+                <filter
+                    string="Sale Order"
+                    name="group_by_sale_order_id"
+                    context="{'group_by': 'sale_order_id'}"
+                />
+            </filter>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sign_oca_request_form_view">
+        <field name="name">sign.oca.request.form (in sale_order_sign_oca)</field>
+        <field name="model">sign.oca.request</field>
+        <field name="inherit_id" ref="sign_oca.sign_oca_request_form_view" />
+        <field
+            name="groups_id"
+            eval="[(6, 0, [ref('sales_team.group_sale_salesman')])]"
+        />
+        <field name="arch" type="xml">
+            <field name="record_ref" position="before">
+                <field
+                    name="sale_order_id"
+                    readonly="1"
+                    attrs="{'invisible': [('sale_order_id','=',False)]}"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sign_oca_request_tree_view">
+        <field name="name">sign.oca.request.tree (in sale_order_sign_oca)</field>
+        <field name="model">sign.oca.request</field>
+        <field name="inherit_id" ref="sign_oca.sign_oca_request_tree_view" />
+        <field
+            name="groups_id"
+            eval="[(6, 0, [ref('sales_team.group_sale_salesman')])]"
+        />
+        <field name="arch" type="xml">
+            <field name="record_ref" position="before">
+                <field name="sale_order_id" optional="hide" />
+            </field>
+        </field>
+    </record>
+
+    <record id="sale_order_sign_template_action" model="ir.actions.act_window">
+        <field name="name">Sale Order Sign Templates</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sign.oca.template</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('model_id', '=', 'sale.order')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your quotation template
+            </p><p>
+                Use templates to create polished, professional quotes in minutes.
+                Send these quotes by email and let your customers sign online.
+                Use cross-selling and discounts to push and boost your sales.
+            </p>
+        </field>
+    </record>
+
+</odoo>

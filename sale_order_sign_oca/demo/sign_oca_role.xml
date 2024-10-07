@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 KMEE
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+
+    <record id="sign_role_sale_order_customer" model="sign.oca.role">
+        <field name="name">Sale Order Customer</field>
+        <field name="partner_type">expression</field>
+        <field name="expression_partner">${object.partner_id.id}</field>
+    </record>
+
+</odoo>
