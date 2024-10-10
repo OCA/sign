@@ -6,57 +6,59 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-10-10 13:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: maintenance_sign_oca
 #: model:ir.model,name:maintenance_sign_oca.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: maintenance_sign_oca
 #: model:ir.model,name:maintenance_sign_oca.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni configurazione"
 
 #. module: maintenance_sign_oca
 #: model_terms:ir.ui.view,arch_db:maintenance_sign_oca.sign_oca_request_search_view
 msgid "Equipment"
-msgstr ""
+msgstr "Attrezzatura"
 
 #. module: maintenance_sign_oca
 #: model:ir.model,name:maintenance_sign_oca.model_maintenance_equipment
 #: model:ir.model.fields,field_description:maintenance_sign_oca.field_sign_oca_request__maintenance_equipment_id
 msgid "Maintenance Equipment"
-msgstr ""
+msgstr "Attrezzatura manutenzione"
 
 #. module: maintenance_sign_oca
 #: model:ir.model.fields,field_description:maintenance_sign_oca.field_res_company__maintenance_equipment_sign_oca_template_id
 #: model:ir.model.fields,field_description:maintenance_sign_oca.field_res_config_settings__maintenance_equipment_sign_oca_template_id
 msgid "Sign Oca Template"
-msgstr ""
+msgstr "Firma modello OCA"
 
 #. module: maintenance_sign_oca
 #: model:ir.model,name:maintenance_sign_oca.model_sign_oca_request
 msgid "Sign Request"
-msgstr ""
+msgstr "Firma richiesta"
 
 #. module: maintenance_sign_oca
 #: model:ir.model.fields,field_description:maintenance_sign_oca.field_maintenance_equipment__sign_request_ids
 msgid "Sign Requests"
-msgstr ""
+msgstr "Firma richieste"
 
 #. module: maintenance_sign_oca
 #: model:ir.model.fields,field_description:maintenance_sign_oca.field_maintenance_equipment__sign_request_count
 msgid "Sign request count"
-msgstr ""
+msgstr "Conteggio firme richieste"
 
 #. module: maintenance_sign_oca
 #: model_terms:ir.ui.view,arch_db:maintenance_sign_oca.res_config_settings_view_form
 msgid "Template"
-msgstr ""
+msgstr "Modello"
