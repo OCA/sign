@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 - TODAY, Wesley Oliveira <wesley.oliveira@escodoo.com.br>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="sign_oca_request_search_view" model="ir.ui.view">
+        <field name="name">sign.oca.request.search (in project_task_sign_oca)</field>
+        <field name="model">sign.oca.request</field>
+        <field name="inherit_id" ref="sign_oca.sign_oca_request_search_view" />
+        <field name="arch" type="xml">
+            <field name="signer_ids" position="after">
+                <field name="project_id" groups="project.group_project_user" />
+                <field name="task_id" groups="project.group_project_user" />
+            </field>
+            <filter name="group_by_state" position="after">
+                <filter
+                    string="Project"
+                    name="group_by_project_id"
+                    context="{'group_by': 'project_id'}"
+                    groups="project.group_project_user"
+                />
+                <filter
+                    string="Task"
+                    name="group_by_task_id"
+                    context="{'group_by': 'task_id'}"
+                    groups="project.group_project_user"
+                />
+            </filter>
+        </field>
+    </record>
+
+    <record id="sign_oca_request_form_view" model="ir.ui.view">
+        <field name="name">sign.oca.request.form (in project_task_sign_oca)</field>
+        <field name="model">sign.oca.request</field>
+        <field name="inherit_id" ref="sign_oca.sign_oca_request_form_view" />
+        <field name="arch" type="xml">
+            <field name="record_ref" position="before">
+                <field
+                    name="project_id"
+                    readonly="1"
+                    attrs="{'invisible': [('project_id','=',False)]}"
+                    groups="project.group_project_user"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="sign_oca_request_tree_view" model="ir.ui.view">
+        <field name="name">sign.oca.request.tree (in project_task_sign_oca)</field>
+        <field name="model">sign.oca.request</field>
+        <field name="inherit_id" ref="sign_oca.sign_oca_request_tree_view" />
+        <field name="arch" type="xml">
+            <field name="record_ref" position="before">
+                <field
+                    name="project_id"
+                    optional="hide"
+                    groups="project.group_project_user"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>
