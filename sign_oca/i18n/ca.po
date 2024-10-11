@@ -17,6 +17,12 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: sign_oca
+#: code:addons/sign_oca/models/sign_oca_request.py:0
+#, python-format
+msgid "%(name)s (%(email)s) has sent the signed document."
+msgstr ""
+
+#. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_mail
 msgid ""
 ")\n"
@@ -187,8 +193,18 @@ msgid "Click on the field that you want to add"
 msgstr ""
 
 #. module: sign_oca
+#: model:ir.model,name:sign_oca.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__company_id
 msgid "Company"
+msgstr ""
+
+#. module: sign_oca
+#: model:ir.model,name:sign_oca.model_res_config_settings
+msgid "Config Settings"
 msgstr ""
 
 #. module: sign_oca
@@ -423,6 +439,16 @@ msgstr ""
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
 msgid "Future Activities"
+msgstr ""
+
+#. module: sign_oca
+#: model:ir.actions.act_window,name:sign_oca.sign_oca_general_settings_act_window
+msgid "General Settings"
+msgstr ""
+
+#. module: sign_oca
+#: model:ir.ui.menu,name:sign_oca.sign_oca_general_settings_menu
+msgid "General settings"
 msgstr ""
 
 #. module: sign_oca
@@ -737,6 +763,15 @@ msgid "Object"
 msgstr ""
 
 #. module: sign_oca
+#: model:ir.model.fields,help:sign_oca.field_res_company__sign_oca_send_sign_request_copy
+#: model:ir.model.fields,help:sign_oca.field_res_config_settings__sign_oca_send_sign_request_copy
+#: model_terms:ir.ui.view,arch_db:sign_oca.res_config_settings_view_form
+msgid ""
+"Once all signers have signed the request, a copy of the final document will "
+"be sent to each of them."
+msgstr ""
+
+#. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__page
 msgid "Page"
 msgstr ""
@@ -881,6 +916,12 @@ msgid "Send"
 msgstr ""
 
 #. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_res_company__sign_oca_send_sign_request_copy
+#: model:ir.model.fields,field_description:sign_oca.field_res_config_settings__sign_oca_send_sign_request_copy
+msgid "Send signers a copy of the final signed document"
+msgstr ""
+
+#. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_form_view
 msgid "Send to sign"
 msgstr ""
@@ -919,6 +960,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate__sign_now
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_kanban_view
 msgid "Sign Now"
+msgstr ""
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.res_config_settings_view_form
+msgid "Sign Oca"
 msgstr ""
 
 #. module: sign_oca
@@ -968,6 +1014,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:sign_oca.sign_oca_request_act_window
 #: model:ir.actions.act_window,name:sign_oca.sign_oca_request_log_act_window
 #: model:ir.actions.act_window,name:sign_oca.sign_oca_request_template_act_window
+#: model_terms:ir.ui.view,arch_db:sign_oca.res_config_settings_view_form
 #: model_terms:ir.ui.view,arch_db:sign_oca.view_partner_form
 #, python-format
 msgid "Sign Requests"
@@ -1042,6 +1089,12 @@ msgstr ""
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__signed_on
 msgid "Signed On"
+msgstr ""
+
+#. module: sign_oca
+#: code:addons/sign_oca/models/sign_oca_request.py:0
+#, python-format
+msgid "Signed document"
 msgstr ""
 
 #. module: sign_oca
