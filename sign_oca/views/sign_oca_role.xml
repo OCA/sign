@@ -57,10 +57,11 @@
         <field name="domain">[]</field>
         <field name="context">{}</field>
     </record>
-    <record model="ir.ui.menu" id="sign_oca_role_menu">
-        <field name="name">Roles</field>
-        <field name="parent_id" ref="sign_oca_settings_menu" />
-        <field name="action" ref="sign_oca_role_act_window" />
-        <field name="sequence" eval="16" />
-    </record>
+    <menuitem
+        name="Roles"
+        id="sign_oca_role_menu"
+        parent="sign_oca_settings_menu"
+        sequence="17"
+        action="sign_oca_role_act_window"
+    />
 </odoo>

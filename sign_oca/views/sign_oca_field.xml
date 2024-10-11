@@ -46,10 +46,11 @@
         <field name="domain">[]</field>
         <field name="context">{}</field>
     </record>
-    <record model="ir.ui.menu" id="sign_oca_field_menu">
-        <field name="name">Fields</field>
-        <field name="parent_id" ref="sign_oca_settings_menu" /> <!-- TODO -->
-        <field name="action" ref="sign_oca_field_act_window" />
-        <field name="sequence" eval="16" /> <!-- TODO -->
-    </record>
+    <menuitem
+        name="Fields"
+        id="sign_oca_field_menu"
+        parent="sign_oca_settings_menu"
+        sequence="16"
+        action="sign_oca_field_act_window"
+    />
 </odoo>

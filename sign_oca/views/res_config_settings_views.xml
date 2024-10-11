@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2024 ForgeFlow S.L. (http://www.forgeflow.com)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form (in sign_oca)</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div
+                    class="app_settings_block"
+                    data-string="Sign Oca"
+                    string="Sign Oca"
+                    data-key="sign_oca"
+                    groups="sign_oca.sign_oca_group_admin"
+                >
+                    <h2>Sign Requests</h2>
+                    <div class="row mt16 o_settings_container" id="sign_oca_requests">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="sign_oca_send_sign_request_copy" />
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="sign_oca_send_sign_request_copy" />
+                                <div class="text-muted">
+                                    Once all signers have signed the request, a copy of the final document will be sent to each of them.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+    <record id="sign_oca_general_settings_act_window" model="ir.actions.act_window">
+        <field name="name">General Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'sign_oca'}</field>
+    </record>
+    <menuitem
+        name="General settings"
+        id="sign_oca_general_settings_menu"
+        parent="sign_oca_settings_menu"
+        sequence="1"
+        action="sign_oca_general_settings_act_window"
+    />
+</odoo>
