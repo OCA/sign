@@ -447,6 +447,16 @@ msgid "Future Activities"
 msgstr ""
 
 #. module: sign_oca
+#: model:ir.actions.act_window,name:sign_oca.sign_oca_general_settings_act_window
+msgid "General Settings"
+msgstr ""
+
+#. module: sign_oca
+#: model:ir.ui.menu,name:sign_oca.sign_oca_general_settings_menu
+msgid "General settings"
+msgstr ""
+
+#. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_generate_multi_form_view
 msgid "Generate"
 msgstr ""
