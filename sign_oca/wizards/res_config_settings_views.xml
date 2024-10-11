@@ -33,4 +33,19 @@
             </xpath>
         </field>
     </record>
+    <record id="sign_oca_general_settings_act_window" model="ir.actions.act_window">
+        <field name="name">General Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'sign_oca'}</field>
+    </record>
+    <menuitem
+        name="General settings"
+        id="sign_oca_general_settings_menu"
+        parent="sign_oca_settings_menu"
+        sequence="1"
+        action="sign_oca_general_settings_act_window"
+    />
 </odoo>
