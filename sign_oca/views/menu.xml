@@ -11,10 +11,17 @@
         sequence="16"
         groups="sign_oca.sign_oca_group_user"
     />
-    <record model="ir.ui.menu" id="sign_oca_settings_menu">
+    <menuitem
+        name="Settings"
+        id="sign_oca_settings_menu"
+        parent="sign_oca_root_menu"
+        sequence="90"
+        groups="sign_oca.sign_oca_group_admin"
+    />
+    <!-- <record model="ir.ui.menu" id="sign_oca_settings_menu">
         <field name="name">Settings</field>
         <field name="sequence" eval="90" />
         <field name="parent_id" ref="sign_oca_root_menu" />
         <field name="groups_id" eval="[(6,0,[ref('sign_oca.sign_oca_group_admin')])]" />
-    </record>
+    </record> -->
 </odoo>
