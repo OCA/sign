@@ -6,71 +6,75 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-10-14 08:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: project_task_sign_oca
 #: model_terms:ir.ui.view,arch_db:project_task_sign_oca.res_config_settings_view_form
 msgid "<span class=\"o_form_label\">Task Sign</span>"
-msgstr ""
+msgstr "<span class=\"o_form_label\">Firma attività</span>"
 
 #. module: project_task_sign_oca
 #: model:ir.model,name:project_task_sign_oca.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: project_task_sign_oca
 #: model:ir.model,name:project_task_sign_oca.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni configurazione"
 
 #. module: project_task_sign_oca
 #: model_terms:ir.ui.view,arch_db:project_task_sign_oca.res_config_settings_view_form
 msgid ""
 "Define a template to enable automatic sign requests for the task customer"
 msgstr ""
+"Definire un modello per abilitare automaticamente la richiesta di firma per "
+"il cliente dell'attività"
 
 #. module: project_task_sign_oca
 #: model:ir.model.fields,field_description:project_task_sign_oca.field_sign_oca_request__project_id
 #: model_terms:ir.ui.view,arch_db:project_task_sign_oca.sign_oca_request_search_view
 msgid "Project"
-msgstr ""
+msgstr "Progetto"
 
 #. module: project_task_sign_oca
 #: model:ir.model.fields,field_description:project_task_sign_oca.field_res_company__project_task_sign_oca_template_id
 #: model:ir.model.fields,field_description:project_task_sign_oca.field_res_config_settings__project_task_sign_oca_template_id
 msgid "Project Task Sign Oca Template"
-msgstr ""
+msgstr "Modello OCA firma attività progetto"
 
 #. module: project_task_sign_oca
 #: model:ir.model,name:project_task_sign_oca.model_sign_oca_request
 msgid "Sign Request"
-msgstr ""
+msgstr "Firma richiesta"
 
 #. module: project_task_sign_oca
 #: model:ir.model.fields,field_description:project_task_sign_oca.field_project_task__sign_request_ids
 #: model_terms:ir.ui.view,arch_db:project_task_sign_oca.view_task_form2
 msgid "Sign Requests"
-msgstr ""
+msgstr "Firma richieste"
 
 #. module: project_task_sign_oca
 #: model_terms:ir.ui.view,arch_db:project_task_sign_oca.res_config_settings_view_form
 msgid "Sign Template"
-msgstr ""
+msgstr "Firma modello"
 
 #. module: project_task_sign_oca
 #: model:ir.model.fields,field_description:project_task_sign_oca.field_project_task__sign_request_count
 msgid "Sign request count"
-msgstr ""
+msgstr "Conteggio firme richieste"
 
 #. module: project_task_sign_oca
 #: model:ir.model,name:project_task_sign_oca.model_project_task
 #: model:ir.model.fields,field_description:project_task_sign_oca.field_sign_oca_request__task_id
 #: model_terms:ir.ui.view,arch_db:project_task_sign_oca.sign_oca_request_search_view
 msgid "Task"
-msgstr ""
+msgstr "Attività"
