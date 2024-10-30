@@ -21,7 +21,6 @@ from odoo.tools import float_repr
 
 
 class SignOcaRequest(models.Model):
-
     _name = "sign.oca.request"
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "Sign Request"
@@ -343,7 +342,6 @@ class SignOcaRequest(models.Model):
 
 
 class SignOcaRequestSigner(models.Model):
-
     _name = "sign.oca.request.signer"
     _inherit = "portal.mixin"
     _description = "Sign Request Value"
