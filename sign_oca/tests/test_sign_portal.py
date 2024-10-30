@@ -5,19 +5,19 @@ import base64
 
 import requests
 
-from odoo.modules.module import get_module_resource
 from odoo.tests.common import HttpCase, tagged
+from odoo.tools import misc
 
 
 @tagged("post_install", "-at_install")
-class TestSign(HttpCase):
+class TestSignPortal(HttpCase):
     @classmethod
     def setUpClass(cls):
         cls._super_send = requests.Session.send
         super().setUpClass()
         cls.data = base64.b64encode(
             open(
-                get_module_resource("sign_oca", "tests", "empty.pdf"),
+                misc.file_path(f"{cls.test_module}/tests/empty.pdf"),
                 "rb",
             ).read()
         )
@@ -62,14 +62,16 @@ class TestSign(HttpCase):
         self.assertEqual(
             base64.b64decode(self.data),
             self.url_open(
-                "/sign_oca/content/%s/%s"
-                % (self.request.signer_ids.id, self.request.signer_ids.access_token)
+                "/sign_oca/content/{}/{}".format(
+                    self.request.signer_ids.id, self.request.signer_ids.access_token
+                )
             ).content,
         )
         self.assertEqual(
             self.url_open(
-                "/sign_oca/info/%s/%s"
-                % (self.request.signer_ids.id, self.request.signer_ids.access_token),
+                "/sign_oca/info/{}/{}".format(
+                    self.request.signer_ids.id, self.request.signer_ids.access_token
+                ),
                 data="{}",
                 headers={"Content-Type": "application/json"},
             ).json()["result"]["items"][str(self.item["id"])],

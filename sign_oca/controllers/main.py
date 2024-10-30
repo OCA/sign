@@ -51,6 +51,11 @@ class PortalSign(CustomerPortal):
                 "partner": signer_sudo.partner_id,
                 "signer": signer_sudo,
                 "access_token": access_token,
+                "sign_oca_backend_info": {
+                    "access_token": access_token,
+                    "signer_id": signer_sudo.id,
+                    "lang": signer_sudo.partner_id.lang,
+                },
             },
         )
 

@@ -1,86 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates>
-    <t t-name="sign_oca.SignerMenuView">
-        <div class="o_ActivityMenuView dropdown" t-ref="root">
-            <a
-                class="o_ActivityMenuView_dropdownToggle dropdown-toggle o-no-caret o-dropdown--narrow"
-                t-att-aria-expanded="signerMenuView.isOpen ? 'true' : 'false'"
-                title="Sign Requests"
-                href="#"
-                role="button"
-                t-on-click="signerMenuView.onClickDropdownToggle"
-            >
-                <i class="fa fa-pencil" role="img" aria-label="Sign Requests" /> <span
-                    t-if="signerMenuView.counter > 0"
-                    class="o_ActivityMenuView_counter badge"
-                    t-esc="signerMenuView.counter"
+    <t t-name="sign_oca.SignerMenu">
+        <Dropdown
+            position="'bottom-end'"
+            beforeOpen.bind="onBeforeOpen"
+            autoOpen="false"
+            menuClass="discussSystray.menuClass"
+            class="discussSystray.class"
+        >
+        <t t-set-slot="toggler">
+            <i class="fa fa-pencil" role="img" aria-label="Sign Requests" />
+            <span
+                    t-if="store.signerCounter > 0"
+                    class="o-mail-ActivityMenu-counter badge rounded-pill"
+                    t-out="store.signerCounter"
                 />
-            </a>
-            <div
-                t-if="signerMenuView.isOpen"
-                class="o_ActivityMenuView_dropdownMenu o-dropdown-menu dropdown-menu-end show bg-view"
-                role="menu"
-            >
-                <div class="o_ActivityMenuView_activityGroups">
-                    <t t-if="signerMenuView.requestGroupViews.length === 0">
-                        <div
-                            class="o_ActivityMenuView_noActivity dropdown-item-text text-center d-flex justify-content-center"
-                        >
-                            <span>No requests to sign.</span>
-                        </div>
-                    </t>
-                    <t
-                        t-foreach="signerMenuView.requestGroupViews"
-                        t-as="requestGroupView"
-                        t-key="requestGroupView.localId"
-                        name="activityGroupLoop"
+        </t>
+        <t t-set-slot="default">
+            <div t-att-class="`${discussSystray.contentClass} o-mail-ActivityMenu`">
+                <div
+                        t-if="store.signerCounter === 0"
+                        class="o-mail-ActivityMenu-empty align-items-center text-muted p-2 opacity-50 d-flex justify-content-center"
                     >
-                        <div
-                            class="o_ActivityMenuView_activityGroup"
-                            t-att-data-res_model="requestGroupView.requestGroup.irModel.model"
-                            t-att-data-model_name="requestGroupView.requestGroup.irModel.name"
-                            t-att-data-active_field="requestGroupView.requestGroup.irModel.active_field"
-                            t-att-data-domain="requestGroupView.requestGroup.domain"
-                            data-filter='my'
-                            t-att-data-activity-group-view-local-id="requestGroupView.localId"
-                            t-on-click="requestGroupView.onClickFilterButton"
+                    <span>No requests to sign.</span>
+                </div>
+                <div class="d-flex flex-column list-group-flush" name="activityGroups">
+                    <t
+                            t-foreach="store.signerGroups"
+                            t-as="group"
+                            t-key="group_index"
+                            name="activityGroupLoop"
                         >
-                            <div
-                                t-if="requestGroupView.requestGroup.irModel.iconUrl"
-                                class="o_ActivityMenuView_activityGroupIconContainer"
+                        <div
+                                class="o-mail-ActivityGroup list-group-item list-group-item-action d-flex p-2 cursor-pointer"
+                                t-att-data-model_name="group.model"
+                                t-on-click="() => this.onClickFilterButton(group)"
                             >
-                                <img
-                                    t-att-src="requestGroupView.requestGroup.irModel.iconUrl"
-                                    alt="Requests"
-                                />
-                            </div>
-                            <div class="o_ActivityMenuView_activityGroupInfo">
-                                <div class="o_ActivityMenuView_activityGroupTitle">
-                                    <span class="o_ActivityMenuView_activityGroupName">
-                                        <t
-                                            t-esc="requestGroupView.requestGroup.irModel.name"
-                                        />
-                                    </span>
-                                </div>
-                                <div>
-                                    <button
-                                        t-if="requestGroupView.requestGroup.pending_count"
-                                        type="button"
-                                        class="btn btn-link o_activity_filter_button mr16"
-                                        t-att-data-res_model="requestGroupView.requestGroup.irModel.model"
-                                        t-att-data-model_name="requestGroupView.requestGroup.irModel.name"
-                                        data-filter="pending_count"
-                                    >
-                                        <t
-                                            t-esc="requestGroupView.requestGroup.pending_count"
-                                        />
-                                        Pending
-                                    </button>
+                            <img alt="Requests" t-att-src="group.icon" />
+                            <div class="flex-grow-1 overflow-hidden">
+                                <div
+                                        class="d-flex px-2"
+                                        name="activityTitle"
+                                        t-out="group.name"
+                                    />
+                                <div class="d-flex">
                                     <span
-                                        t-if="!requestGroupView.requestGroup.pending_count"
-                                        class="o_no_activity mr16"
-                                    >
-                                        0 Pending
+                                            t-attf-class="#{group.total_records ? '' : 'text-muted'} py-0 px-2"
+                                        >
+                                        <t t-out="group.total_records" /> Pending
                                     </span>
                                 </div>
                             </div>
@@ -88,6 +55,7 @@
                     </t>
                 </div>
             </div>
-        </div>
+        </t>
+        </Dropdown>
     </t>
 </templates>

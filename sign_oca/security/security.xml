@@ -37,6 +37,19 @@
         <field name="perm_write" eval="0" />
         <field name="perm_unlink" eval="0" />
     </record>
+    <!-- Company Record Rules -->
+    <record id="sign_oca_request_rule_company" model="ir.rule">
+        <field name="name">Sign Request Company</field>
+        <field name="model_id" ref="model_sign_oca_request" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="sign_oca_request_signer_rule_company" model="ir.rule">
+        <field name="name">Sign Request Signer Company</field>
+        <field name="model_id" ref="model_sign_oca_request_signer" />
+        <field
+            name="domain_force"
+        >[('request_id.company_id', 'in', company_ids)]</field>
+    </record>
     <!-- User Record Rules -->
     <record id="sign_oca_request_rule_user_read" model="ir.rule">
         <field name="name">Sign Request user: read</field>

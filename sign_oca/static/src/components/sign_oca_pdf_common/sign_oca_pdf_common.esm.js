@@ -1,14 +1,16 @@
 /** @odoo-module QWeb **/
+import {_t} from "@web/core/l10n/translation";
 import {Component, onMounted, onWillStart, onWillUnmount, useRef} from "@odoo/owl";
 import {Dialog} from "@web/core/dialog/dialog";
-import {_t} from "@web/core/l10n/translation";
 import {renderToString} from "@web/core/utils/render";
+import {useService} from "@web/core/utils/hooks";
 
 export default class SignOcaPdfCommon extends Component {
     setup() {
         super.setup(...arguments);
+        this.model = "sign.oca.template";
+        this.orm = useService("orm");
         this.field_template = "sign_oca.sign_iframe_field";
-        console.log(this.props);
         this.pdf_url = this.getPdfUrl();
         this.viewer_url = "/web/static/lib/pdfjs/web/viewer.html?file=" + this.pdf_url;
         this.iframe = useRef("sign_oca_iframe");
@@ -30,14 +32,10 @@ export default class SignOcaPdfCommon extends Component {
         });
     }
     getPdfUrl() {
-        return "/web/content/" + this.props.model + "/" + this.props.res_id + "/data";
+        return "/web/content/" + this.model + "/" + this.res_id + "/data";
     }
-    async willStart() {
-        this.info = await this.env.services.rpc({
-            model: this.props.model,
-            method: "get_info",
-            args: [[this.props.res_id]],
-        });
+    willStart() {
+        this.info = this.orm.call(this.model, "get_info", [[this.res_id]]);
     }
     waitIframeLoaded() {
         var error = this.iframe.el.contentDocument.getElementById("errorWrapper");
@@ -92,7 +90,7 @@ export default class SignOcaPdfCommon extends Component {
             .getElementsByTagName("head")[0]
             .append(iframeCss);
         this.iframe.el.contentDocument.getElementsByTagName("head")[0].append(iframeJs);
-        _.each(this.info.items, (item) => {
+        $.each(this.info.items, (item) => {
             this.postIframeField(item);
         });
         $(this.iframe.el.contentDocument.getElementsByClassName("page")[0]).append(
@@ -123,3 +121,4 @@ export default class SignOcaPdfCommon extends Component {
     }
 }
 SignOcaPdfCommon.template = "sign_oca.SignOcaPdfCommon";
+SignOcaPdfCommon.props = [];

@@ -2,12 +2,14 @@
 
 import SignOcaPdfCommon from "../sign_oca_pdf_common/sign_oca_pdf_common.esm.js";
 import {registry} from "@web/core/registry";
-const SignRegistry = registry.category("sign_oca");
 import {renderToString} from "@web/core/utils/render";
+const SignRegistry = registry.category("sign_oca");
+import {useService} from "@web/core/utils/hooks";
 
 export default class SignOcaPdf extends SignOcaPdfCommon {
     setup() {
         super.setup(...arguments);
+        this.orm = useService("orm");
         this.to_sign = false;
     }
     async willStart() {
@@ -63,15 +65,15 @@ export default class SignOcaPdf extends SignOcaPdfCommon {
     }
     async signOca() {
         const position = await this.getLocation();
-        await this.env.services.rpc({
-            model: this.props.model,
-            method: "action_sign",
-            args: [[this.props.res_id], this.info.items],
-            kwargs: {
+        await this.orm.call(
+            this.model,
+            "action_sign",
+            [[this.res_id], this.info.items],
+            {
                 latitude: position && position.coords && position.coords.latitude,
                 longitude: position && position.coords && position.coords.longitude,
-            },
-        });
+            }
+        );
         this.props.trigger("history_back");
     }
     _trigger_up(ev) {
@@ -127,3 +129,7 @@ export default class SignOcaPdf extends SignOcaPdfCommon {
         this.checkToSign();
     }
 }
+SignOcaPdf.props = {
+    to_sign: {type: Boolean, optional: true},
+};
+registry.category("actions").add("sign_oca", SignOcaPdf);

@@ -51,8 +51,6 @@ class SignOcaRequest(models.Model):
         inverse_name="request_id",
         auto_join=True,
         copy=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
         string="Signers",
     )
     signer_id = fields.Many2one(
@@ -385,10 +383,7 @@ class SignOcaRequestSigner(models.Model):
     def _compute_access_url(self):
         result = super()._compute_access_url()
         for record in self:
-            record.access_url = "/sign_oca/document/%s/%s" % (
-                record.id,
-                record.access_token,
-            )
+            record.access_url = f"/sign_oca/document/{record.id}/{record.access_token}"
         return result
 
     @api.onchange("role_id")
@@ -613,7 +608,9 @@ class SignOcaRequestSigner(models.Model):
 
     def _compute_hash(self, previous_hash):
         """Computes the hash of the browse_record given as self, based on the hash
-        of the previous record in the company's securisation sequence given as parameter"""
+        of the previous record in the company's securisation sequence given as
+        parameter
+        """
         self.ensure_one()
         hash_string = sha256((previous_hash + self._string_to_hash()).encode("utf-8"))
         return hash_string.hexdigest()

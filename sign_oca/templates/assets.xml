@@ -2,23 +2,32 @@
 <odoo>
     <template id="portal_sign_document">
         <t t-call="web.layout">
+            <t t-set="html_data" t-value="{'lang': sign_oca_backend_info['lang']}" />
             <t t-set="head">
                 <meta
                     name="viewport"
                     content="width=device-width, initial-scale=1, user-scalable=no"
                 />
+                <input
+                    type="hidden"
+                    name="csrf_token"
+                    t-att-value="request.csrf_token()"
+                />
                 <t t-call-assets="web.assets_frontend" t-js="false" />
                 <t t-call-assets="web.assets_frontend" t-css="false" />
                 <script type="text/javascript">
-                    odoo.define("sign.document_portal", function(require) {
-                        var ajax = require("web.ajax");
-                        var document_signing = require("@sign_oca/components/sign_oca_pdf_portal/sign_oca_pdf_portal.esm");
-                        document_signing.initDocumentToSign(<t
-                        t-out="json.dumps({'access_token': access_token, 'signer_id': signer.id})"
+                    odoo.define("sign.document_portal", ["@sign_oca/components/sign_oca_pdf_portal/sign_oca_pdf_portal.esm"], function (require) {
+                    var { initDocumentToSign } = require("@sign_oca/components/sign_oca_pdf_portal/sign_oca_pdf_portal.esm");
+                    initDocumentToSign(document, <t
+                        t-out="json.dumps(sign_oca_backend_info)"
                     />);
                     });
                 </script>
             </t>
+            <t t-set="body">
+            </t>
+            <body class="o_web_client o_portal_sign_document_body">
+            </body>
         </t>
     </template>
     <template id="portal_sign_document_signed">

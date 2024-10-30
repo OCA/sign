@@ -1,31 +1,27 @@
 /** @odoo-module **/
 
-const {App, mount, useRef} = owl;
+const {App, whenReady, useRef} = owl;
+import {_t} from "@web/core/l10n/translation";
+import {makeEnv, startServices} from "@web/env";
 import SignOcaPdf from "../sign_oca_pdf/sign_oca_pdf.esm.js";
-import {makeEnv} from "@web/env";
-import {renderToString} from "@web/core/utils/render";
-import {session} from "@web/session";
 import {templates} from "@web/core/assets";
+import {useService} from "@web/core/utils/hooks";
 
 export class SignOcaPdfPortal extends SignOcaPdf {
     setup() {
         super.setup(...arguments);
+        this.rpc = useService("rpc");
         this.signOcaFooter = useRef("sign_oca_footer");
+        this.signer_id = this.props.signer_id;
+        this.access_token = this.props.access_token;
     }
     async willStart() {
-        this.info = await this.env.services.rpc({
-            route:
-                "/sign_oca/info/" +
-                this.props.signer_id +
-                "/" +
-                this.props.access_token,
-        });
-    }
-
-    getPdfUrl() {
-        return (
-            "/sign_oca/content/" + this.props.signer_id + "/" + this.props.access_token
+        this.info = await this.rpc(
+            "/sign_oca/info/" + this.signer_id + "/" + this.access_token
         );
+    }
+    getPdfUrl() {
+        return "/sign_oca/content/" + this.signer_id + "/" + this.access_token;
     }
     checkToSign() {
         this.to_sign = this.to_sign_update;
@@ -41,49 +37,43 @@ export class SignOcaPdfPortal extends SignOcaPdf {
     }
     async _onClickSign() {
         const position = await this.getLocation();
-        this.env.services
-            .rpc({
-                route:
-                    "/sign_oca/sign/" +
-                    this.props.signer_id +
-                    "/" +
-                    this.props.access_token,
-                params: {
-                    items: this.info.items,
-                    latitude: position && position.coords && position.coords.latitude,
-                    longitude: position && position.coords && position.coords.longitude,
-                },
-            })
-            .then((action) => {
-                // As we are on frontend env, it is not possible to use do_action(), so we
-                // redirect to the corresponding URL or reload the page if the action is not
-                // an url.
-                if (action.type === "ir.actions.act_url") {
-                    window.location = action.url;
-                } else {
-                    window.location.reload();
-                }
-            });
+        this.rpc("/sign_oca/sign/" + this.signer_id + "/" + this.access_token, {
+            items: this.info.items,
+            latitude: position && position.coords && position.coords.latitude,
+            longitude: position && position.coords && position.coords.longitude,
+        }).then((action) => {
+            // As we are on frontend env, it is not possible to use do_action(), so we
+            // redirect to the corresponding URL or reload the page if the action is not
+            // an url.
+            if (action.type === "ir.actions.act_url") {
+                window.location = action.url;
+            } else {
+                window.location.reload();
+            }
+        });
     }
 }
 SignOcaPdfPortal.template = "sign_oca.SignOcaPdfPortal";
 SignOcaPdfPortal.props = {
-    access_token: {type: String},
-    signer_id: {type: Number},
+    access_token: String,
+    signer_id: Number,
 };
-export function initDocumentToSign(properties) {
-    return session.session_bind(session.origin).then(function () {
-        return Promise.all([
-            session.load_translations(["web", "portal", "sign_oca"]),
-        ]).then(async function () {
-            var app = new App(null, {templates, test: true});
-            renderToString.app = app;
-            const env = makeEnv();
-            mount(SignOcaPdfPortal, document.body, {
-                env,
-                props: properties,
-                templates: templates,
-            });
-        });
+
+export async function initDocumentToSign(document, sign_oca_backend_info) {
+    await whenReady();
+    const env = makeEnv();
+    await startServices(env);
+    const app = new App(SignOcaPdfPortal, {
+        templates,
+        env: env,
+        dev: env.debug,
+        props: {
+            access_token: sign_oca_backend_info.access_token,
+            signer_id: sign_oca_backend_info.signer_id,
+        },
+        translateFn: _t,
+        translatableAttributes: ["data-tooltip"],
     });
+    return app.mount(document.body);
 }
+export default {SignOcaPdfPortal, initDocumentToSign};

@@ -43,10 +43,7 @@
             "sign_oca/static/src/elements/signature.esm.js",
             "sign_oca/static/src/elements/check.esm.js",
             "sign_oca/static/src/components/sign_oca_pdf/sign_oca_pdf.esm.js",
-            "sign_oca/static/src/components/sign_oca_pdf/sign_oca_pdf_action.esm.js",
-            "sign_oca/static/src/components/"
-            "sign_oca_pdf_common/sign_oca_pdf_common_action.esm.js",
-            "sign_oca/static/src/js/*.js",
+            "sign_oca/static/src/components/" "sign_oca/static/src/js/*.js",
             "sign_oca/static/src/xml/*.xml",
         ],
         "web.assets_frontend": [
