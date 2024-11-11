@@ -393,6 +393,7 @@ class SignOcaRequestSigner(models.Model):
                 not item.signed_on and item.partner_id == user.partner_id
             )
 
+    @api.depends("access_token")
     def _compute_access_url(self):
         result = super()._compute_access_url()
         for record in self:
