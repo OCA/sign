@@ -1,29 +1,29 @@
 /** @odoo-module QWeb **/
 
 import {ControlPanel} from "@web/search/control_panel/control_panel";
-import {Dialog} from "@web/core/dialog/dialog";
+import {SignOcaConfigureFieldDialog} from "./sign_oca_configure_field_dialog.esm";
 import {isMobileOS} from "@web/core/browser/feature_detection";
 import SignOcaPdfCommon from "../sign_oca_pdf_common/sign_oca_pdf_common.esm.js";
 import {_t} from "@web/core/l10n/translation";
 import {registry} from "@web/core/registry";
 import {renderToString} from "@web/core/utils/render";
-
-export class SignOcaConfigureControlPanel extends ControlPanel {}
-SignOcaConfigureControlPanel.template = "sign_oca.SignOcaConfigureControlPanel";
 export default class SignOcaConfigure extends SignOcaPdfCommon {
     setup() {
         this.res_id =
             this.props.action.params.res_id || this.props.action.context.active_id;
+        this.model =
+            this.props.action.params.res_model ||
+            this.props.action.context.active_model;
         super.setup(...arguments);
         this.field_template = "sign_oca.sign_iframe_field_configure";
         this.contextMenu = undefined;
-        this.isMobile = isMobileOS;
+        this.isMobile = isMobileOS();
     }
     postIframeFields() {
         super.postIframeFields(...arguments);
         $.each(
             this.iframe.el.contentDocument.getElementsByClassName("page"),
-            (page) => {
+            (index, page) => {
                 page.addEventListener("mousedown", (e) => {
                     e.preventDefault();
                     e.stopPropagation();
@@ -55,7 +55,10 @@ export default class SignOcaConfigure extends SignOcaPdfCommon {
             "click",
             (ev) => {
                 if (this.contextMenu && !this.creatingItem) {
-                    if (this.contextMenu[0].contains(ev.target)) {
+                    if (
+                        this.contextMenu[0].contains(ev.target) &&
+                        ev.target.dataset.page
+                    ) {
                         this.creatingItem = true;
                         this.orm
                             .call(this.model, "add_item", [
@@ -107,82 +110,40 @@ export default class SignOcaConfigure extends SignOcaPdfCommon {
                 }
                 var target = e.currentTarget;
                 // TODO: Open Dialog for configuration
-                var dialog = new Dialog(this, {
+                this.dialogService.add(SignOcaConfigureFieldDialog, {
                     title: _t("Edit field"),
-                    $content: $(
-                        renderToString("sign_oca.sign_oca_field_edition", {
-                            item,
-                            info: this.info,
-                        })
-                    ),
-
-                    buttons: [
-                        {
-                            text: _t("Save"),
-                            classes: "btn-primary",
-                            close: true,
-                            click: () => {
-                                var field_id = parseInt(
-                                    dialog.$el.find('select[name="field_id"]').val(),
-                                    10
-                                );
-                                var role_id = parseInt(
-                                    dialog.$el.find('select[name="role_id"]').val(),
-                                    10
-                                );
-                                var required = dialog.$el
-                                    .find("input[name='required']")
-                                    .prop("checked");
-                                var placeholder = dialog.$el
-                                    .find("input[name='placeholder']")
-                                    .val();
-                                this.orm
-                                    .call(this.model, "set_item_data", [
-                                        [this.res_id],
-                                        item.id,
-                                        {
-                                            field_id,
-                                            role_id,
-                                            required,
-                                            placeholder,
-                                        },
-                                    ])
-                                    .then(() => {
-                                        item.field_id = field_id;
-                                        item.name = _.filter(
-                                            this.info.fields,
-                                            (field) => field.id === field_id
-                                        )[0].name;
-                                        item.role_id = role_id;
-                                        item.required = required;
-                                        item.placeholder = placeholder;
-                                        target.remove();
-                                        this.postIframeField(item);
-                                    });
+                    item,
+                    info: this.info,
+                    confirm: async (field_id, role_id, required, placeholder) => {
+                        await this.orm.call(this.model, "set_item_data", [
+                            [this.res_id],
+                            item.id,
+                            {
+                                field_id,
+                                role_id,
+                                required,
+                                placeholder,
                             },
-                        },
-                        {
-                            text: _t("Delete"),
-                            classes: "btn-danger",
-                            close: true,
-                            click: () => {
-                                this.orm
-                                    .call(this.model, "delete_item", [
-                                        [this.res_id],
-                                        item.id,
-                                    ])
-                                    .then(() => {
-                                        delete this.info.items[item.id];
-                                        target.remove();
-                                    });
-                            },
-                        },
-                        {
-                            text: _t("Cancel"),
-                            close: true,
-                        },
-                    ],
-                }).open();
+                        ]);
+                        item.field_id = field_id;
+                        item.name = this.info.fields.filter(
+                            (field) => field.id === field_id
+                        )[0].name;
+                        item.role_id = role_id;
+                        item.required = required;
+                        item.placeholder = placeholder;
+                        target.remove();
+                        this.postIframeField(item);
+                    },
+                    delete: async () => {
+                        await this.orm.call(this.model, "delete_item", [
+                            [this.res_id],
+                            item.id,
+                        ]);
+                        delete this.info.items[item.id];
+                        target.remove();
+                    },
+                });
             },
             true
         );
@@ -245,7 +206,7 @@ export default class SignOcaConfigure extends SignOcaPdfCommon {
                 {once: true}
             );
         });
-        $.each(resizeItems, (resizeItem) => {
+        $.each(resizeItems, (index, resizeItem) => {
             resizeItem.addEventListener(startFunction, (mousedownEvent) => {
                 mousedownEvent.preventDefault();
                 var parentPage = mousedownEvent.target.parentElement.parentElement;
@@ -354,6 +315,7 @@ export default class SignOcaConfigure extends SignOcaPdfCommon {
     }
 }
 SignOcaConfigure.template = "sign_oca.SignOcaConfigure";
+SignOcaConfigure.components = {...SignOcaPdfCommon.components, ControlPanel};
 SignOcaConfigure.props = [];
 SignOcaConfigure.props = {
     action: Object,

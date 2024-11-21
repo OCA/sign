@@ -41,10 +41,12 @@ const textSignOca = {
                 return true;
             }
             ev.preventDefault();
-            var next_items = _.filter(
-                parent.info.items,
-                (i) => i.tabindex > item.tabindex && i.role_id === parent.info.role_id
-            ).sort((a, b) => a.tabindex - b.tabindex);
+            var next_items = Object.values(parent.info.items)
+                .filter(
+                    (i) =>
+                        i.tabindex > item.tabindex && i.role_id === parent.info.role_id
+                )
+                .sort((a, b) => a.tabindex - b.tabindex);
             if (next_items.length > 0) {
                 ev.currentTarget.blur();
                 parent.items[next_items[0].id].dispatchEvent(

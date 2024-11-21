@@ -36,7 +36,7 @@ export function patchControllerSignOca() {
         async _actionSignOcaTemplateGenerateMulti() {
             var resIds = "";
             if (this.getSelectedResIds) resIds = await this.getSelectedResIds();
-            else resIds = this.model.root.data.id;
+            else resIds = this.props.resId;
             this.action.doAction(
                 "sign_oca.sign_oca_template_generate_multi_act_window",
                 {
@@ -50,19 +50,17 @@ export function patchControllerSignOca() {
                 }
             );
         },
-        getActionMenuItems() {
-            const menuItems = this._super.apply(this, arguments);
-            const otherActionItems = menuItems.other;
+        get actionMenuItems() {
+            const menuItems = super.actionMenuItems;
             if (menuItems && this.showSignOcaTemplateGenerateMulti) {
-                otherActionItems.push({
+                menuItems.action.push({
                     key: "sign",
                     description: _t("Sign from template"),
                     callback: () => this._actionSignOcaTemplateGenerateMulti(),
+                    icon: "fa fa-pencil",
                 });
             }
-            return Object.assign({}, this.props.info.actionMenus, {
-                other: otherActionItems,
-            });
+            return menuItems;
         },
     };
 }

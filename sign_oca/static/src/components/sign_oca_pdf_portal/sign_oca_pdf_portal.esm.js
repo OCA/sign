@@ -6,14 +6,15 @@ import {makeEnv, startServices} from "@web/env";
 import SignOcaPdf from "../sign_oca_pdf/sign_oca_pdf.esm.js";
 import {templates} from "@web/core/assets";
 import {useService} from "@web/core/utils/hooks";
+import {MainComponentsContainer} from "@web/core/main_components_container";
 
 export class SignOcaPdfPortal extends SignOcaPdf {
     setup() {
-        super.setup(...arguments);
         this.rpc = useService("rpc");
         this.signOcaFooter = useRef("sign_oca_footer");
         this.signer_id = this.props.signer_id;
         this.access_token = this.props.access_token;
+        super.setup(...arguments);
     }
     async willStart() {
         this.info = await this.rpc(
@@ -58,11 +59,12 @@ SignOcaPdfPortal.props = {
     access_token: String,
     signer_id: Number,
 };
+SignOcaPdfPortal.components = {MainComponentsContainer};
 
 export async function initDocumentToSign(document, sign_oca_backend_info) {
-    await whenReady();
     const env = makeEnv();
     await startServices(env);
+    await whenReady();
     const app = new App(SignOcaPdfPortal, {
         templates,
         env: env,
@@ -74,6 +76,6 @@ export async function initDocumentToSign(document, sign_oca_backend_info) {
         translateFn: _t,
         translatableAttributes: ["data-tooltip"],
     });
-    return app.mount(document.body);
+    await app.mount(document.body);
 }
 export default {SignOcaPdfPortal, initDocumentToSign};

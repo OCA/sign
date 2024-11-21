@@ -389,7 +389,7 @@
         <field name="name">Sign Requests</field>
         <field name="res_model">sign.oca.request</field>
         <field name="view_mode">kanban,tree,form</field>
-        <field name="domain">[('template_id', '=', id)]</field>
+        <field name="domain">[('template_id', '=', active_id)]</field>
         <field name="context">{}</field>
     </record>
 

@@ -34,7 +34,7 @@
         <field name="name">Sign Requests</field>
         <field name="res_model">sign.oca.request.log</field>
         <field name="view_mode">tree</field>
-        <field name="domain">[("request_id", "=", id)]</field>
+        <field name="domain">[("request_id", "=", active_id)]</field>
         <field name="context">{}</field>
     </record>
 

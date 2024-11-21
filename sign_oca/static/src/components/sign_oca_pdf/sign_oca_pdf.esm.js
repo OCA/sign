@@ -119,7 +119,7 @@ export default class SignOcaPdf extends SignOcaPdfCommon {
     }
     checkFilledAll() {
         this.to_sign_update =
-            _.filter(this.info.items, (item) => {
+            Object.values(this.info.items).filter((item) => {
                 return (
                     item.required &&
                     item.role_id === this.info.role_id &&
@@ -132,4 +132,3 @@ export default class SignOcaPdf extends SignOcaPdfCommon {
 SignOcaPdf.props = {
     to_sign: {type: Boolean, optional: true},
 };
-registry.category("actions").add("sign_oca", SignOcaPdf);

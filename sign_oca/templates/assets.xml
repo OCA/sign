@@ -13,8 +13,8 @@
                     name="csrf_token"
                     t-att-value="request.csrf_token()"
                 />
-                <t t-call-assets="web.assets_frontend" t-js="false" />
-                <t t-call-assets="web.assets_frontend" t-css="false" />
+                <t t-call-assets="oca_sign.assets_frontend_sign" t-js="false" />
+                <t t-call-assets="oca_sign.assets_frontend_sign" t-css="false" />
                 <script type="text/javascript">
                     odoo.define("sign.document_portal", ["@sign_oca/components/sign_oca_pdf_portal/sign_oca_pdf_portal.esm"], function (require) {
                     var { initDocumentToSign } = require("@sign_oca/components/sign_oca_pdf_portal/sign_oca_pdf_portal.esm");
@@ -33,8 +33,7 @@
     <template id="portal_sign_document_signed">
         <t t-call="web.layout">
             <t t-set="head">
-                <t t-call-assets="web.assets_common" t-js="false" />
-                <t t-call-assets="web.assets_frontend" t-js="false" />
+                <t t-call-assets="oca_sign.assets_frontend_sign" t-js="false" />
             </t>
 
             <div class="container">
