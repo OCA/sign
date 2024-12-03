@@ -29,13 +29,6 @@ msgid ""
 msgstr ""
 
 #. module: sign_oca
-#. odoo-javascript
-#: code:addons/sign_oca/static/src/xml/systray.xml:0
-#, python-format
-msgid "0 Pending"
-msgstr ""
-
-#. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_form_view
 msgid "<span class=\"o_stat_text\"> Signed</span>"
 msgstr ""
@@ -167,7 +160,7 @@ msgstr ""
 
 #. module: sign_oca
 #. odoo-javascript
-#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.esm.js:0
+#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request_log__action__cancel
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_form_view
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_generate_form_view
@@ -312,7 +305,7 @@ msgstr ""
 
 #. module: sign_oca
 #. odoo-javascript
-#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.esm.js:0
+#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
 #, python-format
 msgid "Delete"
 msgstr ""
@@ -387,7 +380,7 @@ msgstr ""
 
 #. module: sign_oca
 #. odoo-javascript
-#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
+#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__field_id
 #, python-format
 msgid "Field"
@@ -420,7 +413,7 @@ msgstr ""
 
 #. module: sign_oca
 #. odoo-javascript
-#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
+#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
 #, python-format
 msgid "Filled by"
 msgstr ""
@@ -604,20 +597,6 @@ msgid "Item"
 msgstr ""
 
 #. module: sign_oca
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_field____last_update
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request____last_update
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log____last_update
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer____last_update
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_role____last_update
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template____last_update
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate____last_update
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_multi____last_update
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_signer____last_update
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_field__write_uid
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__write_uid
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__write_uid
@@ -672,12 +651,6 @@ msgid "Longitude"
 msgstr ""
 
 #. module: sign_oca
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_main_attachment_id
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__message_main_attachment_id
-msgid "Main Attachment"
-msgstr ""
-
-#. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_pdf/sign_oca_pdf.xml:0
 #, python-format
@@ -704,10 +677,14 @@ msgstr ""
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__model
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__model
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__model_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_multi__model
 msgid "Model"
+msgstr ""
+
+#. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__model
+msgid "Model name"
 msgstr ""
 
 #. module: sign_oca
@@ -839,7 +816,7 @@ msgstr ""
 
 #. module: sign_oca
 #. odoo-javascript
-#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
+#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__placeholder
 #, python-format
 msgid "Placeholder"
@@ -897,7 +874,7 @@ msgstr ""
 
 #. module: sign_oca
 #. odoo-javascript
-#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
+#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__required
 #, python-format
 msgid "Required"
@@ -938,7 +915,7 @@ msgstr ""
 
 #. module: sign_oca
 #. odoo-javascript
-#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.esm.js:0
+#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
 #, python-format
 msgid "Save"
 msgstr ""

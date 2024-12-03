@@ -33,13 +33,6 @@ msgstr ""
 "                ha richiesto la sua firma su un documento."
 
 #. module: sign_oca
-#. odoo-javascript
-#: code:addons/sign_oca/static/src/xml/systray.xml:0
-#, python-format
-msgid "0 Pending"
-msgstr "0 in attesa"
-
-#. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_form_view
 msgid "<span class=\"o_stat_text\"> Signed</span>"
 msgstr "<span class=\"o_stat_text\"> Firmato</span>"
@@ -182,7 +175,7 @@ msgstr ""
 
 #. module: sign_oca
 #. odoo-javascript
-#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.esm.js:0
+#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request_log__action__cancel
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_form_view
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_generate_form_view
@@ -327,7 +320,7 @@ msgstr "Partner predefinito"
 
 #. module: sign_oca
 #. odoo-javascript
-#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.esm.js:0
+#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
 #, python-format
 msgid "Delete"
 msgstr "Cancella"
@@ -402,7 +395,7 @@ msgstr "Espressione"
 
 #. module: sign_oca
 #. odoo-javascript
-#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
+#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__field_id
 #, python-format
 msgid "Field"
@@ -435,7 +428,7 @@ msgstr "Nome file"
 
 #. module: sign_oca
 #. odoo-javascript
-#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
+#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
 #, python-format
 msgid "Filled by"
 msgstr "Compilato da"
@@ -629,20 +622,6 @@ msgid "Item"
 msgstr "Elemento"
 
 #. module: sign_oca
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_field____last_update
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request____last_update
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log____last_update
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer____last_update
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_role____last_update
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template____last_update
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate____last_update
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_multi____last_update
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_signer____last_update
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_field__write_uid
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__write_uid
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__write_uid
@@ -697,12 +676,6 @@ msgid "Longitude"
 msgstr ""
 
 #. module: sign_oca
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_main_attachment_id
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__message_main_attachment_id
-msgid "Main Attachment"
-msgstr "Allegato principale"
-
-#. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_pdf/sign_oca_pdf.xml:0
 #, python-format
@@ -729,11 +702,15 @@ msgstr "Messaggi"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__model
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__model
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__model_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_multi__model
 msgid "Model"
 msgstr "Modello"
+
+#. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__model
+msgid "Model name"
+msgstr ""
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__my_activity_date_deadline
@@ -866,7 +843,7 @@ msgstr "In attesa"
 
 #. module: sign_oca
 #. odoo-javascript
-#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
+#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__placeholder
 #, python-format
 msgid "Placeholder"
@@ -924,7 +901,7 @@ msgstr "Richieste"
 
 #. module: sign_oca
 #. odoo-javascript
-#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
+#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__required
 #, python-format
 msgid "Required"
@@ -965,7 +942,7 @@ msgstr "Ruoli"
 
 #. module: sign_oca
 #. odoo-javascript
-#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.esm.js:0
+#: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
 #, python-format
 msgid "Save"
 msgstr "Salva"
@@ -1391,3 +1368,13 @@ msgstr "Verrà cancellata la richiesta e tutti gli accessi. Si è sicuri?"
 #: model_terms:ir.ui.view,arch_db:sign_oca.portal_sign_document_signed
 msgid "has already been signed"
 msgstr "è già stato firmato"
+
+#, python-format
+#~ msgid "0 Pending"
+#~ msgstr "0 in attesa"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
+
+#~ msgid "Main Attachment"
+#~ msgstr "Allegato principale"
