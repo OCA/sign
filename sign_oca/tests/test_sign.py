@@ -5,7 +5,7 @@ import base64
 
 import requests
 
-from odoo.tests.common import Form
+from odoo.tests import Form
 from odoo.tools import misc
 
 from odoo.addons.base.tests.common import BaseCommon

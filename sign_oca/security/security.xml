@@ -4,8 +4,8 @@
     <record id="sign_oca_module_category" model="ir.module.category">
         <field name="name">Sign</field>
     </record>
-     <!-- Access Groups -->
-     <record id="sign_oca_group_user" model="res.groups">
+    <!-- Access Groups -->
+    <record id="sign_oca_group_user" model="res.groups">
         <field name="name">User: Own Documents Only</field>
         <field name="category_id" ref="sign_oca_module_category" />
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />

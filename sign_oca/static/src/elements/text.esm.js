@@ -1,4 +1,5 @@
 /** @odoo-module QWeb **/
+/* global Event */
 
 import {registry} from "@web/core/registry";
 import {renderToString} from "@web/core/utils/render";

@@ -1,16 +1,17 @@
 /** @odoo-module **/
+/* global window */
 
-const {App, whenReady, useRef} = owl;
+import {App, useRef, whenReady} from "@odoo/owl";
 import {_t} from "@web/core/l10n/translation";
 import {makeEnv, startServices} from "@web/env";
 import SignOcaPdf from "../sign_oca_pdf/sign_oca_pdf.esm.js";
-import {templates} from "@web/core/assets";
-import {useService} from "@web/core/utils/hooks";
+import {getTemplate} from "@web/core/templates";
 import {MainComponentsContainer} from "@web/core/main_components_container";
+import {rpc} from "@web/core/network/rpc";
 
 export class SignOcaPdfPortal extends SignOcaPdf {
     setup() {
-        this.rpc = useService("rpc");
+        this.rpc = rpc;
         this.signOcaFooter = useRef("sign_oca_footer");
         this.signer_id = this.props.signer_id;
         this.access_token = this.props.access_token;
@@ -36,7 +37,8 @@ export class SignOcaPdfPortal extends SignOcaPdf {
         super.postIframeFields(...arguments);
         this.checkFilledAll();
     }
-    async _onClickSign() {
+    async _onClickSign(ev) {
+        ev.target.disabled = true;
         const position = await this.getLocation();
         this.rpc("/sign_oca/sign/" + this.signer_id + "/" + this.access_token, {
             items: this.info.items,
@@ -66,7 +68,7 @@ export async function initDocumentToSign(document, sign_oca_backend_info) {
     await startServices(env);
     await whenReady();
     const app = new App(SignOcaPdfPortal, {
-        templates,
+        getTemplate,
         env: env,
         dev: env.debug,
         props: {

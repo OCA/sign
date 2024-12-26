@@ -1,7 +1,7 @@
 # Copyright 2023-2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, models, modules
+from odoo import api, models, modules
 
 
 class ResUsers(models.Model):
@@ -48,7 +48,7 @@ class ResUsers(models.Model):
                 signers = signer_model.search(signer_group.get("__domain"))
                 requests["undefined"] = {
                     "id": False,
-                    "name": _("Undefined"),
+                    "name": self.env._("Undefined"),
                     "model": "sign.oca.request",
                     "icon": modules.module.get_module_icon("sign_oca"),
                     "total_records": len(signers),

@@ -8,11 +8,9 @@
                     <div class="d-flex justify-content-between flex-fill">
                         <div class="col-lg-4 justify-content-start">
                             <div class="o_logo">
-                                <a href="/"><img
-                                        src="/logo.png"
-                                        alt="Logo"
-                                        loading="lazy"
-                                    /></a>
+                                <a href="/">
+                                    <img src="/logo.png" alt="Logo" loading="lazy" />
+                                </a>
                             </div>
                         </div>
                         <div class="col-lg-4 mobile-hide">
@@ -23,9 +21,8 @@
                                 Please Review And Act On This Document
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                        </div>
-                </div>
+                        <div class="col-lg-4" />
+                    </div>
                 </div>
             </header>
             <iframe
@@ -42,7 +39,7 @@
                     <button
                         class="btn btn-primary"
                         id="sign_oca_button"
-                        t-on-click="_onClickSign"
+                        t-on-click="(ev) => this._onClickSign(ev)"
                     >Validate &amp; Send document</button>
                 </div>
             </div>

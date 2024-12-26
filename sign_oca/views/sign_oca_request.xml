@@ -2,7 +2,6 @@
 <!-- Copyright 2023 Dixmit
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
-
     <record model="ir.ui.view" id="sign_oca_request_form_view">
         <field name="name">sign.oca.request.form (in sign_oca)</field>
         <field name="model">sign.oca.request</field>
@@ -51,10 +50,10 @@
                         >
                             <div class="o_field_widget o_stat_info">
                                 <span class="o_stat_value"><field
-                                        name="signed_count"
-                                    />/<field name="signer_count" /><span
-                                        class="o_stat_text"
-                                    > Signed</span></span>
+                                    name="signed_count"
+                                />/<field name="signer_count" /><span
+                                    class="o_stat_text"
+                                > Signed</span></span>
                             </div>
                         </button>
                         <button
@@ -95,7 +94,9 @@
                     />
                     <div class="oe_title">
                         <label for="name" />
-                        <h1><field name="name" /></h1>
+                        <h1>
+                            <field name="name" />
+                        </h1>
                     </div>
                     <group>
                         <field
@@ -114,18 +115,14 @@
                     </group>
 
                     <field name="signer_ids" nolabel="1" readonly="state != 'draft'">
-                        <tree editable="bottom">
+                        <list editable="bottom">
                             <field name="role_id" />
                             <field name="partner_id" />
                             <field name="signed_on" readonly="1" />
-                        </tree>
+                        </list>
                     </field>
                 </sheet>
-                <div class="oe_chatter">
-                     <field name="message_follower_ids" />
-                     <field name="activity_ids" />
-                     <field name="message_ids" />
-                </div>
+                <chatter />
             </form>
         </field>
     </record>
@@ -212,10 +209,10 @@
     </record>
 
     <record model="ir.ui.view" id="sign_oca_request_tree_view">
-        <field name="name">sign.oca.request.tree (in sign_oca)</field>
+        <field name="name">sign.oca.request.list (in sign_oca)</field>
         <field name="model">sign.oca.request</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="state" />
                 <field name="signer_ids" widget="many2many_tags" string="Signers" />
@@ -231,10 +228,9 @@
                     invisible="not to_sign or state != 'sent'"
                 />
                 <field name="to_sign" column_invisible="1" />
-            </tree>
+            </list>
         </field>
     </record>
-
 
     <record model="ir.ui.view" id="sign_oca_request_kanban_view">
         <field name="name">sign.oca.request.kanban (in sign_oca)</field>
@@ -250,94 +246,78 @@
                 <field name="activity_state" />
                 <field name="template_id" />
                 <templates>
-                    <div t-name="kanban-box" class="oe_kanban_global_click">
-                        <div class="oe_kanban_main">
-                            <div class="o_kanban_record_top">
-                                <div class="o_kanban_record_headings">
-                                    <div class="o_kanban_record_title">
-                                        <span class="ps-4"><field name="name" /></span>
+                    <t t-name="menu">
+                        <a
+                            role="menuitem"
+                            type="object"
+                            name="get_formview_action"
+                            class="dropdown-item"
+                        >Details</a>
+                        <a
+                            role="menuitem"
+                            type="object"
+                            name="open_template"
+                            t-if="record.template_id.raw_value"
+                            class="dropdown-item"
+                        >Template</a>
+                        <a
+                            role="menuitem"
+                            type="object"
+                            name="toggle_active"
+                            class="dropdown-item"
+                        >
+                            <t t-if="record.active.raw_value">Archive</t>
+                            <t t-else="">Restore</t>
+                        </a>
+                    </t>
+                    <t t-name="card">
+                        <div class="row">
+                            <field class="fw-bolder" name="name" />
+                            <field
+                                name="signer_ids"
+                                widget="many2many_tags"
+                                class="mt-2"
+                            />
+
+                            <footer>
+                                <div class="row mt-2">
+                                    <div class="col-6">
+                                        <em>
+                                            <field name="create_date" widget="date" />
+                                        </em>
                                     </div>
-                                </div>
-                                <div class="o_dropdown_kanban dropdown">
-                                    <a
-                                        class="dropdown-toggle o-no-caret btn"
-                                        role="button"
-                                        data-toggle="dropdown"
-                                        data-display="static"
-                                        href="#"
-                                        aria-label="Dropdown menu"
-                                        title="Dropdown menu"
-                                    >
-                                        <span class="fa fa-ellipsis-v" />
-                                    </a>
-                                    <div class="dropdown-menu" role="menu">
-                                        <a
-                                            role="menuitem"
-                                            type="object"
-                                            name="get_formview_action"
-                                            class="dropdown-item"
-                                        >Details</a>
-                                        <a
-                                            role="menuitem"
-                                            type="object"
-                                            name="open_template"
-                                            t-if="record.template_id.raw_value"
-                                            class="dropdown-item"
-                                        >Template</a>
-                                        <a
-                                            role="menuitem"
-                                            type="object"
-                                            name="toggle_active"
-                                            class="dropdown-item"
-                                        >
-                                            <t
-                                                t-if="!record.active.raw_value"
-                                            >Restore</t>
-                                            <t
-                                                t-if="record.active.raw_value"
-                                            >Archive</t>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="o_kanban_record_body">
-                                <field name="signer_ids" widget="many2many_tags" />
-                            </div>
-                            <div class="o_kanban_record_bottom">
-                                <div class="oe_kanban_bottom_left">
-                                    <em><field name="create_date" widget="date" /></em>
-                                    <div class="o_kanban_inline_block">
+                                    <div class="col-3">
                                         <field
                                             name="activity_ids"
                                             widget="kanban_activity"
                                         />
                                     </div>
+                                    <div class="col-3">
+                                        <field
+                                            name="user_id"
+                                            widget="many2one_avatar_user"
+                                        />
+                                    </div>
                                 </div>
-                                <div class="oe_kanban_bottom_right">
-                                    <field
-                                        name="user_id"
-                                        widget="many2one_avatar_user"
-                                    />
-                                </div>
-                            </div>
+                            </footer>
                         </div>
-                    </div>
+                    </t>
                 </templates>
             </kanban>
         </field>
     </record>
 
     <record model="ir.ui.view" id="sign_oca_request_signer_tree_view">
-        <field name="name">sign.oca.request.signer.tree (in sign_oca)</field>
+        <field name="name">sign.oca.request.signer.list (in sign_oca)</field>
         <field name="model">sign.oca.request.signer</field>
         <field name="arch" type="xml">
-            <tree edit="0" delete="0" create="0" decoration-danger="altered_hash">
+            <list edit="0" delete="0" create="0" decoration-danger="altered_hash">
                 <field name="role_id" />
                 <field name="partner_id" />
                 <field name="request_id" />
                 <field name="signed_on" />
                 <field name="altered_hash" invisible="1" />
-            </tree>
+            </list>
         </field>
     </record>
     <record model="ir.ui.view" id="sign_oca_request_signer_form_view">
@@ -372,7 +352,7 @@
     <record model="ir.actions.act_window" id="sign_oca_request_signer_act_window">
         <field name="name">Sign Request Signers</field>
         <field name="res_model">sign.oca.request.signer</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[]</field>
         <field name="context">{}</field>
     </record>
@@ -380,7 +360,7 @@
     <record model="ir.actions.act_window" id="sign_oca_request_act_window">
         <field name="name">Sign Requests</field>
         <field name="res_model">sign.oca.request</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">kanban,list,form</field>
         <field name="domain">[]</field>
         <field name="context">{}</field>
     </record>
@@ -388,7 +368,7 @@
     <record model="ir.actions.act_window" id="sign_oca_request_template_act_window">
         <field name="name">Sign Requests</field>
         <field name="res_model">sign.oca.request</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">kanban,list,form</field>
         <field name="domain">[('template_id', '=', active_id)]</field>
         <field name="context">{}</field>
     </record>
@@ -399,5 +379,4 @@
         <field name="action" ref="sign_oca_request_act_window" />
         <field name="sequence" eval="30" />
     </record>
-
 </odoo>

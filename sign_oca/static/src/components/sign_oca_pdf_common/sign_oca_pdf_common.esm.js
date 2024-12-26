@@ -1,4 +1,5 @@
 /** @odoo-module QWeb **/
+/* global window, setTimeout, document, clearTimeout */
 import {_t} from "@web/core/l10n/translation";
 import {Component, onMounted, onWillStart, onWillUnmount, useRef} from "@odoo/owl";
 import {AlertDialog} from "@web/core/confirmation_dialog/confirmation_dialog";

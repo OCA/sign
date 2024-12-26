@@ -6,12 +6,13 @@ import {_t} from "@web/core/l10n/translation";
 import {patch} from "@web/core/utils/patch";
 const {onWillStart} = owl;
 import {useService} from "@web/core/utils/hooks";
+import {user} from "@web/core/user";
 
 export function patchControllerSignOca() {
     return {
         setup() {
             super.setup(...arguments);
-            this.userService = useService("user");
+            this.user = user;
             this.orm = useService("orm");
             this.action = useService("action");
             this.showSignOcaTemplateGenerateMulti = false;
@@ -20,7 +21,7 @@ export function patchControllerSignOca() {
             });
         },
         async _showSignOcaTemplateGenerateMulti() {
-            var sign_oca_group_user = await this.userService.hasGroup(
+            var sign_oca_group_user = await this.user.hasGroup(
                 "sign_oca.sign_oca_group_user"
             );
             if (sign_oca_group_user) {

@@ -2,8 +2,8 @@
 <templates xml:space="preserve">
     <t t-name="sign_oca.SignOcaConfigureButtons">
         <button class="btn btn-primary"><i
-                class="fa fa-question-circle"
-            /> Help</button>
+            class="fa fa-question-circle"
+        /> Help</button>
         <!--
         <div
             >In order to add a new field, do a right click over the PDF page. You will be able to select the field that you will import</div>
@@ -38,7 +38,6 @@
             />
             <div class="o_sign_oca_resize fa fa-arrows-alt" style="z-index: 90;" />
             <span class="o_sign_placeholder" t-out="name" />
-
         </div>
     </t>
     <t t-name="sign_oca.sign_iframe_contextmenu">
@@ -75,7 +74,7 @@
                 In order to add a new field, do a right click over the PDF page. You will be able to select the field that you will import.
                 Then, you can move and resize the fields over the PDF page using the move icons.
                 If you do a click over a field, you will be able to change the default configurations of the field<br
-                />
+            />
                 Data is saved automatically when editing.
             </div>
         </xpath>

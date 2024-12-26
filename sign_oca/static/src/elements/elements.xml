@@ -29,7 +29,7 @@
     <t t-name="sign_oca.sign_iframe_field_signature">
         <img
             style="width:100%;height:100%"
-            t-attf-src="data:image/png;base64,{{item.value}}"
+            t-attf-src="{{item.value}}"
             t-if="item.value"
         />
         <div style="width:100%;height:100%" t-else="" t-out="placeholder" />

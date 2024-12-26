@@ -14,7 +14,6 @@
             t-attf-class="o_sign_oca_field #{required? 'sign_oca_field_required': ''}"
             t-att-data-field="id"
             t-attf-style="position:absolute;top:#{position_y}%; left: #{position_x}%; width: #{width}%;height: #{height}%"
-        >
-        </div>
+        />
     </t>
 </templates>

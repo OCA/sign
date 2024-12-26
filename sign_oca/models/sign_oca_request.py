@@ -3,6 +3,7 @@
 
 import hashlib
 import json
+import logging
 from base64 import b64decode, b64encode
 from hashlib import sha256
 from io import BytesIO
@@ -14,10 +15,12 @@ from reportlab.lib.styles import ParagraphStyle
 from reportlab.pdfgen import canvas
 from reportlab.platypus import Image, Paragraph
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.http import request
 from odoo.tools import float_repr
+
+_logger = logging.getLogger(__name__)
 
 
 class SignOcaRequest(models.Model):
@@ -159,10 +162,14 @@ class SignOcaRequest(models.Model):
         self.ensure_one()
         if not self.signer_ids:
             raise ValidationError(
-                _("There are no signers, please fill them before configuring it")
+                self.env._(
+                    "There are no signers, please fill them before configuring it"
+                )
             )
         if not self.state == "draft":
-            raise ValidationError(_("You can only configure requests in draft state"))
+            raise ValidationError(
+                self.env._("You can only configure requests in draft state")
+            )
 
     def configure(self):
         self._ensure_draft()
@@ -253,7 +260,7 @@ class SignOcaRequest(models.Model):
             self.env["mail.thread"].message_notify(
                 body=render_result,
                 partner_ids=signer.partner_id.ids,
-                subject=_("New document to sign"),
+                subject=self.env._("New document to sign"),
                 subtype_id=self.env.ref("mail.mt_comment").id,
                 mail_auto_delete=False,
                 email_layout_xmlid="mail.mail_notification_light",
@@ -281,13 +288,13 @@ class SignOcaRequest(models.Model):
             # The message will not be linked to the record because we do not want
             # it happen.
             self.env["mail.thread"].message_notify(
-                body=_(
+                body=self.env._(
                     "%(name)s (%(email)s) has sent the signed document.",
                     name=self.create_uid.name,
                     email=self.create_uid.email,
                 ),
                 partner_ids=signer.partner_id.ids,
-                subject=_("Signed document"),
+                subject=self.env._("Signed document"),
                 subtype_id=self.env.ref("mail.mt_comment").id,
                 mail_auto_delete=False,
                 attachment_ids=attachments.ids,
@@ -413,7 +420,9 @@ class SignOcaRequestSigner(models.Model):
     def sign(self):
         self.ensure_one()
         if not self.is_allow_signature:
-            raise ValidationError(_("You are not allowed to sign this document."))
+            raise ValidationError(
+                self.env._("You are not allowed to sign this document.")
+            )
         return {
             "target": "new",
             "type": "ir.actions.act_url",
@@ -424,10 +433,11 @@ class SignOcaRequestSigner(models.Model):
         self.ensure_one()
         if self.signed_on:
             raise ValidationError(
-                _("Users %s has already signed the document") % self.partner_id.name
+                self.env._("Users %s has already signed the document")
+                % self.partner_id.name
             )
         if self.request_id.state != "sent":
-            raise ValidationError(_("Request cannot be signed"))
+            raise ValidationError(self.env._("Request cannot be signed"))
         self.signed_on = fields.Datetime.now()
         # current_hash = self.request_id.current_hash
         signatory_data = self.request_id.signatory_data
@@ -488,7 +498,7 @@ class SignOcaRequestSigner(models.Model):
         if not item["required"]:
             return
         if not item["value"]:
-            raise ValidationError(_("Field %s is not filled") % item["name"])
+            raise ValidationError(self.env._("Field %s is not filled") % item["name"])
 
     def _get_pdf_page_text(self, item, box):
         packet = BytesIO()
@@ -548,23 +558,35 @@ class SignOcaRequestSigner(models.Model):
         can = canvas.Canvas(packet, pagesize=(box.getWidth(), box.getHeight()))
         if not item["value"]:
             return False
-        par = Image(
-            BytesIO(b64decode(item["value"])),
-            width=item["width"] / 100 * float(box.getWidth()),
-            height=item["height"] / 100 * float(box.getHeight()),
-        )
-        par.drawOn(
-            can,
-            item["position_x"] / 100 * float(box.getWidth()),
-            (100 - item["position_y"] - item["height"]) / 100 * float(box.getHeight()),
-        )
+        try:
+            base64_str = item["value"]
+            if len(base64_str) % 4:
+                base64_str += "=" * (4 - len(base64_str) % 4)
+            if "," in base64_str:
+                base64_str = item["value"].split(",")[1]
+            image_data = b64decode(base64_str)
+            par = Image(
+                BytesIO(image_data),
+                width=item["width"] / 100 * float(box.getWidth()),
+                height=item["height"] / 100 * float(box.getHeight()),
+            )
+            par.drawOn(
+                can,
+                item["position_x"] / 100 * float(box.getWidth()),
+                (100 - item["position_y"] - item["height"])
+                / 100
+                * float(box.getHeight()),
+            )
+        except Exception as e:
+            _logger.info(f"Error decoding Base64 string: {e}")
+            return False
         can.save()
         packet.seek(0)
         new_pdf = PdfFileReader(packet)
         return new_pdf.getPage(0)
 
     def _get_pdf_page(self, item, box):
-        return getattr(self, "_get_pdf_page_%s" % item["field_type"])(item, box)
+        return getattr(self, f"_get_pdf_page_{ item['field_type'] }")(item, box)
 
     def _set_action_log(self, action, **kwargs):
         self.ensure_one()
@@ -599,7 +621,7 @@ class SignOcaRequestSigner(models.Model):
         )
         if prev_sign and len(prev_sign) != 1:
             raise UserError(
-                _(
+                self.env._(
                     "An error occurred when computing the inalterability. "
                     "Impossible to get the unique previous signer information."
                 )
