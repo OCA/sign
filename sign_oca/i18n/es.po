@@ -19,7 +19,6 @@ msgstr ""
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/models/sign_oca_request.py:0
-#, python-format
 msgid "%(name)s (%(email)s) has sent the signed document."
 msgstr "%(name)s (%(email)s) ha enviado el documento firmado."
 
@@ -119,7 +118,6 @@ msgstr ""
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/models/sign_oca_request.py:0
-#, python-format
 msgid ""
 "An error occurred when computing the inalterability. Impossible to get the "
 "unique previous signer information."
@@ -160,7 +158,6 @@ msgstr "Cantidad de adjuntos"
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/elements/elements.xml:0
-#, python-format
 msgid ""
 "By clicking Adopt and Sign, I agree that the chosen signature/initials will "
 "be a valid electronic representation of my hand-written signature/initials "
@@ -179,7 +176,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_form_view
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_generate_form_view
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_generate_multi_form_view
-#, python-format
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -202,7 +198,6 @@ msgstr "Verificar"
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
-#, python-format
 msgid "Click on the field that you want to add"
 msgstr "Haga clic en el campo que desea agregar"
 
@@ -286,14 +281,12 @@ msgstr "Datos"
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
-#, python-format
 msgid "Data is saved automatically when editing"
 msgstr "Los datos se guardan automáticamente al editar"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
-#, python-format
 msgid "Data is saved automatically when editing."
 msgstr "Los datos se guardan automáticamente al editar."
 
@@ -320,7 +313,6 @@ msgstr ""
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
-#, python-format
 msgid "Delete"
 msgstr "Borrar"
 
@@ -349,9 +341,10 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: sign_oca
-#: model_terms:ir.ui.view,arch_db:sign_oca.portal_sign_document_signed
-msgid "Document"
-msgstr "Documento"
+#. odoo-javascript
+#: code:addons/sign_oca/static/src/js/systray_service.esm.js:0
+msgid "Documents to be Signed"
+msgstr ""
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_role__domain
@@ -364,15 +357,9 @@ msgid "Draft"
 msgstr "Borrador"
 
 #. module: sign_oca
-#: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_kanban_view
-msgid "Dropdown menu"
-msgstr "Menú desplegable"
-
-#. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.esm.js:0
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request_log__action__edit_field
-#, python-format
 msgid "Edit field"
 msgstr "Editar campo"
 
@@ -396,14 +383,12 @@ msgstr "Expresión"
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__field_id
-#, python-format
 msgid "Field"
 msgstr "Campo"
 
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/models/sign_oca_request.py:0
-#, python-format
 msgid "Field %s is not filled"
 msgstr "El campo %s no está lleno"
 
@@ -428,7 +413,6 @@ msgstr "Nombre del archivo"
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
-#, python-format
 msgid "Filled by"
 msgstr "Llenado por"
 
@@ -508,7 +492,6 @@ msgstr "Altura"
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
-#, python-format
 msgid "Help"
 msgstr "Ayuda"
 
@@ -544,14 +527,15 @@ msgstr "Si está marcado, los mensajes nuevos requieren su atención."
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__message_has_error
+#: model:ir.model.fields,help:sign_oca.field_sign_oca_request__message_has_sms_error
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_template__message_has_error
+#: model:ir.model.fields,help:sign_oca.field_sign_oca_template__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
-#, python-format
 msgid ""
 "If you do a click over a field, you will be able to change the default "
 "configurations of the field"
@@ -562,7 +546,6 @@ msgstr ""
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
-#, python-format
 msgid ""
 "In order to add a new field, do a right click over the PDF page. You will be "
 "able to select the field that you will import"
@@ -573,7 +556,6 @@ msgstr ""
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
-#, python-format
 msgid ""
 "In order to add a new field, do a right click over the PDF page. You will be "
 "able to select the field that you will import.\n"
@@ -665,7 +647,6 @@ msgstr "Acceso y edición de registros según solicitudes"
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_pdf_portal/sign_oca_pdf_portal.xml:0
 #: model_terms:ir.ui.view,arch_db:sign_oca.portal_sign_document_signed
-#, python-format
 msgid "Logo"
 msgstr "Logo"
 
@@ -677,7 +658,6 @@ msgstr ""
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_pdf/sign_oca_pdf.xml:0
-#, python-format
 msgid "Main actions"
 msgstr "Acciones principales"
 
@@ -738,14 +718,12 @@ msgstr "Nombre"
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_pdf_common/sign_oca_pdf_common.esm.js:0
-#, python-format
 msgid "Need a valid PDF to add signature fields !"
 msgstr "¡Necesita un PDF válido para agregar campos de firma!"
 
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/models/sign_oca_request.py:0
-#, python-format
 msgid "New document to sign"
 msgstr "Nuevo documento para firmar"
 
@@ -772,7 +750,6 @@ msgstr "Proximo elemento"
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/xml/systray.xml:0
-#, python-format
 msgid "No requests to sign."
 msgstr "No hay solicitudes para firmar."
 
@@ -836,7 +813,6 @@ msgstr ""
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/xml/systray.xml:0
-#, python-format
 msgid "Pending"
 msgstr "Pendiente"
 
@@ -844,14 +820,12 @@ msgstr "Pendiente"
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__placeholder
-#, python-format
 msgid "Placeholder"
 msgstr "Marcador de posición"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_pdf_portal/sign_oca_pdf_portal.xml:0
-#, python-format
 msgid "Please Review And Act On This Document"
 msgstr "Por favor revise y actúe según este documento"
 
@@ -885,7 +859,6 @@ msgstr "Cantidad de solicitudes"
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/models/sign_oca_request.py:0
-#, python-format
 msgid "Request cannot be signed"
 msgstr "La solicitud no se puede firmar"
 
@@ -894,7 +867,6 @@ msgstr "La solicitud no se puede firmar"
 #: code:addons/sign_oca/static/src/xml/systray.xml:0
 #: model:ir.ui.menu,name:sign_oca.sign_oca_request_menu
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_form_view
-#, python-format
 msgid "Requests"
 msgstr "Peticiones"
 
@@ -902,7 +874,6 @@ msgstr "Peticiones"
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__required
-#, python-format
 msgid "Required"
 msgstr "Requerido"
 
@@ -940,9 +911,14 @@ msgid "Roles"
 msgstr "Roles"
 
 #. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_has_sms_error
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
-#, python-format
 msgid "Save"
 msgstr "Guardar"
 
@@ -1000,7 +976,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_form_view
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_signer_form_view
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_tree_view
-#, python-format
 msgid "Sign"
 msgstr "Firmar"
 
@@ -1059,7 +1034,6 @@ msgstr "Valor de solicitud de firma"
 #: model:ir.actions.act_window,name:sign_oca.sign_oca_request_template_act_window
 #: model_terms:ir.ui.view,arch_db:sign_oca.res_config_settings_view_form
 #: model_terms:ir.ui.view,arch_db:sign_oca.view_partner_form
-#, python-format
 msgid "Sign Requests"
 msgstr "Solicitudes de firma"
 
@@ -1076,7 +1050,6 @@ msgstr "Firmar documento"
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/js/sign_oca.esm.js:0
-#, python-format
 msgid "Sign from template"
 msgstr ""
 
@@ -1108,7 +1081,6 @@ msgstr "Hash de firma"
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
-#, python-format
 msgid "Signature configuration"
 msgstr "Configuración de firma"
 
@@ -1137,7 +1109,6 @@ msgstr "Firmado"
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/models/sign_oca_request.py:0
-#, python-format
 msgid "Signed document"
 msgstr "Documento firmado"
 
@@ -1205,6 +1176,11 @@ msgstr "Texto"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.portal_sign_document_signed
+msgid "Thanks for signing"
+msgstr ""
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.portal_sign_document_signed
 msgid "The document has been cancelled"
 msgstr "El documento ha sido cancelado"
 
@@ -1216,7 +1192,6 @@ msgstr "El firmante relacionado con el usuario activo."
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
-#, python-format
 msgid ""
 "Then, you can move and resize the fields over the PDF page using the move "
 "icons."
@@ -1227,7 +1202,6 @@ msgstr ""
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/models/sign_oca_request.py:0
-#, python-format
 msgid "There are no signers, please fill them before configuring it"
 msgstr "No hay firmantes, por favor complételos antes de configurarlo"
 
@@ -1267,7 +1241,6 @@ msgstr "Identificador"
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/models/res_users.py:0
-#, python-format
 msgid "Undefined"
 msgstr ""
 
@@ -1289,7 +1262,6 @@ msgstr "Usuario: Sólo documentos propios"
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/models/sign_oca_request.py:0
-#, python-format
 msgid "Users %s has already signed the document"
 msgstr "El usuario %s ya ha firmado el documento"
 
@@ -1301,7 +1273,6 @@ msgstr "Validar"
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_pdf_portal/sign_oca_pdf_portal.xml:0
-#, python-format
 msgid "Validate & Send document"
 msgstr "Validar y Enviar documento"
 
@@ -1335,14 +1306,12 @@ msgstr "Asistente"
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/models/sign_oca_request.py:0
-#, python-format
 msgid "You are not allowed to sign this document."
 msgstr "No está permitido firmar este documento."
 
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/models/sign_oca_request.py:0
-#, python-format
 msgid "You can only configure requests in draft state"
 msgstr "Solo puede configurar solicitudes en estado de borrador"
 
@@ -1363,8 +1332,17 @@ msgstr "Cancelará la solicitud y todos los accesos. ¿Está seguro de eso?"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.portal_sign_document_signed
-msgid "has already been signed"
-msgstr "ya ha sido firmado"
+msgid "document"
+msgstr ""
+
+#~ msgid "Document"
+#~ msgstr "Documento"
+
+#~ msgid "Dropdown menu"
+#~ msgstr "Menú desplegable"
+
+#~ msgid "has already been signed"
+#~ msgstr "ya ha sido firmado"
 
 #, python-format
 #~ msgid "0 Pending"
