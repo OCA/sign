@@ -1,0 +1,76 @@
+<!-- Copyright 2025 Kencove
+License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template id="sign_requests" name="Sign Requests List">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True" />
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Signature Requests</t>
+            </t>
+            <div t-if="not sign_requests" class="alert alert-warning" role="alert">
+                There are currently no sign requests for your account.
+            </div>
+            <t t-if="sign_requests" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>
+                            <span class='d-none d-md-inline'>Sign Request #</span>
+                            <span class='d-block d-md-none'>Ref.</span>
+                        </th>
+                        <th class="text-start">Signature Date</th>
+                        <th class="text-end">State</th>
+                    </tr>
+                </thead>
+                <t t-foreach="sign_requests" t-as="sign_request">
+                    <tr>
+                        <td>
+                            <t t-if="sign_request.request_id.state == '2_signed'">
+                                <a
+                                    t-att-href="'/my/sign/%s/download' % sign_request.request_id.id"
+                                >
+                                    <t t-out="sign_request.request_id.name" />
+                                    <span class="fa fa-save mx-2" title="Download" />
+                                </a>
+                            </t>
+                            <t t-else="">
+                                <!-- the document needs to be signed by session partner -->
+                                <t t-if="not sign_request.signed_on">
+                                    <a
+                                        t-att-href="sign_request.get_portal_url()"
+                                        target="_blank"
+                                    >
+                                        <t t-out="sign_request.request_id.name" />
+                                    </a>
+                                </t>
+                                <!-- the document needs to be signed by other partners -->
+                                <!-- the session partner can download the document but not fully signed -->
+                                <t t-else="">
+                                    <a
+                                        t-att-href="'/my/sign/%s/download' % sign_request.request_id.id"
+                                    >
+                                        <t t-out="sign_request.request_id.name" />
+                                        <span
+                                            class="fa fa-hourglass mx-2"
+                                            title="Not fully signed!"
+                                        />
+                                    </a>
+                                </t>
+                            </t>
+                        </td>
+                        <td class="text-start">
+                            <!-- t-field is essential to show display name not technical name -->
+                            <span
+                                t-field="sign_request.signed_on"
+                                t-options='{"widget": "datetime"}'
+                            />
+                        </td>
+                        <td class="text-end">
+                            <!-- t-field is essential to show display name not technical name -->
+                            <span t-field="sign_request.request_id.state" />
+                        </td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

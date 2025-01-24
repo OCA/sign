@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ========
 Sign Oca
 ========
@@ -17,7 +13,7 @@ Sign Oca
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsign-lightgray.png?logo=github
@@ -114,6 +110,12 @@ Sign from template
   no signer will be set.
 - Some extra modules (e.g. maintenance_sign_oca) will automatically set
   the signers for each request.
+
+Sign from portal
+----------------
+
+- customers who are using portal can sign their documents from portal
+  directly in addition to being able to sign them from emails.
 
 Known issues / Roadmap
 ======================
