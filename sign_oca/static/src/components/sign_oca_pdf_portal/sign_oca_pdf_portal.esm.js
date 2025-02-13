@@ -29,8 +29,10 @@ export class SignOcaPdfPortal extends SignOcaPdf {
         this.to_sign = this.to_sign_update;
         if (this.to_sign_update) {
             $(this.signOcaFooter.el).show();
+            $("#sign_oca_button").removeAttr("disabled");
         } else {
             $(this.signOcaFooter.el).hide();
+            $("#sign_oca_button").prop("disabled", true);
         }
     }
     postIframeFields() {
