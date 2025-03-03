@@ -27,6 +27,7 @@ class SignOcaRequest(models.Model):
     _name = "sign.oca.request"
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "Sign Request"
+    _order = "state, id desc"
 
     name = fields.Char(required=True)
     active = fields.Boolean(default=True)
@@ -64,12 +65,12 @@ class SignOcaRequest(models.Model):
     )
     state = fields.Selection(
         [
-            ("draft", "Draft"),
-            ("sent", "Sent"),
-            ("signed", "Signed"),
-            ("cancel", "Cancelled"),
+            ("0_sent", "Sent"),
+            ("1_draft", "Draft"),
+            ("2_signed", "Signed"),
+            ("3_cancel", "Cancelled"),
         ],
-        default="draft",
+        default="1_draft",
         required=True,
         copy=False,
         tracking=True,
@@ -166,7 +167,7 @@ class SignOcaRequest(models.Model):
                     "There are no signers, please fill them before configuring it"
                 )
             )
-        if not self.state == "draft":
+        if not self.state == "1_draft":
             raise ValidationError(
                 self.env._("You can only configure requests in draft state")
             )
@@ -225,7 +226,7 @@ class SignOcaRequest(models.Model):
         return signatory_data[item_id]
 
     def cancel(self):
-        self.write({"state": "cancel"})
+        self.write({"state": "3_cancel"})
         self._set_action_log("cancel")
 
     @api.depends("signer_ids")
@@ -243,10 +244,10 @@ class SignOcaRequest(models.Model):
 
     def action_send(self, sign_now=False, message=""):
         self.ensure_one()
-        if self.state != "draft":
+        if self.state != "1_draft":
             return
         self._set_action_log("validate")
-        self.state = "sent"
+        self.state = "0_sent"
         for signer in self.signer_ids:
             signer._portal_ensure_token()
             if sign_now and signer.partner_id == self.env.user.partner_id:
@@ -269,7 +270,7 @@ class SignOcaRequest(models.Model):
     def action_send_signed_request(self):
         self.ensure_one()
         if (
-            self.state != "signed"
+            self.state != "2_signed"
             or not self.env.company.sign_oca_send_sign_request_copy
         ):
             return
@@ -302,10 +303,10 @@ class SignOcaRequest(models.Model):
 
     def _check_signed(self):
         self.ensure_one()
-        if self.state != "sent":
+        if self.state != "0_sent":
             return
         if all(self.mapped("signer_ids.signed_on")):
-            self.state = "signed"
+            self.state = "2_signed"
 
     def _set_action_log_vals(self, action, **kwargs):
         vals = kwargs.copy()
@@ -340,6 +341,7 @@ class SignOcaRequestSigner(models.Model):
     _name = "sign.oca.request.signer"
     _inherit = ["portal.mixin", "mail.thread", "mail.activity.mixin"]
     _description = "Sign Request Value"
+    _order = "signed_on desc, create_date desc, id desc"
 
     data = fields.Binary(related="request_id.data")
     request_id = fields.Many2one("sign.oca.request", required=True, ondelete="cascade")
@@ -436,7 +438,7 @@ class SignOcaRequestSigner(models.Model):
                 self.env._("Users %s has already signed the document")
                 % self.partner_id.name
             )
-        if self.request_id.state != "sent":
+        if self.request_id.state != "0_sent":
             raise ValidationError(self.env._("Request cannot be signed"))
         self.signed_on = fields.Datetime.now()
         # current_hash = self.request_id.current_hash

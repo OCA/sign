@@ -11,7 +11,7 @@ class ResUsers(models.Model):
     def sign_oca_request_user_count(self):
         requests = {}
         domain = [
-            ("request_id.state", "=", "sent"),
+            ("request_id.state", "=", "0_sent"),
             (
                 "partner_id",
                 "child_of",

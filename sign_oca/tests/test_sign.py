@@ -228,7 +228,7 @@ class TestSign(BaseCommon):
             val["value"] = "My Name"
             data[key] = val
         res = signer.action_sign(data)
-        self.assertEqual(signer.request_id.state, "signed")
+        self.assertEqual(signer.request_id.state, "2_signed")
         self.assertEqual(res["type"], "ir.actions.act_url")
         self.assertEqual(res["url"], signer.access_url)
 
@@ -243,7 +243,7 @@ class TestSign(BaseCommon):
         f.save().generate()
         signer = self.template.request_ids.signer_id
         signer.request_id.cancel()
-        self.assertEqual(signer.request_id.state, "cancel")
+        self.assertEqual(signer.request_id.state, "3_cancel")
 
     def test_inalterability(self):
         self.configure_template()

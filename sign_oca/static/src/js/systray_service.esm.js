@@ -61,7 +61,7 @@ export class SignerMenuView extends Component {
                 views,
                 search_view_id: [false],
                 domain: [
-                    ["request_id.state", "=", "sent"],
+                    ["request_id.state", "=", "0_sent"],
                     ["partner_id", "child_of", [user.partnerId]],
                     ["signed_on", "=", false],
                 ],

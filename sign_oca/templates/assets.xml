@@ -49,12 +49,12 @@
                         /> document</h2>
                     </div>
                     <div class="card-body">
-                        <t t-if="signer.request_id.state == 'signed'">
+                        <t t-if="signer.request_id.state == '2_signed'">
                             You should have received an email with the final document.<br
                         />
                             Check on your mailbox.
                         </t>
-                        <t t-elif="signer.request_id.state == 'cancel'">
+                        <t t-elif="signer.request_id.state == '3_cancel'">
                             The document has been cancelled
                         </t>
                         <t t-else="">

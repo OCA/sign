@@ -13,20 +13,20 @@
                         name="sign"
                         class="btn btn-primary"
                         type="object"
-                        invisible="not to_sign or state != 'sent'"
+                        invisible="not to_sign or state != '0_sent'"
                     />
                     <field name="to_sign" invisible="1" />
                     <button
                         string="Send"
                         type="object"
-                        invisible="state != 'draft'"
+                        invisible="state != '1_draft'"
                         name="action_send"
                         icon="fa-paper-plane"
                     />
                     <button
                         string="Cancel"
                         type="object"
-                        invisible="state not in ['draft', 'sent', 'signed']"
+                        invisible="state not in ['1_draft', '0_sent', '2_signed']"
                         name="cancel"
                         confirm="You will cancel the request and all the accesses. Are you sure about it?"
                         groups="sign_oca.sign_oca_group_user"
@@ -34,7 +34,7 @@
                     <field
                         name="state"
                         widget="statusbar"
-                        statusbar_visible="sent,signed"
+                        statusbar_visible="0_sent,2_signed"
                         readonly="1"
                     />
                 </header>
@@ -45,7 +45,7 @@
                             type="object"
                             class="oe_stat_button"
                             icon="fa-pencil"
-                            invisible="state not in ['sent', 'signed']"
+                            invisible="state not in ['0_sent', '2_signed']"
                             groups="sign_oca.sign_oca_group_user"
                         >
                             <div class="o_field_widget o_stat_info">
@@ -59,7 +59,7 @@
                         <button
                             class="oe_stat_button"
                             icon="fa-wrench"
-                            invisible="state not in ['draft']"
+                            invisible="state not in ['1_draft']"
                             name="configure"
                             type="object"
                             string="Configure"
@@ -78,13 +78,13 @@
                     <widget
                         name="web_ribbon"
                         title="Fully Signed"
-                        invisible="state != 'signed'"
+                        invisible="state != '2_signed'"
                     />
                     <widget
                         name="web_ribbon"
                         bg_color="bg-danger"
                         title="Cancelled"
-                        invisible="state != 'cancel'"
+                        invisible="state != '3_cancel'"
                     />
                     <widget
                         name="web_ribbon"
@@ -102,7 +102,7 @@
                         <field
                             name="data"
                             filename="filename"
-                            readonly="state != 'draft'"
+                            readonly="state != '1_draft'"
                         />
                         <field name="filename" invisible="1" />
                         <field
@@ -110,11 +110,11 @@
                             invisible="not template_id"
                             readonly="1"
                         />
-                        <field name="user_id" readonly="state != 'draft'" />
-                        <field name="record_ref" readonly="state != 'draft'" />
+                        <field name="user_id" readonly="state != '1_draft'" />
+                        <field name="record_ref" readonly="state != '1_draft'" />
                     </group>
 
-                    <field name="signer_ids" nolabel="1" readonly="state != 'draft'">
+                    <field name="signer_ids" nolabel="1" readonly="state != '1_draft'">
                         <list editable="bottom">
                             <field name="role_id" />
                             <field name="partner_id" />
@@ -156,16 +156,16 @@
                     domain="[('signer_ids.partner_id.user_ids', 'in', uid), ('signer_ids.signed_on', '=', False)]"
                 />
                 <separator />
-                <filter name="sent" string="Sent" domain="[('state', '=', 'sent')]" />
+                <filter name="sent" string="Sent" domain="[('state', '=', '0_sent')]" />
                 <filter
                     name="signed"
                     string="Signed"
-                    domain="[('state', '=', 'signed')]"
+                    domain="[('state', '=', '2_signed')]"
                 />
                 <filter
                     name="canceled"
                     string="Canceled"
-                    domain="[('state', '=', 'cancel')]"
+                    domain="[('state', '=', '3_cancel')]"
                 />
                 <separator />
                 <filter
@@ -225,7 +225,7 @@
                     name="sign"
                     class="btn btn-primary"
                     type="object"
-                    invisible="not to_sign or state != 'sent'"
+                    invisible="not to_sign or state != '0_sent'"
                 />
                 <field name="to_sign" column_invisible="1" />
             </list>
