@@ -147,6 +147,10 @@ Contributors
 
   - Víctor Martínez
 
+- `Kencove <https://www.kencove.com>`__:
+
+  - Mohamed Alkobrosli
+
 Maintainers
 -----------
 

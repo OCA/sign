@@ -25,6 +25,7 @@ class SignOcaRequest(models.Model):
     _name = "sign.oca.request"
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "Sign Request"
+    _order = "sequence, create_date desc, id desc"
 
     name = fields.Char(required=True)
     active = fields.Boolean(default=True)
@@ -81,6 +82,7 @@ class SignOcaRequest(models.Model):
         copy=False,
         tracking=True,
     )
+    sequence = fields.Integer(compute="_compute_sequence", store=True)
     signed_count = fields.Integer(compute="_compute_signed_count")
     signer_count = fields.Integer(compute="_compute_signer_count")
     to_sign = fields.Boolean(compute="_compute_to_sign")
@@ -239,6 +241,18 @@ class SignOcaRequest(models.Model):
         for record in self:
             record.signer_count = len(record.signer_ids)
 
+    @api.depends("state")
+    def _compute_sequence(self):
+        for rec in self:
+            if rec.state == "sent":
+                rec.sequence = 0
+            elif rec.state == "draft":
+                rec.sequence = 1
+            elif rec.state == "signed":
+                rec.sequence = 2
+            else:
+                rec.sequence = 3
+
     @api.depends("signer_ids", "signer_ids.signed_on")
     def _compute_signed_count(self):
         for record in self:
@@ -347,6 +361,7 @@ class SignOcaRequestSigner(models.Model):
     _name = "sign.oca.request.signer"
     _inherit = "portal.mixin"
     _description = "Sign Request Value"
+    _order = "signed_on desc, create_date desc, id desc"
 
     data = fields.Binary(related="request_id.data")
     request_id = fields.Many2one("sign.oca.request", required=True, ondelete="cascade")
