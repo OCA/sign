@@ -18,7 +18,7 @@ class SignOcaTemplate(models.Model):
     request_count = fields.Integer(compute="_compute_request_count")
     model_id = fields.Many2one(
         comodel_name="ir.model",
-        string="Model",
+        string="Model ID",
         domain=[("transient", "=", False), ("model", "not like", "sign.oca")],
     )
     model = fields.Char(compute="_compute_model", compute_sudo=True, store=True)
