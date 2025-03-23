@@ -255,23 +255,9 @@ class SignOcaRequest(models.Model):
         self._set_action_log("validate")
         self.state = "0_sent"
         for signer in self.signer_ids:
-            signer._portal_ensure_token()
             if sign_now and signer.partner_id == self.env.user.partner_id:
                 continue
-            render_result = self.env["ir.qweb"]._render(
-                "sign_oca.sign_oca_template_mail",
-                {"record": signer, "body": message, "link": signer.access_url},
-                engine="ir.qweb",
-                minimal_qcontext=True,
-            )
-            self.env["mail.thread"].message_notify(
-                body=render_result,
-                partner_ids=signer.partner_id.ids,
-                subject=_("New document to sign"),
-                subtype_id=self.env.ref("mail.mt_comment").id,
-                mail_auto_delete=False,
-                email_layout_xmlid="mail.mail_notification_light",
-            )
+            signer.action_send(sign_now, message)
 
     def action_send_signed_request(self):
         self.ensure_one()
@@ -445,6 +431,27 @@ class SignOcaRequestSigner(models.Model):
             "type": "ir.actions.act_url",
             "url": self.access_url,
         }
+
+    def action_send(self, sign_now=False, message=""):
+        self.ensure_one()
+        if self.signed_on or (sign_now and self.partner_id == self.env.user.partner_id):
+            return
+        self._portal_ensure_token()
+        render_result = self.env["ir.qweb"]._render(
+            "sign_oca.sign_oca_template_mail",
+            {"record": self, "body": message, "link": self.access_url},
+            engine="ir.qweb",
+            minimal_qcontext=True,
+        )
+        # send the message to partners who didn't sign only
+        self.env["mail.thread"].message_notify(
+            body=render_result,
+            partner_ids=self.partner_id.ids,
+            subject=_("New document to sign"),
+            subtype_id=self.env.ref("mail.mt_comment").id,
+            mail_auto_delete=False,
+            email_layout_xmlid="mail.mail_notification_light",
+        )
 
     def action_sign(self, items, access_token=False, latitude=False, longitude=False):
         self.ensure_one()

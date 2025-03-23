@@ -111,6 +111,14 @@
                         <tree editable="bottom">
                             <field name="role_id" />
                             <field name="partner_id" />
+                            <button
+                                string="Send"
+                                type="object"
+                                attrs="{'invisible': [('signed_on', '!=', False)]}"
+                                name="action_send"
+                                icon="fa-paper-plane"
+                                confirm="Are you sure ?"
+                            />
                             <field name="signed_on" />
                         </tree>
                     </field>
@@ -306,6 +314,15 @@
                                             widget="kanban_activity"
                                         />
                                     </div>
+                                    <button
+                                        string="Send"
+                                        type="object"
+                                        states="1_draft,0_sent"
+                                        name="action_send"
+                                        icon="fa-paper-plane"
+                                        confirm="Are you sure ?"
+                                        class="btn btn-primary btn-sm"
+                                    />
                                 </div>
                                 <div class="oe_kanban_bottom_right">
                                     <field
@@ -331,6 +348,14 @@
                 <field name="request_id" />
                 <field name="signed_on" />
                 <field name="altered_hash" invisible="1" />
+                <button
+                    string="Send"
+                    type="object"
+                    attrs="{'invisible': [('signed_on', '!=', False)]}"
+                    name="action_send"
+                    icon="fa-paper-plane"
+                    confirm="Are you sure ?"
+                />
             </tree>
         </field>
     </record>
@@ -345,6 +370,14 @@
                         type="object"
                         name="sign"
                         attrs="{'invisible': [('is_allow_signature', '=', False)]}"
+                    />
+                    <button
+                        string="Send"
+                        type="object"
+                        attrs="{'invisible': [('signed_on', '!=', False)]}"
+                        name="action_send"
+                        icon="fa-paper-plane"
+                        confirm="Are you sure ?"
                     />
                 </header>
                 <sheet>
