@@ -1,0 +1,21 @@
+<odoo>
+    <record id="sign_field_survey" model="sign.oca.field">
+        <field name="name">Survey</field>
+        <field name="field_type">text</field>
+        <field name="default_value">survey</field>
+    </record>
+
+    <record id="role_survey_user_input" model="sign.oca.role">
+        <field name="name">Survey Participant</field>
+        <field name="partner_selection_policy">expression</field>
+        <field name="expression_partner">{{object.partner_id.id}}</field>
+    </record>
+
+    <record id="role_survey_responsible_input" model="sign.oca.role">
+        <field name="name">Survey Responsible</field>
+        <field name="partner_selection_policy">expression</field>
+        <field
+            name="expression_partner"
+        >{{object.survey_id.user_id.partner_id.id}}</field>
+    </record>
+</odoo>
