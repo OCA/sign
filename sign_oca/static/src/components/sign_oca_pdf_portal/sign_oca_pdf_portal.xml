@@ -12,6 +12,7 @@
                                         src="/logo.png"
                                         alt="Logo"
                                         loading="lazy"
+                                        style="height: 70px;"
                                     /></a>
                             </div>
                         </div>
