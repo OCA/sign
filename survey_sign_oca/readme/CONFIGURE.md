@@ -14,8 +14,14 @@
 2.  Go to Sign \> Settings \> Fields and create a new one with the following data if not
     there:
 
-    - Field Type: text
-    - Default Value: survey
+    - Text Survey Field
+
+      - Field Type: text
+      - Default Value: survey
+
+    - Check Survey Field
+      - Field Type: check
+      - Default Value: survey
 
 3.  Go to Sign \> Templates and create a template with the following data:
 

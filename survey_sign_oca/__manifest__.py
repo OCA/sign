@@ -17,9 +17,11 @@
     "assets": {
         "web.assets_backend": [
             "survey_sign_oca/static/src/text.esm.js",
+            "survey_sign_oca/static/src/check.esm.js",
         ],
         "web.assets_frontend": [
             "survey_sign_oca/static/src/text.esm.js",
+            "survey_sign_oca/static/src/check.esm.js",
         ],
     },
     "installable": True,

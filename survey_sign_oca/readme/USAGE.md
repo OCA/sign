@@ -17,4 +17,6 @@ Automatic Sign Request creation process:
 For generated sign requests scoping survey, input values are populated automatically
 with the survey answered values.
 
+Answers of yes/no type are shown in text fields as Yes/No and in check fields as checked/unchecked.
+
 Signers can still update the input values if they want.

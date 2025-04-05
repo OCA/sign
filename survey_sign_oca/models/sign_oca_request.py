@@ -3,6 +3,22 @@
 from odoo import api, fields, models
 
 
+class SurveyUtils:
+    @staticmethod
+    def is_yes_no_answer(value):
+        return str(value).strip().lower() in ["yes", "no"]
+
+    @staticmethod
+    def answer_is_yes(value):
+        return str(value).strip().lower() == "yes"
+
+    @staticmethod
+    def format_answer(answer):
+        if SurveyUtils.is_yes_no_answer(answer):
+            answer = SurveyUtils.answer_is_yes(answer)
+        return answer
+
+
 class SignOcaRequest(models.Model):
     _inherit = "sign.oca.request"
 
@@ -37,10 +53,18 @@ class SignOcaRequestSigner(models.Model):
             survey = {}
             for line in survey_participation.user_input_line_ids:
                 if line.question_id.question_type == "matrix":
+                    answer = line.suggested_answer_id.value
                     survey.update(
-                        {line.matrix_row_id.value: line.suggested_answer_id.value}
+                        {line.matrix_row_id.value: SurveyUtils.format_answer(answer)}
                     )
                 else:
-                    survey.update({line.question_id.display_name: line.display_name})
+                    answer = line.display_name
+                    survey.update(
+                        {
+                            line.question_id.display_name: SurveyUtils.format_answer(
+                                answer
+                            )
+                        }
+                    )
             vals["partner"].update({"survey": survey})
         return vals

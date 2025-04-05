@@ -7,78 +7,63 @@ import {registry} from "@web/core/registry";
 
 function patchSignOca() {
     const SignRegistry = registry.category("sign_oca");
-    const textSignOca = registry.category("sign_oca").get("text");
-    const patchedTextSignOca = Object.assign({}, textSignOca);
+    const textSignOca = registry.category("sign_oca").get("check");
+    const patchedCheckSignOca = Object.assign({}, textSignOca);
 
-    function applyDefaultValue({input, parent, item, signatureItem, changeFn}) {
-        if (
-            item.default_value &&
-            !item.value &&
-            parent.info.partner[item.default_value]
-        ) {
-            let val = null;
-            if (item.default_value === "survey") {
-                const surveyValue =
-                    parent.info.partner.survey?.[item.placeholder] || null;
-                if (surveyValue && surveyValue !== "Skipped") {
-                    if (surveyValue === true) {
-                        val = "Yes";
-                    } else if (surveyValue === false) {
-                        val = "No";
-                    } else {
-                        val = surveyValue;
-                    }
-                }
-            } else {
-                val = parent.info.partner[item.default_value];
-            }
-            if (val) {
-                changeFn(val, parent, item, signatureItem);
-                input.value = val;
-            }
-        }
-    }
-
-    patchedTextSignOca.generate = function (parent, item, signatureItem) {
+    patchedCheckSignOca.generate = function (parent, item, signatureItem) {
         const input = $(
-            core.qweb.render("sign_oca.sign_iframe_field_text", {
-                item,
+            core.qweb.render("sign_oca.sign_iframe_field_check", {
+                item: item,
                 role_id: parent.info.role_id,
             })
         )[0];
         // Apply default values immediately after creating inputs for survey related requests specifically.
         if (parent.info.partner.survey) {
-            applyDefaultValue({
-                input,
-                parent,
-                item,
-                signatureItem,
-                changeFn: this.change.bind(this),
-            });
+            if (item.default_value === "survey") {
+                const surveyValue =
+                    parent.info.partner.survey?.[item.placeholder] || null;
+                if (surveyValue && surveyValue !== "Skipped") {
+                    if (surveyValue === true) {
+                        this.change(
+                            parent.info.partner[item.default_value],
+                            parent,
+                            item,
+                            signatureItem
+                        );
+                        input.value = surveyValue;
+                        input.checked = surveyValue;
+                    }
+                }
+            }
         }
         signatureItem[0].addEventListener("focus_signature", () => {
             input.focus();
         });
         // Update the value of the focused input to the default
         input.addEventListener("focus", (ev) => {
-            applyDefaultValue({
-                input: ev.target,
-                parent,
-                item,
-                signatureItem,
-                changeFn: this.change.bind(this),
-            });
+            if (
+                item.default_value &&
+                !item.value &&
+                parent.info.partner[item.default_value]
+            ) {
+                this.change(
+                    parent.info.partner[item.default_value],
+                    parent,
+                    item,
+                    signatureItem
+                );
+                ev.target.value = parent.info.partner[item.default_value];
+            }
         });
-
         input.addEventListener("change", (ev) => {
-            this.change(ev.target.value, parent, item, signatureItem);
+            this.change(ev.srcElement.checked, parent, item, signatureItem);
         });
         input.addEventListener("keydown", (ev) => {
             if ((ev.keyCode || ev.which) !== 9) {
                 return true;
             }
             ev.preventDefault();
-            const next_items = _.filter(
+            var next_items = _.filter(
                 parent.info.items,
                 (i) => i.tabindex > item.tabindex && i.role_id === parent.info.role_id
             ).sort((a, b) => a.tabindex - b.tabindex);
@@ -97,14 +82,14 @@ function patchSignOca() {
         return input;
     };
     // Re-add the registry
-    SignRegistry.remove("text");
-    SignRegistry.add("text", patchedTextSignOca);
+    SignRegistry.remove("check");
+    SignRegistry.add("check", patchedCheckSignOca);
 }
 
 const interval = setInterval(() => {
     const signOca = registry.category("sign_oca");
     const content = signOca.content;
-    if (content && content.text) {
+    if (content && content.check) {
         clearInterval(interval);
         patchSignOca();
     }
