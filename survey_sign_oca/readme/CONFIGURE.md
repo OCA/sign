@@ -20,7 +20,13 @@
       - Default Value: survey
 
     - Check Survey Field
+
       - Field Type: check
+      - Default Value: survey
+
+    - Signature Survey Field
+
+      - Field Type: signature
       - Default Value: survey
 
 3.  Go to Sign \> Templates and create a template with the following data:

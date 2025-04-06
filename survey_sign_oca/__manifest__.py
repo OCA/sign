@@ -7,23 +7,13 @@
     "website": "https://github.com/OCA/sign",
     "author": "Kencove, Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "depends": ["sign_oca", "survey"],
+    "depends": ["sign_oca", "survey", "survey_question_type_binary"],
     "data": [
         "views/survey_user_views.xml",
         "views/res_config_settings_view.xml",
         "views/sign_oca_request_views.xml",
         "data/sign_oca_role.xml",
     ],
-    "assets": {
-        "web.assets_backend": [
-            "survey_sign_oca/static/src/text.esm.js",
-            "survey_sign_oca/static/src/check.esm.js",
-        ],
-        "web.assets_frontend": [
-            "survey_sign_oca/static/src/text.esm.js",
-            "survey_sign_oca/static/src/check.esm.js",
-        ],
-    },
     "installable": True,
     "maintainers": ["Kencove"],
 }

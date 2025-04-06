@@ -65,6 +65,11 @@ Configuration
      - Field Type: check
      - Default Value: survey
 
+   - Signature Survey Field
+
+     - Field Type: signature
+     - Default Value: survey
+
 3. Go to Sign > Templates and create a template with the following data:
 
    - Model: Survey User Input
@@ -97,13 +102,16 @@ Automatic Sign Request creation process:
 
 ::
 
-   - When an partner takes a survey, a sign request will be created automatically.
+   - When a partner takes a survey, a sign request will be created automatically.
 
 For generated sign requests scoping survey, input values are populated
 automatically with the survey answered values.
 
 Answers of yes/no type are shown in text fields as Yes/No and in check
 fields as checked/unchecked.
+
+Answers of type binary can be trated as signature fields if the survey
+question is the same as the signature placeholder in sign request.
 
 Signers can still update the input values if they want.
 

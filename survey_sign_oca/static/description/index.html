@@ -415,6 +415,11 @@ following data if not there:<ul>
 <li>Default Value: survey</li>
 </ul>
 </li>
+<li>Signature Survey Field<ul>
+<li>Field Type: signature</li>
+<li>Default Value: survey</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>Go to Sign &gt; Templates and create a template with the following data:<ul>
@@ -443,12 +448,14 @@ linked sign requests.</p>
 </pre>
 <p>Automatic Sign Request creation process:</p>
 <pre class="literal-block">
-- When an partner takes a survey, a sign request will be created automatically.
+- When a partner takes a survey, a sign request will be created automatically.
 </pre>
 <p>For generated sign requests scoping survey, input values are populated
 automatically with the survey answered values.</p>
 <p>Answers of yes/no type are shown in text fields as Yes/No and in check
 fields as checked/unchecked.</p>
+<p>Answers of type binary can be trated as signature fields if the survey
+question is the same as the signature placeholder in sign request.</p>
 <p>Signers can still update the input values if they want.</p>
 </div>
 <div class="section" id="bug-tracker">

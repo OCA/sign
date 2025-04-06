@@ -1,13 +1,19 @@
 <odoo>
     <record id="sign_field_survey_text" model="sign.oca.field">
-        <field name="name">Survey</field>
+        <field name="name">Survey Text</field>
         <field name="field_type">text</field>
         <field name="default_value">survey</field>
     </record>
 
     <record id="sign_field_survey_check" model="sign.oca.field">
-        <field name="name">Survey</field>
+        <field name="name">Survey Check</field>
         <field name="field_type">check</field>
+        <field name="default_value">survey</field>
+    </record>
+
+    <record id="sign_field_survey_signature" model="sign.oca.field">
+        <field name="name">Survey Signature</field>
+        <field name="field_type">signature</field>
         <field name="default_value">survey</field>
     </record>
 
