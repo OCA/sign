@@ -50,9 +50,12 @@ const textSignOca = {
                 .sort((a, b) => a.tabindex - b.tabindex);
             if (next_items.length > 0) {
                 ev.currentTarget.blur();
-                parent.items[next_items[0].id].dispatchEvent(
-                    new Event("focus_signature")
-                );
+                const nextItem = next_items[0];
+                if (nextItem && parent.items && parent.items[nextItem.id]) {
+                    parent.items[nextItem.id].dispatchEvent(
+                        new Event("focus_signature")
+                    );
+                }
             }
         });
         return input;
