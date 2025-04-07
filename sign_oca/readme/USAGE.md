@@ -13,7 +13,7 @@
 - Access Sign / Settings / Roles
 - Create a new role (Equipment employee for example)
 - You can set the Partner type you need (empty, default or expression).
-- With the expression option you can set: \${object.field_name.id}
+- With the expression option you can set: {{object.field_name.id}}
 - If you create a sign request from template signer will be auto-create
   according to roles
 
