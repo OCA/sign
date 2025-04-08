@@ -55,7 +55,7 @@ class SignOcaRequestSigner(models.Model):
                 if line.question_id.question_type == "matrix":
                     answer = line.suggested_answer_id.value
                     survey.update({line.matrix_row_id.value: answer})
-                elif line.question_id.question_type == "binary":
+                elif line.question_id.question_type in ["binary", "signature"]:
                     answer = line.answer_binary_ids[:1].value_binary
                     survey.update({line.question_id.display_name: answer})
                 else:

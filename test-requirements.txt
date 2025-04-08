@@ -1,1 +1,2 @@
 odoo-addon-sign_oca @ git+https://github.com/OCA/sign.git@refs/pull/91/head#subdirectory=setup/sign_oca
+odoo-addon-survey_question_type_binary @ git+https://github.com/OCA/survey.git@refs/pull/157/head#subdirectory=setup/survey_question_type_binary
