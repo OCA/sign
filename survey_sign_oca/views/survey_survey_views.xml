@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="survey_survey_view_form" model="ir.ui.view">
+        <field name="name">survey.survey.view.form</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_survey_view_form" />
+        <field name="arch" type="xml">
+            <field name="description" position="before">
+                <label for="start_button_name" string="Survey Start Button" />
+                <field name="start_button_name" />
+            </field>
+        </field>
+    </record>
+</odoo>

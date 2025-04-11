@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="survey_fill_form_start" inherit_id="survey.survey_fill_form_start">
+        <xpath expr="//button/t[@t-if='survey.certification']" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
+        <xpath expr="//button//t[@t-if='False']" position="after">
+            <t t-if="survey.start_button_name">
+                <t t-out="survey.start_button_name" />
+            </t>
+            <t t-elif="survey.certification">
+                Start Certification
+            </t>
+        </xpath>
+    </template>
+</odoo>

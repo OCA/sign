@@ -12,6 +12,8 @@
         "views/survey_user_views.xml",
         "views/res_config_settings_view.xml",
         "views/sign_oca_request_views.xml",
+        "views/survey_survey_views.xml",
+        "views/survey_templates.xml",
         "data/sign_oca_role.xml",
     ],
     "installable": True,
