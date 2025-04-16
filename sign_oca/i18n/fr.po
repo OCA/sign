@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-04-16 13:24+0000\n"
+"PO-Revision-Date: 2025-04-16 18:24+0000\n"
 "Last-Translator: Romain BONNINGUE <bonninguer@gmail.com>\n"
 "Language-Team: none\n"
 "Language: fr\n"
@@ -447,7 +447,7 @@ msgstr "Paramètres généraux"
 #. module: sign_oca
 #: model:ir.ui.menu,name:sign_oca.sign_oca_general_settings_menu
 msgid "General settings"
-msgstr ""
+msgstr "Paramètres généraux"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_generate_multi_form_view
@@ -774,7 +774,7 @@ msgid ""
 "be sent to each of them."
 msgstr ""
 "Une fois que tous les signataires auront signé, une copie du document "
-"complété leur seront envoyée."
+"complété leur sera envoyée."
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__page
