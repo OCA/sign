@@ -5,8 +5,7 @@
         <field name="model">survey.survey</field>
         <field name="inherit_id" ref="survey.survey_survey_view_form" />
         <field name="arch" type="xml">
-            <field name="description" position="before">
-                <label for="start_button_name" string="Survey Start Button" />
+            <field name="users_can_go_back" position="after">
                 <field name="start_button_name" />
             </field>
         </field>

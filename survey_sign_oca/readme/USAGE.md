@@ -23,4 +23,7 @@ checked/unchecked.
 Answers of type binary can be trated as signature fields if the survey question is the
 same as the signature placeholder in sign request.
 
+In that case make sure to have this module: `survey_question_type_binary` from OCA
+installed.
+
 Signers can still update the input values if they want.

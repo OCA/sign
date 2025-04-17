@@ -7,7 +7,7 @@
     "website": "https://github.com/OCA/sign",
     "author": "Kencove, Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "depends": ["sign_oca", "survey", "survey_question_type_binary"],
+    "depends": ["sign_oca", "survey"],
     "data": [
         "views/survey_user_views.xml",
         "views/res_config_settings_view.xml",

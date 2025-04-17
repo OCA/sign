@@ -42,8 +42,8 @@ class SurveyUserInput(models.Model):
         ctx = dict(self.env.context)
         ctx.update(
             {
-                "default_maintenance_equipment_id": self.id,
-                "search_default_maintenance_equipment_id": self.id,
+                "default_survey_user_input_id": self.id,
+                "search_default_survey_user_input_id": self.id,
             }
         )
         result["context"] = ctx

@@ -3,6 +3,8 @@
 from odoo import api, fields, models
 
 
+# This class is to format questions of type (yes, no)
+# in case we need the answer as (True, False) in case of filling checkboxes
 class SurveyUtils:
     @staticmethod
     def is_yes_no_answer(value):
@@ -22,7 +24,7 @@ class SurveyUtils:
 class SignOcaRequest(models.Model):
     _inherit = "sign.oca.request"
 
-    # This field is required for the inverse of maintenance.equipment.
+    # This field is required for the inverse of survey.user.input.
     survey_user_input_id = fields.Many2one(
         comodel_name="survey.user_input",
         compute="_compute_survey_user_input_id",
@@ -52,6 +54,8 @@ class SignOcaRequestSigner(models.Model):
         survey = {}
         if survey_participation and model_id and model_id.model == "survey.user_input":
             for line in survey_participation.user_input_line_ids:
+                # Questions of type matrix have questions and suggested answers like a matrix
+                # We map the answeres to the questions for each matrix type
                 if line.question_id.question_type == "matrix":
                     answer = line.suggested_answer_id.value
                     survey.update({line.matrix_row_id.value: answer})
@@ -69,6 +73,9 @@ class SignOcaRequestSigner(models.Model):
         for key in items:
             item = items[key]
             placeholder = item.get("placeholder")
+            # According to placeholder we target the answer of a question
+            # having same text as the placeholder
+            # and we choose the answer format based on the item field_typ
             if survey.get(placeholder) and item["role_id"] == self.role_id.id:
                 if survey.get(placeholder) and item["field_type"] == "text":
                     item["value"] = survey.get(placeholder)
