@@ -48,11 +48,9 @@ class SignOcaRequestSigner(models.Model):
 
     def get_related_survey_answers(self):
         self.ensure_one()
-        # get survey answers for this sign request
-        model_id = self.request_id.template_id.model_id
         survey_participation = self.request_id.record_ref
         survey = {}
-        if survey_participation and model_id and model_id.model == "survey.user_input":
+        if survey_participation:
             for line in survey_participation.user_input_line_ids:
                 # Questions of type matrix have questions and suggested answers like a matrix
                 # We map the answeres to the questions for each matrix type
@@ -83,9 +81,15 @@ class SignOcaRequestSigner(models.Model):
                     item["value"] = SurveyUtils.format_answer(survey.get(placeholder))
                 elif survey.get(placeholder) and item["field_type"] == "signature":
                     item["value"] = survey.get(placeholder)
+            if item.get("default_value") and item.get("default_value") != "survey":
+                item["value"] = vals.get("partner").get(item["default_value"])
         return vals
 
     def get_info(self, access_token=False):
         vals = super().get_info(access_token)
-        vals = self.fill_survey_related_items(vals)
+        # get survey answers for this sign request
+        # and fill items with answers / default values
+        model_id = self.request_id.template_id.model_id
+        if model_id and model_id.model == "survey.user_input":
+            vals = self.fill_survey_related_items(vals)
         return vals
