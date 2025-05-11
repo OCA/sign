@@ -122,6 +122,20 @@ export default class SignOcaPdfCommon extends Component {
         this.items[item.id] = signatureItem[0];
         return signatureItem;
     }
+    // CheckSignItemsCompletion and navigate functions for handling navigation
+    checkSignItemsCompletion() {
+        const signItemsToComplete = [];
+        $.each(this.info.items, (key, value) => {
+            if (this.postIframeField(value) && this.postIframeField(value)[0]) {
+                const $element = $(value);
+                const signItemToComplete = {};
+                signItemToComplete.data = $element[0];
+                signItemToComplete.el = this.postIframeField(value)[0];
+                signItemsToComplete.push(signItemToComplete);
+            }
+        });
+        return signItemsToComplete;
+    }
 }
 SignOcaPdfCommon.template = "sign_oca.SignOcaPdfCommon";
 SignOcaPdfCommon.props = [];
