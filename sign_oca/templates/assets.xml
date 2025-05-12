@@ -98,7 +98,48 @@
                     />
                 </div>
             </span>
+            <span>
+                <div>
+                    <small>
+                        <a
+                            t-att-href="unsubscribe_url"
+                        >Unsubscribe from these notifications</a>
+                    </small>
+                </div>
+            </span>
         </div>
+    </template>
+    <template id="page_unsubscribed" name="Unsubscribed">
+        <t t-call="mass_mailing.layout">
+            <t t-if="state=='ok'">
+                <div
+                    id="subscription_info"
+                    class="alert alert-success text-center"
+                    role="status"
+                >
+                    <p>You have been successfully <strong>unsubscribed</strong>!</p>
+                </div>
+            </t>
+            <t t-elif="state in ['wrong_url', 'wrong_id']">
+                <div
+                    id="subscription_info"
+                    class="alert alert-warning text-center"
+                    role="status"
+                >
+                    <p>Please make sure the url is correct and try again.</p>
+                </div>
+            </t>
+            <t t-elif="state=='wrong_access'">
+                <div
+                    id="subscription_info"
+                    class="alert alert-warning text-center"
+                    role="status"
+                >
+                    <p
+                    >Please make sure you are authorized to access the url and try again.</p>
+                </div>
+            </t>
+        </t>
     </template>
 
 </odoo>

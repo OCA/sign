@@ -51,6 +51,9 @@ class SignOcaTemplateGenerate(models.TransientModel):
 
     def generate(self):
         request = self._generate()
+        request.message_subscribe(
+            partner_ids=request.signer_ids.mapped("partner_id.id")
+        )
         request.action_send(sign_now=self.sign_now, message=self.message)
         return request.sign()
 

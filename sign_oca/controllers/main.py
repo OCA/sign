@@ -104,3 +104,32 @@ class PortalSign(CustomerPortal):
         return signer_sudo.action_sign(
             items, access_token=access_token, latitude=latitude, longitude=longitude
         )
+
+    def unsubscription(self, signer_id=None, res_id=None, access_token=None, **kwargs):
+        """manage calls for unsubscription"""
+        if not res_id or not signer_id:
+            return {"state": "wrong_url"}
+        sign_request = request.env["sign.oca.request"].sudo().browse(int(res_id))
+        try:
+            signer = (
+                request.env["sign.oca.request.signer"].sudo().browse(int(signer_id))
+            )
+            if not signer:
+                return {"state": "wrong_id"}
+            signer_sudo = self._document_check_access(
+                signer._name, signer.id, access_token
+            )
+            sign_request.message_unsubscribe(
+                partner_ids=[int(signer_sudo.partner_id.id)]
+            )
+        except (AccessError, MissingError):
+            return {"state": "wrong_access"}
+        return {"state": "ok"}
+
+    @http.route("/mail/unsubscribe", type="http", auth="public", website=True)
+    def unsubscribe(self, signer_id=None, res_id=None, access_token=None, **kwargs):
+        """unsubscription controller"""
+        vals = self.unsubscription(
+            signer_id=signer_id, res_id=res_id, access_token=access_token, **kwargs
+        )
+        return request.render("sign_oca.page_unsubscribed", vals)

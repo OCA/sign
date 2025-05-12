@@ -260,18 +260,33 @@ class SignOcaRequest(models.Model):
                 continue
             render_result = self.env["ir.qweb"]._render(
                 "sign_oca.sign_oca_template_mail",
-                {"record": signer, "body": message, "link": signer.access_url},
+                {
+                    "record": signer,
+                    "body": message,
+                    "link": signer.access_url,
+                    "unsubscribe_url": (
+                        "/mail/unsubscribe?"
+                        f"signer_id={signer.id}"
+                        f"&res_id={self.id}"
+                        f"&access_token={signer.access_token}"
+                    ),
+                },
                 engine="ir.qweb",
                 minimal_qcontext=True,
             )
-            self.env["mail.thread"].message_notify(
-                body=render_result,
-                partner_ids=signer.partner_id.ids,
-                subject=_("New document to sign"),
-                subtype_id=self.env.ref("mail.mt_comment").id,
-                mail_auto_delete=False,
-                email_layout_xmlid="mail.mail_notification_light",
-            )
+            # send the message only to
+            # partners who didn't sign
+            # and are still followers
+            if not signer.signed_on and signer.partner_id in self.message_partner_ids:
+                self.message_subscribe(partner_ids=[signer.partner_id.id])
+                self.env["mail.thread"].message_notify(
+                    body=render_result,
+                    partner_ids=signer.partner_id.ids,
+                    subject=_("New document to sign"),
+                    subtype_id=self.env.ref("mail.mt_comment").id,
+                    mail_auto_delete=False,
+                    email_layout_xmlid="mail.mail_notification_light",
+                )
 
     def action_send_signed_request(self):
         self.ensure_one()
