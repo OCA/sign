@@ -30,13 +30,14 @@ class SignOcaRequest(models.Model):
 
     name = fields.Char(required=True)
     active = fields.Boolean(default=True)
-    template_id = fields.Many2one("sign.oca.template")
-    data = fields.Binary(required=True)
+    template_id = fields.Many2one("sign.oca.template", readonly=True)
+    data = fields.Binary(required=True, readonly=True)
     filename = fields.Char()
     user_id = fields.Many2one(
         comodel_name="res.users",
         string="Responsible",
         default=lambda self: self.env.user,
+        readonly=True,
         required=True,
     )
     record_ref = fields.Reference(
@@ -46,6 +47,7 @@ class SignOcaRequest(models.Model):
             .sudo()
             .search([("transient", "=", False), ("model", "not like", "sign.oca")])
         ],
+        readonly=True,
         string="Object",
     )
     signed = fields.Boolean(copy=False)
@@ -73,6 +75,7 @@ class SignOcaRequest(models.Model):
         required=True,
         copy=False,
         tracking=True,
+        readonly=True,
     )
     signed_count = fields.Integer(compute="_compute_signed_count")
     signer_count = fields.Integer(compute="_compute_signer_count")
@@ -80,12 +83,15 @@ class SignOcaRequest(models.Model):
     signatory_data = fields.Serialized(
         default=lambda r: {},
         copy=False,
+        # TODO: Check how to copy this field
+        readonly=True,
     )
-    current_hash = fields.Char(copy=False)
+    current_hash = fields.Char(readonly=True, copy=False)
     company_id = fields.Many2one(
         "res.company",
         default=lambda r: r.env.company.id,
         required=True,
+        readonly=True,
     )
     next_item_id = fields.Integer(compute="_compute_next_item_id")
     ask_location = fields.Boolean()
@@ -346,8 +352,8 @@ class SignOcaRequestSigner(models.Model):
     partner_name = fields.Char(related="partner_id.name")
     partner_id = fields.Many2one("res.partner", required=True, ondelete="restrict")
     role_id = fields.Many2one("sign.oca.role", required=True, ondelete="restrict")
-    signed_on = fields.Datetime()
-    signature_hash = fields.Char()
+    signed_on = fields.Datetime(readonly=True, copy=False)
+    signature_hash = fields.Char(readonly=True, copy=False)
     model = fields.Char(compute="_compute_model", store=True)
     res_id = fields.Integer(compute="_compute_res_id", store=True)
     is_allow_signature = fields.Boolean(compute="_compute_is_allow_signature")
@@ -677,13 +683,21 @@ class SignRequestLog(models.Model):
         required=True,
         ondelete="cascade",
         default=lambda r: r.env.user.id,
+        readonly=True,
     )
-    date = fields.Datetime(required=True, default=lambda r: fields.Datetime.now())
+    date = fields.Datetime(
+        required=True, default=lambda r: fields.Datetime.now(), readonly=True
+    )
     partner_id = fields.Many2one(
-        "res.partner", required=True, default=lambda r: r.env.user.partner_id.id
+        "res.partner",
+        required=True,
+        default=lambda r: r.env.user.partner_id.id,
+        readonly=True,
     )
-    request_id = fields.Many2one("sign.oca.request", required=True, ondelete="cascade")
-    signer_id = fields.Many2one("sign.oca.request.signer")
+    request_id = fields.Many2one(
+        "sign.oca.request", required=True, ondelete="cascade", readonly=True
+    )
+    signer_id = fields.Many2one("sign.oca.request.signer", readonly=True)
     action = fields.Selection(
         [
             ("create", "Create"),
@@ -697,6 +711,7 @@ class SignRequestLog(models.Model):
             ("configure", "Configure"),
         ],
         required=True,
+        readonly=True,
     )
-    access_token = fields.Char()
-    ip = fields.Char()
+    access_token = fields.Char(readonly=True)
+    ip = fields.Char(readonly=True)

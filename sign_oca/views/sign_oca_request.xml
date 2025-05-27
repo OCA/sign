@@ -6,7 +6,7 @@
         <field name="name">sign.oca.request.form (in sign_oca)</field>
         <field name="model">sign.oca.request</field>
         <field name="arch" type="xml">
-            <form create="0">
+            <form>
                 <header>
                     <button
                         string="Sign"
