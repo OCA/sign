@@ -338,7 +338,7 @@ class SignOcaRequest(models.Model):
 
 class SignOcaRequestSigner(models.Model):
     _name = "sign.oca.request.signer"
-    _inherit = "portal.mixin"
+    _inherit = ["portal.mixin", "mail.thread", "mail.activity.mixin"]
     _description = "Sign Request Value"
 
     data = fields.Binary(related="request_id.data")

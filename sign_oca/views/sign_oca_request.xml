@@ -328,6 +328,7 @@
                 <header>
                     <button
                         string="Sign"
+                        class="btn btn-primary"
                         type="object"
                         name="sign"
                         invisible="not is_allow_signature"
@@ -345,14 +346,91 @@
                         <field name="longitude" />
                     </group>
                 </sheet>
+                <chatter />
             </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sign_oca_request_signer_kanban_view">
+        <field name="name">sign.oca.request.signer.kanban (in sign_oca)</field>
+        <field name="model">sign.oca.request.signer</field>
+        <field name="arch" type="xml">
+            <kanban create="false" default_order="create_date desc">
+                <field name="role_id" />
+                <field name="partner_id" />
+                <field name="request_id" />
+                <field name="signed_on" />
+                <field name="altered_hash" invisible="1" />
+                <templates>
+                    <t t-name="menu">
+                        <a
+                            role="menuitem"
+                            type="object"
+                            name="get_formview_action"
+                            class="dropdown-item"
+                        >Details</a>
+                    </t>
+                    <t t-name="card">
+                        <div class="row">
+                            <field class="fw-bolder" name="request_id" />
+                            <field name="role_id" class="mt-2" />
+                            <footer>
+                                <div class="row mt-2">
+                                    <div class="col-6">
+                                        <em>
+                                            <field name="create_date" widget="date" />
+                                        </em>
+                                    </div>
+                                    <div class="col-3">
+                                        <field
+                                            name="activity_ids"
+                                            widget="kanban_activity"
+                                        />
+                                    </div>
+                                    <div class="col-3">
+                                        <field
+                                            name="partner_id"
+                                            widget="many2one_avatar_user"
+                                        />
+                                    </div>
+                                </div>
+                            </footer>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sign_oca_request_signer_search_view">
+        <field name="name">sign.oca.request.signer.search (in sign_oca)</field>
+        <field name="model">sign.oca.request.signer</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="request_id" />
+                <separator />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="group_by_create_date"
+                        string="Create date"
+                        domain="[]"
+                        context="{'group_by': 'create_date'}"
+                    />
+                    <filter
+                        name="group_by_role_id"
+                        string="Role"
+                        domain="[]"
+                        context="{'group_by': 'role_id'}"
+                    />
+                </group>
+            </search>
         </field>
     </record>
 
     <record model="ir.actions.act_window" id="sign_oca_request_signer_act_window">
         <field name="name">Sign Request Signers</field>
         <field name="res_model">sign.oca.request.signer</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">kanban,list,form,activity</field>
         <field name="domain">[]</field>
         <field name="context">{}</field>
     </record>
