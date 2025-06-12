@@ -65,6 +65,7 @@ msgstr "Azione"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_needaction
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__message_needaction
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__message_needaction
 msgid "Action Needed"
 msgstr "Azione richiesta"
@@ -77,11 +78,13 @@ msgstr "Attivo"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_ids
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__activity_ids
 msgid "Activities"
 msgstr "Attività"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_exception_decoration
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__activity_exception_decoration
 msgid "Activity Exception Decoration"
 msgstr "Decorazione eccezione attività"
 
@@ -92,11 +95,13 @@ msgstr "Registro attività"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_state
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__activity_state
 msgid "Activity State"
 msgstr "Stato attività"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_type_icon
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__activity_type_icon
 msgid "Activity Type Icon"
 msgstr "Icona tipo attività"
 
@@ -153,6 +158,7 @@ msgstr "Richiedi località"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_attachment_count
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__message_attachment_count
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__message_attachment_count
 msgid "Attachment Count"
 msgstr "Conteggio allegati"
@@ -235,6 +241,11 @@ msgstr "Contatto"
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request_log__action__create
 msgid "Create"
 msgstr "Crea"
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_signer_search_view
+msgid "Create date"
+msgstr ""
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_field__create_uid
@@ -324,6 +335,7 @@ msgstr "Cancella campo"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_kanban_view
+#: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_signer_kanban_view
 msgid "Details"
 msgstr "Dettagli"
 
@@ -419,18 +431,21 @@ msgstr "Compilato da"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_follower_ids
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__message_follower_ids
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__message_follower_ids
 msgid "Followers"
 msgstr "Seguito da"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_partner_ids
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__message_partner_ids
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__message_partner_ids
 msgid "Followers (Partners)"
 msgstr "Seguito da (partner)"
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__activity_type_icon
+#: model:ir.model.fields,help:sign_oca.field_sign_oca_request_signer__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
 msgstr "Icona Font Awesome es. fa-tasks"
 
@@ -476,11 +491,13 @@ msgstr "Genera richieste firma"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
+#: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_signer_search_view
 msgid "Group By"
 msgstr "Raggruppa per"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__has_message
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__has_message
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__has_message
 msgid "Has Message"
 msgstr "Ha un messaggio"
@@ -512,16 +529,19 @@ msgstr "ID"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_exception_icon
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__activity_exception_icon
 msgid "Icon"
 msgstr "Icona"
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__activity_exception_icon
+#: model:ir.model.fields,help:sign_oca.field_sign_oca_request_signer__activity_exception_icon
 msgid "Icon to indicate an exception activity."
 msgstr "Icona per indicare un'attività eccezione."
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__message_needaction
+#: model:ir.model.fields,help:sign_oca.field_sign_oca_request_signer__message_needaction
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_template__message_needaction
 msgid "If checked, new messages require your attention."
 msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
@@ -529,6 +549,8 @@ msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__message_has_error
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__message_has_sms_error
+#: model:ir.model.fields,help:sign_oca.field_sign_oca_request_signer__message_has_error
+#: model:ir.model.fields,help:sign_oca.field_sign_oca_request_signer__message_has_sms_error
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_template__message_has_error
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_template__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
@@ -594,6 +616,7 @@ msgstr "È firma consentita"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_is_follower
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__message_is_follower
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__message_is_follower
 msgid "Is Follower"
 msgstr "Segue"
@@ -670,12 +693,14 @@ msgstr "Messaggio"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_has_error
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__message_has_error
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__message_has_error
 msgid "Message Delivery error"
 msgstr "Errore di consegna messaggio"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_ids
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__message_ids
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__message_ids
 msgid "Messages"
 msgstr "Messaggi"
@@ -694,6 +719,7 @@ msgstr "Nome modello"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__my_activity_date_deadline
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__my_activity_date_deadline
 msgid "My Activity Deadline"
 msgstr "Scadenza mia attività"
 
@@ -730,16 +756,19 @@ msgstr "Nuovo documento da firmare"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_date_deadline
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__activity_date_deadline
 msgid "Next Activity Deadline"
 msgstr "Scadenza prossima attività"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_summary
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__activity_summary
 msgid "Next Activity Summary"
 msgstr "Riepilogo prossima attività"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_type_id
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__activity_type_id
 msgid "Next Activity Type"
 msgstr "Tipo prossima attività"
 
@@ -756,24 +785,28 @@ msgstr "Nessuna richiesta di firma."
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_needaction_counter
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__message_needaction_counter
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__message_needaction_counter
 msgid "Number of Actions"
 msgstr "Numero di azioni"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_has_error_counter
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__message_has_error_counter
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__message_has_error_counter
 msgid "Number of errors"
 msgstr "Numero di errori"
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__message_needaction_counter
+#: model:ir.model.fields,help:sign_oca.field_sign_oca_request_signer__message_needaction_counter
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_template__message_needaction_counter
 msgid "Number of messages requiring action"
 msgstr "Numero di messaggi che richiedono un'azione"
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__message_has_error_counter
+#: model:ir.model.fields,help:sign_oca.field_sign_oca_request_signer__message_has_error_counter
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_template__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr "Numero di messaggi con errore di consegna"
@@ -890,6 +923,7 @@ msgstr "Responsabile"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_user_id
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__activity_user_id
 msgid "Responsible User"
 msgstr "Utente responsabile"
 
@@ -902,6 +936,7 @@ msgstr "Ripristina"
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__role_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_signer__role_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__role_id
+#: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_signer_search_view
 msgid "Role"
 msgstr "Ruolo"
 
@@ -913,6 +948,7 @@ msgstr "Ruoli"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_has_sms_error
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__message_has_sms_error
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__message_has_sms_error
 msgid "SMS Delivery error"
 msgstr "Errore consegna SMS"
@@ -1142,6 +1178,7 @@ msgstr "Stato"
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__activity_state
+#: model:ir.model.fields,help:sign_oca.field_sign_oca_request_signer__activity_state
 msgid ""
 "Status based on activities\n"
 "Overdue: Due date is already passed\n"
@@ -1233,6 +1270,7 @@ msgstr "Attività odierne"
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__activity_exception_decoration
+#: model:ir.model.fields,help:sign_oca.field_sign_oca_request_signer__activity_exception_decoration
 msgid "Type of the exception activity on record."
 msgstr "Tipo di attività eccezione sul record."
 
@@ -1286,12 +1324,14 @@ msgstr "Visualizza documento"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__website_message_ids
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__website_message_ids
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__website_message_ids
 msgid "Website Messages"
 msgstr "Messaggi sito web"
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__website_message_ids
+#: model:ir.model.fields,help:sign_oca.field_sign_oca_request_signer__website_message_ids
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_template__website_message_ids
 msgid "Website communication history"
 msgstr "Cronologia comunicazioni sito web"
