@@ -6,7 +6,6 @@
 import {Reactive} from "@web/core/utils/reactive";
 import {reactive} from "@odoo/owl";
 import {registry} from "@web/core/registry";
-import {user} from "@web/core/user";
 
 export class WatchSignRequestsService extends Reactive {
     static modelToLoad = [];
@@ -24,14 +23,11 @@ export class WatchSignRequestsService extends Reactive {
         this.notification = notification;
         this.sign_requests = reactive({signerCounter: 0, signerGroups: []});
 
-        this.bus_service.subscribe(
-            `sign_oca_request_updates_${user.partnerId}`,
-            async ({message}) => {
-                if (message) {
-                    await this.fetchSystraySigner();
-                }
+        this.bus_service.subscribe("sign_oca_request_updates", async ({message}) => {
+            if (message) {
+                await this.fetchSystraySigner();
             }
-        );
+        });
     }
     async fetchSystraySigner() {
         const groups = await this.orm.call("res.users", "sign_oca_request_user_count");

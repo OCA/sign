@@ -331,13 +331,10 @@ class SignOcaRequest(models.Model):
     @api.model
     def notify_changes(self, partner_recs):
         # send notification to the list of subscribers
-        partner_list_ids = partner_recs.mapped("id")
-        for partner_id in partner_list_ids:
-            self.env["bus.bus"]._sendone(
-                "broadcast",
-                f"sign_oca_request_updates_{partner_id}",
-                {"message": "Sign OCA Requests Model updated"},
-            )
+        channel = "sign_oca_request_updates"
+        message = {"message": "Sign OCA Requests Model updated"}
+        for partner_id in partner_recs:
+            partner_id._bus_send(channel, message)
 
     @api.model_create_multi
     def create(self, vals_list):
