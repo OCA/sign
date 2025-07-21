@@ -23,6 +23,11 @@ msgid "%(name)s (%(email)s) has sent the signed document."
 msgstr "%(name)s (%(email)s) ha enviado el documento firmado."
 
 #. module: sign_oca
+#: model:ir.actions.report,print_report_name:sign_oca.action_report_signature_certificate
+msgid "'Signature Certificate'"
+msgstr ""
+
+#. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_mail
 msgid ""
 ")\n"
@@ -32,9 +37,89 @@ msgstr ""
 "                ha solicitado su firma en un documento."
 
 #. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "<span class=\"fw-bold\">Created by:</span>"
+msgstr ""
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "<span class=\"fw-bold\">Created on:</span>"
+msgstr ""
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "<span class=\"fw-bold\">Current hash:</span>"
+msgstr ""
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "<span class=\"fw-bold\">Document ID:</span>"
+msgstr ""
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "<span class=\"fw-bold\">Print date:</span>"
+msgstr ""
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "<span class=\"fw-bold\">Related record:</span>"
+msgstr ""
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "<span class=\"fw-bold\">Responsible:</span>"
+msgstr ""
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "<span class=\"fw-bold\">Signature filename:</span>"
+msgstr ""
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "<span class=\"fw-bold\">Signers:</span>"
+msgstr ""
+
+#. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_form_view
 msgid "<span class=\"o_stat_text\"> Signed</span>"
 msgstr "<span class=\"o_stat_text\"> Firmado</span>"
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "<span class=\"text-muted\">Inalterability hash:</span>"
+msgstr ""
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "<span class=\"text-muted\">Not available</span>"
+msgstr ""
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "<span>(UTC)</span>"
+msgstr ""
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "<span>-</span>"
+msgstr ""
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "<span>remaining</span>"
+msgstr ""
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "<span>signed,</span>"
+msgstr ""
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "<span>signers →</span>"
+msgstr ""
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_mail
@@ -60,6 +145,7 @@ msgstr "Advertencia de acceso"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__action
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "Action"
 msgstr "Acción"
 
@@ -92,6 +178,11 @@ msgstr "Decoración de excepción de actividad"
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_form_view
 msgid "Activity Log"
 msgstr "Registro de actividades"
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "Activity Logs"
+msgstr ""
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_state
@@ -307,6 +398,11 @@ msgid "Date"
 msgstr "Fecha"
 
 #. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "Date (UTC)"
+msgstr ""
+
+#. module: sign_oca
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_role__partner_selection_policy__default
 msgid "Default"
 msgstr "Defecto"
@@ -353,6 +449,11 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "Document Information"
+msgstr ""
+
+#. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/js/systray_service.esm.js:0
 msgid "Documents to be Signed"
@@ -374,6 +475,11 @@ msgstr "Borrador"
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request_log__action__edit_field
 msgid "Edit field"
 msgstr "Editar campo"
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "Email"
+msgstr ""
 
 #. module: sign_oca
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_role__partner_selection_policy__empty
@@ -489,6 +595,11 @@ msgid "Generate signature requests"
 msgstr "Generar solicitudes de firma"
 
 #. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "Geolocation"
+msgstr ""
+
+#. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_signer_search_view
 msgid "Group By"
@@ -527,6 +638,11 @@ msgid "ID"
 msgstr "ID (Identificación)"
 
 #. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "IP address"
+msgstr ""
+
+#. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_exception_icon
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__activity_exception_icon
 msgid "Icon"
@@ -547,11 +663,8 @@ msgstr "Si está marcado, los mensajes nuevos requieren su atención."
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__message_has_error
-#: model:ir.model.fields,help:sign_oca.field_sign_oca_request__message_has_sms_error
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request_signer__message_has_error
-#: model:ir.model.fields,help:sign_oca.field_sign_oca_request_signer__message_has_sms_error
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_template__message_has_error
-#: model:ir.model.fields,help:sign_oca.field_sign_oca_template__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
 
@@ -783,6 +896,11 @@ msgid "No requests to sign."
 msgstr "No hay solicitudes para firmar."
 
 #. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "Not available"
+msgstr ""
+
+#. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_needaction_counter
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__message_needaction_counter
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__message_needaction_counter
@@ -835,6 +953,7 @@ msgstr "Página"
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__partner_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__partner_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_signer__partner_id
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "Partner"
 msgstr "Empresa"
 
@@ -935,6 +1054,7 @@ msgstr "Restaurar"
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__role_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_signer__role_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__role_id
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_signer_search_view
 msgid "Role"
 msgstr "Rol"
@@ -944,13 +1064,6 @@ msgstr "Rol"
 #: model:ir.ui.menu,name:sign_oca.sign_oca_role_menu
 msgid "Roles"
 msgstr "Roles"
-
-#. module: sign_oca
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_has_sms_error
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__message_has_sms_error
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr ""
 
 #. module: sign_oca
 #. odoo-javascript
@@ -1105,6 +1218,12 @@ msgid "Signature"
 msgstr "Firma"
 
 #. module: sign_oca
+#: model:ir.actions.report,name:sign_oca.action_report_signature_certificate
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "Signature Certificate"
+msgstr ""
+
+#. module: sign_oca
 #: model:ir.model,name:sign_oca.model_sign_oca_field
 msgid "Signature Field Type"
 msgstr "Tipo de campo de firma"
@@ -1124,6 +1243,11 @@ msgstr "Configuración de firma"
 #: model:ir.model,name:sign_oca.model_sign_oca_template_generate_signer
 msgid "Signature request signers"
 msgstr "Firmantes de solicitud de firma"
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "Signatures"
+msgstr ""
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__signed
@@ -1149,11 +1273,22 @@ msgid "Signed document"
 msgstr "Documento firmado"
 
 #. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "Signed on"
+msgstr ""
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
+msgid "Signed?"
+msgstr ""
+
+#. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_res_partner__signer_ids
 #: model:ir.model.fields,field_description:sign_oca.field_res_users__signer_ids
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__signer_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__signer_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate__signer_ids
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "Signer"
 msgstr "Firmante"
 
@@ -1166,6 +1301,7 @@ msgstr "Cantidad de firmantes"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__signer_ids
+#: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_tree_view
 msgid "Signers"
 msgstr "Firmantes"
