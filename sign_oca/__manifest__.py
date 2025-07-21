@@ -26,6 +26,8 @@
         "views/sign_oca_role.xml",
         "views/sign_oca_template.xml",
         "templates/assets.xml",
+        "reports/signature_certificate.xml",
+        "reports/signature_certificate_report.xml",
     ],
     "demo": [
         "demo/sign_oca_template.xml",
