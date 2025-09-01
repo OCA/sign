@@ -32,6 +32,14 @@
                         confirm="You will cancel the request and all the accesses. Are you sure about it?"
                         groups="sign_oca.sign_oca_group_user"
                     />
+                    <button
+                        string="Back to Draft"
+                        type="object"
+                        states="3_cancel"
+                        name="action_reset_to_draft"
+                        confirm="You will reset the request to draft. Are you sure about it?"
+                        groups="sign_oca.sign_oca_group_user"
+                    />
                     <field
                         name="state"
                         widget="statusbar"

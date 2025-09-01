@@ -235,6 +235,10 @@ class SignOcaRequest(models.Model):
         self.write({"state": "3_cancel"})
         self._set_action_log("cancel")
 
+    def action_reset_to_draft(self):
+        self.write({"state": "1_draft"})
+        self._set_action_log("to_draft")
+
     @api.depends("signer_ids")
     def _compute_signer_count(self):
         for record in self:
@@ -700,6 +704,7 @@ class SignRequestLog(models.Model):
             ("delete_field", "Delete field"),
             ("cancel", "Cancel"),
             ("configure", "Configure"),
+            ("to_draft", "Reset to Draft"),
         ],
         required=True,
         readonly=True,
