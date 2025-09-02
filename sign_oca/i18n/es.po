@@ -282,7 +282,7 @@ msgid "Canceled"
 msgstr "Cancelado"
 
 #. module: sign_oca
-#: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request__state__cancel
+#: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request__state__3_cancel
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_form_view
 msgid "Cancelled"
 msgstr "Cancelado"
@@ -465,7 +465,7 @@ msgid "Domain"
 msgstr "Dominio"
 
 #. module: sign_oca
-#: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request__state__draft
+#: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request__state__1_draft
 msgid "Draft"
 msgstr "Borrador"
 
@@ -1095,7 +1095,7 @@ msgid "Send to sign"
 msgstr "Enviar para firmar"
 
 #. module: sign_oca
-#: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request__state__sent
+#: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request__state__0_sent
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
 msgid "Sent"
 msgstr "Enviado"
@@ -1251,7 +1251,7 @@ msgstr ""
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__signed
-#: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request__state__signed
+#: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request__state__2_signed
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
 msgid "Signed"
 msgstr "Firmado"
