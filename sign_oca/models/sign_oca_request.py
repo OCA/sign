@@ -254,7 +254,7 @@ class SignOcaRequest(models.Model):
 
     def action_send(self, sign_now=False, message=""):
         self.ensure_one()
-        if self.state != "1_draft":
+        if self.state not in ["1_draft", "0_sent"]:
             return
         self._set_action_log("validate")
         self.state = "0_sent"
@@ -268,14 +268,16 @@ class SignOcaRequest(models.Model):
                 engine="ir.qweb",
                 minimal_qcontext=True,
             )
-            self.env["mail.thread"].message_notify(
-                body=render_result,
-                partner_ids=signer.partner_id.ids,
-                subject=_("New document to sign"),
-                subtype_id=self.env.ref("mail.mt_comment").id,
-                mail_auto_delete=False,
-                email_layout_xmlid="mail.mail_notification_light",
-            )
+            # send the message to partners who didn't sign only
+            if not signer.signed_on:
+                self.env["mail.thread"].message_notify(
+                    body=render_result,
+                    partner_ids=signer.partner_id.ids,
+                    subject=_("New document to sign"),
+                    subtype_id=self.env.ref("mail.mt_comment").id,
+                    mail_auto_delete=False,
+                    email_layout_xmlid="mail.mail_notification_light",
+                )
 
     def action_send_signed_request(self):
         self.ensure_one()
