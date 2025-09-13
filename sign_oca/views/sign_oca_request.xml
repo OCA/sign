@@ -10,6 +10,13 @@
             <form create="0">
                 <header>
                     <button
+                        name="action_open_share_wizard"
+                        class="btn btn-primary"
+                        type="object"
+                        string="Sign on Behalf"
+                        icon="fa-pencil"
+                    />
+                    <button
                         string="Sign"
                         name="sign"
                         class="btn btn-primary"

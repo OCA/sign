@@ -307,6 +307,16 @@ class SignOcaRequest(models.Model):
                 attachment_ids=attachments.ids,
             )
 
+    def action_open_share_wizard(self):
+        return {
+            "name": "Share Sign Request",
+            "type": "ir.actions.act_window",
+            "res_model": "sign.request.share.wizard",
+            "view_mode": "form",
+            "target": "new",
+            "context": {"default_request_id": self.id},
+        }
+
     def _check_signed(self):
         self.ensure_one()
         if self.state != "0_sent":

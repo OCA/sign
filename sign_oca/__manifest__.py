@@ -18,6 +18,7 @@
         "data/ir_sequence_data.xml",
         "wizards/sign_oca_template_generate.xml",
         "wizards/sign_oca_template_generate_multi.xml",
+        "wizards/share.xml",
         "views/res_partner_views.xml",
         "views/sign_oca_request_log.xml",
         "views/sign_oca_request.xml",

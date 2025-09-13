@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Kencove - Mohamed Alkobrosli
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_sign_request_share_wizard" model="ir.ui.view">
+        <field name="name">sign.request.share.wizard.form</field>
+        <field name="model">sign.request.share.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Share Sign Request">
+                <field name="request_id" invisible="1" />
+                <field name="signer_ids" widget="one2many" nolabel="1">
+                    <tree editable="false">
+                        <field name="partner_id" />
+                        <field name="access_url" readonly="1" widget="url" />
+                    </tree>
+                </field>
+                <footer>
+                    <button string="Close" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
