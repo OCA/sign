@@ -3,6 +3,7 @@
 
 import hashlib
 import json
+import os
 from base64 import b64decode, b64encode
 from hashlib import sha256
 from io import BytesIO
@@ -10,6 +11,7 @@ from io import BytesIO
 from PyPDF2 import PdfFileReader, PdfFileWriter
 from reportlab.graphics.shapes import Drawing, Line, Rect
 from reportlab.lib.colors import black, transparent
+from reportlab.lib.enums import TA_RIGHT
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.pdfgen import canvas
 from reportlab.platypus import Image, Paragraph
@@ -17,7 +19,9 @@ from reportlab.platypus import Image, Paragraph
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.http import request
-from odoo.tools import float_repr
+from odoo.tools import file_path, float_repr
+
+from .. import utils as fonts_utils
 
 
 class SignOcaRequest(models.Model):
@@ -521,7 +525,26 @@ class SignOcaRequestSigner(models.Model):
         can = canvas.Canvas(packet, pagesize=(box.getWidth(), box.getHeight()))
         if not item["value"]:
             return False
-        par = Paragraph(item["value"], style=self._getParagraphStyle())
+        value = item["value"]
+        # Detect if text contains Arabic characters
+        is_arabic = any("\u0600" <= ch <= "\u06FF" for ch in value)
+        # Font selection
+        font_name = item.get("font", "Helvetica")
+        fonts_directory = file_path(os.path.join("sign_oca", "static", "fonts"))
+        font_path = None
+        if is_arabic:
+            font_name = "Amiri"
+            font_path = os.path.join(fonts_directory, "Amiri-Regular.ttf")
+            fonts_utils.ensure_font_registered("Amiri", font_path)
+        text = fonts_utils.prepare_text(value, is_arabic)
+        style = ParagraphStyle(
+            name="Custom",
+            fontName=font_name,
+            fontSize=12,
+            leading=14,
+            alignment=TA_RIGHT if is_arabic else 0,  # 0 = left
+        )
+        par = Paragraph(text, style=style)
         par.wrap(
             item["width"] / 100 * float(box.getWidth()),
             item["height"] / 100 * float(box.getHeight()),

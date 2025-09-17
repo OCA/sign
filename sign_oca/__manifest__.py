@@ -67,5 +67,12 @@
             "web/static/src/libs/fontawesome/css/font-awesome.css",
         ],
     },
+    "external_dependencies": {
+        "python": [
+            "arabic-reshaper",
+            "python-bidi",
+            "reportlab",
+        ],
+    },
     "maintainers": ["etobella"],
 }
