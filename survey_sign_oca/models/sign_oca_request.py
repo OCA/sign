@@ -1,5 +1,7 @@
 # Copyright 2025 Kencove - Mohamed Alkobrosli
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+from collections import defaultdict
+
 from odoo import api, fields, models
 
 
@@ -50,6 +52,7 @@ class SignOcaRequestSigner(models.Model):
         self.ensure_one()
         survey_participation = self.request_id.record_ref
         survey = {}
+        answers_list = []
         if survey_participation:
             for line in survey_participation.user_input_line_ids:
                 # Questions of type matrix have questions and suggested answers like a matrix
@@ -60,9 +63,20 @@ class SignOcaRequestSigner(models.Model):
                 elif line.question_id.question_type in ["binary", "signature"]:
                     answer = line.answer_binary_ids[:1].value_binary
                     survey.update({line.question_id.display_name: answer})
+                elif line.question_id.question_type == "multiple_choice":
+                    answer = line.display_name
+                    answers_list.append([line.question_id.display_name, answer])
+                    survey.update(
+                        {f"{line.question_id.display_name}, {answer}": answer}
+                    )
                 else:
                     answer = line.display_name
                     survey.update({line.question_id.display_name: answer})
+        # Map answers for the same questions
+        mapped_answers = defaultdict(list)
+        for question, answer in answers_list:
+            mapped_answers[question].append(answer)
+        survey.update(dict(mapped_answers))
         return survey
 
     def fill_survey_related_items(self, vals):

@@ -107,6 +107,11 @@ Automatic Sign Request creation process:
 For generated sign requests scoping survey, input values are populated
 automatically with the survey answered values.
 
+Answers for multiple choice questions are displayed as a sequence if you
+add the question in placeholder. If you suffix the question in
+placeholder with specific answer then it will be displayed or checked if
+it is the answer.
+
 Answers of yes/no type are shown in text fields as Yes/No and in check
 fields as checked/unchecked.
 
