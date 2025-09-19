@@ -1,6 +1,6 @@
 /** @odoo-module QWeb **/
-/* global document, window, Event, KeyboardEvent */
-import {_t} from "web.core";
+/* global document, window, Event, KeyboardEvent, console */
+import {_t} from "@web/core/l10n/translation";
 
 export function offset(el) {
     const box = el.getBoundingClientRect();

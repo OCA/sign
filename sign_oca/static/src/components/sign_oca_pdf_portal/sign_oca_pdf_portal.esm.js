@@ -39,27 +39,6 @@ export class SignOcaPdfPortal extends SignOcaPdf {
     postIframeFields() {
         super.postIframeFields(...arguments);
         this.checkFilledAll();
-    }
-    async _onClickSign(ev) {
-        ev.target.disabled = true;
-        const position = await this.getLocation();
-        this.rpc("/sign_oca/sign/" + this.signer_id + "/" + this.access_token, {
-            items: this.info.items,
-            latitude: position && position.coords && position.coords.latitude,
-            longitude: position && position.coords && position.coords.longitude,
-        }).then((action) => {
-            // As we are on frontend env, it is not possible to use do_action(), so we
-            // redirect to the corresponding URL or reload the page if the action is not
-            // an url.
-            if (action.type === "ir.actions.act_url") {
-                window.location = action.url;
-            } else {
-                window.location.reload();
-            }
-        });
-    }
-    postIframeFields() {
-        super.postIframeFields(...arguments);
         // Is essential to make sure the navigator will never duplicate
         const target = $(
             this.iframe.el.contentDocument.getElementById("viewerContainer")
@@ -82,6 +61,24 @@ export class SignOcaPdfPortal extends SignOcaPdf {
         }
         // Load navigator
         this.navigate();
+    }
+    async _onClickSign(ev) {
+        ev.target.disabled = true;
+        const position = await this.getLocation();
+        this.rpc("/sign_oca/sign/" + this.signer_id + "/" + this.access_token, {
+            items: this.info.items,
+            latitude: position && position.coords && position.coords.latitude,
+            longitude: position && position.coords && position.coords.longitude,
+        }).then((action) => {
+            // As we are on frontend env, it is not possible to use do_action(), so we
+            // redirect to the corresponding URL or reload the page if the action is not
+            // an url.
+            if (action.type === "ir.actions.act_url") {
+                window.location = action.url;
+            } else {
+                window.location.reload();
+            }
+        });
     }
     navigate() {
         const target = this.iframe.el.contentDocument.getElementById("viewerContainer");
