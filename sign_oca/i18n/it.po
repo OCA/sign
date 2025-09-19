@@ -295,9 +295,21 @@ msgstr "Controllo"
 
 #. module: sign_oca
 #. odoo-javascript
+#: code:addons/sign_oca/static/src/components/sign_oca_pdf_portal/sign_oca_navigator.esm.js:0
+msgid "Click on Validate Button"
+msgstr ""
+
+#. module: sign_oca
+#. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
 msgid "Click on the field that you want to add"
 msgstr "Fare clic sul campo che si vuole aggiungere"
+
+#. module: sign_oca
+#. odoo-javascript
+#: code:addons/sign_oca/static/src/components/sign_oca_pdf_portal/sign_oca_navigator.esm.js:0
+msgid "Click to start"
+msgstr ""
 
 #. module: sign_oca
 #: model:ir.model,name:sign_oca.model_res_company
@@ -866,6 +878,12 @@ msgstr "Serve un PDF valido per aggiungere i campi firma!"
 #: code:addons/sign_oca/models/sign_oca_request.py:0
 msgid "New document to sign"
 msgstr "Nuovo documento da firmare"
+
+#. module: sign_oca
+#. odoo-javascript
+#: code:addons/sign_oca/static/src/components/sign_oca_pdf_portal/sign_oca_navigator.esm.js:0
+msgid "Next"
+msgstr ""
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_date_deadline

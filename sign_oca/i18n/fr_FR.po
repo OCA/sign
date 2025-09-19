@@ -280,8 +280,20 @@ msgstr ""
 
 #. module: sign_oca
 #. odoo-javascript
+#: code:addons/sign_oca/static/src/components/sign_oca_pdf_portal/sign_oca_navigator.esm.js:0
+msgid "Click on Validate Button"
+msgstr ""
+
+#. module: sign_oca
+#. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
 msgid "Click on the field that you want to add"
+msgstr ""
+
+#. module: sign_oca
+#. odoo-javascript
+#: code:addons/sign_oca/static/src/components/sign_oca_pdf_portal/sign_oca_navigator.esm.js:0
+msgid "Click to start"
 msgstr ""
 
 #. module: sign_oca
@@ -840,6 +852,12 @@ msgstr ""
 #. odoo-python
 #: code:addons/sign_oca/models/sign_oca_request.py:0
 msgid "New document to sign"
+msgstr ""
+
+#. module: sign_oca
+#. odoo-javascript
+#: code:addons/sign_oca/static/src/components/sign_oca_pdf_portal/sign_oca_navigator.esm.js:0
+msgid "Next"
 msgstr ""
 
 #. module: sign_oca
