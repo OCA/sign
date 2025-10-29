@@ -9,7 +9,7 @@
     "license": "AGPL-3",
     "author": "Dixmit,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sign",
-    "depends": ["web_editor", "portal", "base_sparse_field"],
+    "depends": ["web_editor", "portal"],
     "data": [
         "security/security.xml",
         "views/menu.xml",
