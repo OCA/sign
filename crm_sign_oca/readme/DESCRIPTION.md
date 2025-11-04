@@ -1,0 +1,1 @@
+This module links the Sign app with the CRM. In this way, a document can be sent for signature to the related partners in the CRM model, and the signed documents will be linked to the corresponding CRM record.
