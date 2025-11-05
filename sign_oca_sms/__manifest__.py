@@ -6,7 +6,7 @@
     "category": "Sales/Sign",
     "summary": "Kencove Sign Customizations",
     "author": "ForgeFlow",
-    "website": "https://gitlab.com/kencove/odoo/addons/ken",
+    "website": "https://github.com/OCA/sign",
     "license": "AGPL-3",
     "depends": [
         "sign_oca",

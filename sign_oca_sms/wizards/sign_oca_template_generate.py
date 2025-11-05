@@ -5,7 +5,6 @@ from odoo import api, fields, models
 
 
 class SignOcaTemplateGenerate(models.TransientModel):
-
     _inherit = "sign.oca.template.generate"
     _description = "Generate a signature request"
 
