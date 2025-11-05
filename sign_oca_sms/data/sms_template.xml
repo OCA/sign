@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 ForgeFlow S.L. (http://www.forgeflow.com)
+Copyright 2025 Kencove (https://www.kencove.com).
+License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <data noupdate="0">
     <record id="sign_oca_sms_template_notification" model="sms.template">
         <field name="name">Sign OCA: Sign Request Notification</field>
-        <field name="body">
-        Hello  {{ object.display_name }}, {{ ctx['requested_by_user'] }} has requested your signature on the following documents: {{ ctx['link'] }}, {{ ctx['message'] }}
-        </field>
+        <field
+            name="body"
+        >Hello {{ object.display_name }}, {{ ctx['requested_by_user'] }} has requested your signature on the following documents: {{ ctx['link'] }}, {{ ctx['message'] }}</field>
         <field name="lang">{{ object.lang }}</field>
         <field name="model_id" ref="base.model_res_partner" />
     </record>

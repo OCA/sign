@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 ForgeFlow S.L. (http://www.forgeflow.com)
+Copyright 2025 Kencove (https://www.kencove.com).
+License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record model="ir.ui.view" id="sign_oca_template_generate_form_view">
         <field name="name">sign.oca.template.generate.form (in sign_oca)</field>
@@ -6,7 +9,7 @@
         <field name="inherit_id" ref="sign_oca.sign_oca_template_generate_form_view" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='signer_ids']/tree/field[@name='partner_id']"
+                expr="//field[@name='signer_ids']/list/field[@name='partner_id']"
                 position="after"
             >
                 <field
@@ -18,9 +21,7 @@
             <button name="generate" position="attributes">
                 <attribute name="string">Generate &amp; send email</attribute>
                 <attribute name="context">{'send_method': 'email'}</attribute>
-                <attribute
-                    name="attrs"
-                >{'invisible': [('sign_now', '=', True)]}</attribute>
+                <attribute name="invisible">sign_now</attribute>
             </button>
             <button name="generate" position="after">
                 <button
@@ -29,7 +30,7 @@
                     class="btn-primary"
                     type="object"
                     context="{'send_method': 'sms'}"
-                    attrs="{'invisible': [('sign_now', '=', True)]}"
+                    invisible="sign_now"
                 />
                 <button
                     name="generate"
@@ -37,14 +38,14 @@
                     class="btn-primary"
                     type="object"
                     context="{'send_method': 'both'}"
-                    attrs="{'invisible': [('sign_now', '=', True)]}"
+                    invisible="sign_now"
                 />
                 <button
                     name="generate"
                     string="Generate &amp; sign now"
                     class="btn-primary"
                     type="object"
-                    attrs="{'invisible': [('sign_now', '=', False)]}"
+                    invisible="not sign_now"
                 />
             </button>
         </field>

@@ -1,11 +1,12 @@
 # Copyright 2023 ForgeFlow S.L. (http://www.forgeflow.com)
+# Copyright 2025 Kencove (https://www.kencove.com).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Sign Oca Sms",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Sales/Sign",
     "summary": "Kencove Sign Customizations",
-    "author": "ForgeFlow",
+    "author": "Kencove, ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sign",
     "license": "AGPL-3",
     "depends": [

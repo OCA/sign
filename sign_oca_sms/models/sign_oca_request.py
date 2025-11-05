@@ -1,7 +1,9 @@
+# Copyright 2023 ForgeFlow S.L. (http://www.forgeflow.com)
+# Copyright 2025 Kencove (https://www.kencove.com).
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 
-from odoo import _, fields, models
+from odoo import fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -9,15 +11,21 @@ class SignOcaRequest(models.Model):
     _inherit = "sign.oca.request"
 
     def get_sms_message(self, signer, requested_by_user, message, link):
-        message = (
-            "Hello %s, %s has requested your signature on the following documents: %s . %s"
-            % (signer.display_name, requested_by_user, link, message)
+        message = self.env._(
+            "Hello %(display_name)s, %(requested_by_user)s has requested "
+            "your signature on the following documents: %(link)s . %(message)s",
+            display_name=signer.display_name,
+            requested_by_user=requested_by_user,
+            link=link,
+            message=message,
         )
         return message
 
     def _send_sign_sms(
         self, message, link, signer_partner, requested_by_user, partner_phone_field
     ):
+        if not message:
+            message = "<p></p>"
         message = self.env["ir.fields.converter"].text_from_html(message)
         template = self.env.ref(
             "sign_oca_sms.sign_oca_sms_template_notification"
@@ -52,12 +60,12 @@ class SignOcaRequest(models.Model):
 
     def action_send_sms(self, sign_now=False, message=""):
         self.ensure_one()
-        if self.state != "draft":
+        if self.state != "1_draft":
             return
         self._set_action_log("validate")
-        self.state = "sent"
+        self.state = "2_signed"
         if any(not signer.phone_field for signer in self.signer_ids):
-            raise ValidationError(_("Please Select the Signer's Phone"))
+            raise ValidationError(self.env._("Please Select the Signer's Phone"))
         for signer in self.signer_ids:
             signer._portal_ensure_token()
             if sign_now and signer.partner_id == self.env.user.partner_id:
