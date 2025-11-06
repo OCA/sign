@@ -10,6 +10,7 @@
     "website": "https://github.com/OCA/sign",
     "license": "AGPL-3",
     "depends": [
+        "sms",
         "sign_oca",
         "html_text",
     ],
