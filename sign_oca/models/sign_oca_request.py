@@ -258,19 +258,10 @@ class SignOcaRequest(models.Model):
             signer._portal_ensure_token()
             if sign_now and signer.partner_id == self.env.user.partner_id:
                 continue
-            render_result = self.env["ir.qweb"]._render(
-                "sign_oca.sign_oca_template_mail",
-                {"record": signer, "body": message, "link": signer.access_url},
-                engine="ir.qweb",
-                minimal_qcontext=True,
-            )
-            self.env["mail.thread"].message_notify(
-                body=render_result,
-                partner_ids=signer.partner_id.ids,
-                subject=_("New document to sign"),
-                subtype_id=self.env.ref("mail.mt_comment").id,
-                mail_auto_delete=False,
-                email_layout_xmlid="mail.mail_notification_light",
+            template = self.env.ref("sign_oca.email_template_sign_document")
+            template.with_context(body=message, link=signer.access_url).send_mail(
+                signer.id,
+                force_send=True,
             )
 
     def action_send_signed_request(self):
@@ -292,19 +283,14 @@ class SignOcaRequest(models.Model):
                     ]
                 )
             )
-            # The message will not be linked to the record because we do not want
-            # it happen.
-            self.env["mail.thread"].message_notify(
-                body=_(
-                    "%(name)s (%(email)s) has sent the signed document.",
-                    name=self.create_uid.name,
-                    email=self.create_uid.email,
-                ),
-                partner_ids=signer.partner_id.ids,
-                subject=_("Signed document"),
-                subtype_id=self.env.ref("mail.mt_comment").id,
-                mail_auto_delete=False,
-                attachment_ids=attachments.ids,
+            template = self.env.ref("sign_oca.email_template_signed_document")
+            email_values = {
+                "attachment_ids": [(6, 0, attachments.ids)],
+            }
+            template.send_mail(
+                signer.id,
+                force_send=True,
+                email_values=email_values,
             )
 
     def _check_signed(self):

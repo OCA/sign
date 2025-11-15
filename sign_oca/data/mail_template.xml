@@ -1,0 +1,101 @@
+<?xml version="1.0" ?>
+<odoo noupdate="1">
+    <!-- A mail template for signing a document -->
+    <record id="email_template_sign_document" model="mail.template">
+        <field name="name">New document to sign</field>
+        <field name="model_id" ref="sign_oca.model_sign_oca_request_signer" />
+        <field name="email_from">{{ object.request_id.create_uid.email or '' }}</field>
+        <field name="partner_to">{{ object.partner_id.id }}</field>
+        <field name="subject">New document to sign</field>
+        <field name="description">A notification to sign a document</field>
+        <field name="body_html" type="html">
+            <t t-set="sender" t-value="object.request_id.create_uid" />
+            <t t-if="sender.name in ['OdooBot', 'Public User']">
+                <t t-set="sender" t-value="False" />
+            </t>
+            <t t-set="link" t-value="object.env.context.get('link')" />
+            <t t-set="body" t-value="object.env.context.get('body')" />
+            <div>
+                <span>
+                    <t t-if="sender">
+                        <t t-out="sender.name" />
+                        <a
+                            t-if="sender.email"
+                            t-att-href="'mailto:%s?subject=%s' % (sender.email, 'Re: %s' % subject)"
+                            style="color:#428BCA; text-decoration:none;"
+                            target="_blank"
+                        ><t t-out="sender.email" /></a>
+                        has requested your signature on a document.
+                    </t>
+                    <t t-else="">
+                        A document has been requested for your signature.
+                    </t>
+                </span>
+                <span t-if="body">
+                    <div
+                        style="margin: 16px 0px 16px 0px; padding: 8px 16px 8px 16px; background-color: #F1F1F1;"
+                    >
+                        <span>
+                            <t t-out="body" />
+                        </span>
+                    </div>
+                </span>
+                <span t-if="link">
+                    <div style="margin:16px auto; text-align:center;">
+                        <a
+                            t-att-href="link"
+                            style="padding: 8px 16px 8px 16px; border-radius: 3px; background-color:#875A7B; text-align:center; text-decoration:none; color: #FFFFFF;"
+                        >
+                            Sign document
+                        </a>
+                    </div>
+                </span>
+                <span>
+                    <div style="opacity: 0.7;">
+                        <strong
+                        >Warning</strong> do not forward this email to other people!<br
+                        />
+                        They will be able to access this document and sign it as yourself.<br
+                        />
+                    </div>
+                </span>
+            </div>
+        </field>
+        <field name="lang">{{ object.request_id.user_id.partner_id.lang }}</field>
+        <field name="auto_delete" eval="False" />
+    </record>
+
+    <!-- A mail template for signed document -->
+    <record id="email_template_signed_document" model="mail.template">
+        <field name="name">New Document has been signed</field>
+        <field name="model_id" ref="sign_oca.model_sign_oca_request_signer" />
+        <field name="email_from">{{ object.request_id.create_uid.email or '' }}</field>
+        <field name="partner_to">{{ object.partner_id.id }}</field>
+        <field name="subject">New Document has been signed</field>
+        <field name="description">Notification for signed document</field>
+        <field name="body_html" type="html">
+            <t t-set="sender" t-value="object.request_id.create_uid" />
+            <t t-if="sender.name in ['OdooBot', 'Public User']">
+                <t t-set="sender" t-value="False" />
+            </t>
+            <div>
+                <span>
+                    <t t-if="sender">
+                        <t t-out="sender.name" />
+                        (<a
+                            t-att-href="'mailto:%s?subject=%s' % (sender.email, 'Re: %s' % subject)"
+                            style="color:#428BCA; text-decoration:none;"
+                            target="_blank"
+                        ><t t-out="sender.email" /></a>)
+                        has sent the signed document.
+                    </t>
+                    <t t-else="">
+                        A fully signed document has been sent to you.
+                    </t>
+                </span>
+            </div>
+        </field>
+        <field name="lang">{{ object.request_id.user_id.partner_id.lang }}</field>
+        <field name="auto_delete" eval="False" />
+    </record>
+</odoo>
