@@ -984,6 +984,13 @@ msgid "Position Y"
 msgstr ""
 
 #. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__rating_ids
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__rating_ids
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__request_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__request_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__request_ids
