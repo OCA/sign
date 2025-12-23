@@ -445,7 +445,16 @@ class SignOcaRequestSigner(models.Model):
         signatory_data = self.request_id.signatory_data
 
         input_data = BytesIO(b64decode(self.request_id.data))
-        reader = PdfFileReader(input_data)
+        try:
+            reader = PdfFileReader(input_data, strict=False)
+        except Exception as e:  # pragma: no cover
+            _logger.error("Error reading PDF: %s", str(e))
+            raise ValidationError(
+                self.env._(
+                    "The PDF file appears to be corrupted or contains "
+                    "invalid characters. Please upload a valid PDF file."
+                )
+            ) from e
         output = PdfFileWriter()
         pages = {}
         for page_number in range(1, reader.numPages + 1):
@@ -464,7 +473,17 @@ class SignOcaRequestSigner(models.Model):
         for page_number in pages:
             output.addPage(pages[page_number])
         output_stream = BytesIO()
-        output.write(output_stream)
+        try:
+            output.write(output_stream)
+        except Exception as e:  # pragma: no cover
+            _logger.error("Error writing PDF: %s", str(e))
+            raise ValidationError(
+                self.env._(
+                    "The PDF file appears to be corrupted or contains invalid "
+                    "characters that prevent signing. Please try re-generating "
+                    "the PDF or use a different PDF tool to create a valid file."
+                )
+            ) from e
         output_stream.seek(0)
         signed_pdf = output_stream.read()
         final_hash = hashlib.sha1(signed_pdf).hexdigest()
