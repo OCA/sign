@@ -37,6 +37,23 @@ msgstr ""
 "                ha richiesto la sua firma su un documento."
 
 #. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.sign_requests
+msgid ""
+"<span class=\"d-none d-md-inline\">Sign Request #</span>\n"
+"                            <span class=\"d-block d-md-none\">Ref.</span>"
+msgstr ""
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.sign_requests
+msgid "<span class=\"fa fa-hourglass mx-2\" title=\"Not fully signed!\"/>"
+msgstr ""
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.sign_requests
+msgid "<span class=\"fa fa-save mx-2\" title=\"Download\"/>"
+msgstr ""
+
+#. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "<span class=\"fw-bold\">Created by:</span>"
 msgstr "<span class=\"fw-bold\">Creato da:</span>"
@@ -105,6 +122,11 @@ msgstr "<span>(UTC)</span>"
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "<span>-</span>"
 msgstr "<span>-</span>"
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.portal_my_home_menu_sign
+msgid "<span>Sign Requests</span>"
+msgstr ""
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
@@ -205,6 +227,12 @@ msgstr "Aggiungi campo"
 #: model:res.groups,name:sign_oca.sign_oca_group_admin
 msgid "Administrator"
 msgstr "Amministratore"
+
+#. module: sign_oca
+#. odoo-python
+#: code:addons/sign_oca/controllers/main.py:0
+msgid "All"
+msgstr ""
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__altered_hash
@@ -880,6 +908,12 @@ msgid "New document to sign"
 msgstr "Nuovo documento da firmare"
 
 #. module: sign_oca
+#. odoo-python
+#: code:addons/sign_oca/controllers/main.py:0
+msgid "Newest"
+msgstr ""
+
+#. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_pdf_portal/sign_oca_navigator.esm.js:0
 msgid "Next"
@@ -953,6 +987,12 @@ msgid "Object"
 msgstr "Oggetto"
 
 #. module: sign_oca
+#. odoo-python
+#: code:addons/sign_oca/controllers/main.py:0
+msgid "Oldest"
+msgstr ""
+
+#. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_res_company__sign_oca_send_sign_request_copy
 #: model:ir.model.fields,help:sign_oca.field_res_config_settings__sign_oca_send_sign_request_copy
 #: model_terms:ir.ui.view,arch_db:sign_oca.res_config_settings_view_form
@@ -1014,6 +1054,13 @@ msgstr "Posizione X"
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__position_y
 msgid "Position Y"
 msgstr "Posizione Y"
+
+#. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__rating_ids
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__rating_ids
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__rating_ids
+msgid "Ratings"
+msgstr ""
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__request_id
@@ -1118,6 +1165,12 @@ msgstr "Invia alla firma"
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
 msgid "Sent"
 msgstr "Inviata"
+
+#. module: sign_oca
+#. odoo-python
+#: code:addons/sign_oca/controllers/main.py:0
+msgid "Sent to Signed"
+msgstr ""
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__sequence_id
@@ -1242,6 +1295,11 @@ msgid "Signature Certificate"
 msgstr "Certificato firma"
 
 #. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.sign_requests
+msgid "Signature Date"
+msgstr ""
+
+#. module: sign_oca
 #: model:ir.model,name:sign_oca.model_sign_oca_field
 msgid "Signature Field Type"
 msgstr "Tipo campo firma"
@@ -1250,6 +1308,12 @@ msgstr "Tipo campo firma"
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__signature_hash
 msgid "Signature Hash"
 msgstr "Hash firma"
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.portal_my_home
+#: model_terms:ir.ui.view,arch_db:sign_oca.sign_requests
+msgid "Signature Requests"
+msgstr ""
 
 #. module: sign_oca
 #. odoo-javascript
@@ -1268,6 +1332,8 @@ msgid "Signatures"
 msgstr "Firme"
 
 #. module: sign_oca
+#. odoo-python
+#: code:addons/sign_oca/controllers/main.py:0
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__signed
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request__state__2_signed
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
@@ -1294,6 +1360,12 @@ msgstr "Documento firmato"
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "Signed on"
 msgstr "Firmato il"
+
+#. module: sign_oca
+#. odoo-python
+#: code:addons/sign_oca/controllers/main.py:0
+msgid "Signed to Sent"
+msgstr ""
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
@@ -1327,6 +1399,7 @@ msgstr "Firmatari"
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__state
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
+#: model_terms:ir.ui.view,arch_db:sign_oca.sign_requests
 msgid "State"
 msgstr "Stato"
 
@@ -1389,6 +1462,11 @@ msgid ""
 msgstr ""
 "Quindi, si può muovere e ridimensionare i campi nella pagina PDF utilizzando "
 "le icone movimento."
+
+#. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.sign_requests
+msgid "There are currently no sign requests for your account."
+msgstr ""
 
 #. module: sign_oca
 #. odoo-python
@@ -1477,6 +1555,11 @@ msgid "View Document"
 msgstr "Visualizza documento"
 
 #. module: sign_oca
+#: model_terms:ir.ui.view,arch_db:sign_oca.portal_my_home
+msgid "View, or sign documents"
+msgstr ""
+
+#. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__website_message_ids
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__website_message_ids
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__website_message_ids
@@ -1531,6 +1614,12 @@ msgstr "Verrà cancellata la richiesta e tutti gli accessi. Si è sicuri?"
 #: model_terms:ir.ui.view,arch_db:sign_oca.portal_sign_document_signed
 msgid "document"
 msgstr "documento"
+
+#. module: sign_oca
+#. odoo-python
+#: code:addons/sign_oca/controllers/main.py:0
+msgid "sent"
+msgstr ""
 
 #~ msgid "SMS Delivery error"
 #~ msgstr "Errore consegna SMS"
