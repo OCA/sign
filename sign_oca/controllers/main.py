@@ -1,7 +1,7 @@
 from collections import OrderedDict
 from urllib import parse
 
-from odoo import _, http
+from odoo import http
 from odoo.exceptions import AccessError, MissingError
 from odoo.http import request
 from odoo.osv import expression
@@ -124,13 +124,13 @@ class PortalSign(CustomerPortal):
 
     def _get_my_sign_requests_searchbar_filters(self):
         searchbar_filters = {
-            "all": {"label": _("All"), "domain": []},
+            "all": {"label": request.env._("All"), "domain": []},
             "sent": {
-                "label": _("sent"),
+                "label": request.env._("sent"),
                 "domain": [("request_id.state", "=", "0_sent")],
             },
             "signed": {
-                "label": _("Signed"),
+                "label": request.env._("Signed"),
                 "domain": [("request_id.state", "=", "2_signed")],
             },
         }
@@ -139,10 +139,13 @@ class PortalSign(CustomerPortal):
     def _prepare_sign_portal_rendering_values(self, page=1, sign_page=False, **kwargs):
         # Sorting feature
         searchbar_sortings = {
-            "state": {"label": _("Sent to Signed"), "order": "request_id"},
-            "reverse_state": {"label": _("Signed to Sent"), "order": "request_id desc"},
-            "date": {"label": _("Newest"), "order": "create_date desc"},
-            "reverse_date": {"label": _("Oldest"), "order": "create_date"},
+            "state": {"label": request.env._("Sent to Signed"), "order": "request_id"},
+            "reverse_state": {
+                "label": request.env._("Signed to Sent"),
+                "order": "request_id desc",
+            },
+            "date": {"label": request.env._("Newest"), "order": "create_date desc"},
+            "reverse_date": {"label": request.env._("Oldest"), "order": "create_date"},
         }
         sortby = kwargs.get("sortby", "state")
         order = searchbar_sortings[sortby]["order"]
@@ -207,6 +210,11 @@ class PortalSign(CustomerPortal):
     def portal_download_signed(self, request_id, **kw):
         sign_request = request.env["sign.oca.request"].sudo().browse(request_id)
         if not sign_request.exists():
+            return request.not_found()
+        # Security check: user must be a signer of this document
+        user_partner = request.env.user.partner_id
+        signer_partners = sign_request.signer_ids.mapped("partner_id")
+        if user_partner not in signer_partners:
             return request.not_found()
         # find the signed document attachment
         attachment = (

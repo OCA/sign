@@ -19,6 +19,5 @@
         "demo/sign_oca_role.xml",
         "demo/sign_oca_template.xml",
     ],
-    "installable": True,
     "maintainers": ["WesleyOliveira98"],
 }

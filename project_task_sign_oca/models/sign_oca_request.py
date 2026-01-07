@@ -25,15 +25,17 @@ class SignOcaRequest(models.Model):
 
     @api.depends("record_ref")
     def _compute_task_id(self):
-        for item in self.filtered(
-            lambda x: x.record_ref and x.record_ref._name == "project.task"
-        ):
-            item.task_id = item.record_ref.id
+        for item in self:
+            if item.record_ref and item.record_ref._name == "project.task":
+                item.task_id = item.record_ref.id
+            else:
+                item.task_id = False
 
     @api.depends("record_ref")
     def _compute_project_id(self):
-        for item in self.filtered(
-            lambda x: x.record_ref and x.record_ref._name == "project.task"
-        ):
-            task = self.env["project.task"].browse(item.record_ref.id)
-            item.project_id = task.project_id
+        for item in self:
+            if item.record_ref and item.record_ref._name == "project.task":
+                task = self.env["project.task"].browse(item.record_ref.id)
+                item.project_id = task.project_id
+            else:
+                item.project_id = False

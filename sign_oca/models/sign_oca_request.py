@@ -125,11 +125,11 @@ class SignOcaRequest(models.Model):
     @api.depends("signatory_data")
     def _compute_next_item_id(self):
         for record in self:
-            record.next_item_id = (
-                record.signatory_data
-                and max([int(key) for key in record.signatory_data.keys()])
-                or 0
-            ) + 1
+            if record.signatory_data:
+                keys = [int(key) for key in record.signatory_data.keys()]
+                record.next_item_id = (max(keys) if keys else 0) + 1
+            else:
+                record.next_item_id = 1
 
     def preview(self):
         self.ensure_one()
@@ -227,7 +227,8 @@ class SignOcaRequest(models.Model):
 
     def cancel(self):
         self.write({"state": "3_cancel"})
-        self._set_action_log("cancel")
+        for record in self:
+            record._set_action_log("cancel")
 
     @api.depends("signer_ids")
     def _compute_signer_count(self):
@@ -435,8 +436,10 @@ class SignOcaRequestSigner(models.Model):
         self.ensure_one()
         if self.signed_on:
             raise ValidationError(
-                self.env._("Users %s has already signed the document")
-                % self.partner_id.name
+                self.env._(
+                    "Users %(name)s has already signed the document",
+                    name=self.partner_id.name,
+                )
             )
         if self.request_id.state != "0_sent":
             raise ValidationError(self.env._("Request cannot be signed"))
@@ -500,7 +503,9 @@ class SignOcaRequestSigner(models.Model):
         if not item["required"]:
             return
         if not item["value"]:
-            raise ValidationError(self.env._("Field %s is not filled") % item["name"])
+            raise ValidationError(
+                self.env._("Field %(name)s is not filled", name=item["name"])
+            )
 
     def _get_pdf_page_text(self, item, box):
         packet = BytesIO()
@@ -670,9 +675,8 @@ class SignOcaRequestSigner(models.Model):
 
 class SignRequestLog(models.Model):
     _name = "sign.oca.request.log"
-    _description = "Sign Request Log"
-    _log_access = False
     _description = "Log access and edition on requests"
+    _log_access = False
 
     uid = fields.Many2one(
         "res.users",

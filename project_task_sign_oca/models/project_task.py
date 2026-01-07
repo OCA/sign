@@ -51,9 +51,13 @@ class ProjectTask(models.Model):
         return res
 
     def write(self, vals):
-        old_partner_id = self.partner_id
         new_partner_id = vals.get("partner_id")
+        # Store old partner IDs for each task before write
+        old_partner_ids = {task.id: task.partner_id.id for task in self}
         res = super().write(vals)
-        if new_partner_id and new_partner_id != old_partner_id.id:
-            self._generate_sign_oca_request()
+        if new_partner_id:
+            # Generate sign requests only for tasks whose partner actually changed
+            for task in self:
+                if new_partner_id != old_partner_ids.get(task.id):
+                    task._generate_sign_oca_request()
         return res
