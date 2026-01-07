@@ -33,7 +33,7 @@ export default class SignOcaPdfCommon extends Component {
         this.dialogService = useService("dialog");
     }
     getPdfUrl() {
-        return "/web/content/" + this.model + "/" + this.res_id + "/data";
+        return "/web/content?model=" + this.model + "&id=" + this.res_id + "&field=data";
     }
     async willStart() {
         this.info = await this.orm.call(this.model, "get_info", [[this.res_id]]);
