@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Keboola
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template
+        id="portal_sign_document_waiting"
+        name="Sign Document - Waiting for Previous Signers"
+    >
+        <t t-call="web.layout">
+            <t t-set="head">
+                <style>
+                    .o_sign_waiting_card {
+                        max-width: 600px;
+                        margin: 40px auto;
+                        border: 1px solid #DEE2E6;
+                        border-radius: 8px;
+                        overflow: hidden;
+                        font-family: Arial, Helvetica, sans-serif;
+                    }
+                    .o_sign_waiting_logo {
+                        text-align: center;
+                        padding: 24px 24px 16px;
+                        background-color: #F8F9FA;
+                        border-bottom: 1px solid #DEE2E6;
+                    }
+                    .o_sign_waiting_logo img {
+                        max-height: 60px;
+                    }
+                    .o_sign_waiting_header {
+                        padding: 24px 24px 8px;
+                        text-align: center;
+                    }
+                    .o_sign_waiting_header h3 {
+                        margin: 0;
+                        color: #495057;
+                    }
+                    .o_sign_waiting_body {
+                        padding: 8px 24px 24px;
+                        color: #495057;
+                        line-height: 1.6;
+                    }
+                    .o_sign_waiting_info {
+                        margin: 16px 0;
+                        padding: 12px 16px;
+                        background-color: #D1ECF1;
+                        border: 1px solid #BEE5EB;
+                        border-radius: 4px;
+                        color: #0C5460;
+                    }
+                </style>
+            </t>
+            <t t-set="body_classname" t-value="'o_sign_waiting_page'" />
+            <div class="o_sign_waiting_card">
+                <div class="o_sign_waiting_logo">
+                    <img
+                        t-if="company and company.logo"
+                        t-att-src="'/web/image/res.company/%s/logo' % company.id"
+                        alt="Company logo"
+                    />
+                </div>
+                <div class="o_sign_waiting_header">
+                    <h3>Waiting for previous signers</h3>
+                </div>
+                <div class="o_sign_waiting_body">
+                    <p>
+                        You have been asked to sign the document
+                        <strong>
+                        <t t-out="request_name" />
+                    </strong>,
+                        but previous signers must complete their signatures first.
+                    </p>
+                    <p>
+                        You will receive an email notification when it is your turn to sign.
+                    </p>
+                    <div class="o_sign_waiting_info">
+                        <strong>No action needed right now.</strong>
+                        Please check back later or wait for the notification email.
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

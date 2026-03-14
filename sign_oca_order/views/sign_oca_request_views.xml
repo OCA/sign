@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Keboola
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- Inherit sign.oca.request form view to add sequential signing fields -->
+    <record id="sign_oca_request_form_view_inherit" model="ir.ui.view">
+        <field name="name">sign.oca.request.form.inherit.sign_oca_order</field>
+        <field name="model">sign.oca.request</field>
+        <field name="inherit_id" ref="sign_oca.sign_oca_request_form_view" />
+        <field name="priority">15</field>
+        <field name="arch" type="xml">
+            <!-- Add signing_mode after user_id -->
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="signing_mode" />
+            </xpath>
+
+            <!-- Hide the Object (record_ref) field - not used in our workflow -->
+            <xpath expr="//field[@name='record_ref']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <!-- Add current_signing_order after record_ref, hidden when not sequential or draft -->
+            <xpath expr="//field[@name='record_ref']" position="after">
+                <field
+                    name="current_signing_order"
+                    invisible="signing_mode != 'sequential' or state == '1_draft'"
+                />
+                <field
+                    name="cc_partner_ids"
+                    widget="many2many_tags"
+                    string="CC Recipients"
+                />
+            </xpath>
+
+            <!-- Add signing_order column before partner_id in signer inline tree -->
+            <xpath
+                expr="//field[@name='signer_ids']//field[@name='partner_id']"
+                position="before"
+            >
+                <field
+                    name="signing_order"
+                    column_invisible="parent.signing_mode != 'sequential'"
+                />
+            </xpath>
+
+            <!-- Add signer_state badge column after signed_on in signer inline tree -->
+            <xpath
+                expr="//field[@name='signer_ids']//field[@name='signed_on']"
+                position="after"
+            >
+                <field
+                    name="signer_state"
+                    widget="badge"
+                    decoration-info="signer_state == 'sent'"
+                    decoration-success="signer_state == 'signed'"
+                    decoration-warning="signer_state == 'waiting'"
+                    decoration-muted="signer_state == 'draft'"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
