@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Keboola
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.sign_oca_reminder</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sign_oca.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='sign_oca_requests']" position="inside">
+                <setting
+                    class="col-xs-12 col-md-12 o_setting_box"
+                    help="Automatically send email reminders to signers who have not yet signed."
+                >
+                    <div class="o_setting_left_pane">
+                        <field name="sign_oca_reminder_enabled" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="sign_oca_reminder_enabled" />
+                        <div class="text-muted">
+                            When enabled, a daily cron job sends reminders to unsigned signers.
+                        </div>
+                        <div class="mt8" invisible="not sign_oca_reminder_enabled">
+                            <label
+                                for="sign_oca_reminder_interval_days"
+                                string="Send every"
+                            />
+                            <field
+                                name="sign_oca_reminder_interval_days"
+                                class="o_hr_narrow_field d-inline"
+                            />
+                            <span> days</span>
+                        </div>
+                    </div>
+                </setting>
+                <setting
+                    class="col-xs-12 col-md-6 o_setting_box"
+                    help="Set a default expiration period for new sign requests. 0 means no expiration."
+                >
+                    <div class="o_setting_right_pane">
+                        <label
+                            for="sign_oca_validity_days"
+                            string="Default Validity Period"
+                        />
+                        <div class="mt8">
+                            <field
+                                name="sign_oca_validity_days"
+                                class="o_hr_narrow_field d-inline"
+                            />
+                            <span> days (0 = no expiration)</span>
+                        </div>
+                    </div>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>

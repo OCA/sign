@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Keboola
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template id="sign_oca_reminder_mail">
+        <div>
+            <span>
+                This is a reminder that
+                <t t-out="record.create_uid.name" />
+                (<a
+                t-att-href="'mailto:%s?subject=%s' % (record.create_uid.email, 'Re: %s' % record.name)"
+                style="color:#428BCA; text-decoration:none;"
+                target="_blank"
+            >
+                <t t-out="record.create_uid.email" />
+            </a>)
+                has requested your signature on
+                <strong>
+                <t t-out="record.name" />
+            </strong>.
+            </span>
+            <t t-if="record.validity_date">
+                <div
+                    style="margin: 16px 0px; padding: 12px 16px; background-color: #FFF3CD; border: 1px solid #FFEEBA; border-radius: 4px;"
+                >
+                    <strong>Deadline:</strong> This request expires on
+                    <strong>
+                    <t t-out="record.validity_date" />
+                </strong>.
+                    Please sign before this date.
+                </div>
+            </t>
+            <span>
+                <div style="margin:16px auto; text-align:center;">
+                    <a
+                        t-att-href="link"
+                        style="padding: 8px 16px; border-radius: 3px; background-color:#875A7B; text-align:center; text-decoration:none; color: #FFFFFF;"
+                    >
+                        Sign document
+                    </a>
+                </div>
+            </span>
+            <span>
+                <div style="opacity: 0.7;">
+                    <strong
+                >Warning</strong> do not forward this email to other people!<br />
+                    They will be able to access this document and sign it as yourself.<br
+                />
+                </div>
+            </span>
+        </div>
+    </template>
+</odoo>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Keboola
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- FORM VIEW: Resend button, reminder fields, expired ribbon -->
+    <record id="sign_oca_request_form_view_reminder" model="ir.ui.view">
+        <field name="name">sign.oca.request.form.reminder</field>
+        <field name="model">sign.oca.request</field>
+        <field name="inherit_id" ref="sign_oca.sign_oca_request_form_view" />
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <!-- Resend button after Send button -->
+            <xpath expr="//button[@name='action_send']" position="after">
+                <button
+                    string="Resend"
+                    type="object"
+                    name="action_resend"
+                    icon="fa-refresh"
+                    invisible="state != '0_sent'"
+                    confirm="This will resend the signing request to all signers who have not yet signed. Continue?"
+                    groups="sign_oca.sign_oca_group_user"
+                />
+            </xpath>
+
+            <!-- Expired ribbon alongside other ribbons -->
+            <xpath expr="//div[hasclass('oe_title')]" position="before">
+                <widget
+                    name="web_ribbon"
+                    bg_color="bg-warning"
+                    title="Expired"
+                    invisible="not is_expired or state != '3_cancel'"
+                />
+            </xpath>
+
+            <!-- Sent date and validity date after record_ref -->
+            <xpath expr="//field[@name='record_ref']" position="after">
+                <field name="sent_date" invisible="not sent_date" />
+                <field name="validity_date" />
+                <field name="is_expired" invisible="1" />
+            </xpath>
+
+            <!-- Reminders group before signer_ids -->
+            <xpath expr="//field[@name='signer_ids']" position="before">
+                <group string="Reminders" invisible="state == '1_draft'">
+                    <group>
+                        <field name="reminder_enabled" />
+                        <field
+                            name="reminder_interval_days"
+                            invisible="not reminder_enabled"
+                        />
+                    </group>
+                    <group>
+                        <field
+                            name="last_reminder_date"
+                            invisible="not last_reminder_date"
+                        />
+                        <field name="reminder_count" invisible="reminder_count == 0" />
+                        <field
+                            name="next_reminder_date"
+                            invisible="not next_reminder_date"
+                        />
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- LIST VIEW: Add validity_date column -->
+    <record id="sign_oca_request_tree_view_reminder" model="ir.ui.view">
+        <field name="name">sign.oca.request.list.reminder</field>
+        <field name="model">sign.oca.request</field>
+        <field name="inherit_id" ref="sign_oca.sign_oca_request_tree_view" />
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='create_date']" position="after">
+                <field name="validity_date" optional="hide" />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- SEARCH VIEW: Add Expiring Soon filter -->
+    <record id="sign_oca_request_search_view_reminder" model="ir.ui.view">
+        <field name="name">sign.oca.request.search.reminder</field>
+        <field name="model">sign.oca.request</field>
+        <field name="inherit_id" ref="sign_oca.sign_oca_request_search_view" />
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='canceled']" position="after">
+                <filter
+                    name="expiring_soon"
+                    string="Expiring Soon"
+                    domain="[('state', '=', '0_sent'), ('validity_date', '!=', False), ('validity_date', '&lt;=', (context_today() + datetime.timedelta(days=7)).strftime('%%Y-%%m-%%d'))]"
+                />
+                <filter
+                    name="expired"
+                    string="Expired"
+                    domain="[('state', '=', '3_cancel'), ('validity_date', '!=', False), ('validity_date', '&lt;', context_today().strftime('%%Y-%%m-%%d'))]"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

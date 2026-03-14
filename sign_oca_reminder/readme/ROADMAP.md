@@ -1,0 +1,2 @@
+- Support per-signer reminder preferences
+- Add reminder history log accessible from the request form
