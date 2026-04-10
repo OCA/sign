@@ -96,4 +96,25 @@
         <field name="perm_write" eval="0" />
         <field name="perm_unlink" eval="0" />
     </record>
+    <!-- Public user record rules (access controlled via token at controller level) -->
+    <record id="sign_oca_request_rule_public_read" model="ir.rule">
+        <field name="name">Sign Request public: token-based read</field>
+        <field name="model_id" ref="model_sign_oca_request" />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('base.group_public'))]" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="0" />
+        <field name="perm_write" eval="0" />
+        <field name="perm_unlink" eval="0" />
+    </record>
+    <record id="sign_oca_request_signer_rule_public_read" model="ir.rule">
+        <field name="name">Sign Request Signer public: token-based read</field>
+        <field name="model_id" ref="model_sign_oca_request_signer" />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('base.group_public'))]" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="0" />
+        <field name="perm_write" eval="0" />
+        <field name="perm_unlink" eval="0" />
+    </record>
 </odoo>

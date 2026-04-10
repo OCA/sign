@@ -13,7 +13,9 @@ const signatureSignOca = {
             .filter((i) => i.tabindex > item.tabindex)
             .sort((a, b) => a.tabindex - b.tabindex);
         if (next_items.length > 0) {
-            parent.items[next_items[0].id].dispatchEvent(new Event("focus_signature"));
+            if (parent.items[next_items[0].id]) {
+                parent.items[next_items[0].id].dispatchEvent(new Event("focus_signature"));
+            }
         }
     },
     generate: function (parent, item, signatureItem) {
