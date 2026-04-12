@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-02-19 15:09+0000\n"
-"Last-Translator: herminioelx <herminiojs@gmail.com>\n"
+"PO-Revision-Date: 2026-04-12 13:10+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -123,7 +123,7 @@ msgstr "<span>(UTC)</span>"
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "<span>-</span>"
-msgstr ""
+msgstr "<span>-</span>"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.portal_my_home_menu_sign
@@ -758,7 +758,7 @@ msgstr "Hash de inalterabilidad"
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__secure_sequence_number
 msgid "Inalteralbility No Gap Sequence #"
-msgstr ""
+msgstr "N.° de Secuencia sin Brecha de Inalterabilidad"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__ip
@@ -1101,7 +1101,7 @@ msgstr "Requerido"
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__res_id
 msgid "Res"
-msgstr ""
+msgstr "Recurso"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__user_id
@@ -1228,7 +1228,7 @@ msgstr "Generar plantilla de OCA para firmar"
 #. module: sign_oca
 #: model:ir.actions.act_window,name:sign_oca.sign_oca_template_generate_multi_act_window
 msgid "Sign Oca Template Generate Multi"
-msgstr ""
+msgstr "Generar Múltiples desde Plantilla OCA de Firma"
 
 #. module: sign_oca
 #: model:ir.model,name:sign_oca.model_sign_oca_template_item
@@ -1243,7 +1243,7 @@ msgstr "Solicitud de firma"
 #. module: sign_oca
 #: model:ir.actions.act_window,name:sign_oca.sign_oca_request_signer_act_window
 msgid "Sign Request Signers"
-msgstr ""
+msgstr "Firmantes de Solicitud de Firma"
 
 #. module: sign_oca
 #: model:ir.model,name:sign_oca.model_sign_oca_request_signer
