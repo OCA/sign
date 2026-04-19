@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-04-12 13:10+0000\n"
+"PO-Revision-Date: 2026-04-19 09:50+0000\n"
 "Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -25,7 +25,7 @@ msgstr "%(name)s (%(email)s) ha enviado el documento firmado."
 #. module: sign_oca
 #: model:ir.actions.report,print_report_name:sign_oca.action_report_signature_certificate
 msgid "'Signature Certificate'"
-msgstr "'Certificado de firma'"
+msgstr "'Certificado de Firma'"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_mail
