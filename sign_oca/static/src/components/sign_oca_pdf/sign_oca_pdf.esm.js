@@ -1,4 +1,4 @@
-/** @odoo-module Qweb **/
+/** @odoo-module **/
 /* global navigator, console */
 
 import SignOcaPdfCommon from "../sign_oca_pdf_common/sign_oca_pdf_common.esm.js";

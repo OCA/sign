@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- Copyright 2023 Dixmit
-     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record model="ir.ui.view" id="sign_oca_request_form_view">
         <field name="name">sign.oca.request.form (in sign_oca)</field>
@@ -190,7 +188,7 @@
                     string="Archived"
                     domain="[('active', '=', False)]"
                 />
-                <group expand="0" string="Group By">
+                <group>
                     <filter
                         name="group_by_template_id"
                         string="Template"
@@ -263,12 +261,17 @@
                         <a
                             role="menuitem"
                             type="object"
-                            name="toggle_active"
+                            name="action_archive"
                             class="dropdown-item"
-                        >
-                            <t t-if="record.active.raw_value">Archive</t>
-                            <t t-else="">Restore</t>
-                        </a>
+                            t-if="record.active.raw_value"
+                        >Archive</a>
+                        <a
+                            role="menuitem"
+                            type="object"
+                            name="action_unarchive"
+                            class="dropdown-item"
+                            t-if="!record.active.raw_value"
+                        >Restore</a>
                     </t>
                     <t t-name="card">
                         <div class="row">
@@ -409,7 +412,7 @@
             <search>
                 <field name="request_id" />
                 <separator />
-                <group expand="0" string="Group By">
+                <group>
                     <filter
                         name="group_by_create_date"
                         string="Create date"

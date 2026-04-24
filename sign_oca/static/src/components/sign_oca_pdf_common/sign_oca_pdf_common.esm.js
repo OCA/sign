@@ -1,4 +1,4 @@
-/** @odoo-module QWeb **/
+/** @odoo-module **/
 /* global window, setTimeout, document, clearTimeout */
 import {_t} from "@web/core/l10n/translation";
 import {Component, onMounted, onWillStart, onWillUnmount, useRef} from "@odoo/owl";

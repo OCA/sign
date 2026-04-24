@@ -1,4 +1,4 @@
-/* @odoo-module */
+/** @odoo-module **/
 /* global document */
 import {Component, onMounted, useState} from "@odoo/owl";
 import {Dropdown} from "@web/core/dropdown/dropdown";

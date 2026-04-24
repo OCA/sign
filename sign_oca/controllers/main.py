@@ -1,10 +1,10 @@
 from collections import OrderedDict
 from urllib import parse
 
-from odoo import _, http
+from odoo import http
 from odoo.exceptions import AccessError, MissingError
+from odoo.fields import Domain
 from odoo.http import request
-from odoo.osv import expression
 
 from odoo.addons.base.models.assetsbundle import AssetsBundle
 from odoo.addons.portal.controllers.portal import CustomerPortal
@@ -83,7 +83,7 @@ class PortalSign(CustomerPortal):
 
     @http.route(
         ["/sign_oca/info/<int:signer_id>/<string:access_token>"],
-        type="json",
+        type="jsonrpc",
         auth="public",
         website=True,
     )
@@ -98,7 +98,7 @@ class PortalSign(CustomerPortal):
 
     @http.route(
         ["/sign_oca/sign/<int:signer_id>/<string:access_token>"],
-        type="json",
+        type="jsonrpc",
         auth="public",
         website=True,
     )
@@ -124,13 +124,13 @@ class PortalSign(CustomerPortal):
 
     def _get_my_sign_requests_searchbar_filters(self):
         searchbar_filters = {
-            "all": {"label": _("All"), "domain": []},
+            "all": {"label": request.env._("All"), "domain": []},
             "sent": {
-                "label": _("sent"),
+                "label": request.env._("sent"),
                 "domain": [("request_id.state", "=", "0_sent")],
             },
             "signed": {
-                "label": _("Signed"),
+                "label": request.env._("Signed"),
                 "domain": [("request_id.state", "=", "2_signed")],
             },
         }
@@ -139,10 +139,13 @@ class PortalSign(CustomerPortal):
     def _prepare_sign_portal_rendering_values(self, page=1, sign_page=False, **kwargs):
         # Sorting feature
         searchbar_sortings = {
-            "state": {"label": _("Sent to Signed"), "order": "request_id"},
-            "reverse_state": {"label": _("Signed to Sent"), "order": "request_id desc"},
-            "date": {"label": _("Newest"), "order": "create_date desc"},
-            "reverse_date": {"label": _("Oldest"), "order": "create_date"},
+            "state": {"label": request.env._("Sent to Signed"), "order": "request_id"},
+            "reverse_state": {
+                "label": request.env._("Signed to Sent"),
+                "order": "request_id desc",
+            },
+            "date": {"label": request.env._("Newest"), "order": "create_date desc"},
+            "reverse_date": {"label": request.env._("Oldest"), "order": "create_date"},
         }
         sortby = kwargs.get("sortby", "state")
         order = searchbar_sortings[sortby]["order"]
@@ -150,7 +153,7 @@ class PortalSign(CustomerPortal):
         searchbar_filters = self._get_my_sign_requests_searchbar_filters()
         filterby = kwargs.get("filterby") or "all"
         domain = searchbar_filters.get(filterby, searchbar_filters["all"])["domain"]
-        domain = expression.AND([domain, self.get_sign_requests_domain(request)])
+        domain = Domain.AND([domain, self.get_sign_requests_domain(request)])
         SignRequests = request.env["sign.oca.request.signer"].sudo()
         pager_values = portal_pager(
             url="/my/sign_requests",

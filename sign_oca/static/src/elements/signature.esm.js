@@ -1,4 +1,4 @@
-/** @odoo-module Qweb **/
+/** @odoo-module **/
 /* global Event */
 
 import {SignatureDialog} from "@web/core/signature/signature_dialog";

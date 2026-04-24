@@ -1,4 +1,4 @@
-/** @odoo-module QWeb **/
+/** @odoo-module **/
 
 import {ControlPanel} from "@web/search/control_panel/control_panel";
 import {SignOcaConfigureFieldDialog} from "./sign_oca_configure_field_dialog.esm";

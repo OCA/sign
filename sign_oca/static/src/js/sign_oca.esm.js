@@ -3,8 +3,8 @@
 import {FormController} from "@web/views/form/form_controller";
 import {ListController} from "@web/views/list/list_controller";
 import {_t} from "@web/core/l10n/translation";
+import {onWillStart} from "@odoo/owl";
 import {patch} from "@web/core/utils/patch";
-const {onWillStart} = owl;
 import {useService} from "@web/core/utils/hooks";
 import {user} from "@web/core/user";
 

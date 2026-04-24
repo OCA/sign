@@ -33,12 +33,12 @@ class SignOcaTemplate(models.Model):
 
     @api.depends("request_ids")
     def _compute_request_count(self):
-        res = self.env["sign.oca.request"].read_group(
+        groups = self.env["sign.oca.request"]._read_group(
             domain=[("template_id", "in", self.ids)],
-            fields=["template_id"],
             groupby=["template_id"],
+            aggregates=["__count"],
         )
-        res_dict = {x["template_id"][0]: x["template_id_count"] for x in res}
+        res_dict = {template.id: count for template, count in groups}
         for record in self:
             record.request_count = res_dict.get(record.id, 0)
 

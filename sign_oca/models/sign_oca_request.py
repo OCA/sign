@@ -8,7 +8,6 @@ from base64 import b64decode, b64encode
 from hashlib import sha256
 from io import BytesIO
 
-from PyPDF2 import PdfFileReader, PdfFileWriter
 from reportlab.graphics.shapes import Drawing, Line, Rect
 from reportlab.lib.colors import black, transparent
 from reportlab.lib.styles import ParagraphStyle
@@ -19,6 +18,7 @@ from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.http import request
 from odoo.tools import float_repr
+from odoo.tools.pdf import PdfReader, PdfWriter
 
 _logger = logging.getLogger(__name__)
 
@@ -53,7 +53,7 @@ class SignOcaRequest(models.Model):
     signer_ids = fields.One2many(
         "sign.oca.request.signer",
         inverse_name="request_id",
-        auto_join=True,
+        bypass_search_access=True,
         copy=True,
         string="Signers",
     )
@@ -78,7 +78,7 @@ class SignOcaRequest(models.Model):
     signed_count = fields.Integer(compute="_compute_signed_count")
     signer_count = fields.Integer(compute="_compute_signer_count")
     to_sign = fields.Boolean(compute="_compute_to_sign")
-    signatory_data = fields.Serialized(
+    signatory_data = fields.Json(
         default=lambda r: {},
         copy=False,
     )
@@ -99,11 +99,8 @@ class SignOcaRequest(models.Model):
             user_diff_roles = record.signer_ids.filtered(
                 lambda x: x.partner_id == user.partner_id.commercial_partner_id
             )
-            record.signer_id = (
-                fields.first(user_diff_roles.filtered(lambda x: x.is_allow_signature))
-                if user_diff_roles.filtered(lambda x: x.is_allow_signature)
-                else fields.first(user_diff_roles)
-            )
+            allow_sig = user_diff_roles.filtered(lambda x: x.is_allow_signature)
+            record.signer_id = allow_sig[:1] if allow_sig else user_diff_roles[:1]
 
     @api.depends(
         "signer_ids",
@@ -148,7 +145,7 @@ class SignOcaRequest(models.Model):
         self.ensure_one()
         return {
             "name": self.name,
-            "items": self.signatory_data,
+            "items": self.signatory_data or {},
             "roles": [
                 {"id": signer.role_id.id, "name": signer.role_id.name}
                 for signer in self.signer_ids
@@ -187,14 +184,14 @@ class SignOcaRequest(models.Model):
 
     def delete_item(self, item_id):
         self._ensure_draft()
-        data = self.signatory_data
+        data = self.signatory_data or {}
         data.pop(str(item_id))
         self.signatory_data = data
         self._set_action_log("delete_field")
 
     def set_item_data(self, item_id, vals):
         self._ensure_draft()
-        data = self.signatory_data
+        data = self.signatory_data or {}
         data[str(item_id)].update(vals)
         self.signatory_data = data
         self._set_action_log("edit_field")
@@ -203,7 +200,7 @@ class SignOcaRequest(models.Model):
         self._ensure_draft()
         item_id = self.next_item_id
         field_id = self.env["sign.oca.field"].browse(item_vals["field_id"])
-        signatory_data = self.signatory_data
+        signatory_data = self.signatory_data or {}
         signatory_data[item_id] = {
             "id": item_id,
             "field_id": field_id.id,
@@ -408,7 +405,7 @@ class SignOcaRequestSigner(models.Model):
         return {
             "role_id": self.role_id.id if not self.signed_on else False,
             "name": self.request_id.template_id.name,
-            "items": self.request_id.signatory_data,
+            "items": self.request_id.signatory_data or {},
             "to_sign": self.request_id.to_sign,
             "ask_location": self.request_id.ask_location,
             "partner": {
@@ -435,21 +432,23 @@ class SignOcaRequestSigner(models.Model):
         self.ensure_one()
         if self.signed_on:
             raise ValidationError(
-                self.env._("Users %s has already signed the document")
-                % self.partner_id.name
+                self.env._(
+                    "Users %(name)s has already signed the document",
+                    name=self.partner_id.name,
+                )
             )
         if self.request_id.state != "0_sent":
             raise ValidationError(self.env._("Request cannot be signed"))
         self.signed_on = fields.Datetime.now()
         # current_hash = self.request_id.current_hash
-        signatory_data = self.request_id.signatory_data
+        signatory_data = self.request_id.signatory_data or {}
 
         input_data = BytesIO(b64decode(self.request_id.data))
-        reader = PdfFileReader(input_data)
-        output = PdfFileWriter()
+        reader = PdfReader(input_data)
+        output = PdfWriter()
         pages = {}
-        for page_number in range(1, reader.numPages + 1):
-            pages[page_number] = reader.getPage(page_number - 1)
+        for page_number in range(1, len(reader.pages) + 1):
+            pages[page_number] = reader.pages[page_number - 1]
 
         for key in signatory_data:
             if signatory_data[key]["role_id"] == self.role_id.id:
@@ -500,7 +499,9 @@ class SignOcaRequestSigner(models.Model):
         if not item["required"]:
             return
         if not item["value"]:
-            raise ValidationError(self.env._("Field %s is not filled") % item["name"])
+            raise ValidationError(
+                self.env._("Field %(name)s is not filled", name=item["name"])
+            )
 
     def _get_pdf_page_text(self, item, box):
         packet = BytesIO()
@@ -519,8 +520,8 @@ class SignOcaRequestSigner(models.Model):
         )
         can.save()
         packet.seek(0)
-        new_pdf = PdfFileReader(packet)
-        return new_pdf.getPage(0)
+        new_pdf = PdfReader(packet)
+        return new_pdf.pages[0]
 
     def _getParagraphStyle(self):
         return ParagraphStyle(name="Oca Sign Style")
@@ -552,8 +553,8 @@ class SignOcaRequestSigner(models.Model):
         )
         can.save()
         packet.seek(0)
-        new_pdf = PdfFileReader(packet)
-        return new_pdf.getPage(0)
+        new_pdf = PdfReader(packet)
+        return new_pdf.pages[0]
 
     def _get_pdf_page_signature(self, item, box):
         packet = BytesIO()
@@ -584,8 +585,8 @@ class SignOcaRequestSigner(models.Model):
             return False
         can.save()
         packet.seek(0)
-        new_pdf = PdfFileReader(packet)
-        return new_pdf.getPage(0)
+        new_pdf = PdfReader(packet)
+        return new_pdf.pages[0]
 
     def _get_pdf_page(self, item, box):
         return getattr(self, f"_get_pdf_page_{item['field_type']}")(item, box)
@@ -653,7 +654,7 @@ class SignOcaRequestSigner(models.Model):
         values = {"items": {}}
         for field in self._get_integrity_hash_fields():
             values[field] = _getattrstring(self, field)
-        for key, signatory_value in self.request_id.signatory_data.items():
+        for key, signatory_value in (self.request_id.signatory_data or {}).items():
             if signatory_value["role_id"] == self.role_id.id:
                 values[key] = signatory_value
         return json.dumps(

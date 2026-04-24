@@ -20,12 +20,15 @@ class ResUsers(models.Model):
             ("signed_on", "=", False),
         ]
         signer_model = self.env["sign.oca.request.signer"]
-        signer_groups = signer_model.read_group(domain, ["model"], ["model"])
-        for signer_group in signer_groups:
-            if signer_group["model"]:
-                model = signer_group["model"]
+        groups = signer_model._read_group(
+            domain, groupby=["model"], aggregates=["__count"]
+        )
+        for model_value, _count in groups:
+            group_domain = domain + [("model", "=", model_value)]
+            if model_value:
+                model = model_value
                 Model = self.env[model].with_user(self.env.user)
-                signers = signer_model.search(signer_group.get("__domain"))
+                signers = signer_model.search(group_domain)
                 if signers:
                     total_records = Model.with_context(active_test=False).search_count(
                         [("id", "in", signers.mapped("res_id"))]
@@ -45,7 +48,7 @@ class ResUsers(models.Model):
                             "total_records": total_records,
                         }
             else:
-                signers = signer_model.search(signer_group.get("__domain"))
+                signers = signer_model.search(group_domain)
                 requests["undefined"] = {
                     "id": False,
                     "name": self.env._("Undefined"),

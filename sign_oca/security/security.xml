@@ -1,28 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <!-- Application -->
-    <record id="sign_oca_module_category" model="ir.module.category">
+    <!-- Privilege -->
+    <record id="sign_oca_privilege" model="res.groups.privilege">
         <field name="name">Sign</field>
+        <field name="category_id" ref="base.module_category_productivity" />
     </record>
     <!-- Access Groups -->
     <record id="sign_oca_group_user" model="res.groups">
         <field name="name">User: Own Documents Only</field>
-        <field name="category_id" ref="sign_oca_module_category" />
+        <field name="privilege_id" ref="sign_oca_privilege" />
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
     </record>
     <record id="sign_oca_group_manager" model="res.groups">
         <field name="name">User: All Documents</field>
-        <field name="category_id" ref="sign_oca_module_category" />
+        <field name="privilege_id" ref="sign_oca_privilege" />
         <field name="implied_ids" eval="[(4, ref('sign_oca_group_user'))]" />
     </record>
     <record id="sign_oca_group_admin" model="res.groups">
         <field name="name">Administrator</field>
-        <field name="category_id" ref="sign_oca_module_category" />
+        <field name="privilege_id" ref="sign_oca_privilege" />
         <field name="implied_ids" eval="[(4, ref('sign_oca_group_manager'))]" />
-        <field
-            name="users"
-            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
-        />
     </record>
     <!-- Record Rules -->
     <record id="sign_oca_request_signer_rule_base_user_read" model="ir.rule">

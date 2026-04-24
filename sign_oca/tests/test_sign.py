@@ -1,27 +1,17 @@
 # Copyright 2023 Dixmit
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-import base64
-
-import requests
-
 from odoo.tests import Form
-from odoo.tools import misc
 
 from odoo.addons.base.tests.common import BaseCommon
 
+from .common import SignOcaCommon
 
-class TestSign(BaseCommon):
+
+class TestSign(SignOcaCommon, BaseCommon):
     @classmethod
     def setUpClass(cls):
-        cls._super_send = requests.Session.send
         super().setUpClass()
-        cls.data = base64.b64encode(
-            open(
-                misc.file_path(f"{cls.test_module}/tests/empty.pdf"),
-                "rb",
-            ).read()
-        )
         cls.template = cls.env["sign.oca.template"].create(
             {
                 "data": cls.data,
@@ -40,24 +30,10 @@ class TestSign(BaseCommon):
                         0,
                         {
                             "partner_id": cls.signer.id,
-                            "role_id": cls.env.ref("sign_oca.sign_role_customer").id,
+                            "role_id": cls.role_customer.id,
                         },
                     )
                 ],
-            }
-        )
-        cls.partner = cls.env["res.partner"].create({"name": "Test partner"})
-        cls.partner_child = cls.env["res.partner"].create(
-            {"name": "Child partner", "parent_id": cls.partner.id}
-        )
-        cls.role_customer = cls.env.ref("sign_oca.sign_role_customer")
-        cls.role_supervisor = cls.env.ref("sign_oca.sign_role_supervisor")
-        cls.role_supervisor.default_partner_id = cls.partner
-        cls.role_child_partner = cls.env["sign.oca.role"].create(
-            {
-                "name": "Child partner",
-                "partner_selection_policy": "expression",
-                "expression_partner": "{{object.parent_id.id}}",
             }
         )
 
@@ -87,11 +63,6 @@ class TestSign(BaseCommon):
                 "required": True,
             }
         )
-
-    @classmethod
-    def _request_handler(cls, s, r, /, **kw):
-        """Don't block external requests."""
-        return cls._super_send(s, r, **kw)
 
     def test_template_configuration(self):
         self.assertFalse(self.template.get_info()["items"])

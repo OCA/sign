@@ -1,4 +1,4 @@
-/** @odoo-module Qweb **/
+/** @odoo-module **/
 /* global Event */
 
 import {registry} from "@web/core/registry";

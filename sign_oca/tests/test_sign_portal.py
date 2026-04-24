@@ -3,23 +3,23 @@
 
 import base64
 
-import requests
-
 from odoo.tests.common import HttpCase, tagged
-from odoo.tools import misc
+
+from .common import SignOcaCommon
 
 
 @tagged("post_install", "-at_install")
-class TestSignPortal(HttpCase):
+class TestSignPortal(SignOcaCommon, HttpCase):
     @classmethod
     def setUpClass(cls):
-        cls._super_send = requests.Session.send
         super().setUpClass()
-        cls.data = base64.b64encode(
-            open(
-                misc.file_path(f"{cls.test_module}/tests/empty.pdf"),
-                "rb",
-            ).read()
+        cls.env["res.users"].with_context(no_reset_password=True).create(
+            {
+                "name": "Portal User",
+                "login": "portal",
+                "password": "portal",
+                "group_ids": [(6, 0, [cls.env.ref("base.group_portal").id])],
+            }
         )
         cls.signer = cls.env["res.partner"].create({"name": "Signer"})
         cls.request = cls.env["sign.oca.request"].create(
@@ -32,7 +32,7 @@ class TestSignPortal(HttpCase):
                         0,
                         {
                             "partner_id": cls.signer.id,
-                            "role_id": cls.env.ref("sign_oca.sign_role_customer").id,
+                            "role_id": cls.role_customer.id,
                         },
                     )
                 ],
@@ -40,7 +40,7 @@ class TestSignPortal(HttpCase):
         )
         cls.item = cls.request.add_item(
             {
-                "role_id": cls.env.ref("sign_oca.sign_role_customer").id,
+                "role_id": cls.role_customer.id,
                 "field_id": cls.env.ref("sign_oca.sign_field_name").id,
                 "page": 1,
                 "position_x": 10,
@@ -49,15 +49,12 @@ class TestSignPortal(HttpCase):
                 "height": 10,
             }
         )
-
-    @classmethod
-    def _request_handler(cls, s, r, /, **kw):
-        """Don't block external requests."""
-        return cls._super_send(s, r, **kw)
+        cls.request.action_send()
+        cls.env.flush_all()
+        cls.request.signer_ids.invalidate_recordset()
 
     def test_portal(self):
         self.authenticate("portal", "portal")
-        self.request.action_send()
         self.url_open(self.request.signer_ids.access_url).raise_for_status()
         self.assertEqual(
             base64.b64decode(self.data),
