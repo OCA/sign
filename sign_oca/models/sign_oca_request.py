@@ -588,7 +588,7 @@ class SignOcaRequestSigner(models.Model):
         return new_pdf.getPage(0)
 
     def _get_pdf_page(self, item, box):
-        return getattr(self, f"_get_pdf_page_{ item['field_type'] }")(item, box)
+        return getattr(self, f"_get_pdf_page_{item['field_type']}")(item, box)
 
     def _set_action_log(self, action, **kwargs):
         self.ensure_one()
