@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -459,6 +459,10 @@ msgid "Details"
 msgstr ""
 
 #. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_res_company__display_name
+#: model:ir.model.fields,field_description:sign_oca.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:sign_oca.field_res_partner__display_name
+#: model:ir.model.fields,field_description:sign_oca.field_res_users__display_name
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_field__display_name
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__display_name
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__display_name
@@ -531,7 +535,7 @@ msgstr ""
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/models/sign_oca_request.py:0
-msgid "Field %s is not filled"
+msgid "Field %(name)s is not filled"
 msgstr ""
 
 #. module: sign_oca
@@ -624,12 +628,6 @@ msgid "Geolocation"
 msgstr ""
 
 #. module: sign_oca
-#: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
-#: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_signer_search_view
-msgid "Group By"
-msgstr ""
-
-#. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__has_message
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__has_message
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__has_message
@@ -648,6 +646,10 @@ msgid "Help"
 msgstr ""
 
 #. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_res_company__id
+#: model:ir.model.fields,field_description:sign_oca.field_res_config_settings__id
+#: model:ir.model.fields,field_description:sign_oca.field_res_partner__id
+#: model:ir.model.fields,field_description:sign_oca.field_res_users__id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_field__id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__id
@@ -1024,13 +1026,6 @@ msgid "Position Y"
 msgstr ""
 
 #. module: sign_oca
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__rating_ids
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__rating_ids
-#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__rating_ids
-msgid "Ratings"
-msgstr ""
-
-#. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__request_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__request_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__request_ids
@@ -1159,8 +1154,8 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_pdf/sign_oca_pdf.xml:0
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request_log__action__sign
-#: model:ir.module.category,name:sign_oca.sign_oca_module_category
 #: model:ir.ui.menu,name:sign_oca.sign_oca_root_menu
+#: model:res.groups.privilege,name:sign_oca.sign_oca_privilege
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_form_view
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_signer_form_view
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_tree_view
@@ -1494,7 +1489,7 @@ msgstr ""
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/models/sign_oca_request.py:0
-msgid "Users %s has already signed the document"
+msgid "Users %(name)s has already signed the document"
 msgstr ""
 
 #. module: sign_oca
@@ -1570,6 +1565,12 @@ msgstr ""
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.portal_sign_document_signed
 msgid "document"
+msgstr ""
+
+#. module: sign_oca
+#. odoo-python
+#: code:addons/sign_oca/controllers/main.py:0
+msgid "request_id.state"
 msgstr ""
 
 #. module: sign_oca
