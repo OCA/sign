@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sign_oca_provider_user,sign.oca.provider user,model_sign_oca_provider,sign_oca.sign_oca_group_user,1,0,0,0
+access_sign_oca_provider_manager,sign.oca.provider manager,model_sign_oca_provider,sign_oca.sign_oca_group_manager,1,1,1,1
+access_sign_oca_provider_transaction_user,sign.oca.provider.transaction user,model_sign_oca_provider_transaction,sign_oca.sign_oca_group_user,1,0,0,0
+access_sign_oca_provider_transaction_manager,sign.oca.provider.transaction manager,model_sign_oca_provider_transaction,sign_oca.sign_oca_group_manager,1,1,1,1

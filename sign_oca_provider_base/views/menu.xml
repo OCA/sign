@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem
+        id="menu_sign_oca_provider"
+        name="Signature Providers"
+        action="sign_oca_provider_action"
+        parent="sign_oca.sign_oca_settings_menu"
+        sequence="90"
+        groups="sign_oca.sign_oca_group_admin"
+    />
+</odoo>
