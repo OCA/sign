@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    ~ Copyright 2026 Simone Rubino - PyTech
+    ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <template
+        id="ppe_sign_report_template"
+        inherit_id="hr_personal_equipment_request_sign_oca.ppe_sign_report_template"
+    >
+        <!-- Show Serial Number after Product column -->
+        <xpath expr="//table/thead//th[1]" position="after">
+            <th t-if="doc.employee_id.company_id.ppe_report_show_sn">
+                S/N
+            </th>
+        </xpath>
+        <xpath expr="//table/tbody//td[1]" position="after">
+            <td t-if="doc.employee_id.company_id.ppe_report_show_sn">
+                <t t-out="line.move_ids.lot_ids.name" />
+            </td>
+        </xpath>
+        <!-- Only include valid (received) lines -->
+        <xpath expr="//table/tbody//tr[@t-if='line.is_ppe']" position="attributes">
+            <attribute name="t-if" separator=" and " add="line.state == 'valid'" />
+        </xpath>
+    </template>
+</odoo>
