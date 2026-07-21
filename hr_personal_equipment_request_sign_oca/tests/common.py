@@ -59,17 +59,30 @@ class Common(TransactionCase):
             }
         )
 
+        # If `hr_personal_equipment_stock` is installed,
+        # `location_id` is mandatory for Personal Equipment Requests.
+        cls.needs_location = (
+            "location_id" in cls.env["hr.personal.equipment.request"]._fields
+        )
+        if cls.needs_location:
+            cls.location = cls.env.ref("stock.stock_location_stock")
+
         ppe_request_1_form = Form(
             cls.env["hr.personal.equipment.request"].with_user(cls.user_1.id)
         )
         ppe_request_1_form.employee_id = cls.employee_1
+        if cls.needs_location:
+            ppe_request_1_form.location_id = cls.location
         with ppe_request_1_form.line_ids.new() as line:
             line.product_id = cls.ppe_product
         cls.ppe_request_1 = ppe_request_1_form.save()
+
         ppe_request_2_form = Form(
             cls.env["hr.personal.equipment.request"].with_user(cls.user_2.id)
         )
         ppe_request_2_form.employee_id = cls.employee_2
+        if cls.needs_location:
+            ppe_request_2_form.location_id = cls.location
         with ppe_request_2_form.line_ids.new() as line:
             line.product_id = cls.ppe_product
         cls.ppe_request_2 = ppe_request_2_form.save()

@@ -32,6 +32,8 @@ class TestHrPersonalEquipmentRequestSignOca(Common):
     def test_personal_equipment_request_create(self):
         self.company_id.personal_equipment_request_sign_oca_template_id = self.template
         request_3_form = Form(self.env["hr.personal.equipment.request"])
+        if self.needs_location:
+            request_3_form.location_id = self.location
         request_3_form.employee_id = self.employee_1
         with request_3_form.line_ids.new() as line:
             line.product_id = self.ppe_product
