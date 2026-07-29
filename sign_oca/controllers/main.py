@@ -1,3 +1,5 @@
+from werkzeug.wrappers import Response
+
 from odoo import http
 from odoo.exceptions import AccessError, MissingError
 from odoo.http import request
@@ -12,7 +14,15 @@ class SignController(http.Controller):
         bundle = "sign_oca.sign_assets"
         files, _ = request.env["ir.qweb"]._get_asset_content(bundle)
         asset = AssetsBundle(bundle, files)
-        mock_attachment = getattr(asset, ext)()
+        try:
+            mock_attachment = getattr(asset, ext)()
+        except Exception:
+            # Bundle has no assets for this type (e.g. no JS in a CSS-only bundle)
+            content_type = "application/javascript" if ext == "js" else "text/css"
+            return Response("", content_type=content_type, status=200)
+        if not mock_attachment:
+            content_type = "application/javascript" if ext == "js" else "text/css"
+            return Response("", content_type=content_type, status=200)
         if isinstance(
             mock_attachment, list
         ):  # suppose that CSS asset will not required to be split in pages

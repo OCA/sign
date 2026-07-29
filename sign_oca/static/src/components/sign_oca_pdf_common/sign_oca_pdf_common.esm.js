@@ -20,6 +20,8 @@ export default class SignOcaPdfCommon extends Component {
             iframeReject = reject;
         });
         this.items = {};
+        this._assetsInjected = false;
+        this._initialFieldsDone = false;
         onWillUnmount(() => {
             clearTimeout(this.reviewFieldsTimeout);
         });
@@ -62,12 +64,16 @@ export default class SignOcaPdfCommon extends Component {
         }
     }
     reviewFields() {
-        if (
-            this.iframe.el.contentDocument.getElementsByClassName("o_sign_oca_ready")
-                .length === 0
-        ) {
-            this.postIframeFields();
-        }
+        // Check each individual item — pdfjs re-renders pages on scroll,
+        // which destroys field overlays. Re-inject any missing ones.
+        $.each(this.info.items, (key) => {
+            var item = this.info.items[key];
+            var el = this.items[item.id];
+            // Check if the element is still attached to the DOM
+            if (!el || !el.isConnected) {
+                this.postIframeField(item);
+            }
+        });
         this.reviewFieldsTimeout = setTimeout(this.reviewFields.bind(this), 1000);
     }
     postIframeFields() {
@@ -81,37 +87,62 @@ export default class SignOcaPdfCommon extends Component {
                 },
                 true
             );
-        var iframeCss = document.createElement("link");
-        iframeCss.setAttribute("rel", "stylesheet");
-        iframeCss.setAttribute("href", "/sign_oca/get_assets.css");
-
-        var iframeJs = document.createElement("script");
-        iframeJs.setAttribute("type", "text/javascript");
-        iframeJs.setAttribute("src", "/sign_oca/get_assets.js");
-        this.iframe.el.contentDocument
-            .getElementsByTagName("head")[0]
-            .append(iframeCss);
-        this.iframe.el.contentDocument.getElementsByTagName("head")[0].append(iframeJs);
+        // Only inject CSS once
+        if (!this._assetsInjected) {
+            var iframeCss = document.createElement("link");
+            iframeCss.setAttribute("rel", "stylesheet");
+            iframeCss.setAttribute("href", "/sign_oca/get_assets.css");
+            this.iframe.el.contentDocument
+                .getElementsByTagName("head")[0]
+                .append(iframeCss);
+            // Inject critical CSS inline to avoid stale SCSS bundle cache issues
+            var inlineStyle = document.createElement("style");
+            inlineStyle.textContent = [
+                ".o_sign_oca_field {",
+                "  z-index: 100 !important;",
+                "  position: absolute;",
+                "  cursor: pointer;",
+                "}",
+                ".textLayer {",
+                "  pointer-events: none !important;",
+                "}",
+                ".annotationLayer {",
+                "  pointer-events: none !important;",
+                "}",
+            ].join("\n");
+            this.iframe.el.contentDocument
+                .getElementsByTagName("head")[0]
+                .append(inlineStyle);
+            this._assetsInjected = true;
+        }
         $.each(this.info.items, (key) => {
             this.postIframeField(this.info.items[key]);
         });
-        $(this.iframe.el.contentDocument.getElementsByClassName("page")[0]).append(
-            $("<div class='o_sign_oca_ready'/>")
-        );
-
-        $(this.iframe.el.contentDocument.getElementById("viewer")).addClass(
-            "sign_oca_ready"
-        );
+        if (!this._initialFieldsDone) {
+            $(this.iframe.el.contentDocument.getElementsByClassName("page")[0]).append(
+                $("<div class='o_sign_oca_ready'/>")
+            );
+            $(this.iframe.el.contentDocument.getElementById("viewer")).addClass(
+                "sign_oca_ready"
+            );
+            this._initialFieldsDone = true;
+        }
         this.iframeLoaded.resolve();
     }
     postIframeField(item) {
         if (this.items[item.id]) {
-            this.items[item.id].remove();
+            // Only remove if still in the DOM
+            if (this.items[item.id].isConnected) {
+                this.items[item.id].remove();
+            }
         }
         var page =
             this.iframe.el.contentDocument.getElementsByClassName("page")[
                 item.page - 1
             ];
+        if (!page) {
+            return $();
+        }
         var signatureItem = $(
             renderToString(this.field_template, {
                 ...item,

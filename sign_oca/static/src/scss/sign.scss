@@ -1,5 +1,7 @@
 .o_sign_oca_field {
     background-color: rgba(0, 128, 128, 0.3);
+    z-index: 10;
+    cursor: pointer;
     &.sign_oca_field_required {
         background-color: rgba(255, 113, 113, 0.5);
     }

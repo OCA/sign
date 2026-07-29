@@ -279,6 +279,12 @@ class SignOcaRequest(models.Model):
                     ]
                 )
             )
+            # Set a proper filename for the PDF attachment
+            doc_name = self.template_id.name or self.name or "signed_document"
+            pdf_filename = doc_name + ".pdf"
+            for att in attachments:
+                if att.name != pdf_filename:
+                    att.sudo().write({"name": pdf_filename})
             # The message will not be linked to the record because we do not want
             # it happen.
             self.env["mail.thread"].message_notify(
@@ -398,11 +404,20 @@ class SignOcaRequestSigner(models.Model):
     def get_info(self, access_token=False):
         self.ensure_one()
         self._set_action_log("view", access_token=access_token)
+        # Use sudo to read to_sign to avoid ACL issues when computed fields
+        # traverse signer_ids in the public user context.
+        # For logged-in users, the compute still correctly matches partner_id.
+        to_sign = self.sudo().request_id.to_sign
+        # For public/anonymous users, to_sign is always False because the
+        # public user's partner won't match any signer. Fall back to checking
+        # this specific signer's state directly.
+        if not to_sign and not self.signed_on and self.request_id.state == "0_sent":
+            to_sign = True
         return {
             "role_id": self.role_id.id if not self.signed_on else False,
             "name": self.request_id.template_id.name,
             "items": self.request_id.signatory_data,
-            "to_sign": self.request_id.to_sign,
+            "to_sign": to_sign,
             "ask_location": self.request_id.ask_location,
             "partner": {
                 "id": self.partner_id.id,
@@ -564,6 +579,10 @@ class SignOcaRequestSigner(models.Model):
         packet.seek(0)
         new_pdf = PdfFileReader(packet)
         return new_pdf.getPage(0)
+
+    def _get_pdf_page_date(self, item, box):
+        """Render date field as text in the PDF."""
+        return self._get_pdf_page_text(item, box)
 
     def _get_pdf_page(self, item, box):
         return getattr(self, "_get_pdf_page_%s" % item["field_type"])(item, box)
