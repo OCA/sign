@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sign_oca_provider_view_tree" model="ir.ui.view">
+        <field name="name">sign.oca.provider.tree</field>
+        <field name="model">sign.oca.provider</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="provider_type" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="signature_level" />
+                <field name="active" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="sign_oca_provider_view_form" model="ir.ui.view">
+        <field name="name">sign.oca.provider.form</field>
+        <field name="model">sign.oca.provider</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="action_check_configuration"
+                        type="object"
+                        string="Check configuration"
+                        class="btn-primary"
+                    />
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" invisible="active" />
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1><field name="name" /></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="active" invisible="1" />
+                            <field name="provider_type" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                            <field
+                                name="api_base_url"
+                                placeholder="https://api.example.com"
+                            />
+                            <field name="credential_ref" />
+                        </group>
+                        <group>
+                            <field name="signature_level" />
+                            <field name="identity_method" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notes">
+                            <field
+                                name="note"
+                                placeholder="Provider-specific operational notes..."
+                            />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sign_oca_provider_action" model="ir.actions.act_window">
+        <field name="name">Signature Providers</field>
+        <field name="res_model">sign.oca.provider</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
