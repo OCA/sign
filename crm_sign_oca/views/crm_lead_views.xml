@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="crm_lead_view_form" model="ir.ui.view">
+        <field name="name">crm.lead.form</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[last()]" position="after">
+                <button
+                    name="%(sign_oca.sign_oca_template_generate_multi_act_window)s"
+                    type="action"
+                    string="Generate Sign Request"
+                    class="oe_highlight"
+                    groups="sign_oca.sign_oca_group_user"
+                    context="{'model': 'crm.lead'}"
+                />
+            </xpath>
+            <div name="button_box" position="inside">
+                <button
+                    type="object"
+                    name="action_view_sign_requests"
+                    class="oe_stat_button"
+                    icon="fa-file-text-o"
+                    invisible="sign_request_count==0"
+                    groups="sign_oca.sign_oca_group_user"
+                >
+                    <field name="sign_request_count" widget="statinfo" />
+                </button>
+            </div>
+        </field>
+    </record>
+</odoo>
