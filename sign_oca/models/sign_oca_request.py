@@ -1,9 +1,9 @@
 # Copyright 2023 Dixmit
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-
 import hashlib
 import json
 import logging
+import re
 from base64 import b64decode, b64encode
 from hashlib import sha256
 from io import BytesIO
@@ -21,6 +21,11 @@ from odoo.tools import float_repr
 from odoo.tools.pdf import PdfFileReader, PdfFileWriter
 
 _logger = logging.getLogger(__name__)
+
+try:
+    import fitz
+except ImportError:
+    fitz = None
 
 
 class SignOcaRequest(models.Model):
@@ -335,6 +340,117 @@ class SignOcaRequest(models.Model):
         for record in records:
             record._set_action_log("create")
         return records
+
+    def _generate_signature_request(
+        self, record, pdf_bytes, partner_map, filename=None, auto_send=True, **kwargs
+    ):
+        """
+        Generate a signature request for the given record and PDF bytes.
+        It will read the pdf_bytes and find squares with the text
+        ##SIGN_OCA##<field_id>##<role_id>##, where <field_id> is the ID of the
+        field to be signed and <role_id> is the ID of the role that
+        should sign it. Both parameters can be a number (ID) or a XML ID.
+
+        :param record: The record for which the signature request is generated.
+        :param pdf_bytes: The PDF content in bytes.
+        :param partner_map: A dictionary mapping role IDs to partner IDs.
+        :param filename: Optional filename for the PDF attachment.
+        :param auto_send: If True, the request will be sent automatically
+            after creation.
+        :param kwargs: Additional keyword arguments to be passed to the
+            request creation.
+        """
+        if not fitz:
+            raise UserError(
+                self.env._(
+                    "PyMuPDF library is required to generate signature requests. "
+                    "Please install it."
+                )
+            )
+        if filename is None:
+            filename = f"{record._name}_{record.id}.pdf"
+        doc = fitz.open(stream=pdf_bytes, filetype="pdf")
+        signatory_data = {}
+        roles = set()
+        i = 1
+        for page_index, page in enumerate(doc):
+            page_w, page_h = page.rect.width, page.rect.height
+            for drawing in page.get_drawings():
+                text_inside = page.get_textbox(drawing["rect"])
+                match = re.match(
+                    r"^##SIGN_OCA##(\d+|\w+\.\w+)##(\d+|\w+\.\w+)$",
+                    text_inside.replace("\n", ""),
+                )
+                if not match:
+                    continue
+                sign_field = self._get_sign_field(match.group(1))
+                sign_role = self._get_sign_role(match.group(2))
+                rect = drawing["rect"]
+                roles.add(sign_role.id)
+                signatory_data[i] = {
+                    "id": i,
+                    "field_id": sign_field.id,
+                    "field_type": sign_field.field_type,
+                    "required": False,
+                    "name": sign_field.name,
+                    "role_id": sign_role.id,
+                    "page": page_index + 1,
+                    "position_x": rect.x0 / page_w * 100,
+                    "position_y": rect.y0 / page_h * 100,
+                    "width": rect.width / page_w * 100,
+                    "height": rect.height / page_h * 100,
+                    "value": False,
+                    "default_value": sign_field.default_value,
+                    "placeholder": "",
+                }
+                i += 1
+        doc.close()
+        request = self.create(
+            {
+                **kwargs,
+                "filename": filename,
+                "data": b64encode(pdf_bytes),
+                "name": self.env._("Signature Request for %s") % record.name,
+                "record_ref": f"{record._name},{record.id}",
+                "signer_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "partner_id": partner_map.get(role_id),
+                            "role_id": role_id,
+                        },
+                    )
+                    for role_id in roles
+                ],
+                "signatory_data": signatory_data,
+            }
+        )
+        if auto_send:
+            request.action_send()
+        return request
+
+    def _get_sign_field(self, field_ref):
+        if field_ref.isdigit():
+            return self.env["sign.oca.field"].browse(int(field_ref))
+        else:
+            field_obj = self.env.ref(field_ref)
+            if field_obj._name != "sign.oca.field":
+                raise UserError(
+                    self.env._("The reference %s is not a valid sign field", field_ref)
+                )
+            return field_obj
+
+    def _get_sign_role(self, role_ref):
+        if role_ref.isdigit():
+            return self.env["sign.oca.role"].browse(int(role_ref))
+        else:
+            role = self.env.ref(role_ref)
+            if role._name != "sign.oca.role":
+                raise UserError(
+                    self.env._("The reference %s is not a valid sign role", role_ref)
+                )
+            return role
 
 
 class SignOcaRequestSigner(models.Model):
