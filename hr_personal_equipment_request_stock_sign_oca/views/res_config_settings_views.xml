@@ -15,20 +15,14 @@
         />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='personal_equipment_request_sign_oca_template_id']/ancestor::div[hasclass('o_setting_box')]"
+                expr="//field[@name='personal_equipment_request_sign_oca_template_id']/ancestor::setting"
                 position="after"
             >
-                <div class="col-12 col-lg-6 o_setting_box">
-                    <div class="o_setting_left_pane">
-                        <field name="ppe_report_show_sn" />
-                    </div>
-                    <div class="o_setting_right_pane">
-                        <label for="ppe_report_show_sn" />
-                        <div class="text-muted">
-                            Show S/N in Personal Equipment Request Report
-                        </div>
-                    </div>
-                </div>
+                <setting
+                    help="The lot/serial number is displayed for each product moving a lot/serial number."
+                >
+                    <field name="ppe_report_show_sn" />
+                </setting>
             </xpath>
         </field>
     </record>
