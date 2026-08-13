@@ -6,33 +6,19 @@
         <field name="priority" eval="90" />
         <field name="inherit_id" ref="hr.res_config_settings_view_form" />
         <field name="arch" type="xml">
-            <div id="enrich_employee_setting" position="after">
-                <div
-                    class="col-12 col-lg-6 o_setting_box"
+            <setting id="enrich_employee_setting" position="after">
+                <setting
+                    help="If this template is set, Personal Equipment Requests automatically generate a Signature Request"
                     groups="sign_oca.sign_oca_group_admin"
                 >
-                    <div class="o_setting_right_pane">
-                        <span
-                            class="o_form_label"
-                        >Personal Equipment Request Sign</span>
-                        <div class="text-muted">
-                            Template for automatic sign requests for PPEs requests
-                        </div>
-                        <div class="row mt16">
-                            <label
-                                class="col-lg-4 o_light_label"
-                                for="personal_equipment_request_sign_oca_template_id"
-                                string="Sign Template"
-                            />
-                            <field
-                                name="personal_equipment_request_sign_oca_template_id"
-                                options="{'no_create': True}"
-                                class="oe_inline"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    <field
+                        name="personal_equipment_request_sign_oca_template_id"
+                        options="{
+                            'no_create': True,
+                        }"
+                    />
+                </setting>
+            </setting>
         </field>
     </record>
 </odoo>
