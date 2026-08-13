@@ -1,0 +1,512 @@
+# Translation of Odoo Server.
+# Brazilian Portuguese translation for sign_docuseal.
+# This file contains the translation of the following modules:
+# 	* sign_docuseal
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0-20250415\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-13 15:28+0000\n"
+"PO-Revision-Date: 2026-08-13 15:28+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_res_config_settings__docuseal_api_key
+#: model_terms:ir.ui.view,arch_db:sign_docuseal.res_config_settings_view_form_docuseal
+msgid "API Key"
+msgstr "Chave da API"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submitter__access_token
+msgid "Access Token"
+msgstr "Token de acesso"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__audit_log_filename
+msgid "Audit Log Filename"
+msgstr "Nome do arquivo da trilha de auditoria"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__audit_log_file
+msgid "Audit Trail (PDF)"
+msgstr "Trilha de auditoria (PDF)"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__audit_log_url
+msgid "Audit Trail URL"
+msgstr "URL da trilha de auditoria"
+
+#. module: sign_docuseal
+#: model:ir.model.fields.selection,name:sign_docuseal.selection__docuseal_submitter__status__awaiting
+msgid "Awaiting"
+msgstr "Aguardando"
+
+#. module: sign_docuseal
+#: model:ir.model.fields.selection,name:sign_docuseal.selection__docuseal_submission__state__pending
+msgid "Awaiting Signature"
+msgstr "Aguardando assinatura"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,help:sign_docuseal.field_res_config_settings__docuseal_base_url
+#: model_terms:ir.ui.view,arch_db:sign_docuseal.res_config_settings_view_form_docuseal
+msgid "Base URL of the DocuSeal instance, without a trailing slash."
+msgstr "URL base da instância do DocuSeal, sem barra no final."
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__company_id
+msgid "Company"
+msgstr "Empresa"
+
+#. module: sign_docuseal
+#: model:ir.model.fields.selection,name:sign_docuseal.selection__docuseal_submission__state__completed
+#: model:ir.model.fields.selection,name:sign_docuseal.selection__docuseal_submitter__status__completed
+msgid "Completed"
+msgstr "Concluído"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__completed_date
+msgid "Completed On"
+msgstr "Concluído em"
+
+#. module: sign_docuseal
+#: model:ir.model,name:sign_docuseal.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submitter__partner_id
+msgid "Contact"
+msgstr "Contato"
+
+#. module: sign_docuseal
+#. odoo-python
+#: code:addons/sign_docuseal/models/docuseal_api.py:0
+#, python-format
+msgid "Could not download the signed document: %s"
+msgstr "Não foi possível baixar o documento assinado: %s"
+
+#. module: sign_docuseal
+#. odoo-python
+#: code:addons/sign_docuseal/models/docuseal_api.py:0
+#, python-format
+msgid "Could not reach DocuSeal: %s"
+msgstr "Não foi possível conectar ao DocuSeal: %s"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__create_uid
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submitter__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__create_date
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submitter__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: sign_docuseal
+#: model:ir.model.fields.selection,name:sign_docuseal.selection__docuseal_submission__state__declined
+#: model:ir.model.fields.selection,name:sign_docuseal.selection__docuseal_submitter__status__declined
+msgid "Declined"
+msgstr "Recusado"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__display_name
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submitter__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sign_docuseal
+#: model:ir.ui.menu,name:sign_docuseal.menu_docuseal_root
+#: model_terms:ir.ui.view,arch_db:sign_docuseal.res_config_settings_view_form_docuseal
+msgid "DocuSeal"
+msgstr ""
+
+#. module: sign_docuseal
+#: model:ir.model,name:sign_docuseal.model_docuseal_api
+msgid "DocuSeal API Client"
+msgstr "Cliente da API DocuSeal"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__docuseal_id
+msgid "DocuSeal ID"
+msgstr "ID no DocuSeal"
+
+#. module: sign_docuseal
+#: model_terms:ir.ui.view,arch_db:sign_docuseal.res_config_settings_view_form_docuseal
+msgid "DocuSeal Integration"
+msgstr "Integração DocuSeal"
+
+#. module: sign_docuseal
+#: model:ir.model,name:sign_docuseal.model_docuseal_submission
+#: model_terms:ir.ui.view,arch_db:sign_docuseal.view_docuseal_submission_form
+msgid "DocuSeal Submission"
+msgstr "Submissão DocuSeal"
+
+#. module: sign_docuseal
+#: model:ir.actions.act_window,name:sign_docuseal.action_docuseal_submission
+msgid "DocuSeal Submissions"
+msgstr "Submissões DocuSeal"
+
+#. module: sign_docuseal
+#: model:ir.model,name:sign_docuseal.model_docuseal_submitter
+msgid "DocuSeal Submitter"
+msgstr "Signatário DocuSeal"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submitter__docuseal_submitter_id
+msgid "DocuSeal Submitter ID"
+msgstr "ID do signatário no DocuSeal"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_res_config_settings__docuseal_base_url
+#: model_terms:ir.ui.view,arch_db:sign_docuseal.res_config_settings_view_form_docuseal
+msgid "DocuSeal URL"
+msgstr "URL do DocuSeal"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,help:sign_docuseal.field_docuseal_submitter__slug
+msgid "DocuSeal identifier used in the /s/<slug> URL"
+msgstr "Identificador do DocuSeal usado na URL /s/<slug>"
+
+#. module: sign_docuseal
+#. odoo-python
+#: code:addons/sign_docuseal/models/docuseal_api.py:0
+#, python-format
+msgid "DocuSeal is not configured. Set the base URL and the API key under Settings > DocuSeal."
+msgstr ""
+
+#. module: sign_docuseal
+#: model_terms:ir.ui.view,arch_db:sign_docuseal.res_config_settings_view_form_docuseal
+msgid "DocuSeal must send it back in the X-Odoo-Webhook-Secret header when calling /docuseal/webhook."
+msgstr "O DocuSeal deve devolvê-lo no cabeçalho X-Odoo-Webhook-Secret ao chamar /docuseal/webhook."
+
+#. module: sign_docuseal
+#. odoo-python
+#: code:addons/sign_docuseal/models/docuseal_api.py:0
+#, python-format
+msgid "DocuSeal returned error %(code)s: %(body)s"
+msgstr "O DocuSeal retornou o erro %(code)s: %(body)s"
+
+#. module: sign_docuseal
+#. odoo-python
+#: code:addons/sign_docuseal/models/docuseal_submission.py:0
+#, python-format
+msgid "DocuSeal submission"
+msgstr "Submissão DocuSeal"
+
+#. module: sign_docuseal
+#: model:ir.actions.server,name:sign_docuseal.ir_cron_docuseal_reconcile_ir_actions_server
+#: model:ir.cron,cron_name:sign_docuseal.ir_cron_docuseal_reconcile
+msgid "DocuSeal: reconcile pending submissions"
+msgstr "DocuSeal: reconciliar submissões pendentes"
+
+#. module: sign_docuseal
+#: model:ir.model.fields.selection,name:sign_docuseal.selection__docuseal_submission__state__draft
+msgid "Draft"
+msgstr "Rascunho"
+
+#. module: sign_docuseal
+#: model_terms:ir.ui.view,arch_db:sign_docuseal.signing_page
+msgid "Electronic signature —"
+msgstr "Assinatura eletrônica —"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submitter__email
+msgid "Email"
+msgstr "E-mail"
+
+#. module: sign_docuseal
+#: model:ir.model.fields.selection,name:sign_docuseal.selection__docuseal_submission__state__expired
+msgid "Expired"
+msgstr "Expirado"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__id
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submitter__id
+msgid "ID"
+msgstr ""
+
+#. module: sign_docuseal
+#: model:ir.model.fields,help:sign_docuseal.field_docuseal_submission__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: sign_docuseal
+#: model:ir.model.fields,help:sign_docuseal.field_docuseal_submission__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission____last_update
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submitter____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__write_uid
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submitter__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__write_date
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submitter__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__name
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submitter__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: sign_docuseal
+#. odoo-python
+#: code:addons/sign_docuseal/models/docuseal_submission.py:0
+#, python-format
+msgid "New submission"
+msgstr "Nova submissão"
+
+#. module: sign_docuseal
+#. odoo-python
+#: code:addons/sign_docuseal/models/docuseal_api.py:0
+#, python-format
+msgid "No DocuSeal template id was given."
+msgstr "O id do template do DocuSeal não foi informado."
+
+#. module: sign_docuseal
+#. odoo-python
+#: code:addons/sign_docuseal/models/docuseal_api.py:0
+#: code:addons/sign_docuseal/models/docuseal_api.py:0
+#, python-format
+msgid "No signer was given for the signature request."
+msgstr "Nenhum signatário foi informado para a solicitação de assinatura."
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: sign_docuseal
+#: model:ir.model.fields,help:sign_docuseal.field_docuseal_submission__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: sign_docuseal
+#: model:ir.model.fields,help:sign_docuseal.field_docuseal_submission__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: sign_docuseal
+#: model:ir.model.fields.selection,name:sign_docuseal.selection__docuseal_submitter__status__opened
+msgid "Opened"
+msgstr "Aberto"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submitter__role
+msgid "Role"
+msgstr "Papel"
+
+#. module: sign_docuseal
+#: model:ir.model.fields.selection,name:sign_docuseal.selection__docuseal_submission__state__sent
+#: model:ir.model.fields.selection,name:sign_docuseal.selection__docuseal_submitter__status__sent
+msgid "Sent"
+msgstr "Enviado"
+
+#. module: sign_docuseal
+#: model_terms:ir.ui.view,arch_db:sign_docuseal.res_config_settings_view_form_docuseal
+msgid "Sent as the X-Auth-Token header on every API call."
+msgstr "Enviada no cabeçalho X-Auth-Token em cada chamada à API."
+
+#. module: sign_docuseal
+#: model:ir.model.fields,help:sign_docuseal.field_res_config_settings__docuseal_webhook_secret
+msgid "Shared secret DocuSeal must send back in the X-Odoo-Webhook-Secret header when calling /docuseal/webhook."
+msgstr "Segredo compartilhado que o DocuSeal deve devolver no cabeçalho X-Odoo-Webhook-Secret ao chamar /docuseal/webhook."
+
+#. module: sign_docuseal
+#. odoo-python
+#: code:addons/sign_docuseal/models/docuseal_submission.py:0
+#, python-format
+msgid "Signature completed on DocuSeal."
+msgstr "Assinatura concluída no DocuSeal."
+
+#. module: sign_docuseal
+#. odoo-python
+#: code:addons/sign_docuseal/models/docuseal_submission.py:0
+#, python-format
+msgid "Signature declined on DocuSeal."
+msgstr "Assinatura recusada no DocuSeal."
+
+#. module: sign_docuseal
+#. odoo-python
+#: code:addons/sign_docuseal/models/docuseal_submission.py:0
+#, python-format
+msgid "Signature request sent to DocuSeal."
+msgstr "Solicitação de assinatura enviada ao DocuSeal."
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__signed_document
+msgid "Signed Document"
+msgstr "Documento assinado"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__signed_filename
+msgid "Signed Filename"
+msgstr "Nome do arquivo assinado"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submitter__completed_at
+msgid "Signed On"
+msgstr "Assinado em"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__submitter_ids
+#: model_terms:ir.ui.view,arch_db:sign_docuseal.view_docuseal_submission_form
+msgid "Signers"
+msgstr "Signatários"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submitter__signing_url
+msgid "Signing Page (Odoo)"
+msgstr "Página de assinatura (Odoo)"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submitter__embed_src
+msgid "Signing URL (DocuSeal)"
+msgstr "URL de assinatura (DocuSeal)"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submitter__slug
+msgid "Slug"
+msgstr ""
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__res_id
+msgid "Source ID"
+msgstr "ID de origem"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__res_model
+msgid "Source Model"
+msgstr "Modelo de origem"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__state
+msgid "State"
+msgstr "Situação"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submitter__status
+msgid "Status"
+msgstr "Situação"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submitter__submission_id
+msgid "Submission"
+msgstr "Submissão"
+
+#. module: sign_docuseal
+#: model:ir.ui.menu,name:sign_docuseal.menu_docuseal_submission
+msgid "Submissions"
+msgstr "Submissões"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_docuseal_submission__template_id
+msgid "Template ID"
+msgstr "ID do template"
+
+#. module: sign_docuseal
+#. odoo-python
+#: code:addons/sign_docuseal/models/docuseal_api.py:0
+#, python-format
+msgid "The contract HTML is empty."
+msgstr "O HTML do contrato está vazio."
+
+#. module: sign_docuseal
+#. odoo-python
+#: code:addons/sign_docuseal/models/docuseal_api.py:0
+#, python-format
+msgid "The contract PDF is empty."
+msgstr "O PDF do contrato está vazio."
+
+#. module: sign_docuseal
+#: model_terms:ir.ui.view,arch_db:sign_docuseal.signing_page
+msgid ""
+"This signature request is no longer active. Please get\n"
+"                        in touch with"
+msgstr "Esta solicitação de assinatura não está mais ativa. Entre em contato com"
+
+#. module: sign_docuseal
+#: model:ir.model.fields,help:sign_docuseal.field_res_config_settings__docuseal_api_key
+msgid "Value sent in the X-Auth-Token header of every API call."
+msgstr "Valor enviado no cabeçalho X-Auth-Token em cada chamada à API."
+
+#. module: sign_docuseal
+#: model:ir.model.fields,field_description:sign_docuseal.field_res_config_settings__docuseal_webhook_secret
+#: model_terms:ir.ui.view,arch_db:sign_docuseal.res_config_settings_view_form_docuseal
+msgid "Webhook Secret"
+msgstr "Segredo do Webhook"
+
+#. module: sign_docuseal
+#: model_terms:ir.ui.view,arch_db:sign_docuseal.signing_page
+msgid "Your signature has been recorded. Thank you!"
+msgstr "Sua assinatura já foi registrada. Obrigado!"
+
