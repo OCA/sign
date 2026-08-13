@@ -1,2 +1,2 @@
 - [PopSolutions](https://popsolutions.co):
-  - Marcos Mendez \<<popsolutions.co@gmail.com>\>
+  - Marcos Mendez \<<mendez.foto@gmail.com>\>
