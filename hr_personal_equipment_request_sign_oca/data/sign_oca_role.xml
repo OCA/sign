@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="role_personal_equipment_request_owner" model="sign.oca.role">
+        <field name="name">Personal Equipment Request owner</field>
+        <field name="partner_selection_policy">expression</field>
+        <field
+            name="expression_partner"
+        >{{object.employee_id.user_id.partner_id.id}}</field>
+    </record>
+</odoo>
