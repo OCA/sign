@@ -10,8 +10,8 @@ class TestHrPersonalEquipmentRequestStockSignOca(Common):
         """The Sign request is generated when the picking is done."""
         self.ppe_request.accept_request()
         for allocation in self.ppe_request.line_ids:
-            allocation.move_ids[0].quantity_done = allocation.quantity
-        self.ppe_request.picking_ids[0]._action_done()
+            allocation.move_ids[0].quantity = allocation.quantity
+        self.ppe_request.picking_ids[0].button_validate()
 
         self.assertEqual(
             self.ppe_request.employee_id.user_partner_id,

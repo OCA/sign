@@ -2,12 +2,13 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import fields
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
 
+from odoo.addons.base.tests.common import BaseCommon
 from odoo.addons.mail.tests.common import mail_new_test_user
 
 
-class Common(TransactionCase):
+class Common(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -84,7 +85,7 @@ class Common(TransactionCase):
                     fields.Command.set(cls.route.ids),
                 ],
                 "qty_available": 100,
-                "type": "product",
+                "is_storable": True,
             }
         )
 

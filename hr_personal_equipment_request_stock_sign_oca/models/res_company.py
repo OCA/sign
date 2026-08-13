@@ -8,5 +8,5 @@ class ResCompany(models.Model):
     _inherit = "res.company"
 
     ppe_report_show_sn = fields.Boolean(
-        string="S/N in PPE Request Report",
+        string="Show S/N in Sign Request for PPE Request",
     )
