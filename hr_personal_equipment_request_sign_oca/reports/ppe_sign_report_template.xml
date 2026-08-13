@@ -25,11 +25,14 @@
                                 <span>Date:</span>
                             </div>
                         </div>
-                        <br /><br />
+                        <br />
+                        <br />
                         <div name="employee_name">
                             <span t-field="doc.employee_id.company_id.name" />
                             is providing
-                            <u><span t-field="doc.employee_id.name" /></u>
+                            <u>
+                            <span t-field="doc.employee_id.name" />
+                        </u>
                             with the following Personal Protection Equipment (PPE):
                         </div>
                         <br />
@@ -48,21 +51,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                    <tr
+                                <tr
                                     t-foreach="doc.line_ids"
                                     t-as="line"
                                     t-if="line.is_ppe"
                                 >
-                                        <td>
-                                            <t t-out="line.product_id.name" />
-                                        </td>
-                                        <td>
-                                            <t t-out="line.quantity" />
-                                        </td>
-                                        <td>
-                                            <t t-out="line.indications" />
-                                        </td>
-                                    </tr>
+                                    <td>
+                                        <t t-out="line.product_id.name" />
+                                    </td>
+                                    <td>
+                                        <t t-out="line.quantity" />
+                                    </td>
+                                    <td>
+                                        <t t-out="line.indications" />
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
