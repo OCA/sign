@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_docuseal_submission_tree" model="ir.ui.view">
+        <field name="name">docuseal.submission.tree</field>
+        <field name="model">docuseal.submission</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="docuseal_id" />
+                <field name="res_model" />
+                <field
+                    name="state"
+                    decoration-success="state == 'completed'"
+                    decoration-info="state in ('sent','pending')"
+                    decoration-danger="state in ('declined','expired')"
+                    widget="badge"
+                />
+                <field name="completed_date" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_docuseal_submission_form" model="ir.ui.view">
+        <field name="name">docuseal.submission.form</field>
+        <field name="model">docuseal.submission</field>
+        <field name="arch" type="xml">
+            <form string="DocuSeal Submission">
+                <header>
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,pending,completed"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" /></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="docuseal_id" readonly="1" />
+                            <field name="template_id" readonly="1" />
+                            <field name="completed_date" readonly="1" />
+                        </group>
+                        <group>
+                            <field name="res_model" readonly="1" />
+                            <field name="res_id" readonly="1" />
+                            <field name="audit_log_url" widget="url" readonly="1" />
+                            <field name="signed_filename" invisible="1" />
+                            <field
+                                name="signed_document"
+                                filename="signed_filename"
+                                attrs="{'invisible': [('signed_document','=',False)]}"
+                            />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Signers" name="submitters">
+                            <field name="submitter_ids">
+                                <tree>
+                                    <field name="role" />
+                                    <field name="name" />
+                                    <field name="email" />
+                                    <field
+                                        name="status"
+                                        widget="badge"
+                                        decoration-success="status == 'completed'"
+                                        decoration-danger="status == 'declined'"
+                                    />
+                                    <field name="embed_src" widget="url" />
+                                    <field name="completed_at" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_docuseal_submission" model="ir.actions.act_window">
+        <field name="name">DocuSeal Submissions</field>
+        <field name="res_model">docuseal.submission</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_docuseal_root"
+        name="DocuSeal"
+        parent="base.menu_administration"
+        sequence="90"
+        groups="base.group_system"
+    />
+    <menuitem
+        id="menu_docuseal_submission"
+        name="Submissions"
+        parent="menu_docuseal_root"
+        action="action_docuseal_submission"
+        sequence="10"
+    />
+</odoo>

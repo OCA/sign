@@ -1,0 +1,658 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils: https://docutils.sourceforge.io/" />
+<title>README.rst</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+Despite the name, some widely supported CSS2 features are used.
+
+See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: gray; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic, pre.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document">
+
+
+<a class="reference external image-reference" href="https://odoo-community.org/get-involved?utm_source=readme">
+<img alt="Odoo Community Association" src="https://odoo-community.org/readme-banner-image" />
+</a>
+<div class="section" id="sign-docuseal">
+<h1>Sign DocuSeal</h1>
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! This file is generated by oca-gen-addon-readme !!
+!! changes will be overwritten.                   !!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! source digest: sha256:655a298adc135e8bc080a33bb4ac8f8e2670b85d2c8449fd6471a1f027d6cc68
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/license-LGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/sign/tree/16.0/sign_docuseal"><img alt="OCA/sign" src="https://img.shields.io/badge/github-OCA%2Fsign-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/sign-16-0/sign-16-0-sign_docuseal"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/sign&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external" href="https://www.docuseal.com/">DocuSeal</a> is an open-source electronic
+signature platform that can be self-hosted. This module connects Odoo to
+a DocuSeal instance: Odoo sends documents out for signature, and follows
+their whole life cycle without anyone having to open the DocuSeal back
+office.</p>
+<div class="section" id="what-it-does">
+<h2>What it does</h2>
+<ul class="simple">
+<li><strong>Sends</strong> a document for signature, either from a DocuSeal template or
+from HTML rendered by Odoo (a QWeb report, typically).</li>
+<li><strong>Tracks</strong> the request in a <tt class="docutils literal">docuseal.submission</tt> record with one
+<tt class="docutils literal">docuseal.submitter</tt> line per signer, each carrying its own status
+(<em>awaiting</em>, <em>sent</em>, <em>opened</em>, <em>completed</em>, <em>declined</em>).</li>
+<li><strong>Receives</strong> DocuSeal events through an authenticated webhook and
+moves the record along. Handling is idempotent, because DocuSeal
+retries.</li>
+<li><strong>Stores</strong> the signed PDF and the audit trail as attachments once
+every signer is done.</li>
+<li><strong>Reconciles</strong> by cron: a submission still pending after an hour is
+checked against the DocuSeal API, so a webhook lost in transit does
+not leave a request stuck forever.</li>
+</ul>
+</div>
+<div class="section" id="signers-stay-inside-odoo">
+<h2>Signers stay inside Odoo</h2>
+<p>Each signer receives a link to an Odoo page,
+<tt class="docutils literal"><span class="pre">/docuseal/sign/&lt;submitter&gt;/&lt;token&gt;</span></tt>, which embeds the DocuSeal form
+in an iframe. The token is generated by Odoo, one <tt class="docutils literal">uuid4</tt> per signer,
+and is compared in constant time.</p>
+<p>This matters for two reasons: the signer never leaves the domain they
+already trust, and the DocuSeal slug — which is itself a signing
+credential — is never put in an email. Signers do not need a DocuSeal
+account, and the instance can stay on a private network as long as the
+browser can reach it.</p>
+</div>
+<div class="section" id="relationship-with-sign-oca">
+<h2>Relationship with <tt class="docutils literal">sign_oca</tt></h2>
+<p>This module is <strong>not</strong> built on <tt class="docutils literal">sign_oca</tt> and does not depend on it.
+The two solve different problems and can be installed side by side.</p>
+<p><tt class="docutils literal">sign_oca</tt> signs documents inside Odoo: you place the fields on the
+PDF with its own editor, and Odoo produces the signature and the
+certificate. This module hands the document to DocuSeal, which owns the
+field placement, the signing ceremony and the audit trail. Mapping one
+onto the other would mean inventing an abstraction that fits neither:
+the field model, the signer roles and the certificate are all defined by
+the external service.</p>
+</div>
+<div class="section" id="requires-a-paid-docuseal-plan">
+<h2>Requires a paid DocuSeal plan</h2>
+<p>Two entry points call endpoints that only the paid DocuSeal tiers
+expose, and answer <tt class="docutils literal">404</tt> on a community instance:</p>
+<ul class="simple">
+<li><tt class="docutils literal">create_submission_from_html()</tt> uses <tt class="docutils literal">POST /api/submissions/html</tt></li>
+<li><tt class="docutils literal">create_template_from_pdf()</tt> uses <tt class="docutils literal">POST /api/templates/pdf</tt></li>
+</ul>
+<p>Everything else — submissions from an existing template, status
+tracking, the webhook, document download — works against a community
+instance.</p>
+<p><strong>Table of contents</strong></p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#configuration" id="toc-entry-1">Configuration</a></li>
+</ul>
+</div>
+<div class="section" id="configuration">
+<h3><a class="toc-backref" href="#toc-entry-1">Configuration</a></h3>
+<p>Go to <em>Settings &gt; DocuSeal</em> and fill in the three parameters. They are
+stored in <tt class="docutils literal">ir.config_parameter</tt> and never shipped in source.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="38%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Setting</th>
+<th class="head">Parameter</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>DocuSeal URL</td>
+<td><tt class="docutils literal">docuseal.base_url</tt></td>
+<td>The instance root, no
+trailing slash, e.g.
+<tt class="docutils literal">htt
+<span class="pre">ps://sign.example.com</span></tt></td>
+</tr>
+<tr><td>API Key</td>
+<td><tt class="docutils literal">docuseal.api_key</tt></td>
+<td>An API token from
+<em>DocuSeal &gt; Settings &gt;
+API</em>. Sent as
+<tt class="docutils literal"><span class="pre">X-Auth-Token</span></tt>.</td>
+</tr>
+<tr><td>Webhook Secret</td>
+<td><tt class="docutils literal">do
+cuseal.webhook_secret</tt></td>
+<td>A random string you
+generate. Compared in
+constant time on every
+inbound call.</td>
+</tr>
+</tbody>
+</table>
+<p>Generate a webhook secret with something like:</p>
+<pre class="literal-block">
+python3 -c &quot;import secrets; print(secrets.token_urlsafe(32))&quot;
+</pre>
+</div>
+</div>
+<div class="section" id="webhook-on-the-docuseal-side">
+<h2>Webhook on the DocuSeal side</h2>
+<p>In <em>DocuSeal &gt; Settings &gt; Webhooks</em>, add an endpoint pointing at your
+Odoo:</p>
+<pre class="literal-block">
+https://odoo.example.com/docuseal/webhook
+</pre>
+<p>and add the request header:</p>
+<pre class="literal-block">
+X-Odoo-Webhook-Secret: &lt;the secret you generated&gt;
+</pre>
+<p>Subscribe at least to <tt class="docutils literal">submission.completed</tt>, <tt class="docutils literal">form.completed</tt>,
+<tt class="docutils literal">form.viewed</tt>, <tt class="docutils literal">form.declined</tt> and <tt class="docutils literal">submission.expired</tt>.</p>
+<p>A second route, <tt class="docutils literal">POST <span class="pre">/docuseal/webhook/&lt;secret&gt;</span></tt>, accepts the secret
+in the URL instead. It exists for instances already configured that way
+and works identically, but <strong>prefer the header</strong>: a secret in a URL is
+written to web-server logs, proxy logs and referrer headers.</p>
+<p>Calls with a missing or wrong secret are answered <tt class="docutils literal">403</tt> and logged as
+a warning. If the secret parameter is empty, every call is rejected —
+the module never falls back to accepting unauthenticated events.</p>
+</div>
+<div class="section" id="reconciliation-cron">
+<h2>Reconciliation cron</h2>
+<p><em>DocuSeal: reconcile pending submissions</em> runs hourly and re-reads any
+submission that has been pending for more than an hour. It is the safety
+net for a webhook that never arrived; leave it enabled.</p>
+<div class="section" id="usage">
+<h3>Usage</h3>
+<p>This module ships no business flow of its own: it is the plumbing
+another module calls. Submissions are visible under <em>Settings &gt; DocuSeal
+&gt; Submissions</em> for auditing, but they are normally created from code.</p>
+</div>
+</div>
+<div class="section" id="send-a-document-from-a-docuseal-template">
+<h2>Send a document from a DocuSeal template</h2>
+<pre class="code python literal-block">
+<span class="n">submission</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s2">&quot;docuseal.submission&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">create_and_send</span><span class="p">(</span><span class="w">
+</span>    <span class="n">template_id</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span><span class="w">
+</span>    <span class="n">submitters</span><span class="o">=</span><span class="p">[</span><span class="w">
+</span>        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;First Party&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;ACME Ltd&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;legal&#64;acme.example&quot;</span><span class="p">},</span><span class="w">
+</span>        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;Second Party&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">partner</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="n">partner</span><span class="o">.</span><span class="n">email</span><span class="p">},</span><span class="w">
+</span>    <span class="p">],</span><span class="w">
+</span>    <span class="n">source</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>          <span class="c1"># any record; keeps res_model / res_id pointing back</span><span class="w">
+</span>    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Docking contract </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="w">
+</span>    <span class="n">send_email</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>     <span class="c1"># True lets DocuSeal email the signers itself</span><span class="w">
+</span>    <span class="n">order</span><span class="o">=</span><span class="s2">&quot;preserved&quot;</span><span class="p">,</span>    <span class="c1"># sign in the given order; &quot;random&quot; for parallel</span><span class="w">
+</span><span class="p">)</span>
+</pre>
+<p><tt class="docutils literal"><span class="pre">order=&quot;preserved&quot;</span></tt> means the second signer is only invited once the
+first has signed. Use <tt class="docutils literal">&quot;random&quot;</tt> when everyone may sign at once.</p>
+</div>
+<div class="section" id="send-a-document-rendered-by-odoo">
+<h2>Send a document rendered by Odoo</h2>
+<p>Requires a paid DocuSeal plan (see the description).</p>
+<pre class="code python literal-block">
+<span class="n">html</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s2">&quot;ir.qweb&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">_render</span><span class="p">(</span><span class="s2">&quot;my_module.contract_template&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;doc&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="p">})</span><span class="w">
+</span><span class="n">submission</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">[</span><span class="s2">&quot;docuseal.submission&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">create_from_html</span><span class="p">(</span><span class="w">
+</span>    <span class="n">html</span><span class="p">,</span> <span class="n">submitters</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Contract </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="w">
+</span><span class="p">)</span>
+</pre>
+<p>The HTML may carry DocuSeal text tags, matched to submitters by role:</p>
+<pre class="literal-block">
+{{Signature;role=Second Party;type=signature}}
+{{Date;role=Second Party;type=date}}
+</pre>
+</div>
+<div class="section" id="give-each-signer-their-link">
+<h2>Give each signer their link</h2>
+<p><tt class="docutils literal">submitter.signing_url</tt> is the Odoo page to send out. Never send
+<tt class="docutils literal">submitter.embed_src</tt> — that is the raw DocuSeal URL and it grants
+signing rights on its own.</p>
+<pre class="code python literal-block">
+<span class="k">for</span> <span class="n">submitter</span> <span class="ow">in</span> <span class="n">submission</span><span class="o">.</span><span class="n">submitter_ids</span><span class="p">:</span><span class="w">
+</span>    <span class="n">submitter</span><span class="o">.</span><span class="n">partner_id</span><span class="o">.</span><span class="n">message_post</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="n">submitter</span><span class="o">.</span><span class="n">signing_url</span><span class="p">)</span>
+</pre>
+</div>
+<div class="section" id="react-to-completion">
+<h2>React to completion</h2>
+<p>Define <tt class="docutils literal">_on_docuseal_completed</tt> on the source model. It is called
+once, after the signed PDF and the audit trail have been attached to the
+submission.</p>
+<pre class="code python literal-block">
+<span class="k">class</span><span class="w"> </span><span class="nc">SaleOrder</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span><span class="w">
+</span>    <span class="n">_inherit</span> <span class="o">=</span> <span class="s2">&quot;sale.order&quot;</span><span class="w">
+
+</span>    <span class="k">def</span><span class="w"> </span><span class="nf">_on_docuseal_completed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">submission</span><span class="p">):</span><span class="w">
+</span>        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">({</span><span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;sale&quot;</span><span class="p">})</span><span class="w">
+</span>        <span class="bp">self</span><span class="o">.</span><span class="n">message_post</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;Contract signed on </span><span class="si">%s</span><span class="s2">.&quot;</span><span class="p">)</span> <span class="o">%</span> <span class="n">submission</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre>
+<p>The hook runs inside the webhook transaction. Keep it short, and let it
+raise if it must: a failure answers <tt class="docutils literal">500</tt> and DocuSeal retries the
+event.</p>
+</div>
+<div class="section" id="what-lands-on-the-record">
+<h2>What lands on the record</h2>
+<p>Once every signer is done, the submission holds <tt class="docutils literal">signed_document</tt> (the
+merged signed PDF), <tt class="docutils literal">audit_log_file</tt> and <tt class="docutils literal">audit_log_url</tt> (the
+DocuSeal trail), <tt class="docutils literal">completed_date</tt>, and a chatter entry for each
+transition.</p>
+<div class="section" id="known-issues-roadmap">
+<h3>Known issues / Roadmap</h3>
+<ul class="simple">
+<li>There is no UI to create a submission: another module has to call
+<tt class="docutils literal">create_and_send()</tt> or <tt class="docutils literal">create_from_html()</tt>. A generic “send this
+attachment for signature” wizard would make the module usable on its
+own.</li>
+<li>DocuSeal templates are referenced by their numeric id, kept as a plain
+<tt class="docutils literal">Char</tt>. There is no synchronisation of the template catalogue into
+Odoo, so the id has to be looked up in DocuSeal and configured by
+hand.</li>
+<li>Only the first document of a completed submission is stored. DocuSeal
+is asked to merge (<tt class="docutils literal">merge=true</tt>), so a multi-document submission
+arrives as one PDF; submissions that genuinely carry several distinct
+files keep only the first.</li>
+<li>The webhook trusts the shared secret only. DocuSeal can also sign its
+payloads; verifying that signature would be stronger than a shared
+secret and is not implemented.</li>
+<li>Sending is synchronous: the API call happens in the transaction of
+whoever triggered it. A slow DocuSeal instance is felt by the user.
+Moving the call to <tt class="docutils literal">queue_job</tt> would decouple the two.</li>
+<li><tt class="docutils literal">create_submission_from_html()</tt> and <tt class="docutils literal">create_template_from_pdf()</tt>
+need a paid DocuSeal plan and fail with a plain error message on a
+community instance.</li>
+</ul>
+</div>
+<div class="section" id="bug-tracker">
+<h3>Bug Tracker</h3>
+<p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/sign/issues">GitHub Issues</a>.
+In case of trouble, please check there if your issue has already been reported.
+If you spotted it first, help us to smash it by providing a detailed and welcomed
+<a class="reference external" href="https://github.com/OCA/sign/issues/new?body=module:%20sign_docuseal%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<p>Do not contact contributors directly about support or help with technical issues.</p>
+</div>
+<div class="section" id="credits">
+<h3>Credits</h3>
+<div class="section" id="authors">
+<h4>Authors</h4>
+<ul class="simple">
+<li>PopSolutions</li>
+</ul>
+</div>
+<div class="section" id="contributors">
+<h4>Contributors</h4>
+<ul class="simple">
+<li><a class="reference external" href="https://popsolutions.co">PopSolutions</a>:<ul>
+<li>Marcos Mendez &lt;<a class="reference external" href="mailto:popsolutions.co&#64;gmail.com">popsolutions.co&#64;gmail.com</a>&gt;</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="maintainers">
+<h4>Maintainers</h4>
+<p>This module is maintained by the OCA.</p>
+<a class="reference external image-reference" href="https://odoo-community.org">
+<img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
+</a>
+<p>OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.</p>
+<p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainer</a>:</p>
+<p><a class="reference external image-reference" href="https://github.com/marcos-mendez"><img alt="marcos-mendez" src="https://github.com/marcos-mendez.png?size=40px" /></a></p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/sign/tree/16.0/sign_docuseal">OCA/sign</a> project on GitHub.</p>
+<p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
