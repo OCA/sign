@@ -5,3 +5,5 @@ In order to enable automatic creation of sign requests upon Personal Equipment R
 
 Note that the chosen PDF for sign templates of a Personal Equipment Request will be substituted by a dynamic one providing the list of PPEs in the request.
 The dynamic template is linked to the report action "Receipt of Personal Protection Equipment".
+
+The Sign Role assigned to the dynamic template assumes the Employee is linked to a User (`Expression` field), if that is not the case change it as needed.

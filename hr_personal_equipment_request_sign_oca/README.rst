@@ -28,9 +28,11 @@ Hr Personal Equipment Request Sign Oca
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows you to generate manual and automatic signature
-requests from Personal Equipment Request for employees who request it. A
-new PPE sign report has been created in order to dynamically list the
+Generate manual or automatic signature request for the Employee when
+they create a Personal Equipment Request containing a Personal
+Protection Equipment (PPE).
+
+A new PPE sign report has been created in order to dynamically list the
 Personal Equipments in the request.
 
 **Table of contents**
@@ -52,6 +54,10 @@ Request will be substituted by a dynamic one providing the list of PPEs
 in the request. The dynamic template is linked to the report action
 "Receipt of Personal Protection Equipment".
 
+The Sign Role assigned to the dynamic template assumes the Employee is
+linked to a User (``Expression`` field), if that is not the case change
+it as needed.
+
 Usage
 =====
 
@@ -68,7 +74,8 @@ Automatic Signature Request creation:
 - Define a template in Employees > Configuration > Settings.
 - When a Personal Equipment Request is created, or employee in an
   existing one changes, a Sign Request will be created (and sent)
-  automatically.
+  automatically. Sign requests are only generated when they contain a
+  Personal Protection Equipment (PPE).
 
 Viewing Signature Requests:
 
@@ -80,6 +87,21 @@ Viewing Signature Requests:
   progress.
 - Alternatively, go to Sign > Requests.
 - Use the Group By feature to group requests by Employee.
+
+Known issues / Roadmap
+======================
+
+If the Employee in the Personal Equipment Request is not linked to a
+User, when generating the Sign Request the following is raised:
+
+   ERROR: null value in column "partner_id" of relation
+   "sign_oca_request_signer" violates not-null constraint
+
+because the Sign Role created in module's data assumes a User is linked
+to the Employee. The problem is that an Employee may not be linked to a
+User or even a Partner. Moreover, the Sign Role's Expression can be
+customized so that no exception is raised: added a new configuration
+instruction to warn the user.
 
 Bug Tracker
 ===========

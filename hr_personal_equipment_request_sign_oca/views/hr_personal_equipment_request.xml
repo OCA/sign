@@ -20,8 +20,8 @@
                     name="action_view_sign_requests"
                     class="oe_stat_button"
                     icon="fa-file-text-o"
-                    attrs="{'invisible': [('sign_request_count', '=', 0)]}"
                     groups="sign_oca.sign_oca_group_user"
+                    invisible="sign_request_count == 0"
                 >
                     <field
                         name="sign_request_count"

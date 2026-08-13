@@ -27,7 +27,7 @@
         />
         <field name="page">1</field>
         <field name="position_x">13</field>
-        <field name="position_y">30</field>
+        <field name="position_y">33</field>
         <field name="width">22</field>
         <field name="height">4</field>
         <field name="required" eval="True" />
@@ -47,7 +47,7 @@
         />
         <field name="page">1</field>
         <field name="position_x">40</field>
-        <field name="position_y">30</field>
+        <field name="position_y">33</field>
         <field name="width">22</field>
         <field name="height">4</field>
         <field name="required" eval="True" />

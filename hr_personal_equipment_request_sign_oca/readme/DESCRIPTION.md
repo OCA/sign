@@ -1,2 +1,3 @@
-This module allows you to generate manual and automatic signature requests from Personal Equipment Request for employees who request it.
+Generate manual or automatic signature request for the Employee when they create a Personal Equipment Request containing a Personal Protection Equipment (PPE).
+
 A new PPE sign report has been created in order to dynamically list the Personal Equipments in the request.

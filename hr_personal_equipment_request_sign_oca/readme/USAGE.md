@@ -7,6 +7,7 @@ Creating a Signature Request from a Personal Equipment Request:
 Automatic Signature Request creation:
 - Define a template in Employees > Configuration > Settings.
 - When a Personal Equipment Request is created, or employee in an existing one changes, a Sign Request will be created (and sent) automatically.
+  Sign requests are only generated when they contain a Personal Protection Equipment (PPE).
 
 Viewing Signature Requests:
 - Go to Employees > Personal Equipment > Personal Equipment Request.

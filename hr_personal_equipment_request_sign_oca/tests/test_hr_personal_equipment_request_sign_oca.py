@@ -1,7 +1,7 @@
 # Copyright 2026 Simone Rubino - PyTech
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import Form
+from odoo.tests import Form
 
 from .common import Common
 
