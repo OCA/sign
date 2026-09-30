@@ -918,6 +918,12 @@ msgid "Next"
 msgstr "Próximo"
 
 #. module: sign_oca
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_calendar_event_id
+#: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
+
+#. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_date_deadline
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__activity_date_deadline
 msgid "Next Activity Deadline"
