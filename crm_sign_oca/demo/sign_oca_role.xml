@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="role_crm_signer" model="sign.oca.role">
+        <field name="name">CRM Signatory Person</field>
+        <field name="partner_selection_policy">expression</field>
+        <field name="expression_partner">{{object.user_id.partner_id.id}}</field>
+    </record>
+</odoo>
