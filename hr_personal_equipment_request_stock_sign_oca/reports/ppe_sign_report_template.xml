@@ -16,7 +16,10 @@
         </xpath>
         <xpath expr="//table/tbody//td[1]" position="after">
             <td t-if="doc.employee_id.company_id.ppe_report_show_sn">
-                <t t-out="line.move_ids.lot_ids.name" />
+                <t t-foreach="line.move_ids.lot_ids" t-as="lot">
+                    <span t-field="lot.name" />
+                    <span t-if="not lot_last">,</span>
+                </t>
             </td>
         </xpath>
         <!-- Only include valid (received) lines -->
