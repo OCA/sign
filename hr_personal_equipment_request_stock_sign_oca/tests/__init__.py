@@ -1,1 +1,2 @@
 from . import test_hr_personal_equipment_request_sign_oca
+from . import test_report
