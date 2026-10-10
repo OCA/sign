@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-10-10 12:46+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,17 +15,18 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/models/sign_oca_request.py:0
 msgid "%(name)s (%(email)s) has sent the signed document."
-msgstr ""
+msgstr "%(name)s (%(email)s) je poslal podpisani dokument."
 
 #. module: sign_oca
 #: model:ir.actions.report,print_report_name:sign_oca.action_report_signature_certificate
 msgid "'Signature Certificate'"
-msgstr ""
+msgstr "'Potrdilo o podpisu'"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_mail
@@ -32,6 +34,8 @@ msgid ""
 ")\n"
 "                has requested your signature on a document."
 msgstr ""
+")\n"
+"                je zahteval vaš podpis na dokumentu."
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_requests
@@ -39,106 +43,110 @@ msgid ""
 "<span class=\"d-none d-md-inline\">Sign Request #</span>\n"
 "                            <span class=\"d-block d-md-none\">Ref.</span>"
 msgstr ""
+"<span class=\"d-none d-md-inline\">Zahtevek za podpis št.</span>\n"
+"                            <span class=\"d-block d-md-none\">Sklic</span>"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_requests
 msgid "<span class=\"fa fa-hourglass mx-2\" title=\"Not fully signed!\"/>"
-msgstr ""
+msgstr "<span class=\"fa fa-hourglass mx-2\" title=\"Ni v celoti podpisano!\"/>"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_requests
 msgid "<span class=\"fa fa-save mx-2\" title=\"Download\"/>"
-msgstr ""
+msgstr "<span class=\"fa fa-save mx-2\" title=\"Prenesi\"/>"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "<span class=\"fw-bold\">Created by:</span>"
-msgstr ""
+msgstr "<span class=\"fw-bold\">Ustvaril:</span>"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "<span class=\"fw-bold\">Created on:</span>"
-msgstr ""
+msgstr "<span class=\"fw-bold\">Ustvarjeno:</span>"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "<span class=\"fw-bold\">Current hash:</span>"
-msgstr ""
+msgstr "<span class=\"fw-bold\">Trenutna zgoščena vrednost:</span>"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "<span class=\"fw-bold\">Document ID:</span>"
-msgstr ""
+msgstr "<span class=\"fw-bold\">ID dokumenta:</span>"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "<span class=\"fw-bold\">Print date:</span>"
-msgstr ""
+msgstr "<span class=\"fw-bold\">Datum izpisa:</span>"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "<span class=\"fw-bold\">Related record:</span>"
-msgstr ""
+msgstr "<span class=\"fw-bold\">Povezani zapis:</span>"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "<span class=\"fw-bold\">Responsible:</span>"
-msgstr ""
+msgstr "<span class=\"fw-bold\">Odgovorni:</span>"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "<span class=\"fw-bold\">Signature filename:</span>"
-msgstr ""
+msgstr "<span class=\"fw-bold\">Naziv datoteke podpisa:</span>"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "<span class=\"fw-bold\">Signers:</span>"
-msgstr ""
+msgstr "<span class=\"fw-bold\">Podpisniki:</span>"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_form_view
 msgid "<span class=\"o_stat_text\"> Signed</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\"> Podpisano</span>"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "<span class=\"text-muted\">Inalterability hash:</span>"
 msgstr ""
+"<span class=\"text-muted\">Zgoščena vrednost za preverjanje "
+"nespremenjenosti:</span>"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "<span class=\"text-muted\">Not available</span>"
-msgstr ""
+msgstr "<span class=\"text-muted\">Ni na voljo</span>"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "<span>(UTC)</span>"
-msgstr ""
+msgstr "<span>(UTC)</span>"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "<span>-</span>"
-msgstr ""
+msgstr "<span>-</span>"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.portal_my_home_menu_sign
 msgid "<span>Sign Requests</span>"
-msgstr ""
+msgstr "<span>Zahtevki za podpis</span>"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "<span>remaining</span>"
-msgstr ""
+msgstr "<span>preostalih</span>"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "<span>signed,</span>"
-msgstr ""
+msgstr "<span>podpisanih,</span>"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "<span>signers →</span>"
-msgstr ""
+msgstr "<span>podpisnikov →</span>"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_mail
@@ -146,90 +154,94 @@ msgid ""
 "<strong>Warning</strong> do not forward this email to other people!<br/>\n"
 "                    They will be able to access this document and sign it as yourself.<br/>"
 msgstr ""
+"<strong>Opozorilo</strong> tega e-poštnega sporočila ne posredujte drugim "
+"osebam!<br/>\n"
+"                    Lahko bodo dostopale do tega dokumenta in ga podpisale v "
+"vašem imenu.<br/>"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__access_token
 msgid "Access Token"
-msgstr ""
+msgstr "Žeton za dostop"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__access_warning
 msgid "Access warning"
-msgstr ""
+msgstr "Opozorilo o dostopu"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__action
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "Action"
-msgstr ""
+msgstr "Dejanje"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_needaction
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__message_needaction
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Potrebno je ukrepanje"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__active
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__active
 msgid "Active"
-msgstr ""
+msgstr "Aktivno"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_ids
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "Aktivnosti"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_exception_decoration
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "Oznaka izjeme pri aktivnosti"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_form_view
 msgid "Activity Log"
-msgstr ""
+msgstr "Dnevnik aktivnosti"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "Activity Logs"
-msgstr ""
+msgstr "Dnevniki aktivnosti"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_state
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "Stanje aktivnosti"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_type_icon
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "Ikona tipa aktivnosti"
 
 #. module: sign_oca
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request_log__action__add_field
 msgid "Add field"
-msgstr ""
+msgstr "Dodaj polje"
 
 #. module: sign_oca
 #: model:res.groups,name:sign_oca.sign_oca_group_admin
 msgid "Administrator"
-msgstr ""
+msgstr "Skrbnik"
 
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/controllers/main.py:0
 msgid "All"
-msgstr ""
+msgstr "Vse"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__altered_hash
 msgid "Altered Hash"
-msgstr ""
+msgstr "Spremenjena zgoščena vrednost"
 
 #. module: sign_oca
 #. odoo-python
@@ -238,17 +250,19 @@ msgid ""
 "An error occurred when computing the inalterability. Impossible to get the "
 "unique previous signer information."
 msgstr ""
+"Pri preverjanju nespremenjenosti je prišlo do napake. Podatkov o prejšnjem "
+"podpisniku ni mogoče enolično določiti."
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_kanban_view
 msgid "Archive"
-msgstr ""
+msgstr "Arhiviraj"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_form_view
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
 msgid "Archived"
-msgstr ""
+msgstr "Arhivirano"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.portal_sign_document_signed
@@ -256,19 +270,21 @@ msgid ""
 "As soon as all signers have signed the document, you will receive an email "
 "with the full document"
 msgstr ""
+"Ko bodo vsi podpisniki podpisali dokument, boste prejeli e-poštno sporočilo "
+"s celotnim dokumentom"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__ask_location
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__ask_location
 msgid "Ask Location"
-msgstr ""
+msgstr "Zahtevaj lokacijo"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_attachment_count
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__message_attachment_count
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Število prilog"
 
 #. module: sign_oca
 #. odoo-javascript
@@ -279,6 +295,10 @@ msgid ""
 "for all purposes when it is used on documents, including legally binding "
 "contracts."
 msgstr ""
+"S klikom na Sprejmi in podpiši soglašam, da bo izbrani podpis oziroma parafa "
+"veljavna elektronska predstavitev mojega lastnoročnega podpisa oziroma "
+"parafe za vse namene uporabe na dokumentih, vključno s pravno zavezujočimi "
+"pogodbami."
 
 #. module: sign_oca
 #. odoo-javascript
@@ -288,56 +308,56 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_generate_form_view
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_generate_multi_form_view
 msgid "Cancel"
-msgstr ""
+msgstr "Preklic"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
 msgid "Canceled"
-msgstr ""
+msgstr "Preklicano"
 
 #. module: sign_oca
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request__state__3_cancel
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_form_view
 msgid "Cancelled"
-msgstr ""
+msgstr "Preklicano"
 
 #. module: sign_oca
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_field__field_type__check
 msgid "Check"
-msgstr ""
+msgstr "Preveri"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_pdf_portal/sign_oca_navigator.esm.js:0
 msgid "Click on Validate Button"
-msgstr ""
+msgstr "Kliknite gumb Potrdi"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
 msgid "Click on the field that you want to add"
-msgstr ""
+msgstr "Kliknite polje, ki ga želite dodati"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_pdf_portal/sign_oca_navigator.esm.js:0
 msgid "Click to start"
-msgstr ""
+msgstr "Kliknite za začetek"
 
 #. module: sign_oca
 #: model:ir.model,name:sign_oca.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Družbe"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__company_id
 msgid "Company"
-msgstr ""
+msgstr "Družba"
 
 #. module: sign_oca
 #: model:ir.model,name:sign_oca.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Nastavitve"
 
 #. module: sign_oca
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request_log__action__configure
@@ -346,22 +366,22 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_kanban_view
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_tree_view
 msgid "Configure"
-msgstr ""
+msgstr "Nastavi"
 
 #. module: sign_oca
 #: model:ir.model,name:sign_oca.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Stik"
 
 #. module: sign_oca
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request_log__action__create
 msgid "Create"
-msgstr ""
+msgstr "Ustvari"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_signer_search_view
 msgid "Create date"
-msgstr ""
+msgstr "Datum nastanka"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_field__create_uid
@@ -374,7 +394,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_signer__create_uid
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Ustvaril"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_field__create_date
@@ -387,78 +407,78 @@ msgstr ""
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_signer__create_date
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Ustvarjeno"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__current_hash
 msgid "Current Hash"
-msgstr ""
+msgstr "Trenutna zgoščena vrednost"
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request_signer__access_url
 msgid "Customer Portal URL"
-msgstr ""
+msgstr "URL naslov portala za stranke"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__data
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__data
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__data
 msgid "Data"
-msgstr ""
+msgstr "Podatki"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
 msgid "Data is saved automatically when editing"
-msgstr ""
+msgstr "Podatki se med urejanjem samodejno shranjujejo"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
 msgid "Data is saved automatically when editing."
-msgstr ""
+msgstr "Podatki se med urejanjem samodejno shranjujejo."
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__date
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "Date (UTC)"
-msgstr ""
+msgstr "Datum (UTC)"
 
 #. module: sign_oca
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_role__partner_selection_policy__default
 msgid "Default"
-msgstr ""
+msgstr "Privzeto"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_field__default_value
 msgid "Default Value"
-msgstr ""
+msgstr "Privzeta vrednost"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_role__default_partner_id
 msgid "Default partner"
-msgstr ""
+msgstr "Privzeti partner"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
 msgid "Delete"
-msgstr ""
+msgstr "Izbriši"
 
 #. module: sign_oca
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request_log__action__delete_field
 msgid "Delete field"
-msgstr ""
+msgstr "Izbriši polje"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_kanban_view
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_signer_kanban_view
 msgid "Details"
-msgstr ""
+msgstr "Podrobnosti"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_field__display_name
@@ -472,182 +492,182 @@ msgstr ""
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_signer__display_name
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazani naziv"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "Document Information"
-msgstr ""
+msgstr "Podatki o dokumentu"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/js/systray_service.esm.js:0
 msgid "Documents to be Signed"
-msgstr ""
+msgstr "Dokumenti za podpis"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_role__domain
 msgid "Domain"
-msgstr ""
+msgstr "Domena"
 
 #. module: sign_oca
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request__state__1_draft
 msgid "Draft"
-msgstr ""
+msgstr "Osnutek"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.esm.js:0
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request_log__action__edit_field
 msgid "Edit field"
-msgstr ""
+msgstr "Uredi polje"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "Email"
-msgstr ""
+msgstr "E-pošta"
 
 #. module: sign_oca
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_role__partner_selection_policy__empty
 msgid "Empty"
-msgstr ""
+msgstr "Prazno"
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_role__expression_partner
 msgid "Example: {{object.partner_id.id}}"
-msgstr ""
+msgstr "Primer: {{object.partner_id.id}}"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_role__expression_partner
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_role__partner_selection_policy__expression
 msgid "Expression"
-msgstr ""
+msgstr "Izraz"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__field_id
 msgid "Field"
-msgstr ""
+msgstr "Polje"
 
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/models/sign_oca_request.py:0
 msgid "Field %s is not filled"
-msgstr ""
+msgstr "Polje %s ni izpolnjeno"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_field__field_type
 msgid "Field Type"
-msgstr ""
+msgstr "Tip polja"
 
 #. module: sign_oca
 #: model:ir.actions.act_window,name:sign_oca.sign_oca_field_act_window
 #: model:ir.ui.menu,name:sign_oca.sign_oca_field_menu
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_form_view
 msgid "Fields"
-msgstr ""
+msgstr "Polja"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__filename
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__filename
 msgid "Filename"
-msgstr ""
+msgstr "Naziv datoteke"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
 msgid "Filled by"
-msgstr ""
+msgstr "Izpolnil"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_follower_ids
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__message_follower_ids
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Sledilci"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_partner_ids
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__message_partner_ids
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Sledilci (partnerji)"
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__activity_type_icon
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request_signer__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "Ikona Font Awesome, npr. fa-tasks"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_form_view
 msgid "Fully Signed"
-msgstr ""
+msgstr "V celoti podpisano"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
 msgid "Future Activities"
-msgstr ""
+msgstr "Prihodnje aktivnosti"
 
 #. module: sign_oca
 #: model:ir.actions.act_window,name:sign_oca.sign_oca_general_settings_act_window
 msgid "General Settings"
-msgstr ""
+msgstr "Splošne nastavitve"
 
 #. module: sign_oca
 #: model:ir.ui.menu,name:sign_oca.sign_oca_general_settings_menu
 msgid "General settings"
-msgstr ""
+msgstr "Splošne nastavitve"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_generate_multi_form_view
 msgid "Generate"
-msgstr ""
+msgstr "Ustvari"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_generate_form_view
 msgid "Generate & sign"
-msgstr ""
+msgstr "Ustvari in podpiši"
 
 #. module: sign_oca
 #: model:ir.model,name:sign_oca.model_sign_oca_template_generate
 msgid "Generate a signature request"
-msgstr ""
+msgstr "Ustvari zahtevek za podpis"
 
 #. module: sign_oca
 #: model:ir.model,name:sign_oca.model_sign_oca_template_generate_multi
 msgid "Generate signature requests"
-msgstr ""
+msgstr "Ustvari zahtevke za podpis"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "Geolocation"
-msgstr ""
+msgstr "Geolokacija"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_signer_search_view
 msgid "Group By"
-msgstr ""
+msgstr "Združi po"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__has_message
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__has_message
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "Ima sporočilo"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__height
 msgid "Height"
-msgstr ""
+msgstr "Višina"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
 msgid "Help"
-msgstr ""
+msgstr "Pomoč"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_field__id
@@ -661,38 +681,38 @@ msgstr ""
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_signer__id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "IP address"
-msgstr ""
+msgstr "IP naslov"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_exception_icon
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "Ikona"
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__activity_exception_icon
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request_signer__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "Ikona za označevanje izjeme pri aktivnosti."
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__message_needaction
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request_signer__message_needaction
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_template__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Če je označeno, nova sporočila zahtevajo vašo pozornost."
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__message_has_error
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request_signer__message_has_error
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_template__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Če je označeno, je pri dostavi nekaterih sporočil prišlo do napake."
 
 #. module: sign_oca
 #. odoo-javascript
@@ -700,7 +720,7 @@ msgstr ""
 msgid ""
 "If you do a click over a field, you will be able to change the default "
 "configurations of the field"
-msgstr ""
+msgstr "S klikom na polje lahko spremenite njegove privzete nastavitve"
 
 #. module: sign_oca
 #. odoo-javascript
@@ -709,6 +729,8 @@ msgid ""
 "In order to add a new field, do a right click over the PDF page. You will be"
 " able to select the field that you will import"
 msgstr ""
+"Za dodajanje novega polja z desno tipko miške kliknite stran PDF. Izberete "
+"lahko polje, ki ga želite vstaviti"
 
 #. module: sign_oca
 #. odoo-javascript
@@ -718,38 +740,44 @@ msgid ""
 "                Then, you can move and resize the fields over the PDF page using the move icons.\n"
 "                If you do a click over a field, you will be able to change the default configurations of the field"
 msgstr ""
+"Za dodajanje novega polja z desno tipko miške kliknite stran PDF. Izberete "
+"lahko polje, ki ga želite vstaviti.\n"
+"                Nato lahko z ikonami za premikanje premikate polja na strani "
+"PDF in spreminjate njihovo velikost.\n"
+"                S klikom na polje lahko spremenite njegove privzete "
+"nastavitve"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__inalterable_hash
 msgid "Inalterability Hash"
-msgstr ""
+msgstr "Zgoščena vrednost za preverjanje nespremenjenosti"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__secure_sequence_number
 msgid "Inalteralbility No Gap Sequence #"
-msgstr ""
+msgstr "Zaporedna številka brez vrzeli za preverjanje nespremenjenosti"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__ip
 msgid "Ip"
-msgstr ""
+msgstr "IP"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__is_allow_signature
 msgid "Is Allow Signature"
-msgstr ""
+msgstr "Podpisovanje je dovoljeno"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_is_follower
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__message_is_follower
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "Je sledilec"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__item_ids
 msgid "Item"
-msgstr ""
+msgstr "Element"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_field__write_uid
@@ -762,7 +790,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_signer__write_uid
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zadnji posodobil"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_field__write_date
@@ -775,88 +803,88 @@ msgstr ""
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_signer__write_date
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zadnjič posodobljeno"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
 msgid "Late Activities"
-msgstr ""
+msgstr "Zamujene aktivnosti"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__latitude
 msgid "Latitude"
-msgstr ""
+msgstr "Zemljepisna širina"
 
 #. module: sign_oca
 #: model:ir.model,name:sign_oca.model_sign_oca_request_log
 msgid "Log access and edition on requests"
-msgstr ""
+msgstr "Beleži dostop do zahtevkov in njihovo urejanje"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_pdf_portal/sign_oca_pdf_portal.xml:0
 #: model_terms:ir.ui.view,arch_db:sign_oca.portal_sign_document_signed
 msgid "Logo"
-msgstr ""
+msgstr "Logotip"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__longitude
 msgid "Longitude"
-msgstr ""
+msgstr "Zemljepisna dolžina"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_pdf/sign_oca_pdf.xml:0
 msgid "Main actions"
-msgstr ""
+msgstr "Glavna dejanja"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate__message
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_multi__message
 msgid "Message"
-msgstr ""
+msgstr "Sporočilo"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_has_error
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__message_has_error
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Napaka pri dostavi sporočila"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_ids
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__message_ids
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Sporočila"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__model
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__model_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_multi__model
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__model
 msgid "Model name"
-msgstr ""
+msgstr "Naziv modela"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__my_activity_date_deadline
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "Rok moje aktivnosti"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
 msgid "My Documents"
-msgstr ""
+msgstr "Moji dokumenti"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
 msgid "My Requests"
-msgstr ""
+msgstr "Moji zahtevki"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_field__name
@@ -865,110 +893,110 @@ msgstr ""
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_role__name
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__name
 msgid "Name"
-msgstr ""
+msgstr "Naziv"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_pdf_common/sign_oca_pdf_common.esm.js:0
 msgid "Need a valid PDF to add signature fields !"
-msgstr ""
+msgstr "Za dodajanje podpisnih polj je potreben veljaven PDF!"
 
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/models/sign_oca_request.py:0
 msgid "New document to sign"
-msgstr ""
+msgstr "Nov dokument za podpis"
 
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/controllers/main.py:0
 msgid "Newest"
-msgstr ""
+msgstr "Najnovejši"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_pdf_portal/sign_oca_navigator.esm.js:0
 msgid "Next"
-msgstr ""
+msgstr "Naprej"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_calendar_event_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__activity_calendar_event_id
 msgid "Next Activity Calendar Event"
-msgstr ""
+msgstr "Koledarski dogodek naslednje aktivnosti"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_date_deadline
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "Rok naslednje aktivnosti"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_summary
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "Povzetek naslednje aktivnosti"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_type_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "Tip naslednje aktivnosti"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__next_item_id
 msgid "Next Item"
-msgstr ""
+msgstr "Naslednji element"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/xml/systray.xml:0
 msgid "No requests to sign."
-msgstr ""
+msgstr "Ni zahtevkov za podpis."
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "Not available"
-msgstr ""
+msgstr "Ni na voljo"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_needaction_counter
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__message_needaction_counter
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Število dejanj"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__message_has_error_counter
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__message_has_error_counter
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "Število napak"
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__message_needaction_counter
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request_signer__message_needaction_counter
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_template__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "Število sporočil, ki zahtevajo ukrepanje"
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__message_has_error_counter
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request_signer__message_has_error_counter
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_template__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Število sporočil z napako pri dostavi"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__record_ref
 msgid "Object"
-msgstr ""
+msgstr "Objekt"
 
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/controllers/main.py:0
 msgid "Oldest"
-msgstr ""
+msgstr "Najstarejši"
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_res_company__sign_oca_send_sign_request_copy
@@ -978,11 +1006,13 @@ msgid ""
 "Once all signers have signed the request, a copy of the final document will "
 "be sent to each of them."
 msgstr ""
+"Ko bodo vsi podpisniki podpisali zahtevek, bo vsakemu poslana kopija "
+"končnega dokumenta."
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__page
 msgid "Page"
-msgstr ""
+msgstr "Stran"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__partner_id
@@ -990,71 +1020,71 @@ msgstr ""
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_signer__partner_id
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_role__partner_selection_policy
 msgid "Partner Selection Policy"
-msgstr ""
+msgstr "Način izbire partnerja"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/xml/systray.xml:0
 msgid "Pending"
-msgstr ""
+msgstr "V čakanju"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__placeholder
 msgid "Placeholder"
-msgstr ""
+msgstr "Ograda"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_pdf_portal/sign_oca_pdf_portal.xml:0
 msgid "Please Review And Act On This Document"
-msgstr ""
+msgstr "Preglejte ta dokument in ustrezno ukrepajte"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__access_url
 msgid "Portal Access URL"
-msgstr ""
+msgstr "URL naslov za dostop do portala"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__position_x
 msgid "Position X"
-msgstr ""
+msgstr "Položaj X"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__position_y
 msgid "Position Y"
-msgstr ""
+msgstr "Položaj Y"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__rating_ids
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__rating_ids
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__rating_ids
 msgid "Ratings"
-msgstr ""
+msgstr "Ocene"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__request_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__request_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__request_ids
 msgid "Request"
-msgstr ""
+msgstr "Zahtevek"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__request_count
 msgid "Request Count"
-msgstr ""
+msgstr "Število zahtevkov"
 
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/models/sign_oca_request.py:0
 msgid "Request cannot be signed"
-msgstr ""
+msgstr "Zahtevka ni mogoče podpisati"
 
 #. module: sign_oca
 #. odoo-javascript
@@ -1062,35 +1092,35 @@ msgstr ""
 #: model:ir.ui.menu,name:sign_oca.sign_oca_request_menu
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_form_view
 msgid "Requests"
-msgstr ""
+msgstr "Zahtevki"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__required
 msgid "Required"
-msgstr ""
+msgstr "Obvezno"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__res_id
 msgid "Res"
-msgstr ""
+msgstr "Vir"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__user_id
 msgid "Responsible"
-msgstr ""
+msgstr "Odgovorni"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__activity_user_id
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "Odgovorni uporabnik"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_kanban_view
 msgid "Restore"
-msgstr ""
+msgstr "Obnovi"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__role_id
@@ -1099,69 +1129,71 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_signer_search_view
 msgid "Role"
-msgstr ""
+msgstr "Vloga"
 
 #. module: sign_oca
 #: model:ir.actions.act_window,name:sign_oca.sign_oca_role_act_window
 #: model:ir.ui.menu,name:sign_oca.sign_oca_role_menu
 msgid "Roles"
-msgstr ""
+msgstr "Vloge"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
 msgid "Save"
-msgstr ""
+msgstr "Shrani"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__access_token
 msgid "Security Token"
-msgstr ""
+msgstr "Varnostni žeton"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_form_view
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_kanban_view
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_tree_view
 msgid "Send"
-msgstr ""
+msgstr "Pošlji"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_res_company__sign_oca_send_sign_request_copy
 #: model:ir.model.fields,field_description:sign_oca.field_res_config_settings__sign_oca_send_sign_request_copy
 msgid "Send signers a copy of the final signed document"
-msgstr ""
+msgstr "Pošlji podpisnikom kopijo končnega podpisanega dokumenta"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_form_view
 msgid "Send to sign"
-msgstr ""
+msgstr "Pošlji v podpis"
 
 #. module: sign_oca
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request__state__0_sent
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
 msgid "Sent"
-msgstr ""
+msgstr "Poslano"
 
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/controllers/main.py:0
 msgid "Sent to Signed"
-msgstr ""
+msgstr "Iz poslanega v podpisano"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__sequence_id
 msgid "Sequence"
-msgstr ""
+msgstr "Zaporedje"
 
 #. module: sign_oca
 #: model:ir.ui.menu,name:sign_oca.sign_oca_settings_menu
 msgid "Settings"
-msgstr ""
+msgstr "Nastavitve"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
 msgid "Show all records which has next action date is before today"
 msgstr ""
+"Prikaži vse zapise, pri katerih je datum naslednjega dejanja pred današnjim "
+"dnem"
 
 #. module: sign_oca
 #. odoo-javascript
@@ -1173,54 +1205,54 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_signer_form_view
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_tree_view
 msgid "Sign"
-msgstr ""
+msgstr "Podpiši"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate__sign_now
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_kanban_view
 msgid "Sign Now"
-msgstr ""
+msgstr "Podpiši zdaj"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.res_config_settings_view_form
 msgid "Sign Oca"
-msgstr ""
+msgstr "Podpisovanje OCA"
 
 #. module: sign_oca
 #: model:ir.model,name:sign_oca.model_sign_oca_template
 msgid "Sign Oca Template"
-msgstr ""
+msgstr "Predloga podpisovanja OCA"
 
 #. module: sign_oca
 #: model:ir.actions.act_window,name:sign_oca.sign_oca_template_generate_act_window
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_generate_form_view
 msgid "Sign Oca Template Generate"
-msgstr ""
+msgstr "Ustvarjanje zahtevka iz predloge podpisovanja OCA"
 
 #. module: sign_oca
 #: model:ir.actions.act_window,name:sign_oca.sign_oca_template_generate_multi_act_window
 msgid "Sign Oca Template Generate Multi"
-msgstr ""
+msgstr "Ustvarjanje več zahtevkov iz predloge podpisovanja OCA"
 
 #. module: sign_oca
 #: model:ir.model,name:sign_oca.model_sign_oca_template_item
 msgid "Sign Oca Template Item"
-msgstr ""
+msgstr "Element predloge podpisovanja OCA"
 
 #. module: sign_oca
 #: model:ir.model,name:sign_oca.model_sign_oca_request
 msgid "Sign Request"
-msgstr ""
+msgstr "Zahtevek za podpis"
 
 #. module: sign_oca
 #: model:ir.actions.act_window,name:sign_oca.sign_oca_request_signer_act_window
 msgid "Sign Request Signers"
-msgstr ""
+msgstr "Podpisniki zahtevka za podpis"
 
 #. module: sign_oca
 #: model:ir.model,name:sign_oca.model_sign_oca_request_signer
 msgid "Sign Request Value"
-msgstr ""
+msgstr "Vrednost zahtevka za podpis"
 
 #. module: sign_oca
 #. odoo-javascript
@@ -1231,81 +1263,81 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sign_oca.res_config_settings_view_form
 #: model_terms:ir.ui.view,arch_db:sign_oca.view_partner_form
 msgid "Sign Requests"
-msgstr ""
+msgstr "Zahtevki za podpis"
 
 #. module: sign_oca
 #: model:ir.model,name:sign_oca.model_sign_oca_role
 msgid "Sign Role"
-msgstr ""
+msgstr "Vloga podpisnika"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_mail
 msgid "Sign document"
-msgstr ""
+msgstr "Podpiši dokument"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/js/sign_oca.esm.js:0
 msgid "Sign from template"
-msgstr ""
+msgstr "Podpiši iz predloge"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_template_tree_view
 msgid "Sign now"
-msgstr ""
+msgstr "Podpiši zdaj"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__signatory_data
 msgid "Signatory Data"
-msgstr ""
+msgstr "Podatki o podpisnikih"
 
 #. module: sign_oca
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_field__field_type__signature
 msgid "Signature"
-msgstr ""
+msgstr "Podpis"
 
 #. module: sign_oca
 #: model:ir.actions.report,name:sign_oca.action_report_signature_certificate
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "Signature Certificate"
-msgstr ""
+msgstr "Potrdilo o podpisu"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_requests
 msgid "Signature Date"
-msgstr ""
+msgstr "Datum podpisa"
 
 #. module: sign_oca
 #: model:ir.model,name:sign_oca.model_sign_oca_field
 msgid "Signature Field Type"
-msgstr ""
+msgstr "Tip podpisnega polja"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__signature_hash
 msgid "Signature Hash"
-msgstr ""
+msgstr "Zgoščena vrednost podpisa"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.portal_my_home
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_requests
 msgid "Signature Requests"
-msgstr ""
+msgstr "Zahtevki za podpis"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure.xml:0
 msgid "Signature configuration"
-msgstr ""
+msgstr "Nastavitve podpisa"
 
 #. module: sign_oca
 #: model:ir.model,name:sign_oca.model_sign_oca_template_generate_signer
 msgid "Signature request signers"
-msgstr ""
+msgstr "Podpisniki zahtevka za podpis"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "Signatures"
-msgstr ""
+msgstr "Podpisi"
 
 #. module: sign_oca
 #. odoo-python
@@ -1314,39 +1346,39 @@ msgstr ""
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request__state__2_signed
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
 msgid "Signed"
-msgstr ""
+msgstr "Podpisano"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__signed_count
 msgid "Signed Count"
-msgstr ""
+msgstr "Število podpisanih"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__signed_on
 msgid "Signed On"
-msgstr ""
+msgstr "Podpisano dne"
 
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/models/sign_oca_request.py:0
 msgid "Signed document"
-msgstr ""
+msgstr "Podpisani dokument"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "Signed on"
-msgstr ""
+msgstr "Podpisano dne"
 
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/controllers/main.py:0
 msgid "Signed to Sent"
-msgstr ""
+msgstr "Iz podpisanega v poslano"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "Signed?"
-msgstr ""
+msgstr "Podpisano?"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_res_partner__signer_ids
@@ -1356,28 +1388,28 @@ msgstr ""
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate__signer_ids
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 msgid "Signer"
-msgstr ""
+msgstr "Podpisnik"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_res_partner__signer_count
 #: model:ir.model.fields,field_description:sign_oca.field_res_users__signer_count
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__signer_count
 msgid "Signer Count"
-msgstr ""
+msgstr "Število podpisnikov"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__signer_ids
 #: model_terms:ir.ui.view,arch_db:sign_oca.report_signature_certificate_doc
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_tree_view
 msgid "Signers"
-msgstr ""
+msgstr "Podpisniki"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__state
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_requests
 msgid "State"
-msgstr ""
+msgstr "Stanje"
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__activity_state
@@ -1388,6 +1420,10 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"Stanje glede na aktivnosti\n"
+"Zamujeno: rok je že potekel\n"
+"Danes: datum aktivnosti je danes\n"
+"Načrtovano: prihodnje aktivnosti."
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__template_id
@@ -1397,33 +1433,33 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_kanban_view
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
 msgid "Template"
-msgstr ""
+msgstr "Predloga"
 
 #. module: sign_oca
 #: model:ir.actions.act_window,name:sign_oca.sign_oca_template_act_window
 #: model:ir.ui.menu,name:sign_oca.sign_oca_template_menu
 msgid "Templates"
-msgstr ""
+msgstr "Predloge"
 
 #. module: sign_oca
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_field__field_type__text
 msgid "Text"
-msgstr ""
+msgstr "Besedilo"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.portal_sign_document_signed
 msgid "Thanks for signing"
-msgstr ""
+msgstr "Hvala za podpis"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.portal_sign_document_signed
 msgid "The document has been cancelled"
-msgstr ""
+msgstr "Dokument je bil preklican"
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__signer_id
 msgid "The signer related to the active user."
-msgstr ""
+msgstr "Podpisnik, povezan s trenutnim uporabnikom."
 
 #. module: sign_oca
 #. odoo-javascript
@@ -1432,17 +1468,19 @@ msgid ""
 "Then, you can move and resize the fields over the PDF page using the move "
 "icons."
 msgstr ""
+"Nato lahko z ikonami za premikanje premikate polja na strani PDF in "
+"spreminjate njihovo velikost."
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_requests
 msgid "There are currently no sign requests for your account."
-msgstr ""
+msgstr "Za vaš račun trenutno ni zahtevkov za podpis."
 
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/models/sign_oca_request.py:0
 msgid "There are no signers, please fill them before configuring it"
-msgstr ""
+msgstr "Podpisniki niso določeni. Dodajte jih pred nastavljanjem dokumenta"
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_role__partner_selection_policy
@@ -1451,116 +1489,118 @@ msgid ""
 "different roles of a request. This field will be used when the 'Sign from "
 "Template' action is triggered."
 msgstr ""
+"To polje določa, kako se izbere partner za različne vloge zahtevka. Uporabi "
+"se ob sprožitvi dejanja 'Podpiši iz predloge'."
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__to_sign
 msgid "To Sign"
-msgstr ""
+msgstr "Za podpis"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
 msgid "To sign"
-msgstr ""
+msgstr "Za podpis"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_search_view
 msgid "Today Activities"
-msgstr ""
+msgstr "Današnje aktivnosti"
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__activity_exception_decoration
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request_signer__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Tip izjeme pri aktivnosti na zapisu."
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_log__uid
 msgid "Uid"
-msgstr ""
+msgstr "ID uporabnika"
 
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/models/res_users.py:0
 msgid "Undefined"
-msgstr ""
+msgstr "Nedoločeno"
 
 #. module: sign_oca
 #: model:ir.model,name:sign_oca.model_res_users
 msgid "User"
-msgstr ""
+msgstr "Uporabnik"
 
 #. module: sign_oca
 #: model:res.groups,name:sign_oca.sign_oca_group_manager
 msgid "User: All Documents"
-msgstr ""
+msgstr "Uporabnik: vsi dokumenti"
 
 #. module: sign_oca
 #: model:res.groups,name:sign_oca.sign_oca_group_user
 msgid "User: Own Documents Only"
-msgstr ""
+msgstr "Uporabnik: samo lastni dokumenti"
 
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/models/sign_oca_request.py:0
 msgid "Users %s has already signed the document"
-msgstr ""
+msgstr "Uporabniki %s so že podpisali dokument"
 
 #. module: sign_oca
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request_log__action__validate
 msgid "Validate"
-msgstr ""
+msgstr "Potrdi"
 
 #. module: sign_oca
 #. odoo-javascript
 #: code:addons/sign_oca/static/src/components/sign_oca_pdf_portal/sign_oca_pdf_portal.xml:0
 msgid "Validate & Send document"
-msgstr ""
+msgstr "Potrdi in pošlji dokument"
 
 #. module: sign_oca
 #: model:ir.model.fields.selection,name:sign_oca.selection__sign_oca_request_log__action__view
 msgid "View Document"
-msgstr ""
+msgstr "Prikaži dokument"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.portal_my_home
 msgid "View, or sign documents"
-msgstr ""
+msgstr "Prikaži ali podpiši dokumente"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request__website_message_ids
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__website_message_ids
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Sporočila spletne strani"
 
 #. module: sign_oca
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request__website_message_ids
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_request_signer__website_message_ids
 #: model:ir.model.fields,help:sign_oca.field_sign_oca_template__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Zgodovina komunikacije na spletni strani"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__width
 msgid "Width"
-msgstr ""
+msgstr "Širina"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_generate_signer__wizard_id
 msgid "Wizard"
-msgstr ""
+msgstr "Čarovnik"
 
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/models/sign_oca_request.py:0
 msgid "You are not allowed to sign this document."
-msgstr ""
+msgstr "Nimate dovoljenja za podpis tega dokumenta."
 
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/models/sign_oca_request.py:0
 msgid "You can only configure requests in draft state"
-msgstr ""
+msgstr "Nastavljate lahko le zahtevke v stanju osnutka"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.portal_sign_document_signed
@@ -1568,20 +1608,22 @@ msgid ""
 "You should have received an email with the final document.<br/>\n"
 "                            Check on your mailbox."
 msgstr ""
+"Prejeti bi morali e-poštno sporočilo s končnim dokumentom.<br/>\n"
+"                            Preverite svoj poštni predal."
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.sign_oca_request_form_view
 msgid ""
 "You will cancel the request and all the accesses. Are you sure about it?"
-msgstr ""
+msgstr "Preklicali boste zahtevek in vse dostope do njega. Ali ste prepričani?"
 
 #. module: sign_oca
 #: model_terms:ir.ui.view,arch_db:sign_oca.portal_sign_document_signed
 msgid "document"
-msgstr ""
+msgstr "dokument"
 
 #. module: sign_oca
 #. odoo-python
 #: code:addons/sign_oca/controllers/main.py:0
 msgid "sent"
-msgstr ""
+msgstr "poslano"
