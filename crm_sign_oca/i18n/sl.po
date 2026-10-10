@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-10-10 12:46+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,50 +15,51 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: crm_sign_oca
 #: model:ir.model.fields,field_description:crm_sign_oca.field_sign_oca_request__crm_lead_id
 #: model_terms:ir.ui.view,arch_db:crm_sign_oca.sign_oca_request_search_view
 msgid "CRM Lead"
-msgstr ""
+msgstr "CRM potencialna stranka"
 
 #. module: crm_sign_oca
 #: model:ir.model,name:crm_sign_oca.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Družbe"
 
 #. module: crm_sign_oca
 #: model:ir.model,name:crm_sign_oca.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Nastavitve"
 
 #. module: crm_sign_oca
 #: model:ir.model,name:crm_sign_oca.model_crm_lead
 msgid "Lead/Opportunity"
-msgstr ""
+msgstr "Potencialna stranka/priložnost"
 
 #. module: crm_sign_oca
 #: model_terms:ir.ui.view,arch_db:crm_sign_oca.res_config_settings_view_form
 msgid "Sign Oca"
-msgstr ""
+msgstr "Podpisovanje OCA"
 
 #. module: crm_sign_oca
 #: model:ir.model.fields,field_description:crm_sign_oca.field_res_company__crm_lead_sign_oca_template_id
 #: model:ir.model.fields,field_description:crm_sign_oca.field_res_config_settings__crm_lead_sign_oca_template_id
 msgid "Sign Oca Template"
-msgstr ""
+msgstr "Predloga podpisovanja OCA"
 
 #. module: crm_sign_oca
 #: model:ir.model,name:crm_sign_oca.model_sign_oca_request
 msgid "Sign Request"
-msgstr ""
+msgstr "Zahtevek za podpis"
 
 #. module: crm_sign_oca
 #: model:ir.model.fields,field_description:crm_sign_oca.field_crm_lead__sign_request_ids
 msgid "Sign Requests"
-msgstr ""
+msgstr "Zahtevki za podpis"
 
 #. module: crm_sign_oca
 #: model:ir.model.fields,field_description:crm_sign_oca.field_crm_lead__sign_request_count
 msgid "Sign request count"
-msgstr ""
+msgstr "Število zahtevkov za podpis"
