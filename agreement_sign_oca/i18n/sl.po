@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-10-10 12:46+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,40 +15,41 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: agreement_sign_oca
 #: model:ir.model,name:agreement_sign_oca.model_agreement
 #: model:ir.model.fields,field_description:agreement_sign_oca.field_sign_oca_request__agreement_id
 #: model_terms:ir.ui.view,arch_db:agreement_sign_oca.sign_oca_request_search_view
 msgid "Agreement"
-msgstr ""
+msgstr "Dogovor"
 
 #. module: agreement_sign_oca
 #: model:ir.model,name:agreement_sign_oca.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Družbe"
 
 #. module: agreement_sign_oca
 #: model:ir.model,name:agreement_sign_oca.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Nastavitve"
 
 #. module: agreement_sign_oca
 #: model_terms:ir.ui.view,arch_db:agreement_sign_oca.agreement_sign_view_form
 msgid "Create adn sent signature request for this agreement."
-msgstr ""
+msgstr "Ustvari in pošlji zahtevek za podpis tega dogovora."
 
 #. module: agreement_sign_oca
 #: model:ir.model.fields,field_description:agreement_sign_oca.field_res_company__agreement_sign_oca_template_id
 #: model:ir.model.fields,field_description:agreement_sign_oca.field_res_config_settings__agreement_sign_oca_template_id
 msgid "Default Agreement Sign Template"
-msgstr ""
+msgstr "Privzeta predloga za podpis dogovora"
 
 #. module: agreement_sign_oca
 #. odoo-python
 #: code:addons/agreement_sign_oca/models/agreement.py:0
 msgid "Please create a user for their company signatory person"
-msgstr ""
+msgstr "Ustvarite uporabnika za podpisnika družbe"
 
 #. module: agreement_sign_oca
 #. odoo-python
@@ -56,6 +58,8 @@ msgid ""
 "Please set a Company Primary Contact in order to set the signatory person of"
 " the company in this document"
 msgstr ""
+"Določite glavni stik družbe, da lahko določite podpisnika družbe v tem "
+"dokumentu"
 
 #. module: agreement_sign_oca
 #. odoo-python
@@ -64,47 +68,49 @@ msgid ""
 "Please set a Primary Contact in order to set the signatory person of the "
 "counterpart in this document"
 msgstr ""
+"Določite glavni stik, da lahko določite podpisnika nasprotne stranke v tem "
+"dokumentu"
 
 #. module: agreement_sign_oca
 #: model_terms:ir.ui.view,arch_db:agreement_sign_oca.agreement_sign_view_form
 msgid "Request Signature"
-msgstr ""
+msgstr "Zahtevaj podpis"
 
 #. module: agreement_sign_oca
 #: model_terms:ir.ui.view,arch_db:agreement_sign_oca.res_config_settings_view_form
 msgid "Sign Oca"
-msgstr ""
+msgstr "Podpisovanje OCA"
 
 #. module: agreement_sign_oca
 #: model:ir.model,name:agreement_sign_oca.model_sign_oca_request
 msgid "Sign Request"
-msgstr ""
+msgstr "Zahtevek za podpis"
 
 #. module: agreement_sign_oca
 #: model:ir.model.fields,field_description:agreement_sign_oca.field_agreement__sign_request_ids
 msgid "Sign Requests"
-msgstr ""
+msgstr "Zahtevki za podpis"
 
 #. module: agreement_sign_oca
 #: model:ir.model.fields,field_description:agreement_sign_oca.field_agreement__sign_request_count
 msgid "Sign request count"
-msgstr ""
+msgstr "Število zahtevkov za podpis"
 
 #. module: agreement_sign_oca
 #: model_terms:ir.ui.view,arch_db:agreement_sign_oca.agreement_sign_view_form
 msgid "Signature Requests"
-msgstr ""
+msgstr "Zahtevki za podpis"
 
 #. module: agreement_sign_oca
 #: model:ir.model.fields,field_description:agreement_sign_oca.field_res_company__agreement_sign_oca_signed_stage_id
 #: model:ir.model.fields,field_description:agreement_sign_oca.field_res_config_settings__agreement_sign_oca_signed_stage_id
 msgid "Signed Agreements Stage"
-msgstr ""
+msgstr "Faza podpisanih dogovorov"
 
 #. module: agreement_sign_oca
 #: model:ir.model.fields,field_description:agreement_sign_oca.field_agreement__signed_contract
 msgid "Signed Document"
-msgstr ""
+msgstr "Podpisani dokument"
 
 #. module: agreement_sign_oca
 #. odoo-python
@@ -113,6 +119,8 @@ msgid ""
 "The 'Agreement Company Signatory Person' role for the signature was not "
 "found. Please update 'agreement_sign_oca' module."
 msgstr ""
+"Vloga 'Podpisnik dogovora za družbo' za podpisovanje ni bila najdena. "
+"Posodobite modul 'agreement_sign_oca'."
 
 #. module: agreement_sign_oca
 #. odoo-python
@@ -121,16 +129,18 @@ msgid ""
 "The 'Customer' role for the signature was not found. Please update "
 "'agreement' module."
 msgstr ""
+"Vloga 'Stranka' za podpisovanje ni bila najdena. Posodobite modul "
+"'agreement'."
 
 #. module: agreement_sign_oca
 #. odoo-python
 #: code:addons/agreement_sign_oca/models/agreement.py:0
 msgid "The agreement must have an assigned contact (counterparty)."
-msgstr ""
+msgstr "Dogovor mora imeti dodeljen stik (nasprotno stranko)."
 
 #. module: agreement_sign_oca
 #. odoo-python
 #: code:addons/agreement_sign_oca/models/agreement.py:0
 msgid ""
 "The agreement's counterparty contact does not have an email configured."
-msgstr ""
+msgstr "Stik nasprotne stranke dogovora nima nastavljenega e-poštnega naslova."
