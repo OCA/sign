@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record
+        id="sign_oca_template_personal_equipment_request_demo"
+        model="sign.oca.template"
+    >
+        <field name="name">Personal Equipment Request</field>
+        <field
+            name="model_id"
+            ref="hr_personal_equipment_request.model_hr_personal_equipment_request"
+        />
+        <field name="data" type="base64" file="sign_oca/tests/empty.pdf" />
+        <field name="filename">empty.pdf</field>
+    </record>
+    <record
+        id="sign_oca_template_personal_equipment_request_demo_item"
+        model="sign.oca.template.item"
+    >
+        <field
+            name="template_id"
+            ref="hr_personal_equipment_request_sign_oca.sign_oca_template_personal_equipment_request_demo"
+        />
+        <field name="field_id" ref="sign_oca.sign_field_signature" />
+        <field
+            name="role_id"
+            ref="hr_personal_equipment_request_sign_oca.role_personal_equipment_request_owner"
+        />
+        <field name="page">1</field>
+        <field name="position_x">13</field>
+        <field name="position_y">33</field>
+        <field name="width">22</field>
+        <field name="height">4</field>
+        <field name="required" eval="True" />
+    </record>
+    <record
+        id="sign_oca_template_item_personal_equipment_request_date"
+        model="sign.oca.template.item"
+    >
+        <field
+            name="template_id"
+            ref="hr_personal_equipment_request_sign_oca.sign_oca_template_personal_equipment_request_demo"
+        />
+        <field name="field_id" ref="sign_oca.sign_field_text" />
+        <field
+            name="role_id"
+            ref="hr_personal_equipment_request_sign_oca.role_personal_equipment_request_owner"
+        />
+        <field name="page">1</field>
+        <field name="position_x">40</field>
+        <field name="position_y">33</field>
+        <field name="width">22</field>
+        <field name="height">4</field>
+        <field name="required" eval="True" />
+    </record>
+</odoo>

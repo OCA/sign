@@ -1,0 +1,3 @@
+- [PyTech SRL](https://pytech.it):
+  - Quirino Leone \<<quirino.leone@pytech.it>\>
+  - Simone Rubino \<<simone.rubino@pytech.it>\>
