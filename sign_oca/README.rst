@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ========
 Sign Oca
 ========
@@ -17,7 +13,7 @@ Sign Oca
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsign-lightgray.png?logo=github
@@ -120,6 +116,48 @@ Sign from portal
 
 - customers who are using portal can sign their documents from portal
   directly in addition to being able to sign them from emails.
+
+Signing reports from Odoo
+-------------------------
+
+There is a way to automatically sign PDF reports. In this reports we can
+force elements to sign by using invisible boxes with some specific
+texts.
+
+.. code:: xml
+
+     <template
+           id="report_saleorder_document"
+           inherit_id="sale.report_saleorder_document"
+       >
+           <span name="order_note" position="before">
+               <div
+                   class="w-50"
+                   style="height: 6rem;background-color: rgba(0,0,0,0.004); color: rgba(0,0,0,0.004);"
+               >##SIGN_OCA##sign_oca.sign_field_signature##sign_oca.sign_role_customer</div>
+           </span>
+       </template>
+
+From a code perspective you just need to do something like:
+
+.. code:: python
+
+
+   class SaleOrder(models.Model):
+       _inherit = "sale.order"
+
+       def send_and_sign_action(self):
+           self.ensure_one()
+           pdf, _ = (
+               self.env["ir.actions.report"]
+               .sudo()
+               ._render_qweb_pdf("sale.action_report_saleorder", self.ids)
+           )
+           self.env["sign.oca.request"]._process_signature(
+               self,
+               pdf,
+               {self.sudo().env.ref("sign_oca.sign_role_customer").id: self.partner_id.id},
+           )
 
 Known issues / Roadmap
 ======================
