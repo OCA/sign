@@ -1,8 +1,7 @@
 /** @odoo-module **/
-/* global document */
-import {Component, onMounted, useState} from "@odoo/owl";
+import {Component, onMounted, proxy} from "@odoo/owl";
 import {Dropdown} from "@web/core/dropdown/dropdown";
-import {DropdownItem} from "@web/core/dropdown/dropdown_item";
+import {useDropdownState} from "@web/core/dropdown/dropdown_hooks";
 import {registry} from "@web/core/registry";
 import {useDiscussSystray} from "@mail/utils/common/hooks";
 import {useService} from "@web/core/utils/hooks";
@@ -12,10 +11,11 @@ import {_t} from "@web/core/l10n/translation";
 const systrayRegistry = registry.category("systray");
 export class SignerMenuView extends Component {
     setup() {
-        this.discussSystray = useDiscussSystray();
+        this.dropdown = useDropdownState();
+        this.discussSystray = useDiscussSystray(this.dropdown);
         this.orm = useService("orm");
         this.action = useService("action");
-        this.state = useState({
+        this.state = proxy({
             signerGroups: [],
             signerCounter: 0,
         });
@@ -44,8 +44,7 @@ export class SignerMenuView extends Component {
         ];
     }
     async onClickFilterButton(group) {
-        // Hack to close dropdown
-        document.body.click();
+        this.dropdown.close();
         const context = {};
         const views = this.availableViews();
         // Partner_id is removed from session in version 18.0
@@ -75,7 +74,6 @@ export class SignerMenuView extends Component {
 }
 
 SignerMenuView.template = "sign_oca.SignerMenu";
-SignerMenuView.components = {Dropdown, DropdownItem};
-SignerMenuView.props = [];
+SignerMenuView.components = {Dropdown};
 export const systrayItem = {Component: SignerMenuView};
 systrayRegistry.add("sign_oca.SignerMenuView", systrayItem, {sequence: 99});

@@ -4,3 +4,6 @@
 
 - [Kencove](https://www.kencove.com):
   - Mohamed Alkobrosli
+
+- [Logisteme](https://logisteme.fr):
+  - Yann Le Gall

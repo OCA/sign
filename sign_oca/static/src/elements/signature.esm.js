@@ -4,6 +4,7 @@
 import {SignatureDialog} from "@web/core/signature/signature_dialog";
 import {registry} from "@web/core/registry";
 import {renderToString} from "@web/core/utils/render";
+import {parseHTML} from "@sign_oca/js/dom_utils.esm";
 
 const signatureSignOca = {
     uploadSignature: function (parent, item, signatureItem, data) {
@@ -27,9 +28,9 @@ const signatureSignOca = {
         parent.checkFilledAll();
     },
     generate: function (parent, item, signatureItem) {
-        var input = $(
+        var input = parseHTML(
             renderToString("sign_oca.sign_iframe_field_signature", {item: item})
-        )[0];
+        );
         if (item.role_id === parent.info.role_id) {
             signatureItem[0].addEventListener("focus_signature", () => {
                 var signatureOptions = {

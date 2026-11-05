@@ -6,8 +6,13 @@ import {isMobileOS} from "@web/core/browser/feature_detection";
 import SignOcaPdfCommon from "../sign_oca_pdf_common/sign_oca_pdf_common.esm.js";
 import {_t} from "@web/core/l10n/translation";
 import {registry} from "@web/core/registry";
+import {standardActionServiceProps} from "@web/webclient/actions/action_plugin";
+import {useProps} from "@odoo/owl";
 import {renderToString} from "@web/core/utils/render";
+import {parseHTML} from "@sign_oca/js/dom_utils.esm";
 export default class SignOcaConfigure extends SignOcaPdfCommon {
+    props = useProps(standardActionServiceProps);
+
     setup() {
         this.res_id =
             this.props.action.params.res_id || this.props.action.context.active_id;
@@ -21,42 +26,41 @@ export default class SignOcaConfigure extends SignOcaPdfCommon {
     }
     postIframeFields() {
         super.postIframeFields(...arguments);
-        $.each(
-            this.iframe.el.contentDocument.getElementsByClassName("page"),
-            (index, page) => {
-                page.addEventListener("mousedown", (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    return false;
-                });
-                page.addEventListener("contextmenu", (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    if (this.contextMenu !== undefined) {
-                        this.contextMenu.remove();
-                        this.contextMenu = undefined;
-                    }
-                    var position = page.getBoundingClientRect();
-                    this.contextMenu = $(
-                        renderToString("sign_oca.sign_iframe_contextmenu", {
-                            page,
-                            e,
-                            left: ((e.pageX - position.x) * 100) / position.width + "%",
-                            top: ((e.pageY - position.y) * 100) / position.height + "%",
-                            info: this.info,
-                            page_id: parseInt(page.dataset.pageNumber, 10),
-                        })
-                    );
-                    page.append(this.contextMenu[0]);
-                });
-            }
-        );
-        this.iframe.el.contentDocument.addEventListener(
+        Array.from(
+            this.iframe().contentDocument.getElementsByClassName("page")
+        ).forEach((page) => {
+            page.addEventListener("mousedown", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            });
+            page.addEventListener("contextmenu", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (this.contextMenu !== undefined) {
+                    this.contextMenu.remove();
+                    this.contextMenu = undefined;
+                }
+                var position = page.getBoundingClientRect();
+                this.contextMenu = parseHTML(
+                    renderToString("sign_oca.sign_iframe_contextmenu", {
+                        page,
+                        e,
+                        left: ((e.pageX - position.x) * 100) / position.width + "%",
+                        top: ((e.pageY - position.y) * 100) / position.height + "%",
+                        info: this.info,
+                        page_id: parseInt(page.dataset.pageNumber, 10),
+                    })
+                );
+                page.append(this.contextMenu);
+            });
+        });
+        this.iframe().contentDocument.addEventListener(
             "click",
             (ev) => {
                 if (this.contextMenu && !this.creatingItem) {
                     if (
-                        this.contextMenu[0].contains(ev.target) &&
+                        this.contextMenu.contains(ev.target) &&
                         ev.target.dataset.page
                     ) {
                         this.creatingItem = true;
@@ -168,8 +172,8 @@ export default class SignOcaConfigure extends SignOcaPdfCommon {
                         moveFunction,
                         mousemove
                     );
-                    var target = $(this.movingItem);
-                    var position = target.parent()[0].getBoundingClientRect();
+                    var target = this.movingItem;
+                    var position = target.parentElement.getBoundingClientRect();
                     var newPosition = mouseupEvent;
                     if (mouseupEvent.changedTouches) {
                         newPosition = mouseupEvent.changedTouches[0];
@@ -188,8 +192,8 @@ export default class SignOcaConfigure extends SignOcaPdfCommon {
                         ) *
                             100) /
                         position.height;
-                    target.css("left", left + "%");
-                    target.css("top", top + "%");
+                    target.style.left = left + "%";
+                    target.style.top = top + "%";
                     item.position_x = left;
                     item.position_y = top;
 
@@ -206,7 +210,7 @@ export default class SignOcaConfigure extends SignOcaPdfCommon {
                 {once: true}
             );
         });
-        $.each(resizeItems, (index, resizeItem) => {
+        Array.from(resizeItems).forEach((resizeItem) => {
             resizeItem.addEventListener(startFunction, (mousedownEvent) => {
                 mousedownEvent.preventDefault();
                 var parentPage = mousedownEvent.target.parentElement.parentElement;
@@ -222,16 +226,16 @@ export default class SignOcaConfigure extends SignOcaPdfCommon {
                             moveFunction,
                             mousemove
                         );
-                        var target = $(this.resizingItem);
+                        var target = this.resizingItem;
                         var newPosition = mouseupEvent;
                         if (mouseupEvent.changedTouches) {
                             newPosition = mouseupEvent.changedTouches[0];
                         }
                         var targetPosition = target
-                            .find(".o_sign_oca_resize")[0]
+                            .querySelector(".o_sign_oca_resize")
                             .getBoundingClientRect();
-                        var itemPosition = target[0].getBoundingClientRect();
-                        var pagePosition = target.parent()[0].getBoundingClientRect();
+                        var itemPosition = target.getBoundingClientRect();
+                        var pagePosition = target.parentElement.getBoundingClientRect();
                         var width =
                             (Math.max(
                                 0,
@@ -250,8 +254,8 @@ export default class SignOcaConfigure extends SignOcaPdfCommon {
                             ) *
                                 100) /
                             pagePosition.height;
-                        target.css("width", width + "%");
-                        target.css("height", height + "%");
+                        target.style.width = width + "%";
+                        target.style.height = height + "%";
                         item.width = width;
                         item.height = height;
                         this.orm.call(this.model, "set_item_data", [
@@ -272,16 +276,16 @@ export default class SignOcaConfigure extends SignOcaPdfCommon {
     _onResizeItem(e) {
         e.stopPropagation();
         e.preventDefault();
-        var target = $(this.resizingItem);
+        var target = this.resizingItem;
         var targetPosition = target
-            .find(".o_sign_oca_resize")[0]
+            .querySelector(".o_sign_oca_resize")
             .getBoundingClientRect();
-        var itemPosition = target[0].getBoundingClientRect();
+        var itemPosition = target.getBoundingClientRect();
         var newPosition = e;
         if (e.targetTouches) {
             newPosition = e.targetTouches[0];
         }
-        var pagePosition = target.parent()[0].getBoundingClientRect();
+        var pagePosition = target.parentElement.getBoundingClientRect();
         var width =
             (Math.max(0, newPosition.pageX + targetPosition.width - itemPosition.x) *
                 100) /
@@ -290,14 +294,14 @@ export default class SignOcaConfigure extends SignOcaPdfCommon {
             (Math.max(0, newPosition.pageY + targetPosition.height - itemPosition.y) *
                 100) /
             pagePosition.height;
-        target.css("width", width + "%");
-        target.css("height", height + "%");
+        target.style.width = width + "%";
+        target.style.height = height + "%";
     }
     _onDragItem(e) {
         e.stopPropagation();
         e.preventDefault();
-        var target = $(this.movingItem);
-        var position = target.parent()[0].getBoundingClientRect();
+        var target = this.movingItem;
+        var position = target.parentElement.getBoundingClientRect();
         var newPosition = e;
         if (e.targetTouches) {
             newPosition = e.targetTouches[0];
@@ -310,15 +314,10 @@ export default class SignOcaConfigure extends SignOcaPdfCommon {
             (Math.max(0, Math.min(position.height, newPosition.pageY - position.y)) *
                 100) /
             position.height;
-        target.css("left", left + "%");
-        target.css("top", top + "%");
+        target.style.left = left + "%";
+        target.style.top = top + "%";
     }
 }
 SignOcaConfigure.template = "sign_oca.SignOcaConfigure";
 SignOcaConfigure.components = {...SignOcaPdfCommon.components, ControlPanel};
-SignOcaConfigure.props = [];
-SignOcaConfigure.props = {
-    action: Object,
-    "*": {optional: true},
-};
 registry.category("actions").add("sign_oca_configure", SignOcaConfigure);

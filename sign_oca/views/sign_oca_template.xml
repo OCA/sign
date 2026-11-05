@@ -15,14 +15,14 @@
                         <button
                             name="configure"
                             type="object"
-                            icon="fa-wrench"
+                            icon="build"
                             string="Configure"
                             groups="sign_oca.sign_oca_group_admin"
                         />
                         <button
                             name="%(sign_oca.sign_oca_request_template_act_window)s"
                             type="action"
-                            icon="fa-file-text-o"
+                            icon="description"
                         >
                             <div class="o_field_widget o_stat_info">
                                 <span class="o_stat_value"><field
@@ -34,7 +34,7 @@
                             name="%(sign_oca_template_generate_act_window)s"
                             type="action"
                             string="Send to sign"
-                            icon="fa-paper-plane"
+                            icon="send"
                         />
                     </div>
                     <group>

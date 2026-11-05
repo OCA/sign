@@ -3,24 +3,31 @@
     <t t-name="sign_oca.SignerMenu">
         <Dropdown
             position="'bottom-end'"
-            beforeOpen.bind="onBeforeOpen"
-            manual="false"
-            menuClass="discussSystray.menuClass"
+            state="this.dropdown"
+            beforeOpen.bind="this.onBeforeOpen"
+            menuClass="this.discussSystray.menuClass"
         >
             <t t-set-slot="default">
                 <div class="o-mail-DiscussSystray-class cursor-pointer">
-                    <i class="fa fa-pencil" role="img" aria-label="Sign Requests" />
+                    <i
+                        class="oi"
+                        data-icon="edit"
+                        role="img"
+                        aria-label="Sign Requests"
+                    />
                     <span
-                        t-if="state.signerCounter > 0"
+                        t-if="this.state.signerCounter > 0"
                         class="o-mail-ActivityMenu-counter badge rounded-pill"
-                        t-out="state.signerCounter"
+                        t-out="this.state.signerCounter"
                     />
                 </div>
             </t>
             <t t-set-slot="content">
-                <div t-att-class="`${discussSystray.contentClass} o-mail-ActivityMenu`">
+                <div
+                    t-att-class="`${this.discussSystray.contentClass} o-mail-ActivityMenu`"
+                >
                     <div
-                        t-if="state.signerCounter === 0"
+                        t-if="this.state.signerCounter === 0"
                         class="o-mail-ActivityMenu-empty align-items-center text-muted p-2 opacity-50 d-flex justify-content-center"
                     >
                         <span>No requests to sign.</span>
@@ -30,7 +37,7 @@
                         name="activityGroups"
                     >
                         <t
-                            t-foreach="state.signerGroups"
+                            t-foreach="this.state.signerGroups"
                             t-as="group"
                             t-key="group_index"
                             name="activityGroupLoop"

@@ -9,6 +9,13 @@ from .common import SignOcaCommon
 
 
 class TestSign(SignOcaCommon, BaseCommon):
+    _test_user_groups = (
+        "base.group_user",
+        "base.group_partner_manager",
+        "mail.group_mail_template_editor",
+        "sign_oca.sign_oca_group_admin",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

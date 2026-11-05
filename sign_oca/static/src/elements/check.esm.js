@@ -3,6 +3,7 @@
 
 import {registry} from "@web/core/registry";
 import {renderToString} from "@web/core/utils/render";
+import {parseHTML} from "@sign_oca/js/dom_utils.esm";
 
 const checkSignOca = {
     change: function (value, parent, item) {
@@ -10,12 +11,12 @@ const checkSignOca = {
         parent.checkFilledAll();
     },
     generate: function (parent, item, signatureItem) {
-        var input = $(
+        var input = parseHTML(
             renderToString("sign_oca.sign_iframe_field_check", {
                 item: item,
                 role_id: parent.info.role_id,
             })
-        )[0];
+        );
         signatureItem[0].addEventListener("focus_signature", () => {
             input.focus();
         });

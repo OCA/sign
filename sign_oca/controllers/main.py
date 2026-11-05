@@ -77,9 +77,16 @@ class PortalSign(CustomerPortal):
             )
         except (AccessError, MissingError):
             return request.redirect("/my")
-        return http.Stream.from_binary_field(
-            signer_sudo.request_id, "data"
-        ).get_response(mimetype="application/pdf")
+        return (
+            request.env["ir.binary"]
+            ._get_stream_from(
+                signer_sudo.request_id,
+                "data",
+                filename_field="filename",
+                mimetype="application/pdf",
+            )
+            .get_response()
+        )
 
     @http.route(
         ["/sign_oca/info/<int:signer_id>/<string:access_token>"],
@@ -183,13 +190,14 @@ class PortalSign(CustomerPortal):
         )
         return values
 
-    def _prepare_home_portal_values(self, counters):
-        values = super()._prepare_home_portal_values(counters)
-        if "sign_oca_count" in counters:
-            domain = self.get_sign_requests_domain(request)
-            SignRequests = request.env["sign.oca.request.signer"].sudo()
-            values["sign_oca_count"] = SignRequests.search_count(domain)
-        return values
+    def _prepare_portal_counter_values(self, counter):
+        if counter == "sign_oca_count":
+            return (
+                "sign.oca.request.signer",
+                self.get_sign_requests_domain(request),
+                "sudo",
+            )
+        return super()._prepare_portal_counter_values(counter)
 
     @http.route(
         ["/my/sign_requests", "/my/sign_requests/page/<int:page>"],

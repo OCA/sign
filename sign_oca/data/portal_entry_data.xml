@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="portal_sign_requests" model="portal.entry">
+        <field name="name">Signature Requests</field>
+        <field name="description">View, or sign documents</field>
+        <field name="url">/my/sign_requests</field>
+        <field name="image" type="bytes" file="web/static/img/mimetypes/document.svg" />
+        <field name="placeholder_count">sign_oca_count</field>
+        <field name="category">client_category</field>
+    </record>
+</odoo>

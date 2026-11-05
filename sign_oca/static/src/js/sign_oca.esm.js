@@ -58,7 +58,7 @@ export function patchControllerSignOca() {
                     key: "sign",
                     description: _t("Sign from template"),
                     callback: () => this._actionSignOcaTemplateGenerateMulti(),
-                    icon: "fa fa-pencil",
+                    icon: "edit",
                 });
             }
             return menuItems;

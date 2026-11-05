@@ -1,39 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <template id="portal_sign_document">
-        <t t-call="web.layout">
-            <t t-set="html_data" t-value="{'lang': sign_oca_backend_info['lang']}" />
-            <t t-set="head">
-                <meta
-                    name="viewport"
-                    content="width=device-width, initial-scale=1, user-scalable=no"
-                />
-                <input
-                    type="hidden"
-                    name="csrf_token"
-                    t-att-value="request.csrf_token()"
-                />
-                <t t-call-assets="oca_sign.assets_frontend_sign" t-js="false" />
-                <t t-call-assets="oca_sign.assets_frontend_sign" t-css="false" />
-                <script type="text/javascript">
+        <t t-set="head">
+            <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1, user-scalable=no"
+            />
+            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+            <t t-call-assets="oca_sign.assets_frontend_sign" t-js="false" />
+            <t t-call-assets="oca_sign.assets_frontend_sign" t-css="false" />
+            <script type="text/javascript">
                     odoo.define("sign.document_portal", ["@sign_oca/components/sign_oca_pdf_portal/sign_oca_pdf_portal.esm"], function (require) {
                     var { initDocumentToSign } = require("@sign_oca/components/sign_oca_pdf_portal/sign_oca_pdf_portal.esm");
                     initDocumentToSign(document, <t
-                    t-out="json.dumps(sign_oca_backend_info)"
-                />);
+                t-out="json.dumps(sign_oca_backend_info)"
+            />);
                     });
                 </script>
-            </t>
-            <t t-set="body" />
+        </t>
+        <t
+            t-call="web.layout"
+            html_data="{'lang': sign_oca_backend_info['lang']}"
+            head="head"
+        >
             <body class="o_web_client o_portal_sign_document_body" />
         </t>
     </template>
     <template id="portal_sign_document_signed">
-        <t t-call="web.layout">
-            <t t-set="head">
-                <t t-call-assets="oca_sign.assets_frontend_sign" t-js="false" />
-            </t>
-
+        <t t-set="head">
+            <t t-call-assets="oca_sign.assets_frontend_sign" t-js="false" />
+        </t>
+        <t t-call="web.layout" head="head">
             <div class="container">
                 <div class="o_logo">
                     <img

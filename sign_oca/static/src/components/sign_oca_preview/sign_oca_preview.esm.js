@@ -2,8 +2,12 @@
 import {ControlPanel} from "@web/search/control_panel/control_panel";
 import SignOcaPdfCommon from "../sign_oca_pdf_common/sign_oca_pdf_common.esm.js";
 import {registry} from "@web/core/registry";
+import {standardActionServiceProps} from "@web/webclient/actions/action_plugin";
+import {useProps} from "@odoo/owl";
 
 export default class SignOcaPreview extends SignOcaPdfCommon {
+    props = useProps(standardActionServiceProps);
+
     setup() {
         this.res_id =
             this.props.action.params.res_id || this.props.action.context.active_id;
@@ -15,8 +19,4 @@ export default class SignOcaPreview extends SignOcaPdfCommon {
 }
 SignOcaPreview.template = "sign_oca.SignOcaPreview";
 SignOcaPreview.components = {...SignOcaPdfCommon.components, ControlPanel};
-SignOcaPreview.props = {
-    action: Object,
-    "*": {optional: true},
-};
 registry.category("actions").add("sign_oca_preview", SignOcaPreview);

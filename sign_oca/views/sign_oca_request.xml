@@ -19,7 +19,7 @@
                         type="object"
                         invisible="state != '1_draft'"
                         name="action_send"
-                        icon="fa-paper-plane"
+                        icon="send"
                     />
                     <button
                         string="Cancel"
@@ -42,7 +42,7 @@
                             name="preview"
                             type="object"
                             class="oe_stat_button"
-                            icon="fa-pencil"
+                            icon="edit"
                             invisible="state not in ['0_sent', '2_signed']"
                             groups="sign_oca.sign_oca_group_user"
                         >
@@ -56,7 +56,7 @@
                         </button>
                         <button
                             class="oe_stat_button"
-                            icon="fa-wrench"
+                            icon="build"
                             invisible="state not in ['1_draft']"
                             name="configure"
                             type="object"
@@ -65,7 +65,7 @@
                         />
                         <button
                             class="oe_stat_button"
-                            icon="fa-pencil"
+                            icon="edit"
                             name="%(sign_oca_request_log_act_window)s"
                             type="action"
                             string="Activity Log"

@@ -3,11 +3,12 @@
 License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <template id="sign_requests" name="Sign Requests List">
-        <t t-call="portal.portal_layout">
-            <t t-set="breadcrumbs_searchbar" t-value="True" />
-            <t t-call="portal.portal_searchbar">
-                <t t-set="title">Signature Requests</t>
-            </t>
+        <t t-call="portal.portal_layout" breadcrumbs_searchbar="True">
+            <t
+                t-call="portal.portal_searchbar"
+                breadcrumbs_searchbar="True"
+                title.translate="Signature Requests"
+            />
             <div t-if="not sign_requests" class="alert alert-warning" role="alert">
                 There are currently no sign requests for your account.
             </div>
@@ -30,7 +31,11 @@ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
                                     t-att-href="'/my/sign/%s/download' % sign_request.request_id.id"
                                 >
                                     <t t-out="sign_request.request_id.name" />
-                                    <span class="fa fa-save mx-2" title="Download" />
+                                    <span
+                                        class="oi mx-2"
+                                        data-icon="download"
+                                        title="Download"
+                                    />
                                 </a>
                             </t>
                             <t t-else="">
@@ -51,7 +56,8 @@ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
                                     >
                                         <t t-out="sign_request.request_id.name" />
                                         <span
-                                            class="fa fa-hourglass mx-2"
+                                            class="oi mx-2"
+                                            data-icon="hourglass_empty"
                                             title="Not fully signed!"
                                         />
                                     </a>

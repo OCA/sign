@@ -13,12 +13,8 @@ class SignOcaCommon:
     def setUpClass(cls):
         cls._super_send = requests.Session.send
         super().setUpClass()
-        cls.data = base64.b64encode(
-            open(
-                misc.file_path(f"{cls.test_module}/tests/empty.pdf"),
-                "rb",
-            ).read()
-        )
+        with open(misc.file_path(f"{cls.test_module}/tests/empty.pdf"), "rb") as pdf:
+            cls.data = base64.b64encode(pdf.read()).decode()
         cls.role_customer = cls.env.ref("sign_oca.sign_role_customer")
         cls.partner = cls.env["res.partner"].create({"name": "Test partner"})
         cls.partner_child = cls.env["res.partner"].create(

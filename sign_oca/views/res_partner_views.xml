@@ -11,7 +11,7 @@
                     type="object"
                     name="action_show_signer_ids"
                     invisible="signer_count == 0"
-                    icon="fa-pencil"
+                    icon="edit"
                     groups="sign_oca.sign_oca_group_user"
                 >
                     <field
