@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2023 Dixmit
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
-    <record model="ir.ui.view" id="sign_oca_template_form_view">
+    <record id="sign_oca_template_form_view" model="ir.ui.view">
         <field name="name">sign.oca.template.form (in sign_oca)</field>
         <field name="model">sign.oca.template</field>
         <field name="arch" type="xml">
@@ -85,7 +85,7 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="sign_oca_template_search_view">
+    <record id="sign_oca_template_search_view" model="ir.ui.view">
         <field name="name">sign.oca.template.search (in sign_oca)</field>
         <field name="model">sign.oca.template</field>
         <field name="arch" type="xml">
@@ -95,7 +95,7 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="sign_oca_template_kanban_view">
+    <record id="sign_oca_template_kanban_view" model="ir.ui.view">
         <field name="name">sign.oca.template.kanban (in sign_oca)</field>
         <field name="model">sign.oca.template</field>
         <field name="arch" type="xml">
@@ -143,7 +143,7 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="sign_oca_template_tree_view">
+    <record id="sign_oca_template_tree_view" model="ir.ui.view">
         <field name="name">sign.oca.template.list (in sign_oca)</field>
         <field name="model">sign.oca.template</field>
         <field name="arch" type="xml">
@@ -167,7 +167,7 @@
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="sign_oca_template_act_window">
+    <record id="sign_oca_template_act_window" model="ir.actions.act_window">
         <field name="name">Templates</field>
         <!-- TODO -->
         <field name="res_model">sign.oca.template</field>
@@ -176,7 +176,7 @@
         <field name="context">{}</field>
     </record>
 
-    <record model="ir.ui.menu" id="sign_oca_template_menu">
+    <record id="sign_oca_template_menu" model="ir.ui.menu">
         <field name="name">Templates</field>
         <field name="parent_id" ref="sign_oca_root_menu" />
         <!-- TODO -->

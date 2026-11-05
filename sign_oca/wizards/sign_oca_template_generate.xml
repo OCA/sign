@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2023 CreuBlana
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
-    <record model="ir.ui.view" id="sign_oca_template_generate_form_view">
+    <record id="sign_oca_template_generate_form_view" model="ir.ui.view">
         <field name="name">sign.oca.template.generate.form (in sign_oca)</field>
         <field name="model">sign.oca.template.generate</field>
         <field name="arch" type="xml">
@@ -31,7 +31,7 @@
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="sign_oca_template_generate_act_window">
+    <record id="sign_oca_template_generate_act_window" model="ir.actions.act_window">
         <field name="name">Sign Oca Template Generate</field>
         <!-- TODO -->
         <field name="res_model">sign.oca.template.generate</field>

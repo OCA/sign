@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2025 Kencove
 License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
@@ -9,8 +10,8 @@ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
     >
         <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
             <li
-                id="portal_breadcrumbs_sign"
                 t-if="page_name == 'My Sign Requests' or sign_requests"
+                id="portal_breadcrumbs_sign"
                 t-attf-class="breadcrumb-item #{'active 'if not sign_requests else ''}"
             >
                 <span>Sign Requests</span>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <template id="report_signature_certificate">
         <t t-call="web.html_container">
@@ -22,11 +22,11 @@
                     </div>
                     <div class="row">
                         <div class="col-6">
-                            <div class="mb8" id="signature_filename">
+                            <div id="signature_filename" class="mb8">
                                 <span class="fw-bold">Signature filename:</span>
                                 <span class="text-break" t-field="o.filename" />
                             </div>
-                            <div class="mb8" id="created_on">
+                            <div id="created_on" class="mb8">
                                 <span class="fw-bold">Created on:</span>
                                 <span
                                     t-field="o.create_date"
@@ -34,28 +34,28 @@
                                 />
                                 <span>(UTC)</span>
                             </div>
-                            <div class="mb8" id="created_by">
+                            <div id="created_by" class="mb8">
                                 <span class="fw-bold">Created by:</span>
                                 <span t-field="o.create_uid" />
                             </div>
-                            <div class="mb8" id="print_date">
+                            <div id="print_date" class="mb8">
                                 <span class="fw-bold">Print date:</span>
                                 <span
-                                    t-esc="datetime.datetime.utcnow().strftime('%d-%m-%Y %H:%M:%S')"
+                                    t-out="datetime.datetime.utcnow().strftime('%d-%m-%Y %H:%M:%S')"
                                 />
                                 <span>(UTC)</span>
                             </div>
-                            <div class="mb8" id="responsible">
+                            <div id="responsible" class="mb8">
                                 <span class="fw-bold">Responsible:</span>
                                 <span t-field="o.user_id" />
                             </div>
                         </div>
                         <div class="col-6">
-                            <div class="mb8" id="document_id">
+                            <div id="document_id" class="mb8">
                                 <span class="fw-bold">Document ID:</span>
                                 <span t-field="o.id" />
                             </div>
-                            <div class="mb8" id="related_record" t-if="o.record_ref">
+                            <div t-if="o.record_ref" id="related_record" class="mb8">
                                 <t
                                     t-set="model_name"
                                     t-value="o.record_ref and o.record_ref.sudo()._name"
@@ -65,11 +65,11 @@
                                     t-value="model_name and env['ir.model'].sudo().search([('model', '=', model_name)], limit=1).name"
                                 />
                                 <span class="fw-bold">Related record:</span>
-                                <span t-esc="model_display_name" />
+                                <span t-out="model_display_name" />
                                 <span>-</span>
                                 <span t-field="o.record_ref.sudo().display_name" />
                             </div>
-                            <div class="mb8" id="signers">
+                            <div id="signers" class="mb8">
                                 <t
                                     t-set="signer_remaining"
                                     t-value="o.signer_count - o.signed_count"
@@ -79,10 +79,10 @@
                                 <span>signers →</span>
                                 <span t-field="o.signed_count" />
                                 <span>signed,</span>
-                                <span t-esc="signer_remaining" />
+                                <span t-out="signer_remaining" />
                                 <span>remaining</span>
                             </div>
-                            <div class="mb8" id="current_hash">
+                            <div id="current_hash" class="mb8">
                                 <span class="fw-bold">Current hash:</span>
                                 <span class="text-break" t-field="o.current_hash" />
                             </div>
@@ -91,14 +91,14 @@
                 </div>
 
                 <!-- Signers -->
-                <div class="document_signers mb32" t-if="o.signer_ids">
+                <div t-if="o.signer_ids" class="document_signers mb32">
                     <div class="row mb16">
-                        <div class="col-12" id="document_signers_title">
+                        <div id="document_signers_title" class="col-12">
                             <h3 class="text-muted">Signers</h3>
                         </div>
                     </div>
                     <div class="row pt4">
-                        <div class="col-12" id="document_signers_table">
+                        <div id="document_signers_table" class="col-12">
                             <table class="table table-bordered">
                                 <thead
                                     class="bg-100"
@@ -114,12 +114,12 @@
                                 <tbody>
                                     <t t-foreach="o.signer_ids" t-as="signer">
                                         <tr>
-                                            <td t-esc="signer.partner_name" />
+                                            <td t-out="signer.partner_name" />
                                             <td
-                                                t-esc="signer.partner_id.sudo().email"
+                                                t-out="signer.partner_id.sudo().email"
                                             />
                                             <td
-                                                t-esc="signer.role_id.sudo().display_name"
+                                                t-out="signer.role_id.sudo().display_name"
                                             />
                                             <td>
                                                 <span
@@ -140,14 +140,14 @@
                     t-set="signature_ids"
                     t-value="o.signer_ids.filtered(lambda s: s.inalterable_hash)"
                 />
-                <div class="document_signatures mb32" t-if="signature_ids">
+                <div t-if="signature_ids" class="document_signatures mb32">
                     <div class="row mb16">
-                        <div class="col-12" id="document_signatures_title">
+                        <div id="document_signatures_title" class="col-12">
                             <h3 class="text-muted">Signatures</h3>
                         </div>
                     </div>
                     <div class="row pt4">
-                        <div class="col-12" id="document_signatures_table">
+                        <div id="document_signatures_table" class="col-12">
                             <table class="table table-bordered">
                                 <thead
                                     class="bg-100"
@@ -162,10 +162,10 @@
                                 <tbody>
                                     <t t-foreach="signature_ids" t-as="signature">
                                         <tr>
-                                            <td t-esc="signature.partner_name" />
+                                            <td t-out="signature.partner_name" />
                                             <td>
                                                 <span
-                                                    t-esc="signature.signed_on"
+                                                    t-out="signature.signed_on"
                                                     t-options='{"widget": "datetime", "format": "dd-MM-YYYY HH:mm:ss", "tz_name": "UTC"}'
                                                 />
                                                 <span>(UTC)</span>
@@ -174,9 +174,9 @@
                                                 <t
                                                     t-if="signature.latitude or signature.longitude"
                                                 >
-                                                    <span t-esc="signature.latitude" />
+                                                    <span t-out="signature.latitude" />
                                                     <span>-</span>
-                                                    <span t-esc="signature.longitude" />
+                                                    <span t-out="signature.longitude" />
                                                 </t>
                                                 <span
                                                     t-else=""
@@ -191,7 +191,7 @@
                                                 >Inalterability hash:</span>
                                                 <span
                                                     class="text-break"
-                                                    t-esc="signature.inalterable_hash"
+                                                    t-out="signature.inalterable_hash"
                                                 />
                                             </td>
                                         </tr>
@@ -207,14 +207,14 @@
                     t-set="request_logs"
                     t-value="env['sign.oca.request.log'].sudo().search([('request_id', '=', o.id), ('action', 'in', ['create', 'validate', 'view', 'sign', 'cancel'])])"
                 />
-                <div class="document_activity_logs mb32" t-if="request_logs">
+                <div t-if="request_logs" class="document_activity_logs mb32">
                     <div class="row mb16">
-                        <div class="col-12" id="document_activity_logs_title">
+                        <div id="document_activity_logs_title" class="col-12">
                             <h3 class="text-muted">Activity Logs</h3>
                         </div>
                     </div>
                     <div class="row pt4">
-                        <div class="col-12" id="document_activity_logs_table">
+                        <div id="document_activity_logs_table" class="col-12">
                             <table class="table table-bordered">
                                 <thead
                                     class="bg-100"
@@ -231,27 +231,27 @@
                                     <t t-foreach="request_logs" t-as="log">
                                         <tr>
                                             <td
-                                                t-esc="dict(log.fields_get()['action']['selection'])[log.action]"
+                                                t-out="dict(log.fields_get()['action']['selection'])[log.action]"
                                             />
                                             <td
-                                                t-esc="log.date"
+                                                t-out="log.date"
                                                 t-options='{"widget": "datetime", "format": "dd-MM-YYYY HH:mm:ss", "tz_name": "UTC"}'
                                             />
                                             <td>
                                                 <t t-if="not log.signer_id">
                                                     <span
-                                                        t-esc="log.partner_id.sudo().name"
+                                                        t-out="log.partner_id.sudo().name"
                                                     />
                                                 </t>
                                                 <t t-else="">
                                                     <span
-                                                        t-esc="log.signer_id.sudo().partner_name"
+                                                        t-out="log.signer_id.sudo().partner_name"
                                                     />
                                                 </t>
                                             </td>
                                             <td>
                                                 <t t-if="log.ip">
-                                                    <span t-esc="log.ip" />
+                                                    <span t-out="log.ip" />
                                                 </t>
                                                 <t t-else="">
                                                     <span

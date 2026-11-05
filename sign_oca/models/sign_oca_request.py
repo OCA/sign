@@ -605,8 +605,10 @@ class SignOcaRequestSigner(models.Model):
         )
 
     @api.depends(
-        lambda r: ["request_id.data", "inalterable_hash", "secure_sequence_number"]
-        + r._get_integrity_hash_fields()
+        lambda r: (
+            ["request_id.data", "inalterable_hash", "secure_sequence_number"]
+            + r._get_integrity_hash_fields()
+        )
     )
     def _compute_altered_hash(self):
         for record in self:

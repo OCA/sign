@@ -37,8 +37,8 @@
             >
                 <div class="o_sign_validation_buttons justify-content-center">
                     <button
-                        class="btn btn-primary"
                         id="sign_oca_button"
+                        class="btn btn-primary"
                         t-on-click="(ev) => this._onClickSign(ev)"
                     >Validate &amp; Send document</button>
                 </div>

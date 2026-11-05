@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2023 Dixmit
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
-    <record model="ir.ui.view" id="sign_oca_role_form_view">
+    <record id="sign_oca_role_form_view" model="ir.ui.view">
         <field name="name">sign.oca.role.form (in sign_oca)</field>
         <field name="model">sign.oca.role</field>
         <field name="arch" type="xml">
@@ -33,7 +33,7 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="sign_oca_role_search_view">
+    <record id="sign_oca_role_search_view" model="ir.ui.view">
         <field name="name">sign.oca.role.search (in sign_oca)</field>
         <field name="model">sign.oca.role</field>
         <field name="arch" type="xml">
@@ -44,7 +44,7 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="sign_oca_role_tree_view">
+    <record id="sign_oca_role_tree_view" model="ir.ui.view">
         <field name="name">sign.oca.role.list (in sign_oca)</field>
         <field name="model">sign.oca.role</field>
         <field name="arch" type="xml">
@@ -55,7 +55,7 @@
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="sign_oca_role_act_window">
+    <record id="sign_oca_role_act_window" model="ir.actions.act_window">
         <field name="name">Roles</field>
         <!-- TODO -->
         <field name="res_model">sign.oca.role</field>
@@ -64,7 +64,7 @@
         <field name="context">{}</field>
     </record>
 
-    <record model="ir.ui.menu" id="sign_oca_role_menu">
+    <record id="sign_oca_role_menu" model="ir.ui.menu">
         <field name="name">Roles</field>
         <field name="parent_id" ref="sign_oca_settings_menu" />
         <field name="action" ref="sign_oca_role_act_window" />
