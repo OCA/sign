@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="oca_sign_oca.SignatureButtons">
+        <div class="o_sign_oca_buttons" role="toolbar" aria-label="Main actions">
+            <button
+                t-if="to_sign"
+                class="btn btn-primary o_sign_oca_button_sign"
+                type="button"
+                accesskey="s"
+            >
+                Sign
+            </button>
+        </div>
+    </t>
+</templates>

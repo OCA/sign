@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem
+        id="sign_oca_root_menu"
+        name="Sign"
+        web_icon="sign_oca,static/description/icon.png"
+        sequence="16"
+        groups="sign_oca.sign_oca_group_user"
+    />
+    <record id="sign_oca_settings_menu" model="ir.ui.menu">
+        <field name="name">Settings</field>
+        <field name="sequence" eval="90" />
+        <field name="parent_id" ref="sign_oca_root_menu" />
+        <field name="group_ids" eval="[(6,0,[ref('sign_oca.sign_oca_group_admin')])]" />
+    </record>
+</odoo>

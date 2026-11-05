@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.1"
+   width="200"
+   height="200"
+   viewBox="0 0 200 200"
+   odoo-icon:version="1.0"
+   odoo-icon:size="70"
+   odoo-icon:icon-size="0.65"
+   odoo-icon:icon-color="#FFFFFF"
+   odoo-icon:icon-flat-shadow-angle="135"
+   odoo-icon:background-color="#35979c"
+   odoo-icon:background-gradient="0.2"
+   odoo-icon:box-radius="3.5"
+   odoo-icon:odoo-version="14.0"
+   id="svg17"
+   sodipodi:docname="icon.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:odoo-icon="https://ivantodorovich.github.io/odoo-icon">
+  <sodipodi:namedview
+     id="namedview19"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="2.8035714"
+     inkscape:cx="9.6305732"
+     inkscape:cy="110.3949"
+     inkscape:window-width="1920"
+     inkscape:window-height="995"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg17" />
+  <defs
+     id="defs7">
+    <linearGradient
+       x1="70"
+       y1="0"
+       x2="0"
+       y2="70"
+       gradientUnits="userSpaceOnUse"
+       id="color-1">
+      <stop
+         offset="0"
+         stop-color="#68cacf"
+         id="stop2" />
+      <stop
+         offset="1"
+         stop-color="#35979c"
+         id="stop4" />
+    </linearGradient>
+  </defs>
+  <path
+     id="path787-6"
+     style="fill:#00bfa5;fill-opacity:1;stroke-width:0.312549"
+     d="m 7.50195,135.00586 c -4.15689,0 -7.50195,3.34309 -7.50195,7.5 0,4.1569 3.34506,7.50195 7.50195,7.50195 64.98506,0 128.75582,0 184.9961,0 4.15688,0 7.50195,-3.34505 7.50195,-7.50195 0,-4.15691 -3.34507,-7.5 -7.50195,-7.5 z"
+     sodipodi:nodetypes="csccscc" />
+  <path
+     d="m 59.97813,59.993712 c 0,-5.532123 4.46942,-10.001581 10.00154,-10.001581 5.53212,0 10.00157,4.469458 10.00157,10.001581 v 2.437884 c 0,8.657594 -0.75011,17.283954 -2.21908,25.785304 l -26.37914,7.90748 c -12.68947,3.8131 -21.37833,15.50245 -21.37833,28.75453 v 10.12659 c 0,0 0.0186,0.0849 0.15626,15.00236 0.16226,6.90799 10.87669,20.00314 22.50353,20.00314 8.12626,0 15.62742,-4.34442 19.65932,-11.40806 l 4.34441,-7.59492 c 8.37631,-14.68983 14.53354,-30.53606 18.25288,-47.03865 l 29.50459,-8.84515 -3.90685,11.7206 c -1.03142,3.06299 -0.50007,6.40725 1.37521,9.00142 1.87529,2.59414 4.87577,4.15691 8.09501,4.15691 h 40.00626 c 5.53212,0 10.00158,-4.46946 10.00158,-10.00159 0,-5.53212 -4.46946,-10.00158 -10.00158,-10.00158 h -26.12908 l 5.62587,-16.84639 c 1.18771,-3.5318 0.28142,-7.43866 -2.31284,-10.12659 -2.59417,-2.68793 -6.46977,-3.688092 -10.06408,-2.62542 l -38.25599,11.5018 c 0.75012,-6.46975 1.12517,-12.939529 1.12517,-19.471784 V 59.993712 C 99.98436,43.42859 86.54477,29.989 69.97967,29.989 53.4146,29.989 39.97498,43.42859 39.97498,59.993712 v 10.001552 c 0,5.532126 4.46945,10.001586 10.00157,10.001586 5.53212,0 10.00158,-4.46946 10.00158,-10.001586 z m -2.87547,55.321178 15.31489,-4.59446 c -3.2505,10.56415 -7.65745,20.75328 -13.15828,30.37977 l -4.34445,7.59495 c -0.46881,0.81261 -1.34396,1.34396 -2.31287,1.34396 -1.46897,0 -2.65665,-1.1877 -2.65665,-2.65667 v -22.47228 c 0,-4.40694 2.9067,-8.31381 7.1261,-9.59527 z"
+     id="path461-3-7"
+     style="fill:#ff7f32;fill-opacity:1;stroke-width:0.312549"
+     sodipodi:nodetypes="ssssccsccscccccssssscccccssssssssccccssscc" />
+  <path
+     id="path787"
+     style="fill:#714b67;stroke-width:0.312549;fill-opacity:1"
+     d="M 30.003906 135.00586 C 30.003906 135.00586 30.022446 135.09037 30.160156 150.00781 L 52.294922 150.00781 C 50.972888 149.85418 49.945313 148.74657 49.945312 147.38281 L 49.945312 135.00586 L 30.003906 135.00586 z M 62.544922 135.00586 C 61.494275 137.05888 60.405966 139.09375 59.259766 141.09961 L 54.914062 148.69531 C 54.483562 149.44152 53.705777 149.9296 52.832031 150.00781 L 77.214844 150.00781 C 79.955351 145.12656 82.452389 140.12008 84.697266 135.00586 L 62.544922 135.00586 z " />
+</svg>

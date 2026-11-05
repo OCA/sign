@@ -1,0 +1,24 @@
+id,name,model_id,group_id/id,operation,domain
+edit_sign_template,Sign template: users read,sign.oca.template,sign_oca_group_user,r,
+edit_sign_template_admin,Sign template: administrators,sign.oca.template,sign_oca_group_admin,crud,
+edit_sign_template_item,Sign template item: users read,sign.oca.template.item,sign_oca_group_user,r,
+edit_sign_template_item_admin,Sign template item: administrators,sign.oca.template.item,sign_oca_group_admin,crud,
+edit_sign_role,Sign role: users read,sign.oca.role,sign_oca_group_user,r,
+edit_sign_role_admin,Sign role: administrators,sign.oca.role,sign_oca_group_admin,crud,
+edit_sign_field,Sign field: users read,sign.oca.field,sign_oca_group_user,r,
+edit_sign_field_admin,Sign field: administrators,sign.oca.field,sign_oca_group_admin,crud,
+sign_oca_request_rule_base_user_read,Sign request: internal users read the requests they follow or sign,sign.oca.request,base.group_user,r,"['|', ('message_partner_ids', 'child_of', [user.partner_id.commercial_partner_id.id]), ('signer_ids.partner_id', 'child_of', [user.partner_id.commercial_partner_id.id])]"
+edit_sign_request,Sign request: users create and edit,sign.oca.request,sign_oca_group_user,cu,
+sign_oca_request_rule_manager_read,Sign request: managers read all,sign.oca.request,sign_oca_group_manager,r,
+edit_sign_request_admin,Sign request: administrators,sign.oca.request,sign_oca_group_admin,crud,
+sign_oca_request_rule_company,Sign request: multi-company,sign.oca.request,,crud,"[('company_id', 'in', company_ids)]"
+sign_oca_request_signer_rule_base_user_read,Sign request signer: internal users read their own signatures,sign.oca.request.signer,base.group_user,r,"[('partner_id', 'child_of', [user.partner_id.commercial_partner_id.id])]"
+sign_oca_request_signer_rule_user_read,Sign request signer: users read the signers of the requests they follow,sign.oca.request.signer,sign_oca_group_user,r,"[('request_id.message_partner_ids', 'child_of', [user.partner_id.commercial_partner_id.id])]"
+edit_sign_request_signer,Sign request signer: users create edit and delete,sign.oca.request.signer,sign_oca_group_user,cud,
+sign_oca_request_signer_rule_manager_read,Sign request signer: managers read all,sign.oca.request.signer,sign_oca_group_manager,r,
+sign_oca_request_signer_rule_company,Sign request signer: multi-company,sign.oca.request.signer,,crud,"[('request_id.company_id', 'in', company_ids)]"
+edit_sign_generate,Sign template generate wizard: users,sign.oca.template.generate,sign_oca_group_user,crud,
+edit_sign_generate_signer,Sign template generate signer wizard: users,sign.oca.template.generate.signer,sign_oca_group_user,crud,
+edit_sign_generate_multi,Sign template generate multi wizard: users,sign.oca.template.generate.multi,sign_oca_group_user,crud,
+access_sign_request_log,Sign request log: users read,sign.oca.request.log,sign_oca_group_user,r,
+access_sign_request_log_admin,Sign request log: administrators,sign.oca.request.log,sign_oca_group_admin,crud,
