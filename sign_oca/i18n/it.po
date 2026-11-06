@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-10-01 15:46+0000\n"
+"PO-Revision-Date: 2026-11-06 15:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -1102,7 +1102,7 @@ msgstr "Richieste"
 #: code:addons/sign_oca/static/src/components/sign_oca_configure/sign_oca_configure_field_dialog.xml:0
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_template_item__required
 msgid "Required"
-msgstr "Obbligatorio"
+msgstr "Richiesto"
 
 #. module: sign_oca
 #: model:ir.model.fields,field_description:sign_oca.field_sign_oca_request_signer__res_id
