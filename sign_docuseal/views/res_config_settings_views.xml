@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form_docuseal" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.docuseal</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="DocuSeal" string="DocuSeal" name="sign_docuseal">
+                    <block title="DocuSeal Integration" name="docuseal_block">
+                        <setting
+                            string="DocuSeal URL"
+                            help="Base URL of the DocuSeal instance, without a trailing slash."
+                        >
+                            <field name="docuseal_base_url" />
+                        </setting>
+                        <setting
+                            string="API Key"
+                            help="Sent as the X-Auth-Token header on every API call."
+                        >
+                            <field name="docuseal_api_key" password="True" />
+                        </setting>
+                        <setting
+                            string="Webhook Secret"
+                            help="DocuSeal must send it back in the X-Odoo-Webhook-Secret header when calling /docuseal/webhook."
+                        >
+                            <field name="docuseal_webhook_secret" password="True" />
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

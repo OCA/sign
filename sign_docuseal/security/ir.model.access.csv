@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_docuseal_submission_user,docuseal.submission.user,model_docuseal_submission,base.group_user,1,0,0,0
+access_docuseal_submission_manager,docuseal.submission.manager,model_docuseal_submission,base.group_system,1,1,1,1
+access_docuseal_submitter_user,docuseal.submitter.user,model_docuseal_submitter,base.group_user,1,0,0,0
+access_docuseal_submitter_manager,docuseal.submitter.manager,model_docuseal_submitter,base.group_system,1,1,1,1

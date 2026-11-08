@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Signing page served by Odoo: it embeds the DocuSeal form (/s/<slug>)
+         so the signer stays on the Odoo domain. -->
+    <template id="signing_page" name="Electronic Signature">
+        <t t-call="web.frontend_layout">
+            <div class="container my-4" style="max-width: 980px;">
+                <h4>
+                    Electronic signature &#8212;
+                    <t t-out="submission.name" />
+                </h4>
+                <p class="text-muted" style="font-size: 0.9rem;">
+                    <t t-out="submitter.role" />: <t t-out="submitter.name" />
+                </p>
+                <t t-if="submitter.status == 'completed'">
+                    <div class="alert alert-success">
+                        Your signature has been recorded. Thank you!
+                    </div>
+                </t>
+                <t t-elif="submission.state in ('declined', 'expired')">
+                    <div class="alert alert-warning">
+                        This signature request is no longer active. Please get
+                        in touch with
+                        <t t-out="submission.company_id.name" />.
+                    </div>
+                </t>
+                <t t-else="">
+                    <iframe
+                        t-att-src="submitter.embed_src"
+                        style="width:100%;height:75vh;border:1px solid #dee2e6;border-radius:4px;"
+                        allow="camera"
+                    />
+                </t>
+            </div>
+        </t>
+    </template>
+</odoo>
