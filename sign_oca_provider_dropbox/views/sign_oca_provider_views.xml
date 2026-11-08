@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sign_oca_provider_form_dropbox_sign" model="ir.ui.view">
+        <field name="name">sign.oca.provider.form.dropbox.sign</field>
+        <field name="model">sign.oca.provider</field>
+        <field
+            name="inherit_id"
+            ref="sign_oca_provider_base.sign_oca_provider_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Dropbox Sign" invisible="provider_type != 'dropbox_sign'">
+                    <group>
+                        <group string="Connection">
+                            <field name="dropbox_client_id" />
+                            <field
+                                name="dropbox_callback_url"
+                                widget="CopyClipboardChar"
+                                readonly="1"
+                            />
+                            <field name="dropbox_test_mode" />
+                        </group>
+
+                        <group string="Signing policy">
+                            <field name="dropbox_sequential" />
+                            <field name="dropbox_allow_decline" />
+                            <field name="dropbox_expire_days" />
+                            <field name="dropbox_use_eid" />
+                        </group>
+                    </group>
+
+                    <group string="Invitation">
+                        <field name="dropbox_subject" />
+                        <field name="dropbox_message" />
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,1 @@
+odoo-addon-sign_oca_provider_base @ git+https://github.com/OCA/sign.git@refs/pull/157/head#subdirectory=sign_oca_provider_base
