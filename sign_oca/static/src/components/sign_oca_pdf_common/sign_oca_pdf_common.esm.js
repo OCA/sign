@@ -68,8 +68,22 @@ export default class SignOcaPdfCommon extends Component {
                 .length === 0
         ) {
             this.postIframeFields();
+        } else {
+            this.reattachFields();
         }
         this.reviewFieldsTimeout = setTimeout(this.reviewFields.bind(this), 1000);
+    }
+    // Pdf.js clears the children of a page when it re-renders it, which detaches
+    // the fields. Put back every field that is no longer in the DOM.
+    reattachFields() {
+        const pages = this.iframe.el.contentDocument.getElementsByClassName("page");
+        Object.values(this.info.items).forEach((item) => {
+            const el = this.items[item.id];
+            const page = pages[item.page - 1];
+            if (el && page && !el.isConnected) {
+                page.append(el);
+            }
+        });
     }
     postIframeFields() {
         this.iframe.el.contentDocument
@@ -126,11 +140,16 @@ export default class SignOcaPdfCommon extends Component {
     checkSignItemsCompletion() {
         const signItemsToComplete = [];
         $.each(this.info.items, (key, value) => {
-            if (this.postIframeField(value) && this.postIframeField(value)[0]) {
+            let el = this.items[value.id];
+            if (!el) {
+                const created = this.postIframeField(value);
+                el = created && created[0];
+            }
+            if (el) {
                 const $element = $(value);
                 const signItemToComplete = {};
                 signItemToComplete.data = $element[0];
-                signItemToComplete.el = this.postIframeField(value)[0];
+                signItemToComplete.el = el;
                 signItemsToComplete.push(signItemToComplete);
             }
         });

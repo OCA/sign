@@ -142,8 +142,11 @@ export function startSignItemNavigator(parent, target, env) {
         navigator.innerText = text;
     }
 
-    function scrollToSignItem({el: item}) {
+    function scrollToSignItem({el, data}) {
         setTip(_t("Next"));
+        // The field may have been recreated by pdf.js re-renders: resolve it now
+        parent.reattachFields();
+        const item = (data && parent.items[data.id]) || el;
 
         _scrollToSignItemPromise(item).then(() => {
             // Define input to deal with input fields if present
@@ -193,6 +196,10 @@ export function startSignItemNavigator(parent, target, env) {
         selectedElements.forEach((selectedElement) => {
             selectedElement.classList.remove("ui-selected");
         });
+        // Skip fields that are already filled
+        while (signItemsToComplete.length > 0 && signItemsToComplete[0].data.value) {
+            signItemsToComplete = signItemsToComplete.slice(1);
+        }
         if (signItemsToComplete.length > 0) {
             scrollToSignItem(signItemsToComplete[0]);
         } else {
