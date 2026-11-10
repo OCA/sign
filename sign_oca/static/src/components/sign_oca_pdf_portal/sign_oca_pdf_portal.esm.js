@@ -1,6 +1,7 @@
 /** @odoo-module **/
 /* global window */
 
+import {AlertDialog} from "@web/core/confirmation_dialog/confirmation_dialog";
 import {App, useRef, whenReady} from "@odoo/owl";
 import {_t} from "@web/core/l10n/translation";
 import {makeEnv, startServices} from "@web/env";
@@ -63,13 +64,18 @@ export class SignOcaPdfPortal extends SignOcaPdf {
         this.navigate();
     }
     async _onClickSign(ev) {
-        ev.target.disabled = true;
-        const position = await this.getLocation();
-        this.rpc("/sign_oca/sign/" + this.signer_id + "/" + this.access_token, {
-            items: this.info.items,
-            latitude: position && position.coords && position.coords.latitude,
-            longitude: position && position.coords && position.coords.longitude,
-        }).then((action) => {
+        const button = ev.target;
+        button.disabled = true;
+        try {
+            const position = await this.getLocation();
+            const action = await this.rpc(
+                "/sign_oca/sign/" + this.signer_id + "/" + this.access_token,
+                {
+                    items: this.info.items,
+                    latitude: position && position.coords && position.coords.latitude,
+                    longitude: position && position.coords && position.coords.longitude,
+                }
+            );
             // As we are on frontend env, it is not possible to use do_action(), so we
             // redirect to the corresponding URL or reload the page if the action is not
             // an url.
@@ -78,10 +84,26 @@ export class SignOcaPdfPortal extends SignOcaPdf {
             } else {
                 window.location.reload();
             }
-        });
+        } catch (error) {
+            button.disabled = false;
+            const detail =
+                (error && error.data && error.data.message) ||
+                (error && error.message) ||
+                "";
+            this.dialogService.add(AlertDialog, {
+                body: _t("The document could not be signed. %s", detail),
+            });
+        }
     }
     navigate() {
-        const target = this.iframe.el.contentDocument.getElementById("viewerContainer");
+        const doc = this.iframe.el.contentDocument;
+        const navigatorEl = doc.getElementsByClassName("o_sign_sign_item_navigator")[0];
+        // The navigator element survives page re-renders: never bind it twice
+        if (this.navigator && this.navigatorEl === navigatorEl) {
+            return;
+        }
+        this.navigatorEl = navigatorEl;
+        const target = doc.getElementById("viewerContainer");
         this.navigator = startSignItemNavigator(this, target, this.env);
     }
 }
