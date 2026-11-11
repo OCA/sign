@@ -1,6 +1,9 @@
 /** @odoo-module QWeb **/
 /* global document, window, Event, KeyboardEvent, console */
 import {_t} from "@web/core/l10n/translation";
+import {registry} from "@web/core/registry";
+
+const SignRegistry = registry.category("sign_oca");
 
 export function offset(el) {
     const box = el.getBoundingClientRect();
@@ -200,8 +203,29 @@ export function startSignItemNavigator(parent, target, env) {
         }
     }
 
+    // Required items of this signer that are still empty, pointing at the element
+    // currently in the page (postIframeField replaces it when it renders again).
+    function requiredPendingItems() {
+        return checkSignItemsCompletion
+            .filter(
+                ({data}) =>
+                    data.required && !SignRegistry.get(data.field_type).check(data)
+            )
+            .map((item) => ({
+                ...item,
+                el: (parent.items && parent.items[item.data.id]) || item.el,
+            }));
+    }
+
     navigator.addEventListener("click", () => {
         if (checkSignItemsCompletion.length > 0) {
+            // The list is consumed one item per click, not per filled item: once it
+            // runs out, only ask to validate when nothing required is left empty
+            // (the Validate button is hidden until then). Otherwise go back to the
+            // empty items, e.g. when the signer closed the signature dialog.
+            if (state.started && signItemsToComplete.length === 0) {
+                signItemsToComplete = requiredPendingItems();
+            }
             goToNextSignItem();
             signItemsToComplete = signItemsToComplete.slice(1);
         }
