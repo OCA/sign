@@ -142,9 +142,20 @@ export function startSignItemNavigator(parent, target, env) {
         navigator.innerText = text;
     }
 
-    function scrollToSignItem({el: item}) {
+    async function scrollToSignItem(signItem) {
+        const {el, data} = signItem;
         setTip(_t("Next"));
-
+        // The element captured at startup may have been destroyed when pdf.js
+        // re-rendered its page; resolve the live one, rendering the page again
+        // if needed.
+        const live = data && data.id ? await parent.getLiveItemElement(data.id) : null;
+        const item = live || (el.isConnected ? el : null);
+        if (!item) {
+            // The page did not render in time: keep this item as the next step
+            // instead of measuring a detached node, so the next click retries it.
+            signItemsToComplete.unshift(signItem);
+            return;
+        }
         _scrollToSignItemPromise(item).then(() => {
             // Define input to deal with input fields if present
             const input = item.querySelector("input");
