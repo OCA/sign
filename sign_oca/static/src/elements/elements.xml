@@ -34,6 +34,21 @@
         />
         <div style="width:100%;height:100%" t-else="" t-out="placeholder" />
     </t>
+    <t t-name="sign_oca.sign_iframe_field_date">
+        <input
+            style="width:100%;height:100%"
+            type="date"
+            t-att-tabindex="-1"
+            t-att-value="item._raw_date ? item._raw_date : undefined"
+            t-att-placeholder="item.placeholder || item.name"
+            t-if="item.role == role"
+        />
+        <div
+            style="width:100%;height:100%"
+            t-out="item.value ? item.value : undefined"
+            t-else=""
+        />
+    </t>
     <t t-name="sign_oca.sign_oca_sign_dialog">
         <div>
             <div class="o_sign_oca_signature" />

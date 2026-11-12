@@ -27,6 +27,10 @@
         <field name="name">Check</field>
         <field name="field_type">check</field>
     </record>
+    <record id="sign_field_date" model="sign.oca.field">
+        <field name="name">Date</field>
+        <field name="field_type">date</field>
+    </record>
     <record id="sign_role_customer" model="sign.oca.role">
         <field name="name">Customer</field>
         <field name="domain">[]</field>
