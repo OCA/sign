@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import base64
+from unittest.mock import patch
 
 from odoo.modules.module import get_module_resource
 from odoo.tests.common import Form, TransactionCase
@@ -224,6 +225,36 @@ class TestSign(TransactionCase):
         self.assertEqual(signer.request_id.state, "2_signed")
         self.assertEqual(res["type"], "ir.actions.act_url")
         self.assertEqual(res["url"], signer.access_url)
+
+    def _auto_sign_template_with_value(self, value):
+        self.configure_template()
+        f = Form(
+            self.env["sign.oca.template.generate"].with_context(
+                default_template_id=self.template.id, default_sign_now=True
+            )
+        )
+        f.save().generate()
+        signer = self.template.request_ids.signer_id
+        data = {}
+        for key, item in signer.get_info()["items"].items():
+            data[key] = dict(item, value=value)
+        signer.action_sign(data)
+        return signer
+
+    def test_auto_sign_template_markup_value(self):
+        signer = self._auto_sign_template_with_value("Jean & Cie <b>")
+        self.assertEqual(signer.request_id.state, "2_signed")
+
+    def test_auto_sign_template_img_value_not_loaded(self):
+        # Without escape(), reportlab would open file:///etc/hostname
+        with patch(
+            "reportlab.lib.utils.open_for_read", side_effect=OSError
+        ) as open_for_read:
+            signer = self._auto_sign_template_with_value(
+                '<img src="file:///etc/hostname" width="5" height="5"/>'
+            )
+        open_for_read.assert_not_called()
+        self.assertEqual(signer.request_id.state, "2_signed")
 
     def test_auto_sign_template_cancel(self):
         self.configure_template()

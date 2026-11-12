@@ -6,6 +6,7 @@ import json
 from base64 import b64decode, b64encode
 from hashlib import sha256
 from io import BytesIO
+from xml.sax.saxutils import escape
 
 from PyPDF2 import PdfFileReader, PdfFileWriter
 from reportlab.graphics.shapes import Drawing, Line, Rect
@@ -521,7 +522,9 @@ class SignOcaRequestSigner(models.Model):
         can = canvas.Canvas(packet, pagesize=(box.getWidth(), box.getHeight()))
         if not item["value"]:
             return False
-        par = Paragraph(item["value"], style=self._getParagraphStyle())
+        # Escape the signer's input: reportlab Paragraph parses it as XML markup,
+        # so <img src="..."/> would make the server read a URL or local file.
+        par = Paragraph(escape(item["value"]), style=self._getParagraphStyle())
         par.wrap(
             item["width"] / 100 * float(box.getWidth()),
             item["height"] / 100 * float(box.getHeight()),
