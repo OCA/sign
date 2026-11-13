@@ -95,9 +95,6 @@
             "sign_oca/static/src/scss/sign.scss",
             "web/static/src/libs/fontawesome/css/font-awesome.css",
         ],
-        "web.assets_tests": [
-            "sign_oca/static/src/tests/sign_tour.esm.js",
-        ],
     },
     "maintainers": ["etobella"],
 }
