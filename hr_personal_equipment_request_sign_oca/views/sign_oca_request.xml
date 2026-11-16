@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sign_oca_request_search_view" model="ir.ui.view">
+        <field name="name">sign.oca.request.search</field>
+        <field name="model">sign.oca.request</field>
+        <field name="inherit_id" ref="sign_oca.sign_oca_request_search_view" />
+        <field name="arch" type="xml">
+            <field name="signer_ids" position="after">
+                <field name="personal_equipment_request_id" />
+                <field name="ppe_employee_id" />
+            </field>
+            <filter name="group_by_state" position="after">
+                <filter
+                    string="Employee"
+                    name="ppe_employee_id_group_by"
+                    context="{'group_by':'ppe_employee_id'}"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
