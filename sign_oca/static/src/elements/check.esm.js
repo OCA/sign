@@ -16,6 +16,8 @@ const checkSignOca = {
                 role_id: parent.info.role_id,
             })
         )[0];
+        // The checked state is a DOM property, which the rendered template does not keep.
+        input.checked = Boolean(item.value);
         signatureItem[0].addEventListener("focus_signature", () => {
             input.focus();
         });
