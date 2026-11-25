@@ -16,6 +16,10 @@ const textSignOca = {
                 role_id: parent.info.role_id,
             })
         )[0];
+        // The value is a DOM property, which the rendered template does not keep.
+        if (item.value) {
+            input.value = item.value;
+        }
         signatureItem[0].addEventListener("focus_signature", () => {
             input.focus();
         });

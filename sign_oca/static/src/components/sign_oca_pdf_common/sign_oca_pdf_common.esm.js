@@ -23,6 +23,7 @@ export default class SignOcaPdfCommon extends Component {
         this.items = {};
         onWillUnmount(() => {
             clearTimeout(this.reviewFieldsTimeout);
+            this.unbindPageRendered();
         });
         this.iframeLoaded.resolve = iframeResolve;
         this.iframeLoaded.reject = iframeReject;
@@ -104,9 +105,83 @@ export default class SignOcaPdfCommon extends Component {
             "sign_oca_ready"
         );
         this.iframeLoaded.resolve();
+        this.bindPageRendered();
+    }
+    /*
+     * The pdf.js viewer only keeps a few pages rendered and resets the DOM of the
+     * others, which destroys the field elements injected into those pages. The single
+     * o_sign_oca_ready marker on the first page cannot detect that loss, so the
+     * fields of the other pages would never come back. Inject the items of a
+     * page again every time pdf.js finishes rendering it.
+     */
+    bindPageRendered() {
+        if (this.pageRenderedBound) {
+            return;
+        }
+        const app =
+            this.iframe.el.contentWindow &&
+            this.iframe.el.contentWindow.PDFViewerApplication;
+        if (!app || !app.eventBus) {
+            this.bindPageRenderedTimeout = setTimeout(
+                this.bindPageRendered.bind(this),
+                250
+            );
+            return;
+        }
+        this.pageRenderedBound = true;
+        this.pageRenderedBus = app.eventBus;
+        this.pageRenderedHandler = (ev) => {
+            const pageNumber = ev && ev.pageNumber;
+            if (!pageNumber || !this.info || !this.iframe.el) {
+                return;
+            }
+            $.each(this.info.items, (key) => {
+                const item = this.info.items[key];
+                const el = this.items[item.id];
+                if (item.page === pageNumber && !(el && el.isConnected)) {
+                    this.postIframeField(item);
+                }
+            });
+        };
+        this.pageRenderedBus.on("pagerendered", this.pageRenderedHandler);
+    }
+    unbindPageRendered() {
+        clearTimeout(this.bindPageRenderedTimeout);
+        if (this.pageRenderedBus) {
+            this.pageRenderedBus.off("pagerendered", this.pageRenderedHandler);
+        }
+        this.pageRenderedBus = null;
+        this.pageRenderedHandler = null;
+        this.pageRenderedBound = false;
+    }
+    /*
+     * Return the live element of an item, bringing its page back into view
+     * when pdf.js has recycled it, so that the page is rendered again and
+     * its fields are injected by the pagerendered handler.
+     */
+    async getLiveItemElement(item_id) {
+        const item = this.info.items[item_id];
+        const isLive = () => this.items[item_id] && this.items[item_id].isConnected;
+        if (!isLive() && item && this.iframe.el) {
+            const app = this.iframe.el.contentWindow.PDFViewerApplication;
+            app.pdfViewer.currentPageNumber = item.page;
+            for (let i = 0; i < 60 && !isLive(); i++) {
+                await new Promise((resolve) => setTimeout(resolve, 50));
+            }
+        }
+        return isLive() ? this.items[item_id] : null;
     }
     postIframeField(item) {
         if (this.items[item.id]) {
+            // Keep text typed in a field whose change event has not fired yet,
+            // e.g. when pdf.js removed the page while the input had the focus.
+            const input = this.items[item.id].querySelector("input");
+            if (input && input.type === "text" && input.value !== (item.value || "")) {
+                item.value = input.value;
+                if (this.checkFilledAll) {
+                    this.checkFilledAll();
+                }
+            }
             this.items[item.id].remove();
         }
         var page =
