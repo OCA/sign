@@ -7,7 +7,6 @@ from base64 import b64decode, b64encode
 from hashlib import sha256
 from io import BytesIO
 
-from PyPDF2 import PdfFileReader, PdfFileWriter
 from reportlab.graphics.shapes import Drawing, Line, Rect
 from reportlab.lib.colors import black, transparent
 from reportlab.lib.styles import ParagraphStyle
@@ -18,6 +17,7 @@ from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.http import request
 from odoo.tools import float_repr
+from odoo.tools.pdf import PdfFileReader, PdfFileWriter
 
 
 class SignOcaRequest(models.Model):
